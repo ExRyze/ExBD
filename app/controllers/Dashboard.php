@@ -3,7 +3,7 @@
 class Dashboard extends Controller {
 
   public function index() {
-    $data = $this->model('Animes')->count();
+    $data['page'] = 'ExBD | Dashboard';
     $this->view('dashboard/index', $data);
   }
 
