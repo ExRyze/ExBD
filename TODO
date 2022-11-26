@@ -1,0 +1,12 @@
+1. Table 'animes_aliases';
+2. Table 'genres';
+3. Table 'animes_genres';
+4. Table 'producers';
+5. Table 'animes_producers';
+6. Table 'licensors';
+7. Table 'animes_licensors';
+8. Table 'studios';
+9. Table 'animes_studios';
+10. Table 'source' {`id`, `type`, `reference`};
+11. Table 'animes_rating' {`id`, `rating`, `username`};
+12. 
