@@ -9,11 +9,11 @@ class Users {
     $this->db = new Database;
   }
 
-  public function auth($post) {
+  public function authentication($post) {
     $this->db->query("SELECT * FROM {$this->table} WHERE `username` = :username AND `password` = :password");
     $this->db->bind('username', $post['username']);
     $this->db->bind('password', $post['password']);
-    return $this->db->rowCount();
+    return $this->db->result();
   }
 
   public function store($post) {
