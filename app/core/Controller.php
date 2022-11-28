@@ -2,12 +2,6 @@
 
 class Controller {
 
-  protected $middleware;
-
-  public function __construct() {
-    $this->middleware = new Middleware;
-  }
-
   public function view($view, $data = []) {
     require_once "../app/views/{$view}.php";
   }

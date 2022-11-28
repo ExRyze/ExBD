@@ -3,7 +3,7 @@
 class Dashboard extends Controller {
 
   public function index() {
-    $this->middleware->auth();
+    Middleware::auth();
     $data['page'] = 'ExBD | Dashboard';
     $this->view('dashboard/index', $data);
   }

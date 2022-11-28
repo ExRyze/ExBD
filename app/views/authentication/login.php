@@ -4,6 +4,7 @@
   <form action="login/Clogin" method="post" class="card-body">
     <h4 class="text-center">Login</h4>
     <div class="border-bottom border-3 border-dark mb-3"></div>
+    <?php Flasher::flasher() ?>
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" name="username" class="form-control" id="username">
