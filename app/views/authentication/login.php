@@ -1,4 +1,4 @@
-<?php require_once TEMPLATES_HEAD ?>
+<?php require MAIN_HEAD ?>
 
 <div class="position-absolute top-50 start-50 translate-middle bg-secondary card col-3">
   <form action="login/Clogin" method="post" class="card-body">
@@ -17,4 +17,4 @@
   </form>
 </div>
 
-<?php require_once TEMPLATES_FOOT ?>
+<?php require MAIN_FOOT ?>
