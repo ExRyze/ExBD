@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 26, 2022 at 11:53 AM
+-- Generation Time: Nov 29, 2022 at 11:38 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -49,9 +49,18 @@ CREATE TABLE `users` (
   `username` varchar(52) NOT NULL,
   `name` varchar(52) NOT NULL,
   `password` varchar(52) NOT NULL,
+  `role` varchar(52) NOT NULL DEFAULT 'User',
+  `access` int(11) NOT NULL DEFAULT '2',
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `name`, `password`, `role`, `access`, `created_at`, `updated_at`) VALUES
+(2, 'Ex', 'ExRyze', '123', 'Admin', 2, '2022-11-26 05:07:10', '2022-11-26 05:07:10');
 
 --
 -- Indexes for dumped tables
@@ -78,29 +87,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `animes`
---
-ALTER TABLE `animes`
-  ADD CONSTRAINT `anime_updated_by` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id`) REFERENCES `animes` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
