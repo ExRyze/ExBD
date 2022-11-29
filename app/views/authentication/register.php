@@ -1,4 +1,4 @@
-<?php require MAIN_HEAD ?>
+<?php require_once MAIN_HEAD ?>
 
 <div class="position-absolute top-50 start-50 translate-middle bg-secondary card col-3">
   <form action="register/Cregister" method="post" class="card-body">
@@ -20,4 +20,4 @@
   </form>
 </div>
 
-<?php require MAIN_FOOT ?>
+<?php require_once MAIN_FOOT ?>

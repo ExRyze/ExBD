@@ -10,4 +10,11 @@ class Middleware {
     }
   }
 
+  public static function role($role) {
+    Middleware::auth();
+    if($_SESSION['user']['role'] != $role) {
+      header('location: '.BASE_URL);
+    }
+  }
+
 }
