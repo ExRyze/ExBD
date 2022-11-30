@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2022 at 11:38 AM
+-- Generation Time: Nov 30, 2022 at 11:28 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -60,7 +60,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `password`, `role`, `access`, `created_at`, `updated_at`) VALUES
-(2, 'Ex', 'ExRyze', '123', 'Admin', 2, '2022-11-26 05:07:10', '2022-11-26 05:07:10');
+(2, 'Ex', 'ExRyze', '123', 'Admin', 2, '2022-11-26 05:07:10', '2022-11-26 05:07:10'),
+(3, 'User', 'UserGuest', '123', 'User', 2, '2022-11-30 03:27:31', '2022-11-30 03:27:31');
 
 --
 -- Indexes for dumped tables
@@ -93,7 +94,7 @@ ALTER TABLE `animes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
