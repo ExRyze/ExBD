@@ -1,0 +1,10 @@
+.admin .sidenav {
+  top: 56px!important;
+  height: calc(100vh - 56px);
+  width: 72px;
+}
+
+.admin main {
+  width: calc(100vw - 72px);
+  height: 100vh;
+}

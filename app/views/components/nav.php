@@ -1,4 +1,4 @@
-<nav class="navbar px-3 py-2 bg-primary d-flex justify-content-start align-items-center">
+<nav class="navbar sticky-top px-3 py-2 bg-primary d-flex justify-content-start align-items-center">
   <a href="<?= BASE_URL ?>" class="d-flex justify-content-start align-items-center gap-3 text-white text-decoration-none">
     <img src="img/logo_ex_red.png" alt="Logo_EX.png" width="40" height="40">
     <h2 class="m-0">EXBD</h2>
