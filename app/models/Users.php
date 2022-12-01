@@ -26,4 +26,9 @@ class Users {
     return $this->db->rowCount();
   }
 
+  public function countAllByRole() {
+    $this->db->query("SELECT `role` AS `role`, COUNT(*) AS `index` FROM {$this->table} GROUP BY `role`");
+    return $this->db->resultAll();
+  }
+
 }

@@ -14,4 +14,9 @@ class Animes {
     return $this->db->rowCount();
   }
 
+  public function countAllByType() {
+    $this->db->query("SELECT `type`, COUNT(`type`) AS `index` FROM {$this->table} GROUP BY `type`");
+    return $this->db->resultAll();
+  }
+
 }

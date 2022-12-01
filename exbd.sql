@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 30, 2022 at 11:28 AM
+-- Generation Time: Dec 01, 2022 at 03:24 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -31,6 +31,7 @@ CREATE TABLE `animes` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(52) NOT NULL,
   `episodes` int(11) NOT NULL,
+  `type` varchar(52) NOT NULL,
   `aired` timestamp NOT NULL,
   `finished` timestamp NOT NULL,
   `created_at` timestamp NOT NULL,
