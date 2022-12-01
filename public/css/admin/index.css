@@ -2,6 +2,40 @@
   top: 56px!important;
   height: calc(100vh - 56px);
   width: 72px;
+  transition: width 0.5s;
+}
+
+.admin .sidenav:hover {
+  width: 180px;
+}
+
+.admin .sidenav .sidenav-logo {
+  padding: 1rem;
+  left: 0;
+  box-sizing: content-box;
+  position: absolute;
+  transition: left linear 0.5s;
+  z-index: 100;
+}
+
+.admin .sidenav .sidenav-text {
+  width: 180px;
+  height: calc(40px + 2rem);
+  padding: 1rem;
+  left: -180px;
+  position: relative;
+  transition: left linear 0.5s;
+  z-index: 99;
+}
+
+.admin .sidenav:hover .sidenav-logo {
+  left: -72px;
+  z-index: 99;
+}
+
+.admin .sidenav:hover .sidenav-text {
+  left: 0;
+  z-index: 100;
 }
 
 .admin main {
