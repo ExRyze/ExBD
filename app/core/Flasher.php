@@ -12,7 +12,7 @@ class Flasher {
   public static function flasher() {
     if(isset($_SESSION['flasher'])) {
       echo 
-      "<div class='".$_SESSION['flasher']['type']." card card-body'>
+      "<div class='{$_SESSION['flasher']['type']}'>
         <p class='m-0'>".$_SESSION['flasher']['message']."</p>
       </div>";
       unset($_SESSION['flasher']);

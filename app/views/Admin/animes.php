@@ -5,6 +5,10 @@
   <?php require_once ADMIN_SIDENAV ?>
   <main class="p-3 flex-grow-1 d-flex flex-column">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Animes</h2>
+    <?php Flasher::flasher() ?>
+    <div class="col-12 d-flex mb-3">
+      <a href="<?= BASE_URL.'/animes/add' ?>" class="btn btn-primary">Add</a>
+    </div>
     <table class="table table-bordered border border-3 border-dark table-hover">
       <thead class="border-3 bg-secondary">
         <th>ID</th>
@@ -19,14 +23,14 @@
       </thead>
       <?php foreach($data['animes'] as $row) { ?>
       <tr>
-      <th>ID</th>
-        <td><?= $row['Title'] ?></td>
-        <td><?= $row['Episodes'] ?></td>
-        <td><?= $row['Type'] ?></td>
-        <td><?= $row['Aired'] ?></td>
-        <td><?= $row['Finished'] ?></td>
-        <td><?= $row['Created at'] ?></td>
-        <td><?= $row['Updated at'] ?></td>
+        <td><?= $row['id'] ?></td>
+        <td><?= $row['title'] ?></td>
+        <td><?= $row['episodes'] ?></td>
+        <td><?= $row['type'] ?></td>
+        <td><?= $row['aired'] ?></td>
+        <td><?= $row['finished'] ?></td>
+        <td><?= $row['created_at'] ?></td>
+        <td><?= $row['updated_at'] ?></td>
         <td><?= $row['id_user'] ?></td>
       </tr>
       <?php } ?>

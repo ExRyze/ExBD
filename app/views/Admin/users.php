@@ -3,7 +3,7 @@
 <?php require_once MAIN_NAV ?>
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
-  <main class="p-3 flex-grow-1 d-flex flex-column">
+  <main class="p-3 flex-grow-1 d-flex flex-column dropdown">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Users</h2>
     <table class="table table-bordered border border-3 border-dark table-hover">
       <thead class="border-3 bg-secondary">
@@ -14,6 +14,7 @@
         <th>Access</th>
         <th>Created at</th>
         <th>Updated at</th>
+        <th>Action</th>
       </thead>
       <?php foreach($data['users'] as $row) { ?>
       <tr>
@@ -24,6 +25,10 @@
         <td><?= $row['access'] ?></td>
         <td><?= $row['created_at'] ?></td>
         <td><?= $row['updated_at'] ?></td>
+        <td class="d-flex gap-3">
+          <a href="<?= BASE_URL.'/users/edit/'.$row['id'] ?>" class="btn btn-warning">Edit</a>
+          <a href="<?= BASE_URL.'/users/delete/'.$row['id'] ?>" class="btn btn-danger">Delete</a>
+        </td>
       </tr>
       <?php } ?>
       <tfoot class="border-3 bg-secondary">
@@ -34,6 +39,7 @@
         <th>Access</th>
         <th>Created at</th>
         <th>Updated at</th>
+        <th>Action</th>
       </tfoot>
     </table>
   </main>

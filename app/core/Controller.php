@@ -7,6 +7,7 @@ class Controller {
   }
 
   public function model($model) {
+    $model .= '_table';
     require_once "../app/models/{$model}.php";
     return new $model;
   }

@@ -14,15 +14,12 @@ class Login extends Controller {
       $row = $this->model('Users')->authentication($_POST);
       if($row) {
         $_SESSION['user'] = $row;
-        Flasher::setFlasher('bg-success', 'Berhasil login!');
+        Flasher::setFlasher('flasher-success', 'Berhasil login!');
         header('location: '.BASE_URL);
       } else {
         Flasher::setFlasher('bg-warning', 'Username atau password salah!');
         header('location: '.BASE_URL.'/login');
       }
-    } else {
-      Flasher::setFlasher('bg-warning', 'Mohon inputkan username dan password!');
-      header('location: '.BASE_URL.'/login');
     }
   }
 

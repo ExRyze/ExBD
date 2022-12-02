@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 01, 2022 at 03:24 PM
+-- Generation Time: Dec 02, 2022 at 03:55 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -30,14 +30,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `animes` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(52) NOT NULL,
-  `episodes` int(11) NOT NULL,
-  `type` varchar(52) NOT NULL,
-  `aired` timestamp NOT NULL,
-  `finished` timestamp NOT NULL,
+  `episodes` int(11) DEFAULT NULL,
+  `type` varchar(52) DEFAULT NULL,
+  `aired` timestamp NULL DEFAULT NULL,
+  `finished` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
-  `id_user` int(10) UNSIGNED NOT NULL
+  `id_user` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `animes`
+--
+
+INSERT INTO `animes` (`id`, `title`, `episodes`, `type`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES
+(1, 'test', 0, 'TV', '2022-12-02 07:25:45', '2022-12-02 07:25:45', '2022-12-02 07:25:48', '2022-12-02 07:25:48', 2),
+(2, 'test 2', 0, 'TV', '2022-12-02 07:30:06', '2022-12-02 07:30:06', '2022-12-02 07:30:15', '2022-12-02 07:30:15', 2),
+(3, 'test 3', 0, 'TV', '2022-12-02 07:34:01', '2022-12-02 07:34:01', '2022-12-02 07:34:06', '2022-12-02 07:34:06', 2);
 
 -- --------------------------------------------------------
 
@@ -89,7 +98,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

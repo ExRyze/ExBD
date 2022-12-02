@@ -12,14 +12,12 @@
         <div class="card-body d-flex gap-3 align-items-center">
           <img src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> width="40" height="40">
           <div class="d-flex flex-column flex-grow-1 gap-1">
-            <?php
-            $index = 0;
+            <?php $index = 0;
             foreach($table['value'] as $row) {$index += $row['index'];}
             echo "<h5 class='col-12 text-center m-0'>{$index} <span class='fw-normal'>{$table['key']}</span></h5>
             <div class='col-12 border-bottom border-3 border-dark'></div>     <div class='d-flex gap-2'>";
-            foreach($table['value'] as $row) {echo "<h6 class='flex-grow-1 m-0 text-center'>{$row['index']} <span class='fw-normal'>{$table['by']}</span></h6>";}
-            echo "</div>";
-            ?>
+            foreach($table['value'] as $row) {echo "<h6 class='flex-grow-1 m-0 text-center'>{$row['index']} <span class='fw-normal'>{$row[$table['by']]}</span></h6>";}
+            echo "</div>"; ?>
           </div>
         </div>
       </a>
