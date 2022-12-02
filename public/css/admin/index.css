@@ -25,6 +25,11 @@
   color: var(--bs-body-color);
 }
 
+.admin .sidenav .sidenav-menu .sidenav-item.active {
+  background-color: var(--bs-primary);
+  color: rgba(var(--bs-white-rgb));
+}
+
 .admin .sidenav .sidenav-menu .sidenav-item:hover {
   background: var(--bs-primary);
 }

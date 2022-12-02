@@ -1,6 +1,7 @@
 <?php
 
 define('BASE_URL', '/portofolio/ExBD');
+define('PUBLIC_URL', BASE_URL.'/public');
 
 // Database
 define('DB_HOST', 'localhost');

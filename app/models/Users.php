@@ -9,6 +9,11 @@ class Users {
     $this->db = new Database;
   }
 
+  public function getAll() {
+    $this->db->query("SELECT * FROM {$this->table}");
+    return $this->db->resultAll();
+  }
+
   public function authentication($post) {
     $this->db->query("SELECT * FROM {$this->table} WHERE `username` = :username AND `password` = :password");
     $this->db->bind('username', $post['username']);

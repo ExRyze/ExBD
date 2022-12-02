@@ -4,12 +4,12 @@
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
   <main class="p-3 flex-grow-1 d-flex flex-column">
-    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center">Database</h2>
-    <article class="d-flex flex-wrap gap-3 py-3">
-      <a href="<?= BASE_URL ?>" class="card-table card bg-primary text-white text-decoration-none">
+    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Database</h2>
+    <article class="d-flex flex-wrap gap-3 mb-3">
+      <a href="<?= BASE_URL.'/admin/users' ?>" class="card-table card bg-primary text-white text-decoration-none">
         <div class="card-header"><h5 class="m-0 text-center">Users</h5></div>
         <div class="card-body d-flex gap-3 align-items-center">
-          <img src="img/logo_ex_red.png" width="40" height="40">
+          <img src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> width="40" height="40">
           <div class="d-flex flex-column flex-grow-1 gap-1">
             <?php data($data['users'], 'Users', 'role') ?>
           </div>
@@ -18,7 +18,7 @@
       <a href="<?= BASE_URL ?>" class="card-table card bg-primary text-white text-decoration-none">
       <div class="card-header"><h5 class="m-0 text-center">Animes</h5></div>
         <div class="card-body d-flex gap-3 align-items-center">
-          <img src="img/logo_ex_red.png" width="40" height="40">
+          <img src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> width="40" height="40">
           <div class="d-flex flex-column flex-grow-1 gap-1">
             <?php data($data['animes'], 'Animes', 'id') ?>
           </div>
