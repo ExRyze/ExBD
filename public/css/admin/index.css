@@ -21,6 +21,7 @@
   align-items: center;
   padding: 1rem;
   width: 100%;
+  overflow: hidden;
   text-decoration: none;
   color: var(--bs-body-color);
 }
@@ -39,9 +40,8 @@
 }
 
 .admin .sidenav .sidenav-menu .sidenav-item .sidenav-text {
-  width: 100%;
   text-align: center;
-  word-wrap: break-word;
+  overflow: visible;
 }
 
 .admin .sidenav .sidenav-menu .sidenav-item:hover .sidenav-text {

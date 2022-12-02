@@ -27,7 +27,7 @@
       </tr>
       <?php } ?>
       <tfoot class="border-3 bg-secondary">
-      <th>ID</th>
+        <th>ID</th>
         <th>Username</th>
         <th>Name</th>
         <th>Role</th>
