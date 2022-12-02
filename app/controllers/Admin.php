@@ -5,8 +5,9 @@ class Admin extends Controller {
   public function index() {
     Middleware::role('Admin');
     $data['page'] = 'EXBD | Admin - Database';
-    $data['users'] = $this->model('Users')->countAllByRole();
-    $data['animes'] = $this->model('Animes')->countAllByType();
+    $data['database'] = array(
+      'users' => array('key' => 'Users', 'value' => $this->model('Users')->countAllByRole(), 'by' => 'role'),
+      'animes' => array('key' => 'Animes', 'value' => $this->model('Animes')->countAllByType(), 'by' => 'type'));
     $this->view('admin/index', $data);
   }
 
