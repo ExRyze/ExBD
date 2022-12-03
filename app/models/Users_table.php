@@ -37,6 +37,19 @@ class Users_table {
     return $this->db->rowCount();
   }
 
+  public function updateStatus($id, $status) {
+    $this->db->query("UPDATE {$this->table} SET `status` = :status WHERE `id` = :id");
+    $this->db->bind('status', $status);
+    $this->db->bind('id', $id);
+    return $this->db->rowCount();
+  }
+
+  public function delete($id) {
+    $this->db->query("DELETE FROM {$this->table} WHERE `id` = :id");
+    $this->db->bind('id', $id);
+    return $this->db->rowCount();
+  }
+
   public function countAllByRole() {
     $this->db->query("SELECT `role` AS `role`, COUNT(*) AS `index` FROM {$this->table} GROUP BY `role`");
     return $this->db->resultAll();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 02, 2022 at 03:55 PM
+-- Generation Time: Dec 03, 2022 at 09:39 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -46,7 +46,8 @@ CREATE TABLE `animes` (
 INSERT INTO `animes` (`id`, `title`, `episodes`, `type`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES
 (1, 'test', 0, 'TV', '2022-12-02 07:25:45', '2022-12-02 07:25:45', '2022-12-02 07:25:48', '2022-12-02 07:25:48', 2),
 (2, 'test 2', 0, 'TV', '2022-12-02 07:30:06', '2022-12-02 07:30:06', '2022-12-02 07:30:15', '2022-12-02 07:30:15', 2),
-(3, 'test 3', 0, 'TV', '2022-12-02 07:34:01', '2022-12-02 07:34:01', '2022-12-02 07:34:06', '2022-12-02 07:34:06', 2);
+(3, 'test 3', 0, 'TV', '2022-12-02 07:34:01', '2022-12-02 07:34:01', '2022-12-02 07:34:06', '2022-12-02 07:34:06', 2),
+(4, 'test 4', 0, 'TV', '2022-12-02 21:21:04', '2022-12-02 21:21:04', '2022-12-02 21:21:07', '2022-12-02 21:21:07', 2);
 
 -- --------------------------------------------------------
 
@@ -61,6 +62,7 @@ CREATE TABLE `users` (
   `password` varchar(52) NOT NULL,
   `role` varchar(52) NOT NULL DEFAULT 'User',
   `access` int(11) NOT NULL DEFAULT '2',
+  `status` varchar(52) NOT NULL DEFAULT 'Active',
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -69,9 +71,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `name`, `password`, `role`, `access`, `created_at`, `updated_at`) VALUES
-(2, 'Ex', 'ExRyze', '123', 'Admin', 2, '2022-11-26 05:07:10', '2022-11-26 05:07:10'),
-(3, 'User', 'UserGuest', '123', 'User', 2, '2022-11-30 03:27:31', '2022-11-30 03:27:31');
+INSERT INTO `users` (`id`, `username`, `name`, `password`, `role`, `access`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'Ex', 'ExRyze', '123', 'Admin', 2, 'Active', '2022-11-26 05:07:10', '2022-11-26 05:07:10'),
+(3, 'User', 'UserGuest', '123', 'User', 2, 'Active', '2022-11-30 03:27:31', '2022-11-30 03:27:31');
 
 --
 -- Indexes for dumped tables
@@ -98,13 +100,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

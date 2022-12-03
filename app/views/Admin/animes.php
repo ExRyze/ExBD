@@ -9,43 +9,51 @@
     <div class="col-12 d-flex mb-3">
       <a href="<?= BASE_URL.'/animes/add' ?>" class="btn btn-primary">Add</a>
     </div>
-    <table class="table table-bordered border border-3 border-dark table-hover">
-      <thead class="border-3 bg-secondary">
-        <th>ID</th>
-        <th>Title</th>
-        <th>Episodes</th>
-        <th>Type</th>
-        <th>Aired</th>
-        <th>Finished</th>
-        <th>Created at</th>
-        <th>Updated at</th>
-        <th>id_user</th>
-      </thead>
-      <?php foreach($data['animes'] as $row) { ?>
-      <tr>
-        <td><?= $row['id'] ?></td>
-        <td><?= $row['title'] ?></td>
-        <td><?= $row['episodes'] ?></td>
-        <td><?= $row['type'] ?></td>
-        <td><?= $row['aired'] ?></td>
-        <td><?= $row['finished'] ?></td>
-        <td><?= $row['created_at'] ?></td>
-        <td><?= $row['updated_at'] ?></td>
-        <td><?= $row['id_user'] ?></td>
-      </tr>
-      <?php } ?>
-      <tfoot class="border-3 bg-secondary">
-        <th>ID</th>
-        <th>Title</th>
-        <th>Episodes</th>
-        <th>Type</th>
-        <th>Aired</th>
-        <th>Finished</th>
-        <th>Created at</th>
-        <th>Updated at</th>
-        <th>id_user</th>
-      </tfoot>
-    </table>
+    <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
+      <table class="table m-0 table-bordered border-dark table-hover">
+        <thead class="bg-secondary text-center">
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Episodes</th>
+            <th>Type</th>
+            <th>Aired</th>
+            <th>Finished</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th>id_user</th>
+          </tr>
+        </thead>
+        <tbody class="m-0">
+        <?php foreach($data['animes'] as $row) { ?>
+          <tr>
+            <td><?= $row['id'] ?></td>
+            <td><?= $row['title'] ?></td>
+            <td><?= $row['episodes'] ?></td>
+            <td><?= $row['type'] ?></td>
+            <td><?= $row['aired'] ?></td>
+            <td><?= $row['finished'] ?></td>
+            <td><?= $row['created_at'] ?></td>
+            <td><?= $row['updated_at'] ?></td>
+            <td><?= $row['id_user'] ?></td>
+          </tr>
+        <?php } ?>
+        </tbody>
+        <tfoot class="bg-secondary text-center m-0">
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Episodes</th>
+            <th>Type</th>
+            <th>Aired</th>
+            <th>Finished</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th>id_user</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </main>
 </div>
 
