@@ -6,6 +6,9 @@
   <main class="p-3 flex-grow-1 overflow-hidden d-flex flex-column dropdown">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Users</h2>
     <?php Flasher::flasher() ?>
+    <div class="col-12 d-flex mb-3">
+      <a href="<?= BASE_URL ?>" class="btn btn-primary">Add</a>
+    </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
       <table class="table m-0 table-bordered border-dark table-hover">
         <thead class="bg-secondary text-center">
