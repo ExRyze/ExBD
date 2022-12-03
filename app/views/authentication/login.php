@@ -13,7 +13,11 @@
       <label for="password" class="form-label">Password</label>
       <input type="password" name="password" class="form-control" id="password">
     </div>
-    <button type="submit" class="btn btn-primary col-12">Login</button>
+    <button type="submit" class="btn btn-primary col-12 mb-3">Login</button>
+    <div class="col-12 text-center d-flex flex-column">
+      <small>Don't have any account?</small>
+      <small><a href="<?= BASE_URL.'/register' ?>">Register</a></small>
+    </div>
   </form>
 </div>
 

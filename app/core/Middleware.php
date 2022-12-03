@@ -18,4 +18,13 @@ class Middleware {
     }
   }
 
+  public static function form($data) {
+    foreach($data as $key => $value) {
+      if(empty($value)) {
+        Flasher::setFlasher('flasher-warning', $key.' is empty');
+        break;
+      }
+    }
+  }
+
 }

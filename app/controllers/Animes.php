@@ -16,7 +16,7 @@ class Animes extends Controller {
         Flasher::setFlasher('flasher-success', 'Anime berhasil di tambahkan');
         header('location: '.BASE_URL.'/admin/animes');
       } else {
-        Flasher::setFlasher('bg-warning', 'Terjadi suatu kesalahan!');
+        Flasher::setFlasher('flasher-warning', 'Terjadi suatu kesalahan!');
         header('location: '.BASE_URL.'/animes/add');
       }
     }

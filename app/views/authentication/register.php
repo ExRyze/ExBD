@@ -4,6 +4,7 @@
   <form action="register/Cregister" method="post" class="card-body">
     <h4 class="text-center">Register</h4>
     <div class="border-bottom border-3 border-dark mb-3"></div>
+    <?php Flasher::flasher() ?>
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" name="username" class="form-control" id="username">
@@ -16,7 +17,11 @@
       <label for="password" class="form-label">Password</label>
       <input type="password" name="password" class="form-control" id="password">
     </div>
-    <button type="submit" class="btn btn-primary col-12">Register</button>
+    <button type="submit" class="btn btn-primary col-12 mb-3">Register</button>
+    <div class="col-12 text-center d-flex flex-column">
+      <small>Already have an account?</small>
+      <small><a href="<?= BASE_URL.'/login' ?>">Login</a></small>
+    </div>
   </form>
 </div>
 

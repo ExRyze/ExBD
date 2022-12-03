@@ -14,19 +14,25 @@ class Users_table {
     return $this->db->resultAll();
   }
 
-  public function authentication($post) {
+  public function searchByUsername() {
+    $this->db->query("SELECT * FROM {$this->table} WHERE `username` = :username");
+    $this->db->bind('username', $_POST['username']);
+    return $this->db->rowCount();
+  }
+
+  public function authentication() {
     $this->db->query("SELECT * FROM {$this->table} WHERE `username` = :username AND `password` = :password");
-    $this->db->bind('username', $post['username']);
-    $this->db->bind('password', $post['password']);
+    $this->db->bind('username', $_POST['username']);
+    $this->db->bind('password', $_POST['password']);
     return $this->db->result();
   }
 
-  public function store($post) {
+  public function store() {
     $this->db->query("INSERT INTO {$this->table} (`username`, `name`, `password`, `created_at`, `updated_at`)
     VALUES (:username, :name, :password, :date, :date)");
-    $this->db->bind('username', $post['username']);
-    $this->db->bind('name', $post['name']);
-    $this->db->bind('password', $post['password']);
+    $this->db->bind('username', $_POST['username']);
+    $this->db->bind('name', $_POST['name']);
+    $this->db->bind('password', $_POST['password']);
     $this->db->bind('date', date('Y-m-d H:i:s'));
     return $this->db->rowCount();
   }

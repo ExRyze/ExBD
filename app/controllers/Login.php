@@ -10,17 +10,21 @@ class Login extends Controller {
 
   public function Clogin() {
     Middleware::auth(false);
-    if(isset($_POST)) {
-      $row = $this->model('Users')->authentication($_POST);
+    Middleware::form($_POST);
+    if(!isset($_SESSION['flasher'])) {
+      $row = $this->model('Users')->authentication();
       if($row) {
         $_SESSION['user'] = $row;
         Flasher::setFlasher('flasher-success', 'Berhasil login!');
         header('location: '.BASE_URL);
       } else {
-        Flasher::setFlasher('bg-warning', 'Username atau password salah!');
+        Flasher::setFlasher('flasher-warning', 'Username atau Password salah!');
         header('location: '.BASE_URL.'/login');
       }
+    } else {
+      header('location: '.BASE_URL.'/login');
     }
+    
   }
 
   public function logout() {

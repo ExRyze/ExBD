@@ -10,9 +10,17 @@ class Register extends Controller {
 
   public function Cregister() {
     Middleware::auth(false);
-    if(isset($_POST)) {
-      $this->model('Users')->store($_POST);
-      header('location: '.BASE_URL.'/login');
+    Middleware::form($_POST);
+    if(!isset($_SESSION['flasher'])) {
+      $row = $this->model('Users')->searchByUsername();
+      if(!$row) {
+        $this->model('Users')->store();
+        Flasher::setFlasher('flasher-success', 'Data berhasil ditambahkan, silahkan login');
+        header('location: '.BASE_URL.'/login');
+      } else {
+        Flasher::setFlasher('flasher-warning', 'Username sudah dipakai User lain');
+        header('location: '.BASE_URL.'/register');
+      }
     } else {
       header('location: '.BASE_URL.'/register');
     }
