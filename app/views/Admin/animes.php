@@ -21,7 +21,8 @@
             <th>Finished</th>
             <th>Created at</th>
             <th>Updated at</th>
-            <th>id_user</th>
+            <th>Id user</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody class="m-0">
@@ -36,6 +37,12 @@
             <td><?= $row['created_at'] ?></td>
             <td><?= $row['updated_at'] ?></td>
             <td><?= $row['id_user'] ?></td>
+            <td>
+              <div class="d-flex gap-3">
+                <a href="<?= BASE_URL.'/animes/edit/'.$row['id'] ?>" class="btn btn-warning">Edit</a>
+                <a href="<?= BASE_URL.'/animes/delete/'.$row['id'] ?>" class="btn btn-danger">Delete</a>
+              </div>
+            </td>
           </tr>
         <?php } ?>
         </tbody>
@@ -49,7 +56,8 @@
             <th>Finished</th>
             <th>Created at</th>
             <th>Updated at</th>
-            <th>id_user</th>
+            <th>Id user</th>
+            <th>Action</th>
           </tr>
         </tfoot>
       </table>
