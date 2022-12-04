@@ -2,12 +2,16 @@
 
 define('BASE_URL', '/portofolio/ExBD');
 define('PUBLIC_URL', BASE_URL.'/public');
+define('STORAGE_URL', 'F:');
 
 // Database
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'exbd');
+
+// Storage
+define('STORAGE_ANIMES', STORAGE_URL.'/Animes');
 
 // Views Parents
 define('VIEWS', '../app/views');

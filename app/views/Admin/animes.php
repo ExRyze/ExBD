@@ -22,6 +22,7 @@
             <th>Created at</th>
             <th>Updated at</th>
             <th>Id user</th>
+            <th>Exists</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -37,6 +38,7 @@
             <td><?= $row['created_at'] ?></td>
             <td><?= $row['updated_at'] ?></td>
             <td><?= $row['id_user'] ?></td>
+            <td><?= (file_exists(STORAGE_ANIMES.'/'.$row['title'])) ? 'Exists' : 'Not exists' ?></td>
             <td>
               <div class="d-flex gap-3">
                 <a href="<?= BASE_URL.'/animes/edit/'.$row['id'] ?>" class="btn btn-warning">Edit</a>
@@ -57,6 +59,7 @@
             <th>Created at</th>
             <th>Updated at</th>
             <th>Id user</th>
+            <th>Exists</th>
             <th>Action</th>
           </tr>
         </tfoot>
