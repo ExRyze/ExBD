@@ -13,7 +13,7 @@
       <table class="table m-0 table-bordered border-dark table-hover">
         <thead class="bg-secondary text-center">
           <tr>
-            <th>ID</th>
+            <th>No.</th>
             <th>Username</th>
             <th>Name</th>
             <th>Role</th>
@@ -25,9 +25,10 @@
           </tr>
         </thead>
         <tbody class="m-0">
-          <?php foreach($data['users'] as $row) { ?>
+          <?php $index = 1;
+          foreach($data['users'] as $row) { ?>
           <tr>
-            <td><?= $row['id'] ?></td>
+            <td><?= $index ?></td>
             <td><?= $row['username'] ?></td>
             <td><?= $row['name'] ?></td>
             <td><?= $row['role'] ?></td>
@@ -49,10 +50,10 @@
               </div>
             </td>
           </tr>
-          <?php } ?>
+          <?php $index += 1; } ?>
         </tbody>
         <tfoot class="bg-secondary text-center m-0">
-          <th>ID</th>
+          <th>No.</th>
           <th>Username</th>
           <th>Name</th>
           <th>Role</th>

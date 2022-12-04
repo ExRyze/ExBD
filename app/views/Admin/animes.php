@@ -10,10 +10,10 @@
       <a href="<?= BASE_URL.'/animes/add' ?>" class="btn btn-primary">Add</a>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
-      <table class="table m-0 table-bordered border-dark table-hover">
+      <table class="table m-0 table-bordered border-dark table-hover align-middle">
         <thead class="bg-secondary text-center">
           <tr>
-            <th>ID</th>
+            <th>No.</th>
             <th>Title</th>
             <th>Episodes</th>
             <th>Type</th>
@@ -27,9 +27,10 @@
           </tr>
         </thead>
         <tbody class="m-0">
-        <?php foreach($data['animes'] as $row) { ?>
+        <?php $index = 1;
+        foreach($data['animes'] as $row) { ?>
           <tr>
-            <td><?= $row['id'] ?></td>
+            <td><?= $index ?></td>
             <td><?= $row['title'] ?></td>
             <td><?= $row['episodes'] ?></td>
             <td><?= $row['type'] ?></td>
@@ -46,11 +47,11 @@
               </div>
             </td>
           </tr>
-        <?php } ?>
+        <?php $index += 1; } ?>
         </tbody>
         <tfoot class="bg-secondary text-center m-0">
           <tr>
-            <th>ID</th>
+            <th>No.</th>
             <th>Title</th>
             <th>Episodes</th>
             <th>Type</th>
