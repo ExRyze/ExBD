@@ -5,7 +5,7 @@
   </a>
   <ul class="navbar-nav d-flex flex-row ms-auto">
     <li class="nav-item">
-      <a href="<?= BASE_URL ?>" class="nav-link text-white px-2">Anime</a>
+      <a href="<?= BASE_URL.'/animes' ?>" class="nav-link text-white px-2">Animes</a>
     </li>
     <li class="nav-item">
       <a href="<?= BASE_URL ?>" class="nav-link text-white px-2">Manga</a>

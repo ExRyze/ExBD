@@ -1,0 +1,3 @@
+.anime-card {
+  width: calc(25% - (3rem / 4));
+}

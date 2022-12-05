@@ -1,6 +1,18 @@
 <?php
 
 class Animes extends Controller {
+
+  public function index() {
+    $data['page'] = 'EXBD | Animes';
+    $data['animes'] = $this->model('Animes')->getAll();
+    $this->view('animes/index', $data);
+  }
+
+  public function x($slug) {
+    $data['page'] = 'EXBD | Anime '.$slug;
+    $data['anime'] = $this->model('Animes')->getAnimeBySlug($slug);
+    $this->view('animes/anime', $data);
+  }
   
   public function add() {
     Middleware::role('Admin');
@@ -29,7 +41,7 @@ class Animes extends Controller {
       return header('location: '.BASE_URL.'/admin/users');
     }
     $data['page'] = 'EXBD | Animes - Edit';
-    $data['anime'] = $this->model('Animes')->getAnime($id);
+    $data['anime'] = $this->model('Animes')->getAnimeById($id);
     $this->view('animes/edit', $data);
   }
 
