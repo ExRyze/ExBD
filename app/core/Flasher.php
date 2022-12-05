@@ -12,8 +12,9 @@ class Flasher {
   public static function flasher() {
     if(isset($_SESSION['flasher'])) {
       echo 
-      "<div class='{$_SESSION['flasher']['type']}'>
+      "<div class='flasher {$_SESSION['flasher']['type']} d-flex'>
         <p class='m-0'>".$_SESSION['flasher']['message']."</p>
+        <button class='ms-auto btn-close flasher-close'></button>
       </div>";
       unset($_SESSION['flasher']);
     }
