@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> type="image/x-icon">
   <link rel="stylesheet" href=<?= PUBLIC_URL."/package/bootstrap/css/bootstrap.min.css" ?>>
-  <link rel="stylesheet" href=<?= PUBLIC_URL."/css/index.css" ?>>
+  <link rel="stylesheet" href=<?= PUBLIC_URL."/css/flasher.css" ?>>
   <link rel="stylesheet" href=<?= PUBLIC_URL."/css/dashboard.css" ?>>
+  <link rel="stylesheet" href=<?= PUBLIC_URL."/css/animes.css" ?>>
   <title><?= $data['page'] ?></title>
 </head>
 <body>

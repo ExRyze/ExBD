@@ -49,7 +49,7 @@
           </div>
           <div class="form-group col-5 ps-2">
             <label for="finished">Date Finished</label>
-            <input class="form-control" type="datetime-local" name="finished" id="finished" value="<?= $data['anime']['aired'] ?>">
+            <input class="form-control" type="datetime-local" name="finished" id="finished" value="<?= $data['anime']['finished'] ?>">
           </div>
         </div>
         <div class="d-flex col-12 justify-content-end">
