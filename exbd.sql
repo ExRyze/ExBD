@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 05, 2022 at 02:22 PM
+-- Generation Time: Dec 06, 2022 at 08:04 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -31,25 +31,148 @@ CREATE TABLE `animes` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(52) NOT NULL,
   `title` varchar(52) NOT NULL,
-  `episodes` int(11) DEFAULT NULL,
-  `type` varchar(52) DEFAULT NULL,
+  `type` varchar(7) NOT NULL DEFAULT 'TV',
+  `episodes` int(11) NOT NULL,
+  `status` varchar(52) NOT NULL DEFAULT 'Not yet aired',
   `aired` timestamp NULL DEFAULT NULL,
   `finished` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
-  `id_user` int(10) NOT NULL
+  `id_user` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `animes`
+-- Table structure for table `animes_aliases`
 --
 
-INSERT INTO `animes` (`id`, `slug`, `title`, `episodes`, `type`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES
-(1, 'test_4', 'test 4', 0, 'TV', '2022-12-02 07:25:45', '2022-12-02 07:25:45', '2022-12-02 07:25:48', '2022-12-05 06:17:33', 2),
-(2, 'test_2', 'test 2', 0, 'TV', '2022-12-02 07:30:06', '2022-12-02 07:30:06', '2022-12-02 07:30:15', '2022-12-02 07:30:15', 2),
-(3, 'test_3', 'test 3', 1, 'TV', '2022-12-01 07:34:01', '2022-12-02 07:34:01', '2022-12-02 07:34:06', '2022-12-04 03:28:51', 2),
-(4, 'Blend_S', 'Blend S', 12, 'BD', '2022-12-04 03:45:35', '2022-12-04 03:45:35', '2022-12-04 03:45:50', '2022-12-04 03:45:50', 2),
-(5, 'Test_5', 'Test 5', 0, 'TV', '2022-12-05 06:19:45', '2022-12-05 06:19:45', '2022-12-05 06:19:55', '2022-12-05 06:19:55', 2);
+CREATE TABLE `animes_aliases` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `anime_alias` varchar(52) NOT NULL,
+  `origin_alias` varchar(52) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animes_genres`
+--
+
+CREATE TABLE `animes_genres` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `genre_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animes_licensors`
+--
+
+CREATE TABLE `animes_licensors` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `licensor_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animes_producers`
+--
+
+CREATE TABLE `animes_producers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `producer_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animes_source`
+--
+
+CREATE TABLE `animes_source` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `type` varchar(52) NOT NULL,
+  `source` varchar(52) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animes_studios`
+--
+
+CREATE TABLE `animes_studios` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `studio_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animes_videos`
+--
+
+CREATE TABLE `animes_videos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `source_videos` varchar(52) DEFAULT NULL,
+  `type_videos` varchar(52) DEFAULT NULL,
+  `resolution_videos` varchar(52) DEFAULT NULL,
+  `tracks_videos` varchar(52) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genres`
+--
+
+CREATE TABLE `genres` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `genre` varchar(52) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `licensors`
+--
+
+CREATE TABLE `licensors` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `licensor` varchar(52) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `producers`
+--
+
+CREATE TABLE `producers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `producer` varchar(52) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `studios`
+--
+
+CREATE TABLE `studios` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `studio` varchar(52) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -87,7 +210,84 @@ INSERT INTO `users` (`id`, `username`, `name`, `password`, `role`, `access`, `st
 ALTER TABLE `animes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `slug` (`slug`),
-  ADD KEY `anime_updated_by` (`id_user`);
+  ADD KEY `UPDATED_BY` (`id_user`);
+
+--
+-- Indexes for table `animes_aliases`
+--
+ALTER TABLE `animes_aliases`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ANIME_ALIASES` (`anime_id`);
+
+--
+-- Indexes for table `animes_genres`
+--
+ALTER TABLE `animes_genres`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `anime_id` (`anime_id`),
+  ADD KEY `genre_id` (`genre_id`);
+
+--
+-- Indexes for table `animes_licensors`
+--
+ALTER TABLE `animes_licensors`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ANIME_LICENSORS` (`anime_id`),
+  ADD KEY `LICENSORS` (`licensor_id`);
+
+--
+-- Indexes for table `animes_producers`
+--
+ALTER TABLE `animes_producers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ANIME_PRODUCERS` (`anime_id`),
+  ADD KEY `PRODUCERS` (`producer_id`);
+
+--
+-- Indexes for table `animes_source`
+--
+ALTER TABLE `animes_source`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ANIME_SOURCE` (`anime_id`);
+
+--
+-- Indexes for table `animes_studios`
+--
+ALTER TABLE `animes_studios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ANIME_STUDIOS` (`anime_id`),
+  ADD KEY `STUDIOS` (`studio_id`);
+
+--
+-- Indexes for table `animes_videos`
+--
+ALTER TABLE `animes_videos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `anime_id` (`anime_id`);
+
+--
+-- Indexes for table `genres`
+--
+ALTER TABLE `genres`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `licensors`
+--
+ALTER TABLE `licensors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `producers`
+--
+ALTER TABLE `producers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `studios`
+--
+ALTER TABLE `studios`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -106,10 +306,132 @@ ALTER TABLE `animes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `animes_aliases`
+--
+ALTER TABLE `animes_aliases`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `animes_genres`
+--
+ALTER TABLE `animes_genres`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `animes_licensors`
+--
+ALTER TABLE `animes_licensors`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `animes_producers`
+--
+ALTER TABLE `animes_producers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `animes_source`
+--
+ALTER TABLE `animes_source`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `animes_studios`
+--
+ALTER TABLE `animes_studios`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `animes_videos`
+--
+ALTER TABLE `animes_videos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `genres`
+--
+ALTER TABLE `genres`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `licensors`
+--
+ALTER TABLE `licensors`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `producers`
+--
+ALTER TABLE `producers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `studios`
+--
+ALTER TABLE `studios`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `animes`
+--
+ALTER TABLE `animes`
+  ADD CONSTRAINT `UPDATED_BY` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `animes_aliases`
+--
+ALTER TABLE `animes_aliases`
+  ADD CONSTRAINT `ANIME_ALIASES` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_genres`
+--
+ALTER TABLE `animes_genres`
+  ADD CONSTRAINT `ANIME_GENRES` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `GENRES` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_licensors`
+--
+ALTER TABLE `animes_licensors`
+  ADD CONSTRAINT `ANIME_LICENSORS` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `LICENSORS` FOREIGN KEY (`licensor_id`) REFERENCES `licensors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_producers`
+--
+ALTER TABLE `animes_producers`
+  ADD CONSTRAINT `ANIME_PRODUCERS` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `PRODUCERS` FOREIGN KEY (`producer_id`) REFERENCES `producers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_source`
+--
+ALTER TABLE `animes_source`
+  ADD CONSTRAINT `ANIME_SOURCE` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_studios`
+--
+ALTER TABLE `animes_studios`
+  ADD CONSTRAINT `ANIME_STUDIOS` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `STUDIOS` FOREIGN KEY (`studio_id`) REFERENCES `studios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_videos`
+--
+ALTER TABLE `animes_videos`
+  ADD CONSTRAINT `ANIME_VIDEOS` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
