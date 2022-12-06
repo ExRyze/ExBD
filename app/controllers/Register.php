@@ -26,4 +26,22 @@ class Register extends Controller {
     }
   }
 
+  public function admin() {
+    Middleware::role('Admin');
+    Middleware::form($_POST);
+    if(!isset($_SESSION['flasher'])) {
+      $row = $this->model('Users')->searchByUsername();
+      if(!$row) {
+        $this->model('Users')->storeAdmin();
+        Flasher::setFlasher('flasher-success', 'Data Admin baru berhasil ditambahkan');
+        header('location: '.BASE_URL.'/admin/users');
+      } else {
+        Flasher::setFlasher('flasher-warning', 'Username sudah dipakai User lain');
+        header('location: '.BASE_URL.'/admin/users');
+      }
+    } else {
+      header('location: '.BASE_URL.'/admin/users');
+    }
+  }
+
 }

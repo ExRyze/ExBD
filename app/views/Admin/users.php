@@ -7,7 +7,7 @@
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Users</h2>
     <?php Flasher::flasher() ?>
     <div class="col-12 d-flex mb-3">
-      <a href="<?= BASE_URL ?>" class="btn btn-primary">Add</a>
+      <a role="button" data-bs-toggle="modal" data-bs-target="#modalAddAdmin" class="btn btn-primary">Add Admin</a>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
       <table class="table m-0 table-bordered border-dark table-hover">
@@ -66,6 +66,35 @@
       </table>
     </div>
   </main>
+</div>
+
+<div class="modal fade" id="modalAddAdmin" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action=<?= BASE_URL."/register/admin" ?> method="post" class="modal-content">
+      <div class="modal-header">
+        <h5>Add Admin</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="role" value="Admin">
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" name="username" id="username" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" id="name" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" id="password" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <?php require_once MAIN_FOOT ?>

@@ -1,7 +1,7 @@
 <?php require_once MAIN_HEAD ?>
 
 <div class="position-absolute top-50 start-50 translate-middle bg-secondary card col-3">
-  <form action="login/Clogin" method="post" class="card-body">
+  <form action=<?= BASE_URL."/login/Clogin" ?> method="post" class="card-body">
     <h4 class="text-center">Login</h4>
     <div class="border-bottom border-3 border-dark mb-3"></div>
     <?php Flasher::flasher() ?>

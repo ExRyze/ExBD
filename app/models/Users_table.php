@@ -37,6 +37,17 @@ class Users_table {
     return $this->db->rowCount();
   }
 
+  public function storeAdmin() {
+    $this->db->query("INSERT INTO {$this->table} (`username`, `name`, `password`, `role`, `created_at`, `updated_at`)
+    VALUES (:username, :name, :password, :role, :date, :date)");
+    $this->db->bind('username', $_POST['username']);
+    $this->db->bind('name', $_POST['name']);
+    $this->db->bind('password', $_POST['password']);
+    $this->db->bind('role', $_POST['role']);
+    $this->db->bind('date', date('Y-m-d H:i:s'));
+    return $this->db->rowCount();
+  }
+
   public function updateStatus($id, $status) {
     $this->db->query("UPDATE {$this->table} SET `status` = :status WHERE `id` = :id");
     $this->db->bind('status', $status);
