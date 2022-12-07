@@ -14,6 +14,12 @@ class Animes_table {
     return $this->db->resultAll();
   }
 
+  public function getAllJoin() {
+    $this->db->query("SELECT * FROM {$this->table} 
+    LEFT OUTER JOIN {$this->table}_aliases ON {$this->table}.id = {$this->table}_aliases.anime_id");
+    return $this->db->resultAll();
+  }
+
   public function getAnimeById($id) {
     $this->db->query("SELECT * FROM {$this->table} WHERE `id` = :id");
     $this->db->bind('id', $id);

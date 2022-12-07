@@ -22,6 +22,7 @@ class Admin extends Controller {
     Middleware::role('Admin');
     $data['page'] = 'EXBD | Admin - Animes';
     $data['animes'] = $this->model('Animes')->getAll();
+    $data['animes_aliases'] = $this->model('Animes_Aliases')->getAll();
     $this->view('admin/animes', $data);
   }
 
