@@ -52,7 +52,7 @@
           </tr>
           <?php $index += 1; } ?>
         </tbody>
-        <tfoot class="bg-secondary text-center m-0">
+        <tfoot class="bg-secondary m-0 text-center">
           <th>No.</th>
           <th>Username</th>
           <th>Name</th>

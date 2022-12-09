@@ -9,7 +9,7 @@
       <a href="<?= BASE_URL.'/animes/add' ?>" class="btn btn-primary">Add</a>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
-      <table class="table m-0 table-bordered border-dark table-hover align-middle">
+      <table class="table m-0 table-bordered border-dark table-hover">
         <thead class="bg-secondary text-center">
           <tr>
             <th>No.</th>
@@ -44,8 +44,8 @@
               if($row['id'] === $alias['anime_id']) {
                 echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";
                 unset($alias);
-              } else {break;}
-            } echo ($td === 'empty') ? "<a role='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modalAddAlias'>Add alias</a>" : ''?></td>
+              }
+            } echo ($td === 'empty') ? "<a role='button' class='btn btn-primary btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id='{$row['id']}'>Add alias</a>" : ''?></td>
             <td>
               <div class="d-flex gap-3">
                 <a href="<?= BASE_URL.'/animes/edit/'.$row['id'] ?>" class="btn btn-warning">Edit</a>
@@ -55,7 +55,7 @@
           </tr>
         <?php $index += 1; } ?>
         </tbody>
-        <tfoot class="bg-secondary text-center m-0">
+        <tfoot class="bg-secondary m-0 text-center">
           <tr>
             <th>No.</th>
             <th>Title</th>
@@ -81,13 +81,25 @@
     <form action=<?= BASE_URL.'/aliases/animes' ?> method="post" class="modal-content">
       <div class="modal-header">
         <h5 class="m-0">Add Alias</h5>
-        <button class="btn-close" data-bs-dismiss='modal'></button>
+        <a class="btn-close" data-bs-dismiss='modal'></a>
       </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer"></div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="aliasAnimeId">
+        <div class="form-group mb-3">
+          <label for="origin" class="form-label">Origin alias</label>
+          <input type="text" name="origin" id="origin" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="alias" class="form-label">Anime alias</label>
+          <input type="text" name="alias" id="alias" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </form>
   </div>
 </div>
 
 
-<?php require_once MAIN_FOOT ?>
+<?php require_once ADMIN_FOOT ?>

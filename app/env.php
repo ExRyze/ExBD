@@ -27,4 +27,5 @@ define('MAIN_FOOT', MAIN_TEMPLATES.'/foot.php');
 
 // View -- Admin
 define('ADMIN_HEAD', ADMIN_TEMPLATES.'/head.php');
+define('ADMIN_FOOT', ADMIN_TEMPLATES.'/foot.php');
 define('ADMIN_SIDENAV', ADMIN_COMPONENTS.'/sidenav.php');

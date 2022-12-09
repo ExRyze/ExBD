@@ -6,12 +6,11 @@ class Aliases extends Controller {
     Middleware::role('Admin');
     $row = $this->model('Animes_Aliases')->store();
     if($row) {
-      Flasher::setFlasher('flasher-success', 'Anime berhasil di tambahkan');
-      return header('location: '.BASE_URL.'/admin/animes');
+      Flasher::setFlasher('flasher-success', 'Anime alias berhasil di tambahkan');
     } else {
       Flasher::setFlasher('flasher-warning', 'Terjadi suatu kesalahan!');
-      return header('location: '.BASE_URL.'/animes/add');
     }
+    return header('location: '.BASE_URL.'/admin/animes');
   }
 
 }
