@@ -19,6 +19,7 @@
             <th>Type</th>
             <th>Aired</th>
             <th>Finished</th>
+            <th>Genres</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>Id user</th>
@@ -32,16 +33,24 @@
           <tr>
             <td><?= $index ?></td>
             <td><?= $row['title'] ?></td>
-            <td><?php foreach($data['animes_aliases'] as $alias) { $td = 'empty';
+            <td><?php foreach($data['animes_aliases'] as $alias) {
               if($row['id'] === $alias['anime_id']) {
                 echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";
                 unset($alias);
               }
-            } echo ($td === 'empty') ? "<a role='button' class='btn btn-primary btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id='{$row['id']}'>Add alias</a>" : ''?></td>
+            } echo "<a role='button' class='btn btn-primary btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id='{$row['id']}'>Add alias</a>" ?></td>
             <td><?= $row['episodes'].' episodes' ?></td>
             <td><?= $row['type'] ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['aired'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['finished'])) ?></td>
+            <td><?php foreach($data['animes_genres'] as $genre) {
+              echo "";
+              if($row['id'] === $genre['anime_id']) {
+                echo "{$genre['genre']}, ";
+                unset($genre);
+              }
+              
+            } echo "<a role='button' class='btn btn-primary btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id='{$row['id']}'>Add Genre</a>" ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['created_at'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
             <td><?= $row['id_user'] ?></td>
@@ -64,6 +73,7 @@
             <th>Type</th>
             <th>Aired</th>
             <th>Finished</th>
+            <th>Genres</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>Id user</th>
