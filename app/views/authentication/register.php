@@ -7,15 +7,15 @@
     <?php Flasher::flasher() ?>
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
-      <input type="text" name="username" class="form-control" id="username">
+      <input type="text" name="username" class="form-control" id="username" required>
     </div>
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
-      <input type="text" name="name" class="form-control" id="name">
+      <input type="text" name="name" class="form-control" id="name" required>
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
-      <input type="password" name="password" class="form-control" id="password">
+      <input type="password" name="password" class="form-control" id="password" required>
     </div>
     <button type="submit" class="btn btn-primary col-12 mb-3">Register</button>
     <div class="col-12 text-center d-flex flex-column">

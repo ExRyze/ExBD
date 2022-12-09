@@ -14,7 +14,7 @@ class Users_table {
     return $this->db->resultAll();
   }
 
-  public function searchByUsername() {
+  public function validate() {
     $this->db->query("SELECT * FROM {$this->table} WHERE `username` = :username");
     $this->db->bind('username', $_POST['username']);
     return $this->db->rowCount();

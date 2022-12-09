@@ -73,21 +73,21 @@
     <form action=<?= BASE_URL."/register/admin" ?> method="post" class="modal-content">
       <div class="modal-header">
         <h5>Add Admin</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
+        <a class="btn-close" data-bs-dismiss="modal"></a>
       </div>
       <div class="modal-body">
         <input type="hidden" name="role" value="Admin">
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="username" class="form-label">Username</label>
-          <input type="text" name="username" id="username" class="form-control">
+          <input type="text" name="username" id="username" class="form-control" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" name="name" id="name" class="form-control">
+          <input type="text" name="name" id="name" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" id="password" class="form-control">
+          <input type="password" name="password" id="password" class="form-control" required>
         </div>
       </div>
       <div class="modal-footer">

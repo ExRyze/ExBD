@@ -11,7 +11,8 @@ class Middleware {
   }
 
   public static function role($role) {
-    if(!isset($_SESSION['user'])) { 
+    Middleware::auth();
+    if(isset($_SESSION['user'])) { 
       if($_SESSION['user']['role'] != $role) {
         return header('location: '.BASE_URL);
       }

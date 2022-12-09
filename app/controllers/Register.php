@@ -10,38 +10,31 @@ class Register extends Controller {
 
   public function Cregister() {
     Middleware::auth(false);
-    Middleware::form($_POST);
-    if(!isset($_SESSION['flasher'])) {
-      $row = $this->model('Users')->searchByUsername();
-      if(!$row) {
-        $this->model('Users')->store();
+    if(!$this->model('Users')->validate()) {
+      if($this->model('Users')->store()) {
         Flasher::setFlasher('flasher-success', 'Data berhasil ditambahkan, silahkan login');
-        header('location: '.BASE_URL.'/login');
+        return header('location: '.BASE_URL.'/login');
       } else {
-        Flasher::setFlasher('flasher-warning', 'Username sudah dipakai User lain');
-        header('location: '.BASE_URL.'/register');
+        Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
       }
     } else {
-      header('location: '.BASE_URL.'/register');
+      Flasher::setFlasher('flasher-warning', 'Username sudah dipakai User lain');
     }
+    return header('location: '.BASE_URL.'/admin/users');
   }
 
   public function admin() {
     Middleware::role('Admin');
-    Middleware::form($_POST);
-    if(!isset($_SESSION['flasher'])) {
-      $row = $this->model('Users')->searchByUsername();
-      if(!$row) {
-        $this->model('Users')->storeAdmin();
+    if(!$this->model('Users')->validate()) {
+      if($this->model('Users')->storeAdmin()) {
         Flasher::setFlasher('flasher-success', 'Data Admin baru berhasil ditambahkan');
-        header('location: '.BASE_URL.'/admin/users');
       } else {
-        Flasher::setFlasher('flasher-warning', 'Username sudah dipakai User lain');
-        header('location: '.BASE_URL.'/admin/users');
+        Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
       }
     } else {
-      header('location: '.BASE_URL.'/admin/users');
+      Flasher::setFlasher('flasher-warning', 'Username sudah dipakai User lain');
     }
+    return header('location: '.BASE_URL.'/admin/users');
   }
 
 }
