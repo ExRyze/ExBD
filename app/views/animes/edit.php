@@ -4,7 +4,7 @@
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
   <main class="p-3 col-11 d-flex flex-column">
-    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Add Anime</h2>
+    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Edit Anime</h2>
     <?php Flasher::flasher() ?>
     <div class="card col-12">
       <form action="<?= BASE_URL.'/animes/update' ?>" method="post" class="card-body d-flex gap-3 flex-column">
@@ -15,10 +15,6 @@
             <label for="title">Title</label>
             <input type="text" class="form-control" value="<?= $data['anime']['title'] ?>" id="title" name="title" placeholder="Title..."  required>
           </div>
-          <!-- <div class="form-group col-5 px-2">
-            <label for="alternativeTitle">Alternative Title</label>
-            <input type="text" class="form-control" id="alternativeTitle" name="alternativeTitle" placeholder="AAA, BBB, CCC, ...">
-          </div> -->
           <div class="form-group col-2 ps-2">
             <label for="episodes">Episodes</label>
             <input type="number" class="form-control" value="<?= $data['anime']['episodes'] ?>" name="episodes" id="episodes" min="0" value="0">
@@ -45,11 +41,11 @@
         <div class="d-flex col-12">
           <div class="form-group col-5 pe-2">
             <label for="aired">Date Aired</label>
-            <input class="form-control" type="datetime-local" name="aired" id="aired" value="<?= $data['anime']['aired'] ?>">
+            <input class="form-control" type="datetime-local" name="aired" id="aired" value="<?= $data['anime']['aired'] ?>" required>
           </div>
           <div class="form-group col-5 ps-2">
             <label for="finished">Date Finished</label>
-            <input class="form-control" type="datetime-local" name="finished" id="finished" value="<?= $data['anime']['finished'] ?>">
+            <input class="form-control" type="datetime-local" name="finished" id="finished" value="<?= $data['anime']['finished'] ?>" required>
           </div>
         </div>
         <div class="d-flex col-12 justify-content-end">

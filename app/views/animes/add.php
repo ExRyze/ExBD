@@ -14,10 +14,6 @@
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Title..." required>
           </div>
-          <!-- <div class="form-group col-5 px-2">
-            <label for="alternativeTitle">Alternative Title</label>
-            <input type="text" class="form-control" id="alternativeTitle" name="alternativeTitle" placeholder="AAA, BBB, CCC, ...">
-          </div> -->
           <div class="form-group col-2 ps-2">
             <label for="episodes">Episodes</label>
             <input type="number" class="form-control" name="episodes" id="episodes" min="0" value="0">
@@ -44,11 +40,11 @@
         <div class="d-flex col-12">
           <div class="form-group col-5 pe-2">
             <label for="aired">Date Aired</label>
-            <input class="form-control" type="datetime-local" name="aired" id="aired" value="<?= date('Y-m-d H:i:s') ?>">
+            <input class="form-control" type="datetime-local" name="aired" id="aired" required>
           </div>
           <div class="form-group col-5 ps-2">
             <label for="finished">Date Finished</label>
-            <input class="form-control" type="datetime-local" name="finished" id="finished" value="<?= date('Y-m-d H:i:s') ?>">
+            <input class="form-control" type="datetime-local" name="finished" id="finished" required>
           </div>
         </div>
         <div class="d-flex col-12 justify-content-end">

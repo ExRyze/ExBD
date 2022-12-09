@@ -45,12 +45,10 @@
             <td><?= date('d M Y H:i:s A', strtotime($row['aired'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['finished'])) ?></td>
             <td><?php foreach($data['animes_genres'] as $genre) {
-              echo "";
               if($row['id'] === $genre['anime_id']) {
                 echo "{$genre['genre']}, ";
                 unset($genre);
               }
-              
             } echo "<a role='button' class='btn btn-primary btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id='{$row['id']}'>Add Genre</a>" ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['created_at'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
@@ -87,6 +85,8 @@
   </main>
 </div>
 
+<!-- Modal -->
+
 <div class="modal fade" id="modalAddGenre" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <form action=<?= BASE_URL.'/genres/animes' ?> method="post" class="modal-content">
@@ -98,7 +98,7 @@
         <input type="hidden" name="id" id="genreAnimeId">
         <div class="form-group px-2">
           <label for="genre">Genre</label>
-          <select class="form-select" name="genre" id="genre">
+          <select class="form-select" name="genre" id="genre" required>
             <option value="" selected hidden disabled>Select genre</option>
             <?php foreach($data['genres'] as $genre)
             echo "<option value='{$genre['id']}'>{$genre['genre']}</option>"; ?>
@@ -121,13 +121,13 @@
       </div>
       <div class="modal-body">
         <input type="hidden" name="id" id="aliasAnimeId">
-        <div class="form-group mb-3">
+        <div class="mb-3">
           <label for="origin" class="form-label">Origin alias</label>
-          <input type="text" name="origin" id="origin" class="form-control">
+          <input type="text" name="origin" id="origin" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="alias" class="form-label">Anime alias</label>
-          <input type="text" name="alias" id="alias" class="form-control">
+          <input type="text" name="alias" id="alias" class="form-control" required>
         </div>
       </div>
       <div class="modal-footer">
@@ -136,6 +136,5 @@
     </form>
   </div>
 </div>
-
 
 <?php require_once ADMIN_FOOT ?>
