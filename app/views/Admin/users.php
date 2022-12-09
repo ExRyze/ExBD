@@ -34,8 +34,8 @@
             <td><?= $row['role'] ?></td>
             <td><?= $row['access'] ?></td>
             <td><?= $row['status'] ?></td>
-            <td><?= $row['created_at'] ?></td>
-            <td><?= $row['updated_at'] ?></td>
+            <td><?= date('d M Y H:i:s A', strtotime($row['created_at'])) ?></td>
+            <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
             <td>
               <div class="d-flex gap-3">
                 <?php if($row['role'] === 'Admin') { ?>

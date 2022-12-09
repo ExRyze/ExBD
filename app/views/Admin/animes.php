@@ -14,6 +14,7 @@
           <tr>
             <th>No.</th>
             <th>Title</th>
+            <th>Aliases</th>
             <th>Episodes</th>
             <th>Type</th>
             <th>Aired</th>
@@ -22,7 +23,6 @@
             <th>Updated at</th>
             <th>Id user</th>
             <th>Exists</th>
-            <th>Aliases</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -32,20 +32,20 @@
           <tr>
             <td><?= $index ?></td>
             <td><?= $row['title'] ?></td>
-            <td><?= $row['episodes'].' episodes' ?></td>
-            <td><?= $row['type'] ?></td>
-            <td><?= $row['aired'] ?></td>
-            <td><?= $row['finished'] ?></td>
-            <td><?= $row['created_at'] ?></td>
-            <td><?= $row['updated_at'] ?></td>
-            <td><?= $row['id_user'] ?></td>
-            <td><?= (file_exists(STORAGE_URL)) ? ((file_exists(STORAGE_ANIMES.'/'.$row['title'])) ? 'Exists' : 'Not exists') : "Drive 'F:' doesn't exists" ?></td>
             <td><?php foreach($data['animes_aliases'] as $alias) { $td = 'empty';
               if($row['id'] === $alias['anime_id']) {
                 echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";
                 unset($alias);
               }
             } echo ($td === 'empty') ? "<a role='button' class='btn btn-primary btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id='{$row['id']}'>Add alias</a>" : ''?></td>
+            <td><?= $row['episodes'].' episodes' ?></td>
+            <td><?= $row['type'] ?></td>
+            <td><?= date('d M Y H:i:s A', strtotime($row['aired'])) ?></td>
+            <td><?= date('d M Y H:i:s A', strtotime($row['finished'])) ?></td>
+            <td><?= date('d M Y H:i:s A', strtotime($row['created_at'])) ?></td>
+            <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
+            <td><?= $row['id_user'] ?></td>
+            <td><?= (file_exists(STORAGE_URL)) ? ((file_exists(STORAGE_ANIMES.'/'.$row['title'])) ? 'Exists' : 'Not exists') : "Drive 'F:' doesn't exists" ?></td>
             <td>
               <div class="d-flex gap-3">
                 <a href="<?= BASE_URL.'/animes/edit/'.$row['id'] ?>" class="btn btn-warning">Edit</a>
@@ -59,6 +59,7 @@
           <tr>
             <th>No.</th>
             <th>Title</th>
+            <th>Aliases</th>
             <th>Episodes</th>
             <th>Type</th>
             <th>Aired</th>
@@ -67,7 +68,6 @@
             <th>Updated at</th>
             <th>Id user</th>
             <th>Exists</th>
-            <th>Aliases</th>
             <th>Action</th>
           </tr>
         </tfoot>
