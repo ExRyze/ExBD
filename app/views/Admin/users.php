@@ -3,7 +3,7 @@
 <?php require_once MAIN_NAV ?>
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
-  <main class="p-3 flex-grow-1 overflow-hidden d-flex flex-column dropdown">
+  <main class="p-3 col-11 overflow-hidden d-flex flex-column dropdown">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Users</h2>
     <?php Flasher::flasher() ?>
     <div class="col-12 d-flex mb-3">

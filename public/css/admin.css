@@ -1,7 +1,6 @@
 .admin .sidenav {
   top: 56px!important;
   height: calc(100vh - 56px);
-  width: 88px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -51,4 +50,8 @@
 
 .admin .card-table {
   width: calc(25% - (3rem / 4));
+}
+
+.admin table {
+  white-space: nowrap;
 }

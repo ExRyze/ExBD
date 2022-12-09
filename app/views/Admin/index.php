@@ -3,7 +3,7 @@
 <?php require_once MAIN_NAV ?>
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
-  <main class="p-3 flex-grow-1 d-flex flex-column">
+  <main class="p-3 col-11 d-flex flex-column">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Database</h2>
     <article class="d-flex flex-wrap gap-3 mb-3">
       <?php foreach($data['database'] as $table) { ?>
