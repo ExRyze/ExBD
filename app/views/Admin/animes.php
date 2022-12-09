@@ -1,4 +1,5 @@
 <?php require_once ADMIN_HEAD ?>
+
 <?php require_once MAIN_NAV ?>
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
@@ -50,7 +51,7 @@
                 unset($genre);
               }
               
-            } echo "<a role='button' class='btn btn-primary btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id='{$row['id']}'>Add Genre</a>" ?></td>
+            } echo "<a role='button' class='btn btn-primary btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id='{$row['id']}'>Add Genre</a>" ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['created_at'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
             <td><?= $row['id_user'] ?></td>
@@ -84,6 +85,31 @@
       </table>
     </div>
   </main>
+</div>
+
+<div class="modal fade" id="modalAddGenre" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action=<?= BASE_URL.'/genres/animes' ?> method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="m-0">Add Alias</h5>
+        <a class="btn-close" data-bs-dismiss='modal'></a>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="genreAnimeId">
+        <div class="form-group px-2">
+          <label for="genre">Genre</label>
+          <select class="form-select" name="genre" id="genre">
+            <option value="" selected hidden disabled>Select genre</option>
+            <?php foreach($data['genres'] as $genre)
+            echo "<option value='{$genre['id']}'>{$genre['genre']}</option>"; ?>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="modal fade" id="modalAddAlias" aria-hidden="true">

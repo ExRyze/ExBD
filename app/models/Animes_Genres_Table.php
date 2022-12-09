@@ -15,4 +15,11 @@ class Animes_Genres_Table {
     return $this->db->resultAll();
   }
 
+  public function store() {
+    $this->db->query("INSERT INTO {$this->table} (`anime_id`, `genre_id`) VALUES (:id, :genre)");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('genre', $_POST['genre']);
+    return $this->db->rowCount();
+  }
+
 }

@@ -24,6 +24,7 @@ class Admin extends Controller {
     $data['animes'] = $this->model('Animes')->getAll();
     $data['animes_aliases'] = $this->model('Animes_Aliases')->getAll();
     $data['animes_genres'] = $this->model('Animes_Genres')->getAll();
+    $data['genres'] = $this->model('Genres')->getAll();
     $this->view('admin/animes', $data);
   }
 
