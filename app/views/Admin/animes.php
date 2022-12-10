@@ -1,5 +1,5 @@
 <?php require_once ADMIN_HEAD ?>
-<!-- <?php var_dump($data['animes_licensors']) ?> -->
+<?php var_dump($data['animes']) ?>
 <?php require_once MAIN_NAV ?>
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
@@ -34,13 +34,13 @@
           <tr>
             <td><?= $index ?></td>
             <td><?= $row['title'] ?></td>
-            <td><?php forEcho($row['id'], $data['animes_aliases'], 'alias', 'btn-add-alias', '#modalAddAlias', 'Add alias') ?></td>
+            <td><?php foreach($row['aliases'] as $alias) {echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";} ?> <a role='button' class='btn btn-primary btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id=<?= $row['id'] ?>>Add alias</a> </td>
             <td><?= $row['episodes'].' episodes' ?></td>
             <td><?= $row['type'] ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['aired'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['finished'])) ?></td>
-            <td><?php forEcho($row['id'], $data['animes_genres'], 'genre', 'btn-add-genre', '#modalAddGenre', 'Add genre') ?></td>
-            <td><?php forEcho($row['id'], $data['animes_licensors'], 'licensor', 'btn-add-licensor', '#modalAddLicensor', 'Add Licensor') ?></td>
+            <td><?php echo implode(', ', $row['genres']); ?> <a role='button' class='btn btn-primary btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $row['id'] ?>>Add genre</a> </td>
+            <td><?php echo implode(', ', $row['licensors']); ?> <a role='button' class='btn btn-primary btn-add-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $row['id'] ?>>Add licensor</a> </td>
             <td><?= date('d M Y H:i:s A', strtotime($row['created_at'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
             <td><?= $row['id_user'] ?></td>
@@ -151,18 +151,5 @@
     </form>
   </div>
 </div>
-
-<!-- Function -->
-<?php
-function forEcho($animeId, $table, $key, $classModal, $idModal, $valueModal) {
-  foreach($table as $info) {
-    if($animeId === $info['anime_id']) {
-      if($key === 'alias') {echo "<p class='m-0'><strong>{$info['origin_alias']}:</strong> {$info['anime_alias']}</p>";}
-      else if($key === 'genre') {echo "{$info['genre']}, ";}
-      else if($key === 'licensor') {echo "{$info['licensor']}, ";}
-      unset($info);
-    }
-  } echo "<a role='button' class='btn btn-primary {$classModal}' data-bs-toggle='modal' data-bs-target='{$idModal}' id='{$animeId}'>{$valueModal}</a>";
-} ?>
 
 <?php require_once ADMIN_FOOT ?>

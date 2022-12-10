@@ -22,9 +22,9 @@ class Admin extends Controller {
     Middleware::role('Admin');
     $data['page'] = 'EXBD | Admin - Animes';
     $data['animes'] = $this->model('Animes')->getAll();
-    $data['animes_aliases'] = $this->model('Animes_Aliases')->getAll();
-    $data['animes_genres'] = $this->model('Animes_Genres')->getAll();
-    $data['animes_licensors'] = $this->model('Animes_Licensors')->getAll();
+    $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Aliases')->getAll(), 'aliases', NULL, TRUE);
+    $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Genres')->getAll(), 'genres', 'genre');
+    $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Licensors')->getAll(),'licensors','licensor');
     $data['genres'] = $this->model('Genres')->getAll();
     $data['licensors'] = $this->model('Licensors')->getAll();
     $this->view('admin/animes', $data);
