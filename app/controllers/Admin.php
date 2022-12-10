@@ -25,8 +25,12 @@ class Admin extends Controller {
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Aliases')->getAll(), 'aliases', NULL, TRUE);
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Genres')->getAll(), 'genres', 'genre');
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Licensors')->getAll(),'licensors','licensor');
+    $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Producers')->getAll(),'producers','producer');
+    $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Studios')->getAll(), 'studios', 'studio');
     $data['genres'] = $this->model('Genres')->getAll();
+    $data['producers'] = $this->model('Producers')->getAll();
     $data['licensors'] = $this->model('Licensors')->getAll();
+    $data['studios'] = $this->model('Studios')->getAll();
     $this->view('admin/animes', $data);
   }
 

@@ -1,5 +1,5 @@
 <?php require_once ADMIN_HEAD ?>
-<?php var_dump($data['animes']) ?>
+
 <?php require_once MAIN_NAV ?>
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
@@ -21,6 +21,9 @@
             <th>Aired</th>
             <th>Finished</th>
             <th>Genres</th>
+            <th>Producers</th>
+            <th>Licensors</th>
+            <th>Studios</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>Id user</th>
@@ -40,7 +43,9 @@
             <td><?= date('d M Y H:i:s A', strtotime($row['aired'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['finished'])) ?></td>
             <td><?php echo implode(', ', $row['genres']); ?> <a role='button' class='btn btn-primary btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $row['id'] ?>>Add genre</a> </td>
+            <td><?php echo implode(', ', $row['producers']); ?> <a role='button' class='btn btn-primary btn-add-producer' data-bs-toggle='modal' data-bs-target='#modalAddProducer' id=<?= $row['id'] ?>>Add producer</a> </td>
             <td><?php echo implode(', ', $row['licensors']); ?> <a role='button' class='btn btn-primary btn-add-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $row['id'] ?>>Add licensor</a> </td>
+            <td><?php echo implode(', ', $row['studios']); ?> <a role='button' class='btn btn-primary btn-add-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $row['id'] ?>>Add studio</a> </td>
             <td><?= date('d M Y H:i:s A', strtotime($row['created_at'])) ?></td>
             <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
             <td><?= $row['id_user'] ?></td>
@@ -64,6 +69,9 @@
             <th>Aired</th>
             <th>Finished</th>
             <th>Genres</th>
+            <th>Producers</th>
+            <th>Licensors</th>
+            <th>Studios</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>Id user</th>
@@ -127,6 +135,31 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalAddProducer" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action=<?= BASE_URL.'/producers/animes' ?> method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="m-0">Add Producer</h5>
+        <a class="btn-close" data-bs-dismiss='modal'></a>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="producerAnimeId">
+        <div class="form-group px-2">
+          <label for="producer">Producer</label>
+          <select class="form-select" name="producer" id="producer" required>
+            <option value="" selected hidden disabled>Select producer</option>
+            <?php foreach($data['producers'] as $producer)
+            echo "<option value='{$producer['id']}'>{$producer['producer']}</option>"; ?>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="modal fade" id="modalAddLicensor" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <form action=<?= BASE_URL.'/licensors/animes' ?> method="post" class="modal-content">
@@ -142,6 +175,31 @@
             <option value="" selected hidden disabled>Select licensor</option>
             <?php foreach($data['licensors'] as $licensor)
             echo "<option value='{$licensor['id']}'>{$licensor['licensor']}</option>"; ?>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAddStudio" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action=<?= BASE_URL.'/studios/animes' ?> method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="m-0">Add Studio</h5>
+        <a class="btn-close" data-bs-dismiss='modal'></a>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="studioAnimeId">
+        <div class="form-group px-2">
+          <label for="studio">Studio</label>
+          <select class="form-select" name="studio" id="studio" required>
+            <option value="" selected hidden disabled>Select studio</option>
+            <?php foreach($data['studios'] as $studio)
+            echo "<option value='{$studio['id']}'>{$studio['studio']}</option>"; ?>
           </select>
         </div>
       </div>

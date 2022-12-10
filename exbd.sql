@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 06, 2022 at 08:04 AM
+-- Generation Time: Dec 10, 2022 at 07:17 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -41,6 +41,13 @@ CREATE TABLE `animes` (
   `id_user` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `animes`
+--
+
+INSERT INTO `animes` (`id`, `slug`, `title`, `type`, `episodes`, `status`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES
+(2, 'Blend_S', 'Blend S', 'TV', 0, 'Not yet aired', '2022-12-07 00:34:00', '2022-12-07 00:34:00', '2022-12-07 00:34:07', '2022-12-07 00:34:07', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -50,9 +57,18 @@ CREATE TABLE `animes` (
 CREATE TABLE `animes_aliases` (
   `id` int(10) UNSIGNED NOT NULL,
   `anime_id` int(10) UNSIGNED NOT NULL,
-  `anime_alias` varchar(52) NOT NULL,
-  `origin_alias` varchar(52) NOT NULL
+  `origin_alias` varchar(52) NOT NULL,
+  `anime_alias` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `animes_aliases`
+--
+
+INSERT INTO `animes_aliases` (`id`, `anime_id`, `origin_alias`, `anime_alias`) VALUES
+(1, 2, 'Japanese', 'Blend S'),
+(2, 2, 'English', 'Blend S'),
+(6, 2, 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -66,6 +82,14 @@ CREATE TABLE `animes_genres` (
   `genre_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `animes_genres`
+--
+
+INSERT INTO `animes_genres` (`id`, `anime_id`, `genre_id`) VALUES
+(1, 2, 1),
+(3, 2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +101,13 @@ CREATE TABLE `animes_licensors` (
   `anime_id` int(10) UNSIGNED NOT NULL,
   `licensor_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `animes_licensors`
+--
+
+INSERT INTO `animes_licensors` (`id`, `anime_id`, `licensor_id`) VALUES
+(3, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -90,6 +121,13 @@ CREATE TABLE `animes_producers` (
   `producer_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `animes_producers`
+--
+
+INSERT INTO `animes_producers` (`id`, `anime_id`, `producer_id`) VALUES
+(2, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -99,8 +137,8 @@ CREATE TABLE `animes_producers` (
 CREATE TABLE `animes_source` (
   `id` int(10) UNSIGNED NOT NULL,
   `anime_id` int(10) UNSIGNED NOT NULL,
-  `type` varchar(52) NOT NULL,
-  `source` varchar(52) NOT NULL
+  `source_type` varchar(52) NOT NULL,
+  `anime_source` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -114,6 +152,13 @@ CREATE TABLE `animes_studios` (
   `anime_id` int(10) UNSIGNED NOT NULL,
   `studio_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `animes_studios`
+--
+
+INSERT INTO `animes_studios` (`id`, `anime_id`, `studio_id`) VALUES
+(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -141,6 +186,14 @@ CREATE TABLE `genres` (
   `genre` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `genres`
+--
+
+INSERT INTO `genres` (`id`, `genre`) VALUES
+(1, 'Adventure'),
+(2, 'Action');
+
 -- --------------------------------------------------------
 
 --
@@ -151,6 +204,13 @@ CREATE TABLE `licensors` (
   `id` int(10) UNSIGNED NOT NULL,
   `licensor` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `licensors`
+--
+
+INSERT INTO `licensors` (`id`, `licensor`) VALUES
+(2, 'test 2');
 
 -- --------------------------------------------------------
 
@@ -163,6 +223,13 @@ CREATE TABLE `producers` (
   `producer` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `producers`
+--
+
+INSERT INTO `producers` (`id`, `producer`) VALUES
+(1, 'producer');
+
 -- --------------------------------------------------------
 
 --
@@ -173,6 +240,13 @@ CREATE TABLE `studios` (
   `id` int(10) UNSIGNED NOT NULL,
   `studio` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `studios`
+--
+
+INSERT INTO `studios` (`id`, `studio`) VALUES
+(1, 'studio');
 
 -- --------------------------------------------------------
 
@@ -303,31 +377,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `animes_aliases`
 --
 ALTER TABLE `animes_aliases`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `animes_genres`
 --
 ALTER TABLE `animes_genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `animes_licensors`
 --
 ALTER TABLE `animes_licensors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `animes_producers`
 --
 ALTER TABLE `animes_producers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `animes_source`
@@ -339,7 +413,7 @@ ALTER TABLE `animes_source`
 -- AUTO_INCREMENT for table `animes_studios`
 --
 ALTER TABLE `animes_studios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `animes_videos`
@@ -351,25 +425,25 @@ ALTER TABLE `animes_videos`
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `licensors`
 --
 ALTER TABLE `licensors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `producers`
 --
 ALTER TABLE `producers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `studios`
 --
 ALTER TABLE `studios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
