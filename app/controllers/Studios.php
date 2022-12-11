@@ -2,7 +2,7 @@
 
 class Studios extends Controller {
 
-  public function animes() {
+  public function animesAdd() {
     Middleware::role('Admin');
     if(!$this->model('Animes_Studios')->validate()) {
       if($this->model('Animes_Studios')->store()) {

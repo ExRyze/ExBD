@@ -2,7 +2,7 @@
 
 class Producers extends Controller {
 
-  public function animes() {
+  public function animesAdd() {
     Middleware::role('Admin');
     if(!$this->model('Animes_Producers')->validate()) {
       if($this->model('Animes_Producers')->store()) {

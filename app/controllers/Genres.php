@@ -2,7 +2,7 @@
 
 class Genres extends Controller {
 
-  public function animes() {
+  public function animesAdd() {
     Middleware::role('Admin');
     if(!$this->model('Animes_Genres')->validate()) {
       if($this->model('Animes_Genres')->store()) {

@@ -2,7 +2,7 @@
 
 class Licensors extends Controller {
 
-  public function animes() {
+  public function animesAdd() {
     Middleware::role('Admin');
     if(!$this->model('Animes_Licensors')->validate()) {
       if($this->model('Animes_Licensors')->store()) {
