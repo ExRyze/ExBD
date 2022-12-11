@@ -29,4 +29,11 @@ class Animes_Studios_Table {
     return $this->db->rowCount();
   }
 
+  public function delete() {
+    $this->db->query("DELETE {$this->table} FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.studio_id = {$this->origin}.id WHERE `anime_id` = :id && `studio` = :studio");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('studio', $_POST['studio']);
+    return $this->db->rowCount();
+  }
+
 }

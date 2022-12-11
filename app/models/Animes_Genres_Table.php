@@ -29,4 +29,11 @@ class Animes_Genres_Table {
     return $this->db->rowCount();
   }
 
+  public function delete() {
+    $this->db->query("DELETE {$this->table} FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.genre_id = {$this->origin}.id WHERE `anime_id` = :id && `genre` = :genre");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('genre', $_POST['genre']);
+    return $this->db->rowCount();
+  }
+
 }
