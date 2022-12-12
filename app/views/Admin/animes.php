@@ -241,7 +241,7 @@
         </div>
         <div class="modal-body">
           <?php foreach($anime['aliases'] as $alias) { ?>
-            <form action=<?= BASE_URL.'/admin/editAnimePart/aliases' ?> method="post" class="mb-3">
+            <form action=<?= BASE_URL.'/admin/deleteAnimePart/aliases' ?> method="post" class="mb-3">
               <input type="hidden" name="id" value=<?= $anime['id'] ?>>
               <label class="form-label" for="alias"><?= $alias['origin_alias'] ?></label>
               <input type="hidden" name="origin" value='<?= $alias['origin_alias'] ?>'>
@@ -265,7 +265,7 @@
         </div>
         <div class="modal-body">
           <?php foreach($anime['genres'] as $genre) { ?>
-            <form action=<?= BASE_URL.'/admin/editAnimePart/genres' ?> method="post" class="mb-3">
+            <form action=<?= BASE_URL.'/admin/deleteAnimePart/genres' ?> method="post" class="mb-3">
               <input type="hidden" name="id" value=<?= $anime['id'] ?>>
               <div class="d-flex gap-3 align-items-center">
                 <input type="text" name="genre" class="form-control" value='<?= $genre ?>' readonly>
@@ -287,7 +287,7 @@
         </div>
         <div class="modal-body">
           <?php foreach($anime['producers'] as $producer) { ?>
-            <form action=<?= BASE_URL.'/admin/editAnimePart/producers' ?> method="post" class="mb-3">
+            <form action=<?= BASE_URL.'/admin/deleteAnimePart/producers' ?> method="post" class="mb-3">
               <input type="hidden" name="id" value=<?= $anime['id'] ?>>
               <div class="d-flex gap-3 align-items-center">
                 <input type="text" name="producer" class="form-control" value='<?= $producer ?>' readonly>
@@ -309,7 +309,7 @@
         </div>
         <div class="modal-body">
           <?php foreach($anime['licensors'] as $licensor) { ?>
-            <form action=<?= BASE_URL.'/admin/editAnimePart/licensors' ?> method="post" class="mb-3">
+            <form action=<?= BASE_URL.'/admin/deleteAnimePart/licensors' ?> method="post" class="mb-3">
               <input type="hidden" name="id" value=<?= $anime['id'] ?>>
               <div class="d-flex gap-3 align-items-center">
                 <input type="text" name="licensor" class="form-control" value='<?= $licensor ?>' readonly>
@@ -331,7 +331,7 @@
         </div>
         <div class="modal-body">
           <?php foreach($anime['studios'] as $studio) { ?>
-            <form action=<?= BASE_URL.'/admin/editAnimePart/studios' ?> method="post" class="mb-3">
+            <form action=<?= BASE_URL.'/admin/deleteAnimePart/studios' ?> method="post" class="mb-3">
               <input type="hidden" name="id" value=<?= $anime['id'] ?>>
               <div class="d-flex gap-3 align-items-center">
                 <input type="text" name="studio" class="form-control" value='<?= $studio ?>' readonly>

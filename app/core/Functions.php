@@ -21,4 +21,12 @@ class Functions {
         } } } return $parent; 
   }
 
+  public static function filterAnime($datas, $items) {
+    foreach($datas as $key => $value) {
+      foreach($items as $item) {
+        if($value['id'] === $item['id']) {
+          unset($datas[$key]);
+        } } } return $datas;
+  }
+
 }

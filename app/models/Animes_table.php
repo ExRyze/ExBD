@@ -14,9 +14,13 @@ class Animes_table {
     return $this->db->resultAll();
   }
 
-  public function getAllJoin() {
-    $this->db->query("SELECT * FROM {$this->table} 
-    LEFT OUTER JOIN {$this->table}_aliases ON {$this->table}.id = {$this->table}_aliases.anime_id");
+  public function getJoin($origin) {
+    $this->db->query("SELECT {$this->table}{$origin}.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}{$origin} ON {$this->table}.id = {$this->table}{$origin}.anime_id");
+    return $this->db->resultAll();
+  }
+
+  public function getTitle() {
+    $this->db->query("SELECT id, title FROM {$this->table}");
     return $this->db->resultAll();
   }
 
