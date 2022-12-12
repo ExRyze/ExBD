@@ -16,5 +16,9 @@
       <img class="sidenav-logo" src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> width="40" height="40"></img>
       <h6 class="sidenav-text m-0">Animes Videos</h6>
     </a>
+    <a href="<?= BASE_URL.'/admin/parts' ?>" class="sidenav-item position-relative <?= (str_contains($data['page'], 'EXBD | Admin - Parts')) ? 'active' : '' ?>">
+      <img class="sidenav-logo" src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> width="40" height="40"></img>
+      <h6 class="sidenav-text m-0">Parts</h6>
+    </a>
   </div>
 </div>

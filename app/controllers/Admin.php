@@ -44,6 +44,19 @@ class Admin extends Controller {
     $this->view('admin/animesVideos', $data);
   }
 
+  public function parts($string = '') {
+    Middleware::role('Admin');
+    if($string === '') {
+      $data['page'] = 'EXBD | Admin - Parts';
+      $data['database'] = array(
+        'genres' => array('table' => $this->model('Genres')->getAll(), 'column' => 'genre'),
+        'producers' => array('table' => $this->model('Producers')->getAll(), 'column' => 'producer'),
+        'licensors' => array('table' => $this->model('Licensors')->getAll(), 'column' => 'licensor'),
+        'studios' => array('table' => $this->model('Studios')->getAll(), 'column' => 'studio'));
+      $this->view('admin/parts', $data);
+    }
+  }
+
   public function addAnimePart($string = '', $url = '') {
     Middleware::role('Admin');
     if($string === '') {
@@ -82,6 +95,46 @@ class Admin extends Controller {
       return header('location: '.BASE_URL.'/admin/animes'.$url);}
     Flasher::setFlasher('flasher-success', "Anime {$string} berhasil di hapus");
     return header('location: '.BASE_URL.'/admin/animes'.$url);
+  }
+
+  public function addParts($string = '') {
+    Middleware::role('Admin');
+    if($string === '') {
+      Flasher::setFlasher('flasher-warning', 'Need parameter');
+      return header('location: '.BASE_URL.'/admin/parts');}
+    if($this->model($string)->validate()) {
+      Flasher::setFlasher('flasher-warning', $string.' sudah ada');
+      return header('location: '.BASE_URL.'/admin/parts');}
+    if(!$this->model($string)->store()) {
+      Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
+      return header('location: '.BASE_URL.'/admin/parts');}
+    Flasher::setFlasher('flasher-success', "{$string} berhasil di tambahkan");
+    return header('location: '.BASE_URL.'/admin/parts');
+  }
+
+  public function editParts($string = '') {
+    Middleware::role('Admin');
+    if($string === '') {
+      Flasher::setFlasher('flasher-warning', 'Need parameter');
+      return header('location: '.BASE_URL.'/admin/parts');}
+    if(!$this->model($string)->update()) {
+      Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
+      return header('location: '.BASE_URL.'/admin/parts');
+    }
+    Flasher::setFlasher('flasher-success', "{$string} berhasil di update");
+    return header('location: '.BASE_URL.'/admin/parts');
+  }
+
+  public function deleteParts($string = '') {
+    Middleware::role('Admin');
+    if($string === '') {
+      Flasher::setFlasher('flasher-warning', 'Need parameter');
+      return header('location: '.BASE_URL.'/admin/parts');}
+    if(!$this->model($string)->delete()) {
+      Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
+      return header('location: '.BASE_URL.'/admin/parts');}
+    Flasher::setFlasher('flasher-success', "{$string} berhasil di hapus");
+    return header('location: '.BASE_URL.'/admin/parts');
   }
 
 }
