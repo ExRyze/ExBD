@@ -72,7 +72,7 @@
             <td><?= (file_exists(STORAGE_URL)) ? ((file_exists(STORAGE_ANIMES.'/'.$anime['title'])) ? 'Exists' : 'Not exists') : "Drive 'F:' doesn't exists" ?></td>
             <td>
               <div class="d-flex gap-3">
-                <a href="<?= BASE_URL.'/animes/edit/'.$anime['id'] ?>" class="btn btn-warning">Edit</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalEditAnime<?= $anime['id'] ?>'>Edit</a>
                 <a href="<?= BASE_URL.'/animes/delete/'.$anime['id'] ?>" class="btn btn-danger">Delete</a>
               </div>
             </td>
@@ -281,6 +281,56 @@
 
 <!-- Modal Edit -->
 <?php foreach($data['animes'] as $anime) { ?>
+  <div class="modal fade" id="modalEditAnime<?= $anime['id'] ?>" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form action=<?= BASE_URL.'/animes/update' ?> method="post" class="modal-content">
+        <div class="modal-header">
+          <h5 class="m-0">Edit Anime</h5>
+          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id_user" value="<?= $_SESSION['user']['id'] ?>">
+          <input type="hidden" name="id" value="<?= $anime['id'] ?>">
+          <div class="form-group mb-3">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title..." value="<?= $anime['title'] ?>" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="episodes">Episodes</label>
+            <input type="number" class="form-control" name="episodes" id="episodes" min="0" value="<?= $anime['episodes'] ?>">
+          </div>
+          <!-- <div class="form-group mb-3">
+            <label for="status">Status</label>
+            <select class="form-control" name="status" id="status">
+              <option value="" selected disabled hidden>Status</option>
+              <option value="Not yet aired">Not yet aired</option>
+              <option value="Currently aired">Currently aired</option>
+              <option value="Finished airing">Finished airing</option>
+            </select>
+          </div> -->
+          <div class="form-group mb-3">
+            <label for="tipe">Type</label>
+            <select class="form-select" name="tipe" id="tipe">
+              <option value="TV" <?= ($anime['type'] === 'TV') ? 'selected' : '' ?>>TV</option>
+              <option value="BD" <?= ($anime['type'] === 'BD') ? 'selected' : '' ?>>BD</option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label for="aired">Date Aired</label>
+            <input class="form-control" type="date" name="aired" id="aired" value="<?= $anime['aired'] ?>" required>
+          </div>
+          <div class="form-group">
+            <label for="finished">Date Finished</label>
+            <input class="form-control" type="date" name="finished" id="finished" value="<?= $anime['finished'] ?>" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="modal fade" id=<?= 'modalEditAlias'.$anime['id'] ?> aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
