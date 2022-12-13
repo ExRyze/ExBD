@@ -10,7 +10,7 @@ class Studios_Table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table}");
+    $this->db->query("SELECT * FROM {$this->table} ORDER BY `studio`");
     return $this->db->resultAll();
   }
 

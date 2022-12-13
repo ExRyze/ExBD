@@ -7,7 +7,7 @@
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Animes</h2>
     <?php Flasher::flasher() ?>
     <div class="col-12 d-flex mb-3">
-      <a href="<?= BASE_URL.'/animes/add' ?>" class="btn btn-primary">Add</a>
+      <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalAddAnime'>Add</a>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
       <table class="table m-0 table-bordered border-dark table-hover">
@@ -44,25 +44,25 @@
             </td>
             <td><?= $anime['episodes'].' episodes' ?></td>
             <td><?= $anime['type'] ?></td>
-            <td><?= date('d M Y H:i:s A', strtotime($anime['aired'])) ?></td>
-            <td><?= date('d M Y H:i:s A', strtotime($anime['finished'])) ?></td>
+            <td><?= date('d M Y', strtotime($anime['aired'])) ?></td>
+            <td><?= date('d M Y', strtotime($anime['finished'])) ?></td>
             <td>
-              <?php echo implode(', ', $anime['genres']); ?> <br>
+              <?= ($anime['genres']) ? "<p class='mb-0'>".implode(', ', $anime['genres'])."</p>" : ''; ?>
               <a role='button' class='btn btn-success btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $anime['id'] ?>>Add</a>
               <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditGenre'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
             </td>
             <td>
-              <?php echo implode(', ', $anime['producers']); ?> <br>
+            <?= ($anime['producers']) ? "<p class='mb-0'>".implode(', ', $anime['producers'])."</p>" : ''; ?>
               <a role='button' class='btn btn-success btn-add-producer' data-bs-toggle='modal' data-bs-target='#modalAddProducer' id=<?= $anime['id'] ?>>Add</a>
               <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditProducer'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
             </td>
             <td>
-              <?php echo implode(', ', $anime['licensors']); ?> <br>
+            <?= ($anime['licensors']) ? "<p class='mb-0'>".implode(', ', $anime['licensors'])."</p>" : ''; ?>
               <a role='button' class='btn btn-success btn-add-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $anime['id'] ?>>Add</a>
               <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditLicensor'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
             </td>
             <td>
-              <?php echo implode(', ', $anime['studios']); ?> <br>
+            <?= ($anime['studios']) ? "<p class='mb-0'>".implode(', ', $anime['studios'])."</p>" : ''; ?>
               <a role='button' class='btn btn-success btn-add-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $anime['id'] ?>>Add</a>
               <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditStudio'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
             </td>
@@ -105,6 +105,55 @@
 </div>
 
 <!-- Modal Add -->
+<div class="modal fade modal-add" id="modalAddAnime" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action=<?= BASE_URL.'/animes/store' ?> method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="m-0">Add Anime</h5>
+        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id_user" value="<?= $_SESSION['user']['id'] ?>">
+        <div class="form-group mb-3">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="Title..." required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="episodes">Episodes</label>
+          <input type="number" class="form-control" name="episodes" id="episodes" min="0" value="0">
+        </div>
+        <!-- <div class="form-group mb-3">
+          <label for="status">Status</label>
+          <select class="form-control" name="status" id="status">
+            <option value="" selected disabled hidden>Status</option>
+            <option value="Not yet aired">Not yet aired</option>
+            <option value="Currently aired">Currently aired</option>
+            <option value="Finished airing">Finished airing</option>
+          </select>
+        </div> -->
+        <div class="form-group mb-3">
+          <label for="tipe">Type</label>
+          <select class="form-select" name="tipe" id="tipe">
+            <option value="TV" selected>TV</option>
+            <option value="BD">BD</option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="aired">Date Aired</label>
+          <input class="form-control" type="date" name="aired" id="aired" required>
+        </div>
+        <div class="form-group">
+          <label for="finished">Date Finished</label>
+          <input class="form-control" type="date" name="finished" id="finished" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="modal fade modal-add" id="modalAddAlias" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <form action=<?= BASE_URL.'/admin/addAnimePart/aliases' ?> method="post" class="modal-content">

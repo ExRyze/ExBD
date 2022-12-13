@@ -13,8 +13,8 @@
         <h5 class="pb-1 border-bottom border-1 border-dark mb-2">Informations</h5>
         <p class="m-0"><strong>Type: </strong><?= $data['anime']['type'] ?></p>
         <p class="m-0"><strong>Episodes: </strong><?= $data['anime']['episodes'] ?></p>
-        <p class="m-0"><strong>Aired: </strong><?= date('d M Y - H:i A', strtotime($data['anime']['aired'])) ?></p>
-        <p class="m-0"><strong>Finished: </strong><?= date('d M Y - H:i A', strtotime($data['anime']['finished'])) ?></p>
+        <p class="m-0"><strong>Aired: </strong><?= date('d M Y', strtotime($data['anime']['aired'])) ?></p>
+        <p class="m-0"><strong>Finished: </strong><?= date('d M Y', strtotime($data['anime']['finished'])) ?></p>
       </div>
     </section>
     <section class="flex-grow-1 p-2">

@@ -11,7 +11,7 @@ class Animes_Studios_Table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.studio_id = {$this->origin}.id");
+    $this->db->query("SELECT * FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.studio_id = {$this->origin}.id ORDER BY `studio`");
     return $this->db->resultAll();
   }
 

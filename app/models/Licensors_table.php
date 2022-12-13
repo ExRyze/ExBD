@@ -10,7 +10,7 @@ class Licensors_Table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table}");
+    $this->db->query("SELECT * FROM {$this->table} ORDER BY `licensor`");
     return $this->db->resultAll();
   }
 

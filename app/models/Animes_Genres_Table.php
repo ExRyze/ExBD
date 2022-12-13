@@ -11,7 +11,7 @@ class Animes_Genres_Table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT anime_id, genre FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.genre_id = {$this->origin}.id");
+    $this->db->query("SELECT anime_id, genre FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.genre_id = {$this->origin}.id ORDER BY `genre`");
     return $this->db->resultAll();
   }
 

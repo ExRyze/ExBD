@@ -11,7 +11,7 @@ class Animes_Producers_Table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.producer_id = {$this->origin}.id");
+    $this->db->query("SELECT * FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.producer_id = {$this->origin}.id ORDER BY `producer`");
     return $this->db->resultAll();
   }
 

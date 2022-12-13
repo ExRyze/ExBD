@@ -11,7 +11,7 @@ class Animes_Licensors_Table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.licensor_id = {$this->origin}.id");
+    $this->db->query("SELECT * FROM {$this->table} LEFT OUTER JOIN {$this->origin} ON {$this->table}.licensor_id = {$this->origin}.id ORDER BY `licensor`");
     return $this->db->resultAll();
   }
 

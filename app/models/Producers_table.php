@@ -10,7 +10,7 @@ class Producers_Table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table}");
+    $this->db->query("SELECT * FROM {$this->table} ORDER BY `producer`");
     return $this->db->resultAll();
   }
 
