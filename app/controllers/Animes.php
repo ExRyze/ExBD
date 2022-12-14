@@ -17,10 +17,12 @@ class Animes extends Controller {
 
   public function video($slug = NULL, $eps = '01') {
     if(!$slug) {return header("location: ".BASE_URL.'/animes');}
-    $data['page'] = 'EXBD | Nonton '.$slug;
-    $data['anime'] = $this->model('Animes')->getVideo($slug);
-    $data['anime']['episode'] = $eps;
-    $this->view('animes/video', $data);
+    Flasher::setFlasher('flasher-warning', 'The path to video is currently disabled...');
+    header('location: '.BASE_URL.'/animes/x/'.$slug);
+    // $data['page'] = 'EXBD | Nonton '.$slug;
+    // $data['anime'] = $this->model('Animes')->getVideo($slug);
+    // $data['anime']['episode'] = $eps;
+    // $this->view('animes/video', $data);
   }
   
   public function add() {

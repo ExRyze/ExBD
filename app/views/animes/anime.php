@@ -2,6 +2,7 @@
 
 <?php require_once MAIN_NAV ?>
 <main class="p-3 col-10 mx-auto d-flex flex-column">
+  <?php Flasher::flasher() ?>
   <h4 class="col-12 bg-primary p-3 m-0 rounded-top text-white border border-bottom-0 border-1 border-dark"><?= $data['anime']['title'] ?></h4>
   <div class="d-flex col-12 border border-top-0 border-1 border-dark rounded-bottom">
     <section class="col-4 p-2 border-end border-1 border-dark">

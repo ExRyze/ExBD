@@ -40,7 +40,6 @@ class Admin extends Controller {
     $data['animes'] = $this->model('Animes')->getJoin('_videos');
     $data['anime_id'] = $this->model('Animes')->getTitle();
     $data['anime_id'] = Functions::filterAnime($data['anime_id'], $data['animes']);
-    // var_dump($data['anime_id']);
     $this->view('admin/animesVideos', $data);
   }
 
