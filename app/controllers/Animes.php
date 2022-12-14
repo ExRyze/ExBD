@@ -8,10 +8,19 @@ class Animes extends Controller {
     $this->view('animes/index', $data);
   }
 
-  public function x($slug) {
+  public function x($slug = NULL) {
+    if(!$slug) {return header("location: ".BASE_URL.'/animes');}
     $data['page'] = 'EXBD | Anime '.$slug;
     $data['anime'] = $this->model('Animes')->getAnimeBySlug($slug);
     $this->view('animes/anime', $data);
+  }
+
+  public function video($slug = NULL, $eps = '01') {
+    if(!$slug) {return header("location: ".BASE_URL.'/animes');}
+    $data['page'] = 'EXBD | Nonton '.$slug;
+    $data['anime'] = $this->model('Animes')->getVideo($slug);
+    $data['anime']['episode'] = $eps;
+    $this->view('animes/video', $data);
   }
   
   public function add() {

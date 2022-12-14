@@ -24,6 +24,12 @@ class Animes_table {
     return $this->db->resultAll();
   }
 
+  public function getVideo($slug) {
+    $this->db->query("SELECT {$this->table}_Videos.*, {$this->table}.id, {$this->table}.title, {$this->table}.slug, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}_Videos ON {$this->table}.id = {$this->table}_Videos.anime_id WHERE `slug` = :slug");
+    $this->db->bind('slug', $slug);
+    return $this->db->result();
+  }
+
   public function getAnimeById($id) {
     $this->db->query("SELECT * FROM {$this->table} WHERE `id` = :id");
     $this->db->bind('id', $id);

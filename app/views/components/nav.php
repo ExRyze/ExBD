@@ -20,7 +20,7 @@
         <img src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> alt="profile.png" width="24" height="24">
       </a>
       <ul class="dropdown-menu dropdown-menu-end position-absolute mt-2" aria-labelledby="dropProfile">
-        <a class="dropdown-item" href="<?= BASE_URL ?>/admin">Admin Site</a>
+        <?= ($_SESSION['user']['role'] === 'Admin') ? "<a class='dropdown-item' href='".BASE_URL."/admin'>Admin Site</a>" : '' ?>
         <a class="dropdown-item text-danger" href="<?= BASE_URL.'/login/logout' ?>">Logout</a>
       </ul>
     </li>

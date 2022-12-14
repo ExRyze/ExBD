@@ -2,7 +2,7 @@
 
 define('BASE_URL', '/portofolio/ExBD');
 define('PUBLIC_URL', BASE_URL.'/public');
-define('STORAGE_URL', 'F:');
+define('STORAGE_URL', '/video');
 
 // Database
 define('DB_HOST', 'localhost');
