@@ -21,22 +21,30 @@ class Animes_Videos_table {
   }
 
   public function store() {
-    $this->db->query("INSERT INTO {$this->table} (`anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`) VALUES (:id, :source, :type, :resolution, :tracks)");
+    $this->db->query("INSERT INTO {$this->table} (`anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`) VALUES (:id, :source, :type, :resolution, :tracks, :chapter, :audio, :subtitle, :errors)");
     $this->db->bind('id', $_POST['id']);
     $this->db->bind('source', $_POST['source']);
     $this->db->bind('type', $_POST['type']);
     $this->db->bind('resolution', $_POST['resolution']);
     $this->db->bind('tracks', $_POST['tracks']);
+    $this->db->bind('chapter', $_POST['chapter']);
+    $this->db->bind('audio', $_POST['audio']);
+    $this->db->bind('subtitle', $_POST['subtitle']);
+    $this->db->bind('errors', $_POST['errors']);
     return $this->db->rowCount();
   }
 
   public function update() {
-    $this->db->query("UPDATE {$this->table} SET `source_videos` = :source, `type_videos` = :type, `resolution_videos` = :resolution, `tracks_videos` = :tracks WHERE `anime_id` = :id");
+    $this->db->query("UPDATE {$this->table} SET `source_videos` = :source, `type_videos` = :type, `resolution_videos` = :resolution, `tracks_videos` = :tracks, `chapters_videos` = :chapter, `tracks_audios` = :audio, `subtitles_videos` = :subtitle, `additional_errors` = :errors WHERE `anime_id` = :id");
     $this->db->bind('id', $_POST['id']);
     $this->db->bind('source', $_POST['source']);
     $this->db->bind('type', $_POST['type']);
     $this->db->bind('resolution', $_POST['resolution']);
     $this->db->bind('tracks', $_POST['tracks']);
+    $this->db->bind('chapter', $_POST['chapter']);
+    $this->db->bind('audio', $_POST['audio']);
+    $this->db->bind('subtitle', $_POST['subtitle']);
+    $this->db->bind('errors', $_POST['errors']);
     return $this->db->rowCount();
   }
 

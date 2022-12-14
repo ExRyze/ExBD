@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 13, 2022 at 08:44 AM
+-- Generation Time: Dec 14, 2022 at 03:42 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -46,7 +46,8 @@ CREATE TABLE `animes` (
 --
 
 INSERT INTO `animes` (`id`, `slug`, `title`, `type`, `episodes`, `status`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES
-(1, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!', 'Kono Subarashii Sekai ni Shukufuku wo!', 'BD', 10, 'Not yet aired', '2016-01-14', '2016-03-17', '2022-12-13 00:00:23', '2022-12-13 00:00:23', 2);
+(1, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!', 'Kono Subarashii Sekai ni Shukufuku wo!', 'BD', 10, 'Not yet aired', '2016-01-14', '2016-03-17', '2022-12-13 00:00:23', '2022-12-13 01:11:26', 2),
+(2, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_2', 'Kono Subarashii Sekai ni Shukufuku wo! 2', 'BD', 10, 'Not yet aired', '2017-01-12', '2017-03-16', '2022-12-14 07:26:45', '2022-12-14 07:26:45', 2);
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,10 @@ CREATE TABLE `animes_aliases` (
 INSERT INTO `animes_aliases` (`id`, `anime_id`, `origin_alias`, `anime_alias`) VALUES
 (1, 1, 'Japanese', 'ã“ã®ç´ æ™´ã‚‰ã—ã„ä¸–ç•Œã«ç¥ç¦ã‚’ï¼'),
 (2, 1, 'English', 'KonoSuba: God\'s Blessing on This Wonderful World!'),
-(3, 1, 'Synonyms', 'Give Blessings to This Wonderful World!');
+(3, 1, 'Synonyms', 'Give Blessings to This Wonderful World!'),
+(4, 2, 'Synonyms', 'Give Blessings to This Wonderful World! 2'),
+(5, 2, 'Japanese', 'ã“ã®ç´ æ™´ã‚‰ã—ã„ä¸–ç•Œã«ç¥ç¦ã‚’ï¼ 2'),
+(6, 2, 'English', 'KonoSuba: God\'s Blessing on This Wonderful World! 2');
 
 -- --------------------------------------------------------
 
@@ -89,7 +93,10 @@ CREATE TABLE `animes_genres` (
 INSERT INTO `animes_genres` (`id`, `anime_id`, `genre_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 3);
+(3, 1, 3),
+(4, 2, 1),
+(5, 2, 2),
+(6, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -109,7 +116,8 @@ CREATE TABLE `animes_licensors` (
 
 INSERT INTO `animes_licensors` (`id`, `anime_id`, `licensor_id`) VALUES
 (1, 1, 1),
-(2, 1, 2);
+(2, 1, 2),
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +143,14 @@ INSERT INTO `animes_producers` (`id`, `anime_id`, `producer_id`) VALUES
 (5, 1, 5),
 (6, 1, 6),
 (7, 1, 7),
-(8, 1, 8);
+(8, 1, 8),
+(9, 2, 6),
+(10, 2, 9),
+(11, 2, 2),
+(12, 2, 3),
+(13, 2, 4),
+(14, 2, 5),
+(15, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -167,7 +182,8 @@ CREATE TABLE `animes_studios` (
 --
 
 INSERT INTO `animes_studios` (`id`, `anime_id`, `studio_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -181,8 +197,20 @@ CREATE TABLE `animes_videos` (
   `source_videos` varchar(52) DEFAULT NULL,
   `type_videos` varchar(52) DEFAULT NULL,
   `resolution_videos` varchar(52) DEFAULT NULL,
-  `tracks_videos` varchar(52) DEFAULT NULL
+  `tracks_videos` text,
+  `chapters_videos` text NOT NULL,
+  `tracks_audios` text NOT NULL,
+  `subtitles_videos` text NOT NULL,
+  `additional_errors` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `animes_videos`
+--
+
+INSERT INTO `animes_videos` (`id`, `anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`) VALUES
+(1, 1, 'Koenime', 'mkv', '1920 Ã— 1080', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind] (Ep. 1, 2, 4, 7, 8), ASS [Und] (Ep. 3, 5, 6, 9, 10)', ''),
+(2, 2, 'Koenime', 'mkv', '1920 Ã— 1080', 'H264 (High 10 @L4.0) (Ep. 1, 3, 5-10) H264 (High 10 @L5.0) (Ep. 2, 4)', 'Null', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy);\r\nAdanya gambar tambahan dalam subtitle;');
 
 -- --------------------------------------------------------
 
@@ -246,7 +274,8 @@ INSERT INTO `producers` (`id`, `producer`) VALUES
 (5, 'Toranoana'),
 (6, '81 Produce'),
 (7, 'Kadokawa Media House'),
-(8, 'Kadokawa');
+(8, 'Kadokawa'),
+(9, 'Kadokawa Shoten');
 
 -- --------------------------------------------------------
 
@@ -395,31 +424,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `animes_aliases`
 --
 ALTER TABLE `animes_aliases`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `animes_genres`
 --
 ALTER TABLE `animes_genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `animes_licensors`
 --
 ALTER TABLE `animes_licensors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `animes_producers`
 --
 ALTER TABLE `animes_producers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `animes_source`
@@ -431,13 +460,13 @@ ALTER TABLE `animes_source`
 -- AUTO_INCREMENT for table `animes_studios`
 --
 ALTER TABLE `animes_studios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `animes_videos`
 --
 ALTER TABLE `animes_videos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `genres`
@@ -455,7 +484,7 @@ ALTER TABLE `licensors`
 -- AUTO_INCREMENT for table `producers`
 --
 ALTER TABLE `producers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `studios`
