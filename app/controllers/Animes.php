@@ -29,64 +29,45 @@ class Animes extends Controller {
     // $data['anime']['episode'] = $eps;
     // $this->view('animes/video', $data);
   }
-  
-  public function add() {
-    Middleware::role('Admin');
-    $data['page'] = 'EXBD | Animes - Create';
-    $this->view('animes/add', $data);
-  }
 
   public function store() {
     Middleware::role('Admin');
-    if(isset($_POST)) {
-      $row = $this->model('Animes')->store();
-      if($row) {
-        Flasher::setFlasher('flasher-success', 'Anime berhasil di tambahkan');
-        return header('location: '.BASE_URL.'/admin/animes');
-      } else {
-        Flasher::setFlasher('flasher-warning', 'Terjadi suatu kesalahan!');
-        return header('location: '.BASE_URL.'/animes/add');
-      }
+    if($_POST['aired'] === '') {$_POST['aired'] = NULL;}
+    if($_POST['finished'] === '') {$_POST['finished'] = NULL;}
+    if($this->model('Animes')->validate()) {
+      Flasher::setFlasher('flasher-warning', 'Anime sudah ada');
+      return header('location: '.BASE_URL.'/admin/animes');}
+    if(!$this->model('Animes')->store()) {
+      Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
+      return header('location: '.BASE_URL.'/admin/animes');
     }
-  }
-
-  public function edit($id = NULL) {
-    Middleware::role('Admin');
-    if($id === NULL) {
-      Flasher::setFlasher('flasher-danger', 'Tidak ada data yang ditangkap');
-      return header('location: '.BASE_URL.'/admin/users');
-    }
-    $data['page'] = 'EXBD | Animes - Edit';
-    $data['anime'] = $this->model('Animes')->getAnimeById($id);
-    $this->view('animes/edit', $data);
+    Flasher::setFlasher('flasher-success', 'Anime berhasil di tambahkan');
+    return header('location: '.BASE_URL.'/admin/animes');
   }
 
   public function update() {
     Middleware::role('Admin');
-    $row = $this->model('Animes')->update();
-    if($row) {
-      Flasher::setFlasher('flasher-success', 'Data anime telah di perharui');
-      return header('location: '.BASE_URL.'/admin/animes');
-    } else {
+    if($_POST['aired'] === '') {$_POST['aired'] = NULL;}
+    if($_POST['finished'] === '') {$_POST['finished'] = NULL;}
+    if(!$this->model('Animes')->update()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan');
       return header('location: '.BASE_URL.'/admin/animes');
     }
+    Flasher::setFlasher('flasher-success', 'Data anime telah di perharui');
+    return header('location: '.BASE_URL.'/admin/animes');
   }
 
   public function delete($id = NULL) {
     Middleware::role('Admin');
     if($id === NULL) {
-      Flasher::setFlasher('flasher-danger', 'Tidak ada data yang ditangkap');
-      return header('location: '.BASE_URL.'/admin/animes');
-    }
-    $row = $this->model('Animes')->delete($id);
-    if($row) {
-      Flasher::setFlasher('flasher-success', 'Data anime berhasil di hapus');
-      return header('location: '.BASE_URL.'/admin/animes');
-    } else {
+      Flasher::setFlasher('flasher-warning', 'Need parameter');
+      return header('location: '.BASE_URL.'/admin/animes');}
+    if(!$this->model('Animes')->delete($id)) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan');
       return header('location: '.BASE_URL.'/admin/animes');
     }
+    Flasher::setFlasher('flasher-success', 'Data anime berhasil di hapus');
+    return header('location: '.BASE_URL.'/admin/animes');
   }
 
 }

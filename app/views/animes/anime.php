@@ -19,8 +19,9 @@
         <h5 class="pb-1 border-bottom border-1 border-dark mb-2">Informations</h5>
         <p class="m-0"><strong>Type: </strong><?= $data['anime']['type'] ?></p>
         <p class="m-0"><strong>Episodes: </strong><?= $data['anime']['episodes'] ?></p>
-        <p class="m-0"><strong>Aired: </strong><?= date('d M Y', strtotime($data['anime']['aired'])) ?></p>
-        <p class="m-0"><strong>Finished: </strong><?= date('d M Y', strtotime($data['anime']['finished'])) ?></p>
+        <p class="m-0"><strong>Status: </strong><?= $data['anime']['status'] ?></p>
+        <?= ($data['anime']['aired']) ? "<p class='m-0'><strong>Finished: </strong>".date('d M Y', strtotime($data['anime']['aired']))."</p>" : '' ?>
+        <?= ($data['anime']['finished']) ? "<p class='m-0'><strong>Finished: </strong>".date('d M Y', strtotime($data['anime']['finished']))."</p>" : '' ?>
         <p class="m-0"><strong>Producers: </strong><br><?php $string = ''; foreach($data['producers'] as $producer) {$string .= "<a class='anime-part' href=''>{$producer['producer']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
         <p class="m-0"><strong>Licensors: </strong><br><?php $string = ''; foreach($data['licensors'] as $licensor) {$string .= "<a class='anime-part' href=''>{$licensor['licensor']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
         <p class="m-0"><strong>Studios: </strong><br><?php $string = ''; foreach($data['studios'] as $studio) {$string .= "<a class='anime-part' href=''>{$studio['studio']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>

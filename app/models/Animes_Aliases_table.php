@@ -10,7 +10,7 @@ class Animes_Aliases_table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table}");
+    $this->db->query("SELECT * FROM {$this->table} ORDER BY `origin_alias` DESC");
     return $this->db->resultAll();
   }
 

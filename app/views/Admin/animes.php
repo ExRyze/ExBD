@@ -18,6 +18,7 @@
             <th>Aliases</th>
             <th>Episodes</th>
             <th>Type</th>
+            <th>Status</th>
             <th>Aired</th>
             <th>Finished</th>
             <th>Genres</th>
@@ -44,8 +45,9 @@
             </td>
             <td><?= $anime['episodes'].' episodes' ?></td>
             <td><?= $anime['type'] ?></td>
-            <td><?= date('d M Y', strtotime($anime['aired'])) ?></td>
-            <td><?= date('d M Y', strtotime($anime['finished'])) ?></td>
+            <td><?= $anime['status'] ?></td>
+            <td><?= ($anime['aired']) ? date('d M Y', strtotime($anime['aired'])) : '' ?></td>
+            <td><?= ($anime['finished']) ? date('d M Y', strtotime($anime['finished'])) : '' ?></td>
             <td>
               <?= ($anime['genres']) ? "<p class='mb-0'>".implode(', ', $anime['genres'])."</p>" : ''; ?>
               <a role='button' class='btn btn-success btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $anime['id'] ?>>Add</a>
@@ -86,6 +88,7 @@
             <th>Aliases</th>
             <th>Episodes</th>
             <th>Type</th>
+            <th>Status</th>
             <th>Aired</th>
             <th>Finished</th>
             <th>Genres</th>
@@ -122,29 +125,34 @@
           <label for="episodes">Episodes</label>
           <input type="number" class="form-control" name="episodes" id="episodes" min="0" value="0">
         </div>
-        <!-- <div class="form-group mb-3">
+        <div class="form-group mb-3">
           <label for="status">Status</label>
-          <select class="form-control" name="status" id="status">
+          <select class="form-select" name="status" id="status" required>
             <option value="" selected disabled hidden>Status</option>
             <option value="Not yet aired">Not yet aired</option>
             <option value="Currently aired">Currently aired</option>
             <option value="Finished airing">Finished airing</option>
           </select>
-        </div> -->
+        </div>
         <div class="form-group mb-3">
           <label for="tipe">Type</label>
-          <select class="form-select" name="tipe" id="tipe">
-            <option value="TV" selected>TV</option>
+          <select class="form-select" name="tipe" id="tipe" required>
+            <option value="" selected disabled hidden>Type</option>
+            <option value="TV">TV</option>
             <option value="BD">BD</option>
+            <option value="OVA">OVA</option>
+            <option value="ONA">ONA</option>
+            <option value="OAD">OAD</option>
+            <option value="Movie">Movie</option>
           </select>
         </div>
         <div class="form-group mb-3">
           <label for="aired">Date Aired</label>
-          <input class="form-control" type="date" name="aired" id="aired" required>
+          <input class="form-control" type="date" name="aired" id="aired">
         </div>
         <div class="form-group">
           <label for="finished">Date Finished</label>
-          <input class="form-control" type="date" name="finished" id="finished" required>
+          <input class="form-control" type="date" name="finished" id="finished">
         </div>
       </div>
       <div class="modal-footer">
@@ -299,29 +307,32 @@
             <label for="episodes">Episodes</label>
             <input type="number" class="form-control" name="episodes" id="episodes" min="0" value="<?= $anime['episodes'] ?>">
           </div>
-          <!-- <div class="form-group mb-3">
+          <div class="form-group mb-3">
             <label for="status">Status</label>
-            <select class="form-control" name="status" id="status">
-              <option value="" selected disabled hidden>Status</option>
-              <option value="Not yet aired">Not yet aired</option>
-              <option value="Currently aired">Currently aired</option>
-              <option value="Finished airing">Finished airing</option>
+            <select class="form-select" name="status" id="status" required>
+              <option value="Not yet aired" <?= ($anime['status'] === 'Not yet aired') ? 'selected' : '' ?>>Not yet aired</option>
+              <option value="Currently aired" <?= ($anime['status'] === 'Currently aired') ? 'selected' : '' ?>>Currently aired</option>
+              <option value="Finished airing" <?= ($anime['status'] === 'Finished airing') ? 'selected' : '' ?>>Finished airing</option>
             </select>
-          </div> -->
+          </div>
           <div class="form-group mb-3">
             <label for="tipe">Type</label>
-            <select class="form-select" name="tipe" id="tipe">
+            <select class="form-select" name="tipe" id="tipe" required>
               <option value="TV" <?= ($anime['type'] === 'TV') ? 'selected' : '' ?>>TV</option>
               <option value="BD" <?= ($anime['type'] === 'BD') ? 'selected' : '' ?>>BD</option>
+              <option value="OVA" <?= ($anime['type'] === 'OVA') ? 'selected' : '' ?>>OVA</option>
+              <option value="ONA" <?= ($anime['type'] === 'ONA') ? 'selected' : '' ?>>ONA</option>
+              <option value="OAD" <?= ($anime['type'] === 'OAD') ? 'selected' : '' ?>>OAD</option>
+              <option value="Movie" <?= ($anime['type'] === 'Movie') ? 'selected' : '' ?>>Movie</option>
             </select>
           </div>
           <div class="form-group mb-3">
             <label for="aired">Date Aired</label>
-            <input class="form-control" type="date" name="aired" id="aired" value="<?= $anime['aired'] ?>" required>
+            <input class="form-control" type="date" name="aired" id="aired" value="<?= $anime['aired'] ?>">
           </div>
           <div class="form-group">
             <label for="finished">Date Finished</label>
-            <input class="form-control" type="date" name="finished" id="finished" value="<?= $anime['finished'] ?>" required>
+            <input class="form-control" type="date" name="finished" id="finished" value="<?= $anime['finished'] ?>">
           </div>
         </div>
         <div class="modal-footer">

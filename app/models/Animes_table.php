@@ -10,7 +10,7 @@ class Animes_table {
   }
   
   public function getTitle() {
-    $this->db->query("SELECT id, title FROM {$this->table}");
+    $this->db->query("SELECT id, title FROM {$this->table} ORDER BY `title` ASC");
     return $this->db->resultAll();
   }
 
@@ -20,7 +20,7 @@ class Animes_table {
   }
 
   public function getNewAddedLimit($num) {
-    $this->db->query("SELECT * FROM {$this->table} ORDER BY `created_at` LIMIT :num");
+    $this->db->query("SELECT * FROM {$this->table} ORDER BY `created_at` DESC LIMIT :num");
     $this->db->bind('num', $num);
     return $this->db->resultAll();
   }
@@ -48,12 +48,19 @@ class Animes_table {
     return $this->db->result();
   }
 
+  public function validate() {
+    $this->db->query("SELECT * FROM {$this->table} WHERE `title` = :title");
+    $this->db->bind('title', $_POST['title']);
+    return $this->db->rowCount();
+  }
+
   public function store() {
-    $this->db->query("INSERT INTO {$this->table} (`slug`, `title`, `episodes`, `type`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES (:slug, :title, :episodes, :tipe, :aired, :finished, :created_at, :created_at, :id_user)");
+    $this->db->query("INSERT INTO {$this->table} (`slug`, `title`, `episodes`, `type`, `status`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES (:slug, :title, :episodes, :tipe, :status, :aired, :finished, :created_at, :created_at, :id_user)");
     $this->db->bind('slug', str_replace(' ', '_', $_POST['title']));
     $this->db->bind('title', $_POST['title']);
     $this->db->bind('episodes', $_POST['episodes']);
     $this->db->bind('tipe', $_POST['tipe']);
+    $this->db->bind('status', $_POST['status']);
     $this->db->bind('aired', $_POST['aired']);
     $this->db->bind('finished', $_POST['finished']);
     $this->db->bind('created_at', date('Y-m-d H:i:s'));
@@ -62,12 +69,13 @@ class Animes_table {
   }
 
   public function update() {
-    $this->db->query("UPDATE {$this->table} SET `slug` = :slug, `title` = :title, `episodes` = :episodes, `type` = :tipe, `aired` = :aired, `finished` = :finished, `updated_at` = :updated_at, `id_user` = :id_user WHERE `id` = :id");
+    $this->db->query("UPDATE {$this->table} SET `slug` = :slug, `title` = :title, `episodes` = :episodes, `type` = :tipe, `status` = :status, `aired` = :aired, `finished` = :finished, `updated_at` = :updated_at, `id_user` = :id_user WHERE `id` = :id");
     $this->db->bind('id', $_POST['id']);
     $this->db->bind('slug', str_replace(' ', '_', $_POST['title']));
     $this->db->bind('title', $_POST['title']);
     $this->db->bind('episodes', $_POST['episodes']);
     $this->db->bind('tipe', $_POST['tipe']);
+    $this->db->bind('status', $_POST['status']);
     $this->db->bind('aired', $_POST['aired']);
     $this->db->bind('finished', $_POST['finished']);
     $this->db->bind('updated_at', date('Y-m-d H:i:s'));
