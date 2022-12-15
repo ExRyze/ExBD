@@ -15,6 +15,12 @@ class Animes_Genres_Table {
     return $this->db->resultAll();
   }
 
+  public function getAliasesBySlug($slug) {
+    $this->db->query("SELECT `animes`.id, `animes`.slug, {$this->table}.*, {$this->origin}.* FROM {$this->table} INNER JOIN `animes` ON `animes`.id = {$this->table}.anime_id INNER JOIN {$this->origin} ON {$this->origin}.id = {$this->table}.genre_id  WHERE `animes`.slug = :slug ORDER BY `genre` ASC");
+    $this->db->bind('slug', $slug);
+    return $this->db->resultAll();
+  }
+
   public function validate() {
     $this->db->query("SELECT * FROM {$this->table} WHERE `anime_id` = :id && `genre_id` = :genre");
     $this->db->bind('id', $_POST['id']);

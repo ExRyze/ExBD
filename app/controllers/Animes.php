@@ -12,6 +12,11 @@ class Animes extends Controller {
     if(!$slug) {return header("location: ".BASE_URL.'/animes');}
     $data['page'] = 'EXBD | Anime '.$slug;
     $data['anime'] = $this->model('Animes')->getAnimeBySlug($slug);
+    $data['aliases'] = $this->model('Animes_Aliases')->getAliasesBySlug($slug);
+    $data['producers'] = $this->model('Animes_Producers')->getAliasesBySlug($slug);
+    $data['licensors'] = $this->model('Animes_Licensors')->getAliasesBySlug($slug);
+    $data['studios'] = $this->model('Animes_Studios')->getAliasesBySlug($slug);
+    $data['genres'] = $this->model('Animes_Genres')->getAliasesBySlug($slug);
     $this->view('animes/anime', $data);
   }
 
