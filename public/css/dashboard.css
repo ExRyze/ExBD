@@ -22,6 +22,11 @@
   opacity: 1;
 }
 
+.carousel-animes .carousel-indicators .active[data-bs-target] {
+  background-color: var(--bs-dark);
+  color: rgba(var(--bs-white-rgb))!important;
+}
+
 .carousel-animes .carousel-item{
   width: 100%;
 }

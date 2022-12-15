@@ -8,19 +8,25 @@ class Animes_table {
   public function __construct() {
     $this->db = new Database;
   }
+  
+  public function getTitle() {
+    $this->db->query("SELECT id, title FROM {$this->table}");
+    return $this->db->resultAll();
+  }
 
   public function getAll() {
     $this->db->query("SELECT * FROM {$this->table}");
     return $this->db->resultAll();
   }
 
-  public function getJoin($origin) {
-    $this->db->query("SELECT {$this->table}{$origin}.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}{$origin} ON {$this->table}.id = {$this->table}{$origin}.anime_id");
+  public function getNewAddedLimit($num) {
+    $this->db->query("SELECT * FROM {$this->table} ORDER BY `created_at` LIMIT :num");
+    $this->db->bind('num', $num);
     return $this->db->resultAll();
   }
 
-  public function getTitle() {
-    $this->db->query("SELECT id, title FROM {$this->table}");
+  public function getJoin($origin) {
+    $this->db->query("SELECT {$this->table}{$origin}.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}{$origin} ON {$this->table}.id = {$this->table}{$origin}.anime_id");
     return $this->db->resultAll();
   }
 

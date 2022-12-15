@@ -10,7 +10,7 @@
         <div class="carousel slide carousel-animes col-8" id="carouselNewAddedAnimes" data-bs-ride="carousel">
           <div class="carousel-indicators">
           <?php $idx = 1; $index = 0; foreach($data['animes'] as $anime) { ?>
-            <button  type="button" data-bs-target="#carouselNewAddedAnimes" data-bs-slide-to="<?= $index ?>" aria-current="true" aria-label="Slide <?= $idx ?>" class="col-12 border border-1 border-dark text-decoration-none text-dark active">
+            <button  type="button" data-bs-target="#carouselNewAddedAnimes" data-bs-slide-to="<?= $index ?>" aria-current="true" aria-label="Slide <?= $idx ?>" index="<?= $idx ?>" class="col-12 border border-1 border-dark text-decoration-none text-dark">
               <div class="p-2  text-start">
                 <h5 class="mb-1"><?= $anime['title'] ?></h5>
                 <p class="m-0"><?= $anime['episodes'] ?> Episodes</p>
