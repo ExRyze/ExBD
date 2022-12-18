@@ -40,10 +40,14 @@
             <td><?= $anime['type_videos'] ?></td>
             <td><?= $anime['resolution_videos'] ?></td>
             <td><?= $anime['tracks_videos'] ?></td>
-            <td><?= $anime['chapters_videos'] ?></td>
-            <td><?= $anime['tracks_audios'] ?></td>
-            <td><?= $anime['subtitles_videos'] ?></td>
-            <td><?= $anime['additional_errors'] ?></td>
+            <td class="<?= ($anime['chapters_videos'] != 'NULL') ? (($anime['chapters_videos'] != 'FALSE') ? 'bg-success' : 'bg-warning') : 'bg-danger' ?> text-white">
+              <?= $anime['chapters_videos'] ?></td>
+            <td class="<?= (str_contains($anime['tracks_audios'], 'Jpn')) ? 'bg-success' : 'bg-warning' ?> text-white">
+              <?= $anime['tracks_audios'] ?></td>
+            <td class="<?= ($anime['subtitles_videos'] != 'NULL') ? 'bg-success' : 'bg-danger' ?> text-white">
+              <?= $anime['subtitles_videos'] ?></td>
+            <td class="<?= ($anime['additional_errors'] != '') ? 'bg-danger' : 'bg-success' ?> text-white">
+              <?= $anime['additional_errors'] ?></td>
             <td>
               <div class="d-flex gap-3">
                 <a role="button" data-bs-toggle="modal" data-bs-target=<?= '#modalEditVideo'.$anime['id'] ?> class="btn btn-warning">Edit</a>

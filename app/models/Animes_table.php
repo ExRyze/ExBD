@@ -15,7 +15,7 @@ class Animes_table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT * FROM {$this->table}");
+    $this->db->query("SELECT * FROM {$this->table} ORDER BY `title` ASC");
     return $this->db->resultAll();
   }
 
@@ -26,7 +26,7 @@ class Animes_table {
   }
 
   public function getJoin($origin) {
-    $this->db->query("SELECT {$this->table}{$origin}.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}{$origin} ON {$this->table}.id = {$this->table}{$origin}.anime_id");
+    $this->db->query("SELECT {$this->table}{$origin}.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}{$origin} ON {$this->table}.id = {$this->table}{$origin}.anime_id ORDER BY `title` ASC");
     return $this->db->resultAll();
   }
 
