@@ -196,13 +196,33 @@
       </div>
       <div class="modal-body">
         <input type="hidden" name="id" id="addGenreAnimeId">
-        <div class="form-group px-2">
+        <div class="form-group mb-2">
           <label for="genre">Genre</label>
           <select class="form-select" name="genre" id="genre" required>
             <option value="" selected hidden disabled>Select genre</option>
             <?php foreach($data['genres'] as $genre)
             echo "<option value='{$genre['id']}'>{$genre['genre']}</option>"; ?>
           </select>
+        </div>
+        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewGenre'>New Genre</a></small>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade modal-add" id='modalNewGenre' aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/genres' ?> method="post">
+      <div class="modal-header">
+        <h5>New Genre</h5>
+        <a class="btn-close" data-bs-dismiss="modal"></a>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for='genre'>Genre</label>
+          <input type="text" name='genre' id='genre' class="form-control">
         </div>
       </div>
       <div class="modal-footer">
@@ -221,13 +241,33 @@
       </div>
       <div class="modal-body">
         <input type="hidden" name="id" id="addProducerAnimeId">
-        <div class="form-group px-2">
+        <div class="form-group mb-2">
           <label for="producer">Producer</label>
           <select class="form-select" name="producer" id="producer" required>
             <option value="" selected hidden disabled>Select producer</option>
             <?php foreach($data['producers'] as $producer)
             echo "<option value='{$producer['id']}'>{$producer['producer']}</option>"; ?>
           </select>
+        </div>
+        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewProducer'>New Producer</a></small>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade modal-add" id='modalNewProducer' aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/producers' ?> method="post">
+      <div class="modal-header">
+        <h5>New Producer</h5>
+        <a class="btn-close" data-bs-dismiss="modal"></a>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for='producer'>Producer</label>
+          <input type="text" name='producer' id='producer' class="form-control">
         </div>
       </div>
       <div class="modal-footer">
@@ -246,13 +286,33 @@
       </div>
       <div class="modal-body">
         <input type="hidden" name="id" id="addLicensorAnimeId">
-        <div class="form-group px-2">
+        <div class="form-group mb-2">
           <label for="licensor">Licensor</label>
           <select class="form-select" name="licensor" id="licensor" required>
             <option value="" selected hidden disabled>Select licensor</option>
             <?php foreach($data['licensors'] as $licensor)
             echo "<option value='{$licensor['id']}'>{$licensor['licensor']}</option>"; ?>
           </select>
+        </div>
+        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewLicensor'>New Licensor</a></small>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade modal-add" id='modalNewLicensor' aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/licensors' ?> method="post">
+      <div class="modal-header">
+        <h5>New Licensor</h5>
+        <a class="btn-close" data-bs-dismiss="modal"></a>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for='licensor'>Licensor</label>
+          <input type="text" name='licensor' id='licensor' class="form-control">
         </div>
       </div>
       <div class="modal-footer">
@@ -271,13 +331,33 @@
       </div>
       <div class="modal-body">
         <input type="hidden" name="id" id="addStudioAnimeId">
-        <div class="form-group px-2">
+        <div class="form-group mb-2">
           <label for="studio">Studio</label>
           <select class="form-select" name="studio" id="studio" required>
             <option value="" selected hidden disabled>Select studio</option>
             <?php foreach($data['studios'] as $studio)
             echo "<option value='{$studio['id']}'>{$studio['studio']}</option>"; ?>
           </select>
+        </div>
+        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewStudio'>New Studio</a></small>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade modal-add" id='modalNewStudio' aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/studios' ?> method="post">
+      <div class="modal-header">
+        <h5>New Studio</h5>
+        <a class="btn-close" data-bs-dismiss="modal"></a>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for='studio'>Studio</label>
+          <input type="text" name='studio' id='studio' class="form-control" autofocus>
         </div>
       </div>
       <div class="modal-footer">

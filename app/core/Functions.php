@@ -29,4 +29,8 @@ class Functions {
         } } } return $datas;
   }
 
+  public static function back() {
+    echo "<script>javascript:history.go(-1);</script>";
+  }
+
 }
