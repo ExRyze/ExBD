@@ -56,84 +56,84 @@ class Admin extends Controller {
     }
   }
 
-  public function addAnimePart($string = '', $url = '') {
+  public function addAnimePart($string = '') {
     Middleware::role('Admin');
     if($string === '') {
       Flasher::setFlasher('flasher-warning', 'Need parameter');
-      return header('location: '.BASE_URL.'/admin/animes'.$url);}
+      return Functions::back();}
     if($this->model('Animes_'.$string)->validate()) {
       Flasher::setFlasher('flasher-warning', $string.' sudah ada');
-      return header('location: '.BASE_URL.'/admin/animes'.$url);}
+      return Functions::back();}
     if(!$this->model('Animes_'.$string)->store()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
-      return header('location: '.BASE_URL.'/admin/animes'.$url);}
+      return Functions::back();}
     Flasher::setFlasher('flasher-success', "Anime {$string} berhasil di tambahkan");
-    return header('location: '.BASE_URL.'/admin/animes'.$url);
+    return Functions::back();
   }
 
-  public function editAnimePart($string = '', $url = '') {
+  public function editAnimePart($string = '') {
     Middleware::role('Admin');
     if($string === '') {
       Flasher::setFlasher('flasher-warning', 'Need parameter');
-      return header('location: '.BASE_URL.'/admin/animes'.$url);}
+      return Functions::back();}
     if(!$this->model('Animes_'.$string)->update()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
-      return header('location: '.BASE_URL.'/admin/animes'.$url);
+      return Functions::back();
     }
     Flasher::setFlasher('flasher-success', "Anime {$string} berhasil di update");
-    return header('location: '.BASE_URL.'/admin/animes'.$url);
+    return Functions::back();
   }
 
-  public function deleteAnimePart($string = '', $url = '') {
+  public function deleteAnimePart($string = '') {
     Middleware::role('Admin');
     if($string === '') {
       Flasher::setFlasher('flasher-warning', 'Need parameter');
-      return header('location: '.BASE_URL.'/admin/animes'.$url);}
+      return Functions::back();}
     if(!$this->model('Animes_'.$string)->delete()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
-      return header('location: '.BASE_URL.'/admin/animes'.$url);}
+      return Functions::back();}
     Flasher::setFlasher('flasher-success', "Anime {$string} berhasil di hapus");
-    return header('location: '.BASE_URL.'/admin/animes'.$url);
+    return Functions::back();
   }
 
   public function addParts($string = '') {
     Middleware::role('Admin');
     if($string === '') {
       Flasher::setFlasher('flasher-warning', 'Need parameter');
-      Functions::back();}
+      return Functions::back();}
     if($this->model($string)->validate()) {
       Flasher::setFlasher('flasher-warning', $string.' sudah ada');
-      Functions::back();}
+      return Functions::back();}
     if(!$this->model($string)->store()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
-      Functions::back();}
+      return Functions::back();}
     Flasher::setFlasher('flasher-success', "{$string} berhasil di tambahkan");
-    Functions::back();
+    return Functions::back();
   }
 
   public function editParts($string = '') {
     Middleware::role('Admin');
     if($string === '') {
       Flasher::setFlasher('flasher-warning', 'Need parameter');
-      Functions::back();}
+      return Functions::back();}
     if(!$this->model($string)->update()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
-      Functions::back();
+      return Functions::back();
     }
     Flasher::setFlasher('flasher-success', "{$string} berhasil di update");
-    Functions::back();
+    return Functions::back();
   }
 
   public function deleteParts($string = '') {
     Middleware::role('Admin');
     if($string === '') {
       Flasher::setFlasher('flasher-warning', 'Need parameter');
-      Functions::back();}
+      return Functions::back();}
     if(!$this->model($string)->delete()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
-      Functions::back();}
+      return Functions::back();}
     Flasher::setFlasher('flasher-success', "{$string} berhasil di hapus");
-    Functions::back();
+    return Functions::back();
   }
 
 }

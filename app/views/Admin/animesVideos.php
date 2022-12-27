@@ -51,7 +51,7 @@
             <td>
               <div class="d-flex gap-3">
                 <a role="button" data-bs-toggle="modal" data-bs-target=<?= '#modalEditVideo'.$anime['id'] ?> class="btn btn-warning">Edit</a>
-                <form action="<?= BASE_URL.'/admin/deleteAnimePart/Videos/Videos' ?>" method="post">
+                <form action="<?= BASE_URL.'/admin/deleteAnimePart/Videos' ?>" method="post">
                   <input type="hidden" name="id" value="<?= $anime['id'] ?>">
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
@@ -83,7 +83,7 @@
 <!-- Add -->
 <div class="modal fade" id="modalAddVideo" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addAnimePart/Videos/Videos' ?> method="post">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addAnimePart/Videos' ?> method="post">
       <div class="modal-header">
         <h5>Add Videos</h5>
         <a class="btn-close" data-bs-dismiss="modal"></a>
@@ -141,7 +141,7 @@
 <?php foreach($data['animes'] as $anime) { ?>
 <div class="modal fade" id=<?= 'modalEditVideo'.$anime['id'] ?> aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/editAnimePart/Videos/Videos' ?> method="post">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/editAnimePart/Videos' ?> method="post">
       <div class="modal-header">
         <h5>Edit Videos</h5>
         <a class="btn-close" data-bs-dismiss="modal"></a>
