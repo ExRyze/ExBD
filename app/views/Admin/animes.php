@@ -4,17 +4,17 @@
 <div class="col-12 d-flex ">
   <?php require_once ADMIN_SIDENAV ?>
   <main class="p-3 col-11 d-flex flex-column">
-    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Animes</h2>
+    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-secondary text-center mb-3">Table Animes</h2>
     <?php Flasher::flasher() ?>
     <div class="col-12 d-flex mb-3">
       <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalAddAnime'>Add</a>
     </div>
-    <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
+    <div class="col-12 overflow-auto border border-3 border-dark">
       <table class="table table-anime m-0 table-bordered border-dark table-hover">
-        <thead class="bg-secondary text-center">
+        <thead class="text-center">
           <tr>
             <th>No.</th>
-            <th class="title-anime">Title</th>
+            <th>Title</th>
             <th>Episodes</th>
             <th>Type</th>
             <th>Status / Aired - Finished</th>
@@ -26,7 +26,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody class="m-0">
+        <tbody class="m-0 bg-white">
         <?php $index = 1;
         foreach($data['animes'] as $anime) { ?>
           <tr>
@@ -82,10 +82,10 @@
           </tr>
         <?php $index += 1; } ?>
         </tbody>
-        <tfoot class="bg-secondary m-0 text-center">
+        <tfoot class="m-0 text-center">
           <tr>
             <th>No.</th>
-            <th class="title-anime">Title</th>
+            <th>Title</th>
             <th>Episodes</th>
             <th>Type</th>
             <th>Status / Aired - Finished</th>

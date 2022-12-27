@@ -12,4 +12,4 @@
   <link rel="stylesheet" href="<?= PUBLIC_URL.'/css/animes.css' ?>">
   <title><?= $data['page'] ?></title>
 </head>
-<body>
+<body class="bg-primary">

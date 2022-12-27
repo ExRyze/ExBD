@@ -11,9 +11,11 @@
   padding: 0 0 0 1rem;
   display: flex;
   justify-content: flex-start;
+  overflow-y: auto;
 }
 
 .carousel-animes .carousel-indicators [data-bs-target] {
+  box-sizing: border-box!important;
   width: fit-content!important;
   height: fit-content!important;
   padding: 0!important;

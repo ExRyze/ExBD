@@ -1,16 +1,16 @@
 <?php require_once MAIN_HEAD ?>
 
 <?php require_once MAIN_NAV ?>
-<main class="p-3 d-flex flex-column align-items-center col-10 mx-auto">
+<main class="d-flex flex-column align-items-center">
   <div class="card-body col-12">
     <?php Flasher::flasher() ?>
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark mb-3">New Added Animes</h2>
     <div class="d-flex align-items-stretch">
       <div class="col-12 card card-body">
         <div class="carousel slide carousel-animes col-8" id="carouselNewAddedAnimes" data-bs-ride="carousel">
-          <div class="carousel-indicators">
+          <div class="carousel-indicators scrollbar-none">
           <?php $idx = 1; $index = 0; foreach($data['animes'] as $anime) { ?>
-            <button  type="button" data-bs-target="#carouselNewAddedAnimes" data-bs-slide-to="<?= $index ?>" aria-current="true" aria-label="Slide <?= $idx ?>" index="<?= $idx ?>" class="col-12 border border-1 border-dark text-decoration-none text-dark">
+            <button  type="button" data-bs-target="#carouselNewAddedAnimes" data-bs-slide-to="<?= $index ?>" aria-current="true" aria-label="Slide <?= $idx ?>" index="<?= $idx ?>" class="border border-1 border-dark text-decoration-none text-dark" style="width: 100%!important;">
               <div class="p-2  text-start">
                 <h5 class="mb-1"><?= $anime['title'] ?></h5>
                 <p class="m-0"><?= $anime['episodes'] ?> Episodes</p>

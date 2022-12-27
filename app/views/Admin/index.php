@@ -1,13 +1,13 @@
 <?php require_once ADMIN_HEAD ?>
 
 <?php require_once MAIN_NAV ?>
-<div class="col-12 d-flex ">
+<div class="col-12 d-flex">
   <?php require_once ADMIN_SIDENAV ?>
-  <main class="p-3 col-11 d-flex flex-column">
-    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Database</h2>
+  <main class="d-flex flex-column">
+    <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-secondary text-center mb-3">Database</h2>
     <article class="d-flex flex-wrap gap-3 mb-3">
       <?php foreach($data['database'] as $table) { ?>
-      <a href="<?= BASE_URL.'/admin/'.$table['key'] ?>" class="card-table card bg-primary text-white text-decoration-none">
+      <a href="<?= BASE_URL.'/admin/'.$table['key'] ?>" class="card-table card bg-white text-dark text-decoration-none">
         <div class="card-header"><h5 class="m-0 text-center"><?= $table['key'] ?></h5></div>
         <div class="card-body d-flex gap-3 align-items-center">
           <img src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> width="40" height="40">

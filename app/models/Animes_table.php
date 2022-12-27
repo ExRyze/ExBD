@@ -20,7 +20,7 @@ class Animes_table {
   }
 
   public function getNewAddedLimit($num) {
-    $this->db->query("SELECT * FROM {$this->table} ORDER BY `created_at` DESC LIMIT :num");
+    $this->db->query("SELECT * FROM {$this->table} WHERE `type` = 'BD' OR `type` = 'TV'  OR `type` = 'Movie' ORDER BY `created_at` DESC LIMIT :num");
     $this->db->bind('num', $num);
     return $this->db->resultAll();
   }

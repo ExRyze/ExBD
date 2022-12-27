@@ -20,13 +20,12 @@
         <p class="m-0"><strong>Type: </strong><?= $data['anime']['type'] ?></p>
         <p class="m-0"><strong>Episodes: </strong><?= $data['anime']['episodes'] ?></p>
         <p class="m-0"><strong>Status: </strong><?= $data['anime']['status'] ?></p>
-        <?= ($data['anime']['aired']) ? "<p class='m-0'><strong>Finished: </strong>".date('d M Y', strtotime($data['anime']['aired']))."</p>" : '' ?>
-        <?= ($data['anime']['finished']) ? "<p class='m-0'><strong>Finished: </strong>".date('d M Y', strtotime($data['anime']['finished']))."</p>" : '' ?>
-        <p class="m-0"><strong>Producers: </strong><br><?php $string = ''; foreach($data['producers'] as $producer) {$string .= "<a class='anime-part' href=''>{$producer['producer']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
-        <p class="m-0"><strong>Licensors: </strong><br><?php $string = ''; foreach($data['licensors'] as $licensor) {$string .= "<a class='anime-part' href=''>{$licensor['licensor']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
-        <p class="m-0"><strong>Studios: </strong><br><?php $string = ''; foreach($data['studios'] as $studio) {$string .= "<a class='anime-part' href=''>{$studio['studio']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
-        <p class="m-0"><strong>Genres: </strong><br><?php $string = ''; foreach($data['genres'] as $genre) {$string .= "<a class='anime-part' href=''>{$genre['genre']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
-        <p class="m-0"><strong>Themes: </strong><br><?php $string = ''; foreach($data['themes'] as $theme) {$string .= "<a class='anime-part' href=''>{$theme['theme']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
+        <?= ($data['anime']['aired']) ? "<p class='m-0'><strong>Aired: </strong>".date('M d, Y', strtotime($data['anime']['aired']))."<small> to </small>".date('M d, Y', strtotime($data['anime']['finished']))."</p>" : '' ?>
+        <p class="m-0"><?php $string = '<strong>Producers: </strong>'; foreach($data['producers'] as $producer) {$string .= "<a class='anime-part' href=''>{$producer['producer']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
+        <p class="m-0"><?php $string = '<strong>Licensors: </strong>'; foreach($data['licensors'] as $licensor) {$string .= "<a class='anime-part' href=''>{$licensor['licensor']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
+        <p class="m-0"><?php $string = '<strong>Studios: </strong>'; foreach($data['studios'] as $studio) {$string .= "<a class='anime-part' href=''>{$studio['studio']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
+        <p class="m-0"><?php $string = '<strong>Genres: </strong>'; foreach($data['genres'] as $genre) {$string .= "<a class='anime-part' href=''>{$genre['genre']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
+        <p class="m-0"><?php $string = '<strong>Themes: </strong>'; foreach($data['themes'] as $theme) {$string .= "<a class='anime-part' href=''>{$theme['theme']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
       </div>
     </section>
     <section class="flex-grow-1 p-2">

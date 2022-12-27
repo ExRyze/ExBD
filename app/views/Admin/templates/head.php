@@ -11,4 +11,4 @@
   <link rel="stylesheet" href="<?= PUBLIC_URL.'/css/admin.css' ?>">
   <title><?= $data['page'] ?></title>
 </head>
-<body class="admin">
+<body class="admin bg-primary">
