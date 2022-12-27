@@ -10,23 +10,17 @@
       <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalAddAnime'>Add</a>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
-      <table class="table m-0 table-bordered border-dark table-hover">
+      <table class="table table-anime m-0 table-bordered border-dark table-hover">
         <thead class="bg-secondary text-center">
           <tr>
             <th>No.</th>
-            <th>Title</th>
-            <th>Aliases</th>
+            <th class="title-anime">Title</th>
             <th>Episodes</th>
             <th>Type</th>
-            <th>Status</th>
-            <th>Aired</th>
-            <th>Finished</th>
-            <th>Genres</th>
-            <th>Producers</th>
-            <th>Licensors</th>
-            <th>Studios</th>
-            <th>Created at</th>
-            <th>Updated at</th>
+            <th>Status / Aired - Finished</th>
+            <th>Genres / Themes</th>
+            <th>Producers / Licensors / Studios</th>
+            <th>Created at / Updated at</th>
             <th>Id user</th>
             <th>Exists</th>
             <th>Action</th>
@@ -36,41 +30,46 @@
         <?php $index = 1;
         foreach($data['animes'] as $anime) { ?>
           <tr>
-            <td><?= $index ?></td>
-            <td><?= $anime['title'] ?></td>
-            <td>
+            <td class="text-center"><?= $index ?></td>
+            <td class="title-anime"><p class="fw-bold m-0 pb-2 border-3 border-bottom border-dark"><?= $anime['title'] ?></p>
               <?php foreach($anime['aliases'] as $alias) {echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";} ?>
               <a role='button' class='btn btn-success btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id=<?= $anime['id'] ?>>Add</a>
               <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditAlias'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
             </td>
             <td><?= $anime['episodes'].' episodes' ?></td>
-            <td><?= $anime['type'] ?></td>
-            <td><?= $anime['status'] ?></td>
-            <td><?= ($anime['aired']) ? date('d M Y', strtotime($anime['aired'])) : '' ?></td>
-            <td><?= ($anime['finished']) ? date('d M Y', strtotime($anime['finished'])) : '' ?></td>
-            <td>
-              <?= ($anime['genres']) ? "<p class='mb-0'>".implode(', ', $anime['genres'])."</p>" : ''; ?>
-              <a role='button' class='btn btn-success btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $anime['id'] ?>>Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditGenre'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+            <td class="text-center fw-bold"><?= $anime['type'] ?></td>
+            <td><p class="fw-bold text-center"><?= $anime['status'] ?></p>
+            <p class="text-center m-0"><?= ($anime['aired']) ? date('d M Y', strtotime($anime['aired'])) : '' ?></p>
+            <p class="text-center m-0"><?= ($anime['finished']) ? "<small class='text-center'>to</small><br>".date('d M Y', strtotime($anime['finished'])) : '' ?></p></td>
+            <td class="genre-theme-anime">
+              <div class="pb-2 border-3 border-bottom border-dark mb-2">
+                <?= ($anime['genres']) ? "<p class='mb-0'><strong>Genres :</strong> ".implode(', ', $anime['genres'])."</p>" : ''; ?>
+                <a role='button' class='btn btn-success btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditGenre'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+              </div>
+              <div>
+
+              </div>
             </td>
-            <td>
-            <?= ($anime['producers']) ? "<p class='mb-0'>".implode(', ', $anime['producers'])."</p>" : ''; ?>
-              <a role='button' class='btn btn-success btn-add-producer' data-bs-toggle='modal' data-bs-target='#modalAddProducer' id=<?= $anime['id'] ?>>Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditProducer'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+            <td class="producer-licensor-studio-anime">
+              <div class="pb-2 border-3 border-bottom border-dark mb-2">
+                <?= ($anime['producers']) ? "<p class='mb-0'><strong>Producers :</strong> ".implode(', ', $anime['producers'])."</p>" : ''; ?>
+                <a role='button' class='btn btn-success btn-add-producer' data-bs-toggle='modal' data-bs-target='#modalAddProducer' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditProducer'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+              </div>
+              <div class="pb-2 border-3 border-bottom border-dark mb-2">
+                <?= ($anime['licensors']) ? "<p class='mb-0'><strong>Licensors :</strong> ".implode(', ', $anime['licensors'])."</p>" : ''; ?>
+                <a role='button' class='btn btn-success btn-add-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditLicensor'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+              </div>
+              <div>
+                <?= ($anime['studios']) ? "<p class='mb-0'><strong>Studios :</strong> ".implode(', ', $anime['studios'])."</p>" : ''; ?>
+                <a role='button' class='btn btn-success btn-add-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditStudio'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+              </div>
             </td>
-            <td>
-            <?= ($anime['licensors']) ? "<p class='mb-0'>".implode(', ', $anime['licensors'])."</p>" : ''; ?>
-              <a role='button' class='btn btn-success btn-add-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $anime['id'] ?>>Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditLicensor'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
-            </td>
-            <td>
-            <?= ($anime['studios']) ? "<p class='mb-0'>".implode(', ', $anime['studios'])."</p>" : ''; ?>
-              <a role='button' class='btn btn-success btn-add-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $anime['id'] ?>>Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditStudio'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
-            </td>
-            <td><?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?></td>
-            <td><?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?></td>
-            <td><?= $anime['id_user'] ?></td>
+            <td class="text-center"><?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?> <br><br> <small>Updated :</small> <br> <?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?></td>
+            <td class="text-center"><?= $anime['id_user'] ?></td>
             <td><?= (file_exists(STORAGE_URL)) ? ((file_exists(STORAGE_ANIMES.'/'.$anime['title'])) ? 'Exists' : 'Not exists') : "Drive 'F:' doesn't exists" ?></td>
             <td>
               <div class="d-flex gap-3">
@@ -84,19 +83,13 @@
         <tfoot class="bg-secondary m-0 text-center">
           <tr>
             <th>No.</th>
-            <th>Title</th>
-            <th>Aliases</th>
+            <th class="title-anime">Title</th>
             <th>Episodes</th>
             <th>Type</th>
-            <th>Status</th>
-            <th>Aired</th>
-            <th>Finished</th>
-            <th>Genres</th>
-            <th>Producers</th>
-            <th>Licensors</th>
-            <th>Studios</th>
-            <th>Created at</th>
-            <th>Updated at</th>
+            <th>Status / Aired - Finished</th>
+            <th>Genres / Themes</th>
+            <th>Producers / Licensors / Studios</th>
+            <th>Created at / Updated at</th>
             <th>Id user</th>
             <th>Exists</th>
             <th>Action</th>

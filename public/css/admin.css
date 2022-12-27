@@ -55,3 +55,7 @@
 .admin table {
   white-space: nowrap;
 }
+
+.admin .table-anime .title-anime {text-align: left!important;}
+.admin .table-anime .genre-theme-anime p {width: 200px; white-space: normal; text-align: justify;}
+.admin .table-anime .title-anime p, .admin .table-anime .producer-licensor-studio-anime p {width: 400px; white-space: normal; text-align: justify;}
