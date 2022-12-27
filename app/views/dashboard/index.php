@@ -6,7 +6,7 @@
     <?php Flasher::flasher() ?>
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark mb-3">New Added Animes</h2>
     <div class="d-flex align-items-stretch">
-      <div class="col-12 card card-body">
+      <div class="col-12 card card-body bg-secondary">
         <div class="carousel slide carousel-animes col-8" id="carouselNewAddedAnimes" data-bs-ride="carousel">
           <div class="carousel-indicators scrollbar-none">
           <?php $idx = 1; $index = 0; foreach($data['animes'] as $anime) { ?>

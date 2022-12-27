@@ -1,4 +1,4 @@
-<div class="sticky-top sidenav bg-white col-1">
+<div class="sticky-top sidenav bg-secondary col-1">
   <div class="sidenav-menu">
     <a href="<?= BASE_URL.'/admin' ?>" class="sidenav-item position-relative <?= ($data['page'] === 'EXBD | Admin - Database') ? 'active' : '' ?>">
       <img class="sidenav-logo" src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> width="40" height="40"></img>

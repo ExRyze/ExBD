@@ -1,11 +1,11 @@
-<nav class="navbar sticky-top px-4 py-2 bg-white d-flex justify-content-start align-items-center border-bottom border-3 border-dark">
+<nav class="navbar sticky-top px-4 py-2 bg-secondary d-flex justify-content-start align-items-center border-bottom border-3 border-dark">
   <a href="<?= BASE_URL ?>" class="d-flex justify-content-start align-items-center gap-4 text-dark text-decoration-none">
     <img src=<?= PUBLIC_URL."/img/logo_ex_red.png" ?> alt="Logo_EX.png" width="40" height="40">
     <h2 class="m-0">EXBD</h2>
   </a>
   <ul class="navbar-nav d-flex flex-row ms-auto">
     <li class="nav-item">
-      <a href="<?= BASE_URL.'/animes' ?>" class="nav-link text-dark px-2">Animes</a>
+      <a href="<?= BASE_URL.'/animes/list' ?>" class="nav-link text-dark px-2">Animes</a>
     </li>
     <li class="nav-item">
       <a href="<?= BASE_URL ?>" class="nav-link text-dark px-2">Manga</a>

@@ -3,13 +3,11 @@
 class Animes extends Controller {
 
   public function index() {
-    $data['page'] = 'EXBD | Animes';
-    $data['animes'] = $this->model('Animes')->getAll();
-    $this->view('animes/index', $data);
+    return header("location: ".BASE_URL.'/animes/list');
   }
 
-  public function x($slug = NULL) {
-    if(!$slug) {return header("location: ".BASE_URL.'/animes');}
+  public function anime($slug = NULL) {
+    if(!$slug) {return header("location: ".BASE_URL.'/animes/list');}
     $data['page'] = 'EXBD | Anime '.$slug;
     $data['anime'] = $this->model('Animes')->getAnimeBySlug($slug);
     $data['aliases'] = $this->model('Animes_Aliases')->getAliasesBySlug($slug);
@@ -19,6 +17,12 @@ class Animes extends Controller {
     $data['genres'] = $this->model('Animes_Genres')->getAliasesBySlug($slug);
     $data['themes'] = $this->model('Animes_Themes')->getAliasesBySlug($slug);
     $this->view('animes/anime', $data);
+  }
+
+  public function list() {
+    $data['page'] = 'EXBD | Animes';
+    $data['animes'] = $this->model('Animes')->getAll();
+    $this->view('animes/list', $data);
   }
 
   public function video($slug = NULL, $eps = '01') {
