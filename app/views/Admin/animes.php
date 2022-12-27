@@ -48,7 +48,9 @@
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditGenre'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
               <div>
-
+                <?= ($anime['themes']) ? "<p class='mb-0'><strong>Themes :</strong> ".implode(', ', $anime['themes'])."</p>" : ''; ?>
+                <a role='button' class='btn btn-success btn-add-theme' data-bs-toggle='modal' data-bs-target='#modalAddTheme' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditTheme'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
             </td>
             <td class="producer-licensor-studio-anime">
@@ -216,6 +218,51 @@
         <div class="form-group">
           <label class="form-label" for='genre'>Genre</label>
           <input type="text" name='genre' id='genre' class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade modal-add" id="modalAddTheme" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action=<?= BASE_URL.'/admin/addAnimePart/themes' ?> method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="m-0">Add Theme</h5>
+        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="addThemeAnimeId">
+        <div class="form-group mb-2">
+          <label for="theme">Theme</label>
+          <select class="form-select" name="theme" id="theme" required>
+            <option value="" selected hidden disabled>Select theme</option>
+            <?php foreach($data['themes'] as $theme)
+            echo "<option value='{$theme['id']}'>{$theme['theme']}</option>"; ?>
+          </select>
+        </div>
+        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewTheme'>New Theme</a></small>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade modal-add" id='modalNewTheme' aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/themes' ?> method="post">
+      <div class="modal-header">
+        <h5>New Theme</h5>
+        <a class="btn-close" data-bs-dismiss="modal"></a>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for='theme'>Theme</label>
+          <input type="text" name='theme' id='theme' class="form-control">
         </div>
       </div>
       <div class="modal-footer">
@@ -452,6 +499,28 @@
               <input type="hidden" name="id" value=<?= $anime['id'] ?>>
               <div class="d-flex gap-3 align-items-center">
                 <input type="text" name="genre" class="form-control" value='<?= $genre ?>' readonly>
+                <button type="submit" class="btn-close"></button>
+              </div>
+            </form>
+          <?php } ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id=<?= 'modalEditTheme'.$anime['id'] ?> aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="m-0">Edit Theme</h5>
+          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
+        </div>
+        <div class="modal-body">
+          <?php foreach($anime['themes'] as $theme) { ?>
+            <form action=<?= BASE_URL.'/admin/deleteAnimePart/themes' ?> method="post" class="mb-3">
+              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
+              <div class="d-flex gap-3 align-items-center">
+                <input type="text" name="theme" class="form-control" value='<?= $theme ?>' readonly>
                 <button type="submit" class="btn-close"></button>
               </div>
             </form>

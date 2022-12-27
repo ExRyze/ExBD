@@ -6,7 +6,7 @@
   <main class="p-3 col-11 overflow-hidden d-flex flex-column dropdown">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-dark text-center mb-3">Table Parts</h2>
     <?php Flasher::flasher() ?>
-    <div class="col-12 d-flex">
+    <div class="col-12 d-flex overflow-scroll scrollbar-none">
       <?php foreach($data['database'] as $key => $table) { ?>
         <div class="col-3 px-2">
           <h5 class="col-12 pb-2 m-0 border-bottom border-2 border-dark text-center mb-3">Table <?= $key ?></h5>

@@ -1,11 +1,13 @@
 // Add
 const addAliasButtons = $('.btn-add-alias');
 const addGenreButtons = $('.btn-add-genre');
+const addThemeButtons = $('.btn-add-theme');
 const addLicensorButtons = $('.btn-add-licensor');
 const addProducerButtons = $('.btn-add-producer');
 const addStudioButtons = $('.btn-add-studio');
 setValue(addAliasButtons, $('#addAliasAnimeId'));
 setValue(addGenreButtons, $('#addGenreAnimeId'));
+setValue(addThemeButtons, $('#addThemeAnimeId'));
 setValue(addLicensorButtons, $('#addLicensorAnimeId'));
 setValue(addProducerButtons, $('#addProducerAnimeId'));
 setValue(addStudioButtons, $('#addStudioAnimeId'));

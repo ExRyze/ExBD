@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 14, 2022 at 03:42 PM
+-- Generation Time: Dec 27, 2022 at 08:02 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -188,6 +188,30 @@ INSERT INTO `animes_studios` (`id`, `anime_id`, `studio_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `animes_themes`
+--
+
+CREATE TABLE `animes_themes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `theme_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `animes_themes`
+--
+
+INSERT INTO `animes_themes` (`id`, `anime_id`, `theme_id`) VALUES
+(4, 1, 2),
+(5, 1, 3),
+(6, 1, 4),
+(7, 2, 2),
+(8, 2, 3),
+(9, 2, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `animes_videos`
 --
 
@@ -298,6 +322,26 @@ INSERT INTO `studios` (`id`, `studio`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `themes`
+--
+
+CREATE TABLE `themes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `theme` varchar(52) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `themes`
+--
+
+INSERT INTO `themes` (`id`, `theme`) VALUES
+(2, 'Isekai'),
+(3, 'Parody'),
+(4, 'Reincarnation');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -380,6 +424,14 @@ ALTER TABLE `animes_studios`
   ADD KEY `STUDIOS` (`studio_id`);
 
 --
+-- Indexes for table `animes_themes`
+--
+ALTER TABLE `animes_themes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ANIME_THEMES` (`anime_id`),
+  ADD KEY `THEMES` (`theme_id`);
+
+--
 -- Indexes for table `animes_videos`
 --
 ALTER TABLE `animes_videos`
@@ -408,6 +460,12 @@ ALTER TABLE `producers`
 -- Indexes for table `studios`
 --
 ALTER TABLE `studios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `themes`
+--
+ALTER TABLE `themes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -463,6 +521,12 @@ ALTER TABLE `animes_studios`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `animes_themes`
+--
+ALTER TABLE `animes_themes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `animes_videos`
 --
 ALTER TABLE `animes_videos`
@@ -491,6 +555,12 @@ ALTER TABLE `producers`
 --
 ALTER TABLE `studios`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `themes`
+--
+ALTER TABLE `themes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -547,6 +617,13 @@ ALTER TABLE `animes_source`
 ALTER TABLE `animes_studios`
   ADD CONSTRAINT `ANIME_STUDIOS` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `STUDIOS` FOREIGN KEY (`studio_id`) REFERENCES `studios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_themes`
+--
+ALTER TABLE `animes_themes`
+  ADD CONSTRAINT `ANIME_THEMES` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `THEMES` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `animes_videos`

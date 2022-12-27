@@ -26,6 +26,7 @@
         <p class="m-0"><strong>Licensors: </strong><br><?php $string = ''; foreach($data['licensors'] as $licensor) {$string .= "<a class='anime-part' href=''>{$licensor['licensor']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
         <p class="m-0"><strong>Studios: </strong><br><?php $string = ''; foreach($data['studios'] as $studio) {$string .= "<a class='anime-part' href=''>{$studio['studio']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
         <p class="m-0"><strong>Genres: </strong><br><?php $string = ''; foreach($data['genres'] as $genre) {$string .= "<a class='anime-part' href=''>{$genre['genre']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
+        <p class="m-0"><strong>Themes: </strong><br><?php $string = ''; foreach($data['themes'] as $theme) {$string .= "<a class='anime-part' href=''>{$theme['theme']}</a>, ";} echo substr($string, 0, -2); unset($string); ?></p>
       </div>
     </section>
     <section class="flex-grow-1 p-2">

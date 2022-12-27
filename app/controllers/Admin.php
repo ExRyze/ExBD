@@ -24,10 +24,12 @@ class Admin extends Controller {
     $data['animes'] = $this->model('Animes')->getAll();
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Aliases')->getAll(), 'aliases', NULL, TRUE);
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Genres')->getAll(), 'genres', 'genre');
+    $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Themes')->getAll(), 'themes', 'theme');
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Licensors')->getAll(),'licensors','licensor');
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Producers')->getAll(),'producers','producer');
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Studios')->getAll(), 'studios', 'studio');
     $data['genres'] = $this->model('Genres')->getAll();
+    $data['themes'] = $this->model('Themes')->getAll();
     $data['producers'] = $this->model('Producers')->getAll();
     $data['licensors'] = $this->model('Licensors')->getAll();
     $data['studios'] = $this->model('Studios')->getAll();
@@ -49,6 +51,7 @@ class Admin extends Controller {
       $data['page'] = 'EXBD | Admin - Parts';
       $data['database'] = array(
         'genres' => array('table' => $this->model('Genres')->getAll(), 'column' => 'genre'),
+        'themes' => array('table' => $this->model('Themes')->getAll(), 'column' => 'theme'),
         'producers' => array('table' => $this->model('Producers')->getAll(), 'column' => 'producer'),
         'licensors' => array('table' => $this->model('Licensors')->getAll(), 'column' => 'licensor'),
         'studios' => array('table' => $this->model('Studios')->getAll(), 'column' => 'studio'));

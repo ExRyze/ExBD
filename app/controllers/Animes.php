@@ -17,6 +17,7 @@ class Animes extends Controller {
     $data['licensors'] = $this->model('Animes_Licensors')->getAliasesBySlug($slug);
     $data['studios'] = $this->model('Animes_Studios')->getAliasesBySlug($slug);
     $data['genres'] = $this->model('Animes_Genres')->getAliasesBySlug($slug);
+    $data['themes'] = $this->model('Animes_Themes')->getAliasesBySlug($slug);
     $this->view('animes/anime', $data);
   }
 
