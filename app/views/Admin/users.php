@@ -38,9 +38,6 @@
             <td><?= date('d M Y H:i:s A', strtotime($row['updated_at'])) ?></td>
             <td>
               <div class="d-flex gap-3">
-                <?php if($row['role'] === 'Admin') { ?>
-                  <a href="<?= BASE_URL.'/users/edit/'.$row['id'] ?>" class="btn btn-warning">Edit</a>
-                <?php } ?>
                 <?php if($row['status'] === 'Active') { ?>
                   <a href="<?= BASE_URL.'/users/suspend/'.$row['id'] ?>" class="btn btn-warning">Suspend</a>
                 <?php } else if ($row['status'] === 'Suspended') { ?>

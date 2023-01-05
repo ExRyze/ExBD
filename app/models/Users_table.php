@@ -9,6 +9,12 @@ class Users_table {
     $this->db = new Database;
   }
 
+  public function get($uname) {
+    $this->db->query("SELECT * FROM {$this->table} WHERE `username` = :uname");
+    $this->db->bind('uname', $uname);
+    return $this->db->result();
+  }
+
   public function getAll() {
     $this->db->query("SELECT * FROM {$this->table}");
     return $this->db->resultAll();

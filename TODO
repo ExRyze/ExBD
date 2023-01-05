@@ -1,5 +1,4 @@
 Anime tables:
-themes
 sequel? prequel? ova? ona? oad? movie? adaption?
 Table 'animes_rating' {`id`, `rating`, `username`};
 Add some function for User...

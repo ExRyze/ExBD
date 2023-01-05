@@ -8,7 +8,7 @@ class Animes extends Controller {
 
   public function anime($slug = NULL) {
     if(!$slug) {return header("location: ".BASE_URL.'/animes/list');}
-    $data['page'] = 'EXBD | Anime '.$slug;
+    $data['page'] = 'EXBD | Anime - '.$slug;
     $data['anime'] = $this->model('Animes')->getAnimeBySlug($slug);
     $data['aliases'] = $this->model('Animes_Aliases')->getAliasesBySlug($slug);
     $data['producers'] = $this->model('Animes_Producers')->getAliasesBySlug($slug);

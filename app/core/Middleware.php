@@ -4,9 +4,9 @@ class Middleware {
 
   public static function auth($status = true) {
     if($status === true && !isset($_SESSION['user'])) {
-      return header('location: '.BASE_URL.'/login');
+      return Functions::back();
     } else if($status === false && isset($_SESSION['user'])) {
-      return header('location: '.BASE_URL);
+      return Functions::back();
     }
   }
 
@@ -14,7 +14,7 @@ class Middleware {
     Middleware::auth();
     if(isset($_SESSION['user'])) { 
       if($_SESSION['user']['role'] != $role) {
-        return header('location: '.BASE_URL);
+        return Functions::back();
       }
     }
   }
