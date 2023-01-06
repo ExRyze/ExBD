@@ -112,6 +112,8 @@ class Admin extends Controller {
       return Functions::back();}
     Flasher::setFlasher('flasher-success', "{$string} berhasil di tambahkan");
     return Functions::back();
+    // if($next === FALSE) {return Functions::back();}
+    // return $this->addAnimePart($string);
   }
 
   public function editParts($string = '') {

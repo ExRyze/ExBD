@@ -1,4 +1,5 @@
 Anime tables:
+Add bonus in anime_videos
 sequel? prequel? ova? ona? oad? movie? adaption?
 Table 'animes_rating' {`id`, `rating`, `username`};
 Add some function for User...

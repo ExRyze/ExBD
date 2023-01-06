@@ -15,8 +15,7 @@
           <tr>
             <th>No.</th>
             <th>Title</th>
-            <th>Episodes</th>
-            <th>Type</th>
+            <th>Type / Episodes</th>
             <th>Status / Aired - Finished</th>
             <th>Genres / Themes</th>
             <th>Producers / Licensors / Studios</th>
@@ -36,8 +35,10 @@
               <a role='button' class='btn btn-success btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id=<?= $anime['id'] ?>>Add</a>
               <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditAlias'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
             </td>
-            <td><?= $anime['episodes'].' episodes' ?></td>
-            <td class="text-center fw-bold"><?= $anime['type'] ?></td>
+            <td class="text-center">
+              <p class="fw-bold mb-3"><?= $anime['type'] ?></p>
+              <p class="m-0"><?= ($anime['episodes'] === 1) ? $anime['episodes'].' episode' : $anime['episodes'].' episodes' ?></p>
+            </td>
             <td><p class="fw-bold text-center"><?= $anime['status'] ?></p>
             <p class="text-center m-0"><?= ($anime['aired']) ? date('d M Y', strtotime($anime['aired'])) : '' ?></p>
             <p class="text-center m-0"><?= ($anime['finished']) ? "<small class='text-center'>to</small><br>".date('d M Y', strtotime($anime['finished'])) : '' ?></p></td>
@@ -86,8 +87,7 @@
           <tr>
             <th>No.</th>
             <th>Title</th>
-            <th>Episodes</th>
-            <th>Type</th>
+            <th>Type / Episodes</th>
             <th>Status / Aired - Finished</th>
             <th>Genres / Themes</th>
             <th>Producers / Licensors / Studios</th>
