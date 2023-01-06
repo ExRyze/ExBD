@@ -26,6 +26,17 @@ class Genres_Table {
     return $this->db->rowCount();
   }
 
+  public function storeLinked() {
+    $genre = $_POST['genre'];
+    $this->db->query("INSERT INTO {$this->table} (`genre`) VALUES (:genre)");
+    $this->db->bind('genre', $genre);
+    $this->db->execute();
+    $this->db->query("INSERT INTO `animes_genres` (`anime_id`, `genre_id`) VALUES (:id, (SELECT `id` FROM {$this->table} WHERE `genre` = :genre))");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('genre', $genre);
+    return $this->db->rowCount();
+  }
+
   public function update() {
     $this->db->query("UPDATE {$this->table} SET `genre` = :genre WHERE `id` = :id");
     $this->db->bind('id', $_POST['id']);

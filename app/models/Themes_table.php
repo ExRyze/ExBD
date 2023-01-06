@@ -25,6 +25,17 @@ class Themes_Table {
     $this->db->bind('theme', $_POST['theme']);
     return $this->db->rowCount();
   }
+  
+  public function storeLinked() {
+    $theme = $_POST['theme'];
+    $this->db->query("INSERT INTO {$this->table} (`theme`) VALUES (:theme)");
+    $this->db->bind('theme', $theme);
+    $this->db->execute();
+    $this->db->query("INSERT INTO `animes_themes` (`anime_id`, `theme_id`) VALUES (:id, (SELECT `id` FROM {$this->table} WHERE `theme` = :theme))");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('theme', $theme);
+    return $this->db->rowCount();
+  }
 
   public function update() {
     $this->db->query("UPDATE {$this->table} SET `theme` = :theme WHERE `id` = :id");

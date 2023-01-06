@@ -25,6 +25,17 @@ class Producers_Table {
     $this->db->bind('producer', $_POST['producer']);
     return $this->db->rowCount();
   }
+  
+  public function storeLinked() {
+    $producer = $_POST['producer'];
+    $this->db->query("INSERT INTO {$this->table} (`producer`) VALUES (:producer)");
+    $this->db->bind('producer', $producer);
+    $this->db->execute();
+    $this->db->query("INSERT INTO `animes_producers` (`anime_id`, `producer_id`) VALUES (:id, (SELECT `id` FROM {$this->table} WHERE `producer` = :producer))");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('producer', $producer);
+    return $this->db->rowCount();
+  }
 
   public function update() {
     $this->db->query("UPDATE {$this->table} SET `producer` = :producer WHERE `id` = :id");

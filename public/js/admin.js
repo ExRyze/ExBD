@@ -1,16 +1,24 @@
 // Add
-const addAliasButtons = $('.btn-add-alias');
-const addGenreButtons = $('.btn-add-genre');
-const addThemeButtons = $('.btn-add-theme');
-const addLicensorButtons = $('.btn-add-licensor');
-const addProducerButtons = $('.btn-add-producer');
-const addStudioButtons = $('.btn-add-studio');
-setValue(addAliasButtons, $('#addAliasAnimeId'));
-setValue(addGenreButtons, $('#addGenreAnimeId'));
-setValue(addThemeButtons, $('#addThemeAnimeId'));
-setValue(addLicensorButtons, $('#addLicensorAnimeId'));
-setValue(addProducerButtons, $('#addProducerAnimeId'));
-setValue(addStudioButtons, $('#addStudioAnimeId'));
+const addAlias = $('.btn-add-alias');
+setValue(addAlias, $('#addAliasAnimeId'));
+
+const linkGenre = $('.btn-link-genre');
+const linkTheme = $('.btn-link-theme');
+const linkLicensor = $('.btn-link-licensor');
+const linkProducer = $('.btn-link-producer');
+const linkStudio = $('.btn-link-studio');
+
+setValue(linkGenre, $('#linkGenreAnimeId'));
+setValue(linkTheme, $('#linkThemeAnimeId'));
+setValue(linkLicensor, $('#linkLicensorAnimeId'));
+setValue(linkProducer, $('#linkProducerAnimeId'));
+setValue(linkStudio, $('#linkStudioAnimeId'));
+
+setValue(linkGenre, $('#addGenreAnimeId'));
+setValue(linkTheme, $('#addThemeAnimeId'));
+setValue(linkLicensor, $('#addLicensorAnimeId'));
+setValue(linkProducer, $('#addProducerAnimeId'));
+setValue(linkStudio, $('#addStudioAnimeId'));
 
 function setValue(button, input) {
   $.each(button, (key, value) => {

@@ -26,6 +26,17 @@ class Licensors_Table {
     return $this->db->rowCount();
   }
 
+  public function storeLinked() {
+    $licensor = $_POST['licensor'];
+    $this->db->query("INSERT INTO {$this->table} (`licensor`) VALUES (:licensor)");
+    $this->db->bind('licensor', $licensor);
+    $this->db->execute();
+    $this->db->query("INSERT INTO `animes_licensors` (`anime_id`, `licensor_id`) VALUES (:id, (SELECT `id` FROM {$this->table} WHERE `licensor` = :licensor))");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('licensor', $licensor);
+    return $this->db->rowCount();
+  }
+
   public function update() {
     $this->db->query("UPDATE {$this->table} SET `licensor` = :licensor WHERE `id` = :id");
     $this->db->bind('id', $_POST['id']);

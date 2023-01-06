@@ -45,29 +45,29 @@
             <td class="genre-theme-anime">
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['genres']) ? "<p class='mb-0'><strong>Genres :</strong> ".implode(', ', $anime['genres'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-add-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-success btn-link-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $anime['id'] ?>>Add</a>
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditGenre'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
               <div>
                 <?= ($anime['themes']) ? "<p class='mb-0'><strong>Themes :</strong> ".implode(', ', $anime['themes'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-add-theme' data-bs-toggle='modal' data-bs-target='#modalAddTheme' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-success btn-link-theme' data-bs-toggle='modal' data-bs-target='#modalAddTheme' id=<?= $anime['id'] ?>>Add</a>
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditTheme'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
             </td>
             <td class="producer-licensor-studio-anime">
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['producers']) ? "<p class='mb-0'><strong>Producers :</strong> ".implode(', ', $anime['producers'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-add-producer' data-bs-toggle='modal' data-bs-target='#modalAddProducer' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-success btn-link-producer' data-bs-toggle='modal' data-bs-target='#modalAddProducer' id=<?= $anime['id'] ?>>Add</a>
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditProducer'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['licensors']) ? "<p class='mb-0'><strong>Licensors :</strong> ".implode(', ', $anime['licensors'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-add-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-success btn-link-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $anime['id'] ?>>Add</a>
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditLicensor'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
               <div>
                 <?= ($anime['studios']) ? "<p class='mb-0'><strong>Studios :</strong> ".implode(', ', $anime['studios'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-add-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $anime['id'] ?>>Add</a>
+                <a role='button' class='btn btn-success btn-link-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $anime['id'] ?>>Add</a>
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditStudio'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
             </td>
@@ -190,7 +190,7 @@
         <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="id" id="addGenreAnimeId">
+        <input type="hidden" name="id" id="linkGenreAnimeId">
         <div class="form-group mb-2">
           <label for="genre">Genre</label>
           <select class="form-select" name="genre" id="genre" required>
@@ -209,12 +209,13 @@
 </div>
 <div class="modal fade modal-add" id='modalNewGenre' aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/genres' ?> method="post">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/genres' ?> method="post">
       <div class="modal-header">
         <h5>New Genre</h5>
         <a class="btn-close" data-bs-dismiss="modal"></a>
       </div>
       <div class="modal-body">
+        <input type="hidden" name="id" id="addGenreAnimeId">
         <div class="form-group">
           <label class="form-label" for='genre'>Genre</label>
           <input type="text" name='genre' id='genre' class="form-control">
@@ -235,7 +236,7 @@
         <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="id" id="addThemeAnimeId">
+        <input type="hidden" name="id" id="linkThemeAnimeId">
         <div class="form-group mb-2">
           <label for="theme">Theme</label>
           <select class="form-select" name="theme" id="theme" required>
@@ -254,12 +255,13 @@
 </div>
 <div class="modal fade modal-add" id='modalNewTheme' aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/themes' ?> method="post">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/themes' ?> method="post">
       <div class="modal-header">
         <h5>New Theme</h5>
         <a class="btn-close" data-bs-dismiss="modal"></a>
       </div>
       <div class="modal-body">
+        <input type="hidden" name="id" id="addThemeAnimeId">
         <div class="form-group">
           <label class="form-label" for='theme'>Theme</label>
           <input type="text" name='theme' id='theme' class="form-control">
@@ -280,7 +282,7 @@
         <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="id" id="addProducerAnimeId">
+        <input type="hidden" name="id" id="linkProducerAnimeId">
         <div class="form-group mb-2">
           <label for="producer">Producer</label>
           <select class="form-select" name="producer" id="producer" required>
@@ -299,12 +301,13 @@
 </div>
 <div class="modal fade modal-add" id='modalNewProducer' aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/producers' ?> method="post">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/producers' ?> method="post">
       <div class="modal-header">
         <h5>New Producer</h5>
         <a class="btn-close" data-bs-dismiss="modal"></a>
       </div>
       <div class="modal-body">
+        <input type="hidden" name="id" id="addProducerAnimeId">
         <div class="form-group">
           <label class="form-label" for='producer'>Producer</label>
           <input type="text" name='producer' id='producer' class="form-control">
@@ -325,7 +328,7 @@
         <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="id" id="addLicensorAnimeId">
+        <input type="hidden" name="id" id="linkLicensorAnimeId">
         <div class="form-group mb-2">
           <label for="licensor">Licensor</label>
           <select class="form-select" name="licensor" id="licensor" required>
@@ -344,12 +347,13 @@
 </div>
 <div class="modal fade modal-add" id='modalNewLicensor' aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/licensors' ?> method="post">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/licensors' ?> method="post">
       <div class="modal-header">
         <h5>New Licensor</h5>
         <a class="btn-close" data-bs-dismiss="modal"></a>
       </div>
       <div class="modal-body">
+        <input type="hidden" name="id" id="addLicensorAnimeId">
         <div class="form-group">
           <label class="form-label" for='licensor'>Licensor</label>
           <input type="text" name='licensor' id='licensor' class="form-control">
@@ -370,7 +374,7 @@
         <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="id" id="addStudioAnimeId">
+        <input type="hidden" name="id" id="linkStudioAnimeId">
         <div class="form-group mb-2">
           <label for="studio">Studio</label>
           <select class="form-select" name="studio" id="studio" required>
@@ -389,12 +393,13 @@
 </div>
 <div class="modal fade modal-add" id='modalNewStudio' aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/studios' ?> method="post">
+    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/studios' ?> method="post">
       <div class="modal-header">
         <h5>New Studio</h5>
         <a class="btn-close" data-bs-dismiss="modal"></a>
       </div>
       <div class="modal-body">
+        <input type="hidden" name="id" id="addStudioAnimeId">
         <div class="form-group">
           <label class="form-label" for='studio'>Studio</label>
           <input type="text" name='studio' id='studio' class="form-control" autofocus>

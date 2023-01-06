@@ -25,6 +25,17 @@ class Studios_Table {
     $this->db->bind('studio', $_POST['studio']);
     return $this->db->rowCount();
   }
+  
+  public function storeLinked() {
+    $studio = $_POST['studio'];
+    $this->db->query("INSERT INTO {$this->table} (`studio`) VALUES (:studio)");
+    $this->db->bind('studio', $studio);
+    $this->db->execute();
+    $this->db->query("INSERT INTO `animes_studios` (`anime_id`, `studio_id`) VALUES (:id, (SELECT `id` FROM {$this->table} WHERE `studio` = :studio))");
+    $this->db->bind('id', $_POST['id']);
+    $this->db->bind('studio', $studio);
+    return $this->db->rowCount();
+  }
 
   public function update() {
     $this->db->query("UPDATE {$this->table} SET `studio` = :studio WHERE `id` = :id");

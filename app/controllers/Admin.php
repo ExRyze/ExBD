@@ -112,8 +112,6 @@ class Admin extends Controller {
       return Functions::back();}
     Flasher::setFlasher('flasher-success', "{$string} berhasil di tambahkan");
     return Functions::back();
-    // if($next === FALSE) {return Functions::back();}
-    // return $this->addAnimePart($string);
   }
 
   public function editParts($string = '') {
@@ -138,6 +136,21 @@ class Admin extends Controller {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
       return Functions::back();}
     Flasher::setFlasher('flasher-success', "{$string} berhasil di hapus");
+    return Functions::back();
+  }
+
+  public function addPartsAnimePart($string = '') {
+    Middleware::role('Admin');
+    if($string === '') {
+      Flasher::setFlasher('flasher-warning', 'Need parameter');
+      return Functions::back();}
+    if($this->model($string)->validate()) {
+      Flasher::setFlasher('flasher-warning', $string.' sudah ada');
+      return Functions::back();}
+    if(!$this->model($string)->storeLinked()) {
+      Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
+      return Functions::back();}
+    Flasher::setFlasher('flasher-success', "Anime {$string} berhasil di tambahkan");
     return Functions::back();
   }
 
