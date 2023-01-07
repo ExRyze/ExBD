@@ -226,7 +226,8 @@ CREATE TABLE `animes_videos` (
   `tracks_audios` text NOT NULL,
   `subtitles_videos` text NOT NULL,
   `additional_errors` text NOT NULL,
-  `additional_values` text NOT NULL
+  `additional_values` text NOT NULL,
+  `status_videos` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

@@ -8,14 +8,14 @@ class Admin extends Controller {
     $data['database'] = array(
       'users' => array('key' => 'Users', 'value' => $this->model('Users')->countAllByRole(), 'by' => 'role'),
       'animes' => array('key' => 'Animes', 'value' => $this->model('Animes')->countAllByType(), 'by' => 'type'));
-    $this->view('admin/index', $data);
+    return $this->view('admin/index', $data);
   }
 
   public function users() {
     Middleware::role('Admin');
     $data['page'] = 'EXBD | Admin - Users';
     $data['users'] = $this->model('Users')->getAll();
-    $this->view('admin/users', $data);
+    return $this->view('admin/users', $data);
   }
 
   public function animes() {
@@ -33,16 +33,23 @@ class Admin extends Controller {
     $data['producers'] = $this->model('Producers')->getAll();
     $data['licensors'] = $this->model('Licensors')->getAll();
     $data['studios'] = $this->model('Studios')->getAll();
-    $this->view('admin/animes', $data);
+    return $this->view('admin/animes', $data);
   }
 
-  public function animesVideos() {
+  public function animesvideos($history = '') {
     Middleware::role('Admin');
+    if($history === 'history') {
+      $data['page'] = 'EXBD | Admin - Animes Videos History';
+      $data['key'] = 'history';
+      $data['animes'] = $this->model('Animes')->getVideosHistory();
+      $data['anime_id'] = [];
+      return $this->view('admin/animesVideos', $data);
+    }
     $data['page'] = 'EXBD | Admin - Animes Videos';
-    $data['animes'] = $this->model('Animes')->getJoin('_videos');
+    $data['animes'] = $this->model('Animes')->getVideos();
     $data['anime_id'] = $this->model('Animes')->getTitle();
     $data['anime_id'] = Functions::filterAnime($data['anime_id'], $data['animes']);
-    $this->view('admin/animesVideos', $data);
+    return $this->view('admin/animesVideos', $data);
   }
 
   public function parts($string = '') {
@@ -55,7 +62,7 @@ class Admin extends Controller {
         'producers' => array('table' => $this->model('Producers')->getAll(), 'column' => 'producer'),
         'licensors' => array('table' => $this->model('Licensors')->getAll(), 'column' => 'licensor'),
         'studios' => array('table' => $this->model('Studios')->getAll(), 'column' => 'studio'));
-      $this->view('admin/parts', $data);
+      return $this->view('admin/parts', $data);
     }
   }
 
@@ -151,6 +158,24 @@ class Admin extends Controller {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
       return Functions::back();}
     Flasher::setFlasher('flasher-success', "Anime {$string} berhasil di tambahkan");
+    return Functions::back();
+  }
+
+  public function deleteAnimesVideos() {
+    Middleware::role('Admin');
+    if(!$this->model('Animes_Videos')->hardDelete()) {
+      Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
+      return Functions::back();}
+    Flasher::setFlasher('flasher-success', "Anime videos berhasil di hapus");
+    return Functions::back();
+  }
+
+  public function revertAnimesVideos() {
+    Middleware::role('Admin');
+    if(!$this->model('Animes_Videos')->revert()) {
+      Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
+      return Functions::back();}
+    Flasher::setFlasher('flasher-success', "Anime videos berhasil di revert");
     return Functions::back();
   }
 

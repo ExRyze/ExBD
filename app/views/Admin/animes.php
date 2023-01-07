@@ -20,7 +20,6 @@
             <th>Genres / Themes</th>
             <th>Producers / Licensors / Studios</th>
             <th>Created at / Updated at</th>
-            <th>Exists</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -75,7 +74,6 @@
             <td class="text-center">
               <?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?> <br><br> <small>Updated :</small> <br> <?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?> <br><br> <strong>By :</strong> <?= $anime['username'] ?>
             </td>
-            <td><?= (file_exists(STORAGE_URL)) ? ((file_exists(STORAGE_ANIMES.'/'.$anime['title'])) ? 'Exists' : 'Not exists') : "Drive 'F:' doesn't exists" ?></td>
             <td>
               <div class="d-flex gap-3">
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalEditAnime<?= $anime['id'] ?>'>Edit</a>
@@ -94,7 +92,6 @@
             <th>Genres / Themes</th>
             <th>Producers / Licensors / Studios</th>
             <th>Created at / Updated at</th>
-            <th>Exists</th>
             <th>Action</th>
           </tr>
         </tfoot>

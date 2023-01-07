@@ -6,8 +6,9 @@
   <main class="p-3 col-11 overflow-hidden d-flex flex-column dropdown">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-secondary text-center mb-3">Table Animes Videos</h2>
     <?php Flasher::flasher() ?>
-    <div class="col-12 d-flex mb-3">
-      <a role="button" data-bs-toggle="modal" data-bs-target="#modalAddVideo" class="btn btn-success">Add</a>
+    <div class="col-12 d-flex mb-3 gap-3">
+      <?= (isset($data['key']))? "<a href='".BASE_URL."//admin/animesvideos' class='btn btn-info'>Videos</a>" : "<a role='button' data-bs-toggle='modal' data-bs-target='#modalAddVideo' class='btn btn-success'>Add</a> <a href='".BASE_URL."//admin/animesvideos/history' class='btn btn-info'>History</a>" ?>
+      <?= (file_exists(STORAGE_URL)) ? '' : "<div class='flasher flasher-warning m-0 text-center p-0'>Drive 'F:' doesn't exists</div>" ?>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
       <table class="table table-anime m-0 table-bordered border-dark table-hover">
@@ -49,12 +50,17 @@
               <?= implode(',<br>', explode('; ', $anime['subtitles_videos'])) ?></td>
             <td class="<?= ($anime['additional_errors'] != '') ? 'bg-danger' : 'bg-success' ?> text-white">
               <?= implode(',<br>', explode('; ', $anime['additional_errors'])) ?></td>
-            <td class="<?= ($anime['additional_values'] != '') ? 'bg-gold' : 'bg-gold' ?> text-white">
+            <td class="<?= ($anime['additional_values'] != '') ? 'text-dark' : 'bg-dark' ?> text-white">
               <?= implode(',<br>', explode('; ', $anime['additional_values'])) ?></td>
             <td>
               <div class="d-flex gap-3">
+                <?= (isset($data['key'])) ? "
+                <form action='".BASE_URL."/admin/revertAnimesVideos' method='post'>
+                  <input type='hidden' name='id' value='{$anime['id']}'>
+                  <button type='submit' class='btn btn-warning'>Revert</button>
+                </form>" : '' ?>
                 <a role="button" data-bs-toggle="modal" data-bs-target=<?= '#modalEditVideo'.$anime['id'] ?> class="btn btn-warning">Edit</a>
-                <form action="<?= BASE_URL.'/admin/deleteAnimePart/Videos' ?>" method="post">
+                <form action="<?= (isset($data['key']))? BASE_URL.'/admin/deleteAnimesVideos' : BASE_URL.'/admin/deleteAnimePart/Videos' ?>" method="post">
                   <input type="hidden" name="id" value="<?= $anime['id'] ?>">
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>

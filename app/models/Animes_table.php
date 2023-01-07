@@ -24,16 +24,21 @@ class Animes_table {
     $this->db->bind('num', $num);
     return $this->db->resultAll();
   }
-
-  public function getJoin($origin) {
-    $this->db->query("SELECT {$this->table}{$origin}.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}{$origin} ON {$this->table}.id = {$this->table}{$origin}.anime_id ORDER BY `title` ASC");
-    return $this->db->resultAll();
-  }
-
+  
   public function getVideo($slug) {
     $this->db->query("SELECT {$this->table}_Videos.*, {$this->table}.id, {$this->table}.title, {$this->table}.slug, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}_Videos ON {$this->table}.id = {$this->table}_Videos.anime_id WHERE `slug` = :slug");
     $this->db->bind('slug', $slug);
     return $this->db->result();
+  }
+
+  public function getVideos() {
+    $this->db->query("SELECT {$this->table}_videos.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}_videos ON {$this->table}.id = {$this->table}_videos.anime_id WHERE {$this->table}_videos.`status_videos` != 'DELETED' ORDER BY `title` ASC");
+    return $this->db->resultAll();
+  }
+  
+  public function getVideosHistory() {
+    $this->db->query("SELECT {$this->table}_videos.*, {$this->table}.id, {$this->table}.title, {$this->table}.episodes, {$this->table}.type FROM {$this->table} RIGHT OUTER JOIN {$this->table}_videos ON {$this->table}.id = {$this->table}_videos.anime_id WHERE {$this->table}_videos.`status_videos` = 'DELETED' ORDER BY `title` ASC");
+    return $this->db->resultAll();
   }
 
   public function getAnimeById($id) {

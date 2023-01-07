@@ -48,7 +48,19 @@ class Animes_Videos_table {
     return $this->db->rowCount();
   }
 
+  public function revert() {
+    $this->db->query("UPDATE {$this->table} SET {$this->table}.`status_videos` = '' WHERE `anime_id` = :id");
+    $this->db->bind('id', $_POST['id']);
+    return $this->db->rowCount();
+  }
+
   public function delete() {
+    $this->db->query("UPDATE {$this->table} SET {$this->table}.`status_videos` = 'DELETED' WHERE `anime_id` = :id");
+    $this->db->bind('id', $_POST['id']);
+    return $this->db->rowCount();
+  }
+
+  public function hardDelete() {
     $this->db->query("DELETE FROM {$this->table} WHERE `anime_id` = :id");
     $this->db->bind('id', $_POST['id']);
     return $this->db->rowCount();

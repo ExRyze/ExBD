@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 07, 2023 at 09:17 AM
+-- Generation Time: Jan 07, 2023 at 04:56 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -360,25 +360,26 @@ CREATE TABLE `animes_videos` (
   `tracks_audios` text NOT NULL,
   `subtitles_videos` text NOT NULL,
   `additional_errors` text NOT NULL,
-  `additional_values` text NOT NULL
+  `additional_values` text NOT NULL,
+  `status_videos` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `animes_videos`
 --
 
-INSERT INTO `animes_videos` (`id`, `anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`, `additional_values`) VALUES
-(1, 1, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind] (Ep. 1, 2, 4, 7, 8); ASS [Und] (Ep. 3, 5, 6, 9, 10)', '', ''),
-(2, 2, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L4.0) (Ep. 1, 3, 5-10); H264 (High 10 @L5.0) (Ep. 2, 4)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening; Adanya gambar tambahan dalam subtitle.', ''),
-(3, 3, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Und]', '', ''),
-(4, 4, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L4.0)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening.\r\n', ''),
-(5, 5, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'NULL', 'ACC 2.0 [Jpn]', 'NULL', 'In folder \"Drafts\"; Not renamed; Hardsub.', ''),
-(6, 6, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', '', ''),
-(7, 7, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening.', ''),
-(8, 8, 'UBW', 'mkv', '1080p', 'H264 (High 10 @L5.1)', 'TRUE', 'ACC 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening; Spin-off still included.', ''),
-(9, 9, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'FALSE', 'FLAC S16 2.0 [Und]', 'ASS [Ind]', 'No Sub in ED (Ep. 1); Error encoding Chap.(Ep. 11); Bonus NCOP & NCED; Spin-off ?.', ''),
-(10, 10, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'TRUE', 'FLAC S16 2.0 [Und]', 'ASS [Ind]', 'Bonus NCOP & NCED; Theres still any steam in video animation, so i think it still TV ver.', ''),
-(11, 11, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'TRUE', 'FLAC S24 2.0 [Und]', 'ASS [Ind]', 'BD?.', '');
+INSERT INTO `animes_videos` (`id`, `anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`, `additional_values`, `status_videos`) VALUES
+(1, 1, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind] (Ep. 1, 2, 4, 7, 8); ASS [Und] (Ep. 3, 5, 6, 9, 10)', '', '', ''),
+(2, 2, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L4.0) (Ep. 1, 3, 5-10); H264 (High 10 @L5.0) (Ep. 2, 4)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening; Adanya gambar tambahan dalam subtitle.', '', ''),
+(3, 3, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Und]', '', '', ''),
+(4, 4, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L4.0)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening.\r\n', '', ''),
+(5, 5, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'NULL', 'ACC 2.0 [Jpn]', 'NULL', 'In folder \"Drafts\"; Not renamed; Hardsub.', '', ''),
+(6, 6, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', '', '', ''),
+(7, 7, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening.', '', ''),
+(8, 8, 'UBW', 'mkv', '1080p', 'H264 (High 10 @L5.1)', 'TRUE', 'ACC 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening; Spin-off still included.', '', ''),
+(9, 9, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'FALSE', 'FLAC S16 2.0 [Und]', 'ASS [Ind]', 'No Sub in ED (Ep. 1); Error encoding Chap.(Ep. 11); Bonus NCOP & NCED; Spin-off ?.', '', ''),
+(10, 10, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'TRUE', 'FLAC S16 2.0 [Und]', 'ASS [Ind]', 'Theres still any steam in video animation, so i think it still TV ver.', 'Bonus NCOP & NCED.', ''),
+(11, 11, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'TRUE', 'FLAC S24 2.0 [Und]', 'ASS [Ind]', 'BD?.', '', '');
 
 -- --------------------------------------------------------
 
@@ -537,7 +538,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `name`, `password`, `role`, `access`, `status`, `created_at`, `updated_at`) VALUES
 (2, 'Ex', 'ExRyze', '123', 'Admin', 2, 'Active', '2022-11-26 05:07:10', '2022-11-26 05:07:10'),
-(3, 'User', 'UserGuest', '123', 'User', 2, 'Active', '2022-11-30 03:27:31', '2022-11-30 03:27:31');
+(4, 'User', 'User', '123', 'Admin', 2, 'Active', '2023-01-07 07:49:33', '2023-01-07 07:49:33');
 
 --
 -- Indexes for dumped tables
@@ -740,7 +741,7 @@ ALTER TABLE `themes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
