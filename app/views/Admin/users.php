@@ -25,10 +25,10 @@
           </tr>
         </thead>
         <tbody class="m-0">
-          <?php $index = 1;
-          foreach($data['users'] as $row) { ?>
+          <?php 
+          foreach($data['users'] as $key => $row) { ?>
           <tr>
-            <td><?= $index ?></td>
+            <td class="text-center"><?= $key+1 ?></td>
             <td><?= $row['username'] ?></td>
             <td><?= $row['name'] ?></td>
             <td><?= $row['role'] ?></td>
@@ -47,7 +47,7 @@
               </div>
             </td>
           </tr>
-          <?php $index += 1; } ?>
+          <?php } ?>
         </tbody>
         <tfoot class="bg-secondary m-0 text-center">
           <th>No.</th>

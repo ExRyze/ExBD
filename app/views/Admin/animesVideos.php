@@ -10,44 +10,47 @@
       <a role="button" data-bs-toggle="modal" data-bs-target="#modalAddVideo" class="btn btn-success">Add</a>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
-      <table class="table m-0 table-bordered border-dark table-hover">
-        <thead class="bg-secondary text-center">
+      <table class="table table-anime m-0 table-bordered border-dark table-hover">
+        <thead class="text-center">
           <tr>
             <th>No.</th>
             <th>Title</th>
-            <Th>Episodes</Th>
-            <th>Type</th>
-            <th>Source Video</th>
-            <th>Type Video</th>
-            <th>Resolution</th>
+            <th>Type / Episodes</th>
+            <th>Source / Format / Resolution</th>
             <th>Video Tracks</th>
             <th>Chapters</th>
             <th>Audios Tracks</th>
             <th>Subtitles</th>
-            <th>Additional</th>
+            <th>Additional Errors</th>
+            <th>Additional Values</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody class="m-0">
-          <?php $index = 1;
-          foreach($data['animes'] as $anime) { ?>
+        <tbody class="m-0 bg-white">
+          <?php
+          foreach($data['animes'] as $key => $anime) { ?>
           <tr>
-            <td><?= $index ?></td>
-            <td><?= $anime['title'] ?></td>
-            <td><?= $anime['episodes'] ?></td>
-            <td><?= $anime['type'] ?></td>
-            <td><?= $anime['source_videos'] ?></td>
-            <td><?= $anime['type_videos'] ?></td>
-            <td><?= $anime['resolution_videos'] ?></td>
-            <td><?= $anime['tracks_videos'] ?></td>
+            <td class="text-center"><?= $key+1 ?></td>
+            <td class="title-anime"><p class="fw-bold m-0"><?= $anime['title'] ?></p></td>
+            <td class="text-center">
+              <p class="fw-bold mb-3"><?= $anime['type'] ?></p>
+              <p class="m-0"><?= ($anime['episodes'] === 1) ? $anime['episodes'].' episode' : $anime['episodes'].' episodes' ?></p>
+            </td>
+            <td class="text-center">
+              <p class="fw-bold mb-3"><?= $anime['source_videos'] ?></p>
+              <p class="m-0"><?= $anime['type_videos'] ?> - <?= $anime['resolution_videos'] ?></p>
+            </td>
+            <td><?= implode(',<br>', explode('; ', $anime['tracks_videos'])) ?></td>
             <td class="<?= ($anime['chapters_videos'] != 'NULL') ? (($anime['chapters_videos'] != 'FALSE') ? 'bg-success' : 'bg-warning') : 'bg-danger' ?> text-white">
               <?= $anime['chapters_videos'] ?></td>
             <td class="<?= (str_contains($anime['tracks_audios'], 'Jpn')) ? 'bg-success' : 'bg-warning' ?> text-white">
-              <?= $anime['tracks_audios'] ?></td>
+              <?= implode(',<br>', explode('; ', $anime['tracks_audios'])) ?></td>
             <td class="<?= ($anime['subtitles_videos'] != 'NULL') ? 'bg-success' : 'bg-danger' ?> text-white">
-              <?= $anime['subtitles_videos'] ?></td>
+              <?= implode(',<br>', explode('; ', $anime['subtitles_videos'])) ?></td>
             <td class="<?= ($anime['additional_errors'] != '') ? 'bg-danger' : 'bg-success' ?> text-white">
-              <?= $anime['additional_errors'] ?></td>
+              <?= implode(',<br>', explode('; ', $anime['additional_errors'])) ?></td>
+            <td class="<?= ($anime['additional_values'] != '') ? 'bg-gold' : 'bg-gold' ?> text-white">
+              <?= implode(',<br>', explode('; ', $anime['additional_values'])) ?></td>
             <td>
               <div class="d-flex gap-3">
                 <a role="button" data-bs-toggle="modal" data-bs-target=<?= '#modalEditVideo'.$anime['id'] ?> class="btn btn-warning">Edit</a>
@@ -59,21 +62,19 @@
               </div>
             </td>
           </tr>
-          <?php $index += 1; } ?>
+          <?php } ?>
         </tbody>
-        <tfoot class="bg-secondary m-0 text-center">
+        <tfoot class="m-0 text-center">
           <th>No.</th>
           <th>Title</th>
-          <Th>Episodes</Th>
-          <th>Type</th>
-          <th>Source Video</th>
-          <th>Type Video</th>
-          <th>Resolution</th>
+          <th>Type / Episodes</th>
+          <th>Source / Format / Resolution</th>
           <th>Video Tracks</th>
           <th>Chapters</th>
           <th>Audios Tracks</th>
           <th>Subtitles</th>
-          <th>Additional</th>
+          <th>Additional Errors</th>
+          <th>Additional Values</th>
           <th>Action</th>
         </tfoot>
       </table>

@@ -20,16 +20,15 @@
             <th>Genres / Themes</th>
             <th>Producers / Licensors / Studios</th>
             <th>Created at / Updated at</th>
-            <th>Id user</th>
             <th>Exists</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody class="m-0 bg-white">
-        <?php $index = 1;
-        foreach($data['animes'] as $anime) { ?>
+        <?php 
+        foreach($data['animes'] as $key => $anime) { ?>
           <tr>
-            <td class="text-center"><?= $index ?></td>
+            <td class="text-center"><?= $key+1 ?></td>
             <td class="title-anime"><p class="fw-bold m-0 pb-2 border-3 border-bottom border-dark"><?= $anime['title'] ?></p>
               <?php foreach($anime['aliases'] as $alias) {echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";} ?>
               <a role='button' class='btn btn-success btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id=<?= $anime['id'] ?>>Add</a>
@@ -39,9 +38,11 @@
               <p class="fw-bold mb-3"><?= $anime['type'] ?></p>
               <p class="m-0"><?= ($anime['episodes'] === 1) ? $anime['episodes'].' episode' : $anime['episodes'].' episodes' ?></p>
             </td>
-            <td><p class="fw-bold text-center"><?= $anime['status'] ?></p>
-            <p class="text-center m-0"><?= ($anime['aired']) ? date('d M Y', strtotime($anime['aired'])) : '' ?></p>
-            <p class="text-center m-0"><?= ($anime['finished']) ? "<small class='text-center'>to</small><br>".date('d M Y', strtotime($anime['finished'])) : '' ?></p></td>
+            <td>
+              <p class="fw-bold text-center"><?= $anime['status'] ?></p>
+              <p class="text-center m-0"><?= ($anime['aired']) ? date('d M Y', strtotime($anime['aired'])) : '' ?></p>
+              <p class="text-center m-0"><?= ($anime['finished']) ? "<small class='text-center'>to</small><br>".date('d M Y', strtotime($anime['finished'])) : '' ?></p>
+            </td>
             <td class="genre-theme-anime">
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['genres']) ? "<p class='mb-0'><strong>Genres :</strong> ".implode(', ', $anime['genres'])."</p>" : ''; ?>
@@ -71,8 +72,9 @@
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditStudio'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
             </td>
-            <td class="text-center"><?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?> <br><br> <small>Updated :</small> <br> <?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?></td>
-            <td class="text-center"><?= $anime['id_user'] ?></td>
+            <td class="text-center">
+              <?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?> <br><br> <small>Updated :</small> <br> <?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?> <br><br> <strong>By :</strong> <?= $anime['username'] ?>
+            </td>
             <td><?= (file_exists(STORAGE_URL)) ? ((file_exists(STORAGE_ANIMES.'/'.$anime['title'])) ? 'Exists' : 'Not exists') : "Drive 'F:' doesn't exists" ?></td>
             <td>
               <div class="d-flex gap-3">
@@ -81,7 +83,7 @@
               </div>
             </td>
           </tr>
-        <?php $index += 1; } ?>
+        <?php } ?>
         </tbody>
         <tfoot class="m-0 text-center">
           <tr>
@@ -92,7 +94,6 @@
             <th>Genres / Themes</th>
             <th>Producers / Licensors / Studios</th>
             <th>Created at / Updated at</th>
-            <th>Id user</th>
             <th>Exists</th>
             <th>Action</th>
           </tr>

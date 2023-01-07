@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 27, 2022 at 08:09 AM
+-- Generation Time: Jan 07, 2023 at 09:17 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -53,7 +53,10 @@ INSERT INTO `animes` (`id`, `slug`, `title`, `type`, `episodes`, `status`, `aire
 (5, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_Movie:_Kurenai_Densetsu', 'Kono Subarashii Sekai ni Shukufuku wo! Movie: Kurenai Densetsu', 'Movie', 1, 'Finished airing', '2019-07-30', NULL, '2022-12-17 22:28:23', '2022-12-17 22:28:23', 2),
 (6, 'Gate:_Jieitai_Kanochi_nite,_Kaku_Tatakaeri', 'Gate: Jieitai Kanochi nite, Kaku Tatakaeri', 'BD', 12, 'Finished airing', '2015-07-04', '2015-09-19', '2022-12-26 00:48:21', '2022-12-26 00:48:21', 2),
 (7, 'Gate:_Jieitai_Kanochi_nite,_Kaku_Tatakaeri_Part_2', 'Gate: Jieitai Kanochi nite, Kaku Tatakaeri Part 2', 'BD', 12, 'Finished airing', '2016-01-09', '2016-03-26', '2022-12-26 01:40:54', '2022-12-26 01:40:54', 2),
-(8, 'Arifureta_Shokugyou_de_Sekai_Saikyou', 'Arifureta Shokugyou de Sekai Saikyou', 'BD', 13, 'Finished airing', '2019-07-08', '2019-10-07', '2022-12-26 07:23:06', '2022-12-26 07:23:06', 2);
+(8, 'Arifureta_Shokugyou_de_Sekai_Saikyou', 'Arifureta Shokugyou de Sekai Saikyou', 'BD', 13, 'Finished airing', '2019-07-08', '2019-10-07', '2022-12-26 07:23:06', '2022-12-26 07:23:06', 2),
+(9, 'Arifureta_Shokugyou_de_Sekai_Saikyou_2nd_Season', 'Arifureta Shokugyou de Sekai Saikyou 2nd Season', 'BD', 12, 'Finished airing', '2022-01-13', '2022-03-31', '2023-01-05 07:20:27', '2023-01-05 07:20:27', 2),
+(10, 'Ore_dake_Haireru_Kakushi_Dungeon', 'Ore dake Haireru Kakushi Dungeon', 'TV', 12, 'Finished airing', '2021-01-09', '2021-03-27', '2023-01-05 07:49:42', '2023-01-05 07:49:42', 2),
+(11, 'Yuusha,_Yamemasu', 'Yuusha, Yamemasu', 'TV', 12, 'Finished airing', '2022-04-05', '2022-06-21', '2023-01-05 08:02:34', '2023-01-05 08:02:34', 2);
 
 -- --------------------------------------------------------
 
@@ -96,7 +99,16 @@ INSERT INTO `animes_aliases` (`id`, `anime_id`, `origin_alias`, `anime_alias`) V
 (22, 7, 'Japanese', 'GATEï¼ˆã‚²ãƒ¼ãƒˆï¼‰è‡ªè¡›éšŠã€€å½¼ã®åœ°ã«ã¦ã€æ–¯ãæˆ¦ãˆã‚Šã€€ç¬¬2ã‚¯ãƒ¼ãƒ«'),
 (23, 8, 'Synonyms', 'From Common Job Class to the Strongest in the World'),
 (24, 8, 'Japanese', 'ã‚ã‚Šãµã‚ŒãŸè·æ¥­ã§ä¸–ç•Œæœ€å¼·'),
-(25, 8, 'English', 'Arifureta: From Commonplace to World\'s Strongest');
+(25, 8, 'English', 'Arifureta: From Commonplace to World\'s Strongest'),
+(26, 9, 'Synonyms', 'From Common Job Class to the Strongest in the World 2nd Season'),
+(27, 9, 'Japanese', 'ã‚ã‚Šãµã‚ŒãŸè·æ¥­ã§ä¸–ç•Œæœ€å¼· 2nd Season'),
+(28, 9, 'English', 'Arifureta: From Commonplace to World\'s Strongest Season 2'),
+(29, 10, 'Synonyms', 'Special training in the Secret Dungeon'),
+(30, 10, 'Japanese', 'ä¿ºã ã‘å…¥ã‚Œã‚‹éš ã—ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³'),
+(31, 10, 'English', 'The Hidden Dungeon Only I Can Enter'),
+(32, 11, 'Synonyms', 'Yuuyame'),
+(33, 11, 'Japanese', 'å‹‡è€…ã€è¾žã‚ã¾ã™'),
+(34, 11, 'English', 'I\'m Quitting Heroing');
 
 -- --------------------------------------------------------
 
@@ -137,7 +149,18 @@ INSERT INTO `animes_genres` (`id`, `anime_id`, `genre_id`) VALUES
 (20, 7, 3),
 (21, 8, 4),
 (22, 8, 1),
-(23, 8, 3);
+(23, 8, 3),
+(24, 9, 4),
+(25, 9, 1),
+(26, 9, 3),
+(28, 10, 4),
+(29, 10, 1),
+(30, 10, 3),
+(31, 10, 5),
+(32, 11, 4),
+(33, 11, 1),
+(34, 11, 3),
+(35, 11, 2);
 
 -- --------------------------------------------------------
 
@@ -163,7 +186,9 @@ INSERT INTO `animes_licensors` (`id`, `anime_id`, `licensor_id`) VALUES
 (5, 4, 1),
 (6, 6, 3),
 (7, 7, 3),
-(8, 8, 4);
+(8, 8, 4),
+(9, 10, 5),
+(10, 11, 3);
 
 -- --------------------------------------------------------
 
@@ -226,7 +251,12 @@ INSERT INTO `animes_producers` (`id`, `anime_id`, `producer_id`) VALUES
 (42, 8, 20),
 (43, 8, 21),
 (44, 8, 22),
-(45, 8, 23);
+(45, 8, 23),
+(46, 11, 18),
+(47, 11, 24),
+(48, 11, 25),
+(49, 11, 8),
+(50, 11, 26);
 
 -- --------------------------------------------------------
 
@@ -266,7 +296,10 @@ INSERT INTO `animes_studios` (`id`, `anime_id`, `studio_id`) VALUES
 (6, 6, 3),
 (7, 7, 3),
 (8, 8, 4),
-(9, 8, 5);
+(9, 8, 5),
+(10, 9, 4),
+(11, 9, 6),
+(12, 11, 7);
 
 -- --------------------------------------------------------
 
@@ -305,7 +338,10 @@ INSERT INTO `animes_themes` (`id`, `anime_id`, `theme_id`) VALUES
 (21, 7, 2),
 (22, 7, 5),
 (23, 8, 2),
-(24, 8, 6);
+(24, 8, 6),
+(25, 9, 6),
+(26, 9, 2),
+(27, 10, 6);
 
 -- --------------------------------------------------------
 
@@ -323,22 +359,26 @@ CREATE TABLE `animes_videos` (
   `chapters_videos` text NOT NULL,
   `tracks_audios` text NOT NULL,
   `subtitles_videos` text NOT NULL,
-  `additional_errors` text NOT NULL
+  `additional_errors` text NOT NULL,
+  `additional_values` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `animes_videos`
 --
 
-INSERT INTO `animes_videos` (`id`, `anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`) VALUES
-(1, 1, 'Koenime', 'mkv', '1920 Ã— 1080', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind] (Ep. 1, 2, 4, 7, 8), ASS [Und] (Ep. 3, 5, 6, 9, 10)', ''),
-(2, 2, 'Koenime', 'mkv', '1920 Ã— 1080', 'H264 (High 10 @L4.0) (Ep. 1, 3, 5-10) H264 (High 10 @L5.0) (Ep. 2, 4)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening;\r\nAdanya gambar tambahan dalam subtitle;'),
-(3, 3, 'Koenime', 'mkv', '1920 Ã— 1080', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Und]', ''),
-(4, 4, 'Koenime', 'mkv', '1920 Ã— 1080', 'H264 (High 10 @L4.0)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening;'),
-(5, 5, 'Koenime', 'mkv', '1920 Ã— 1080', 'H264 (High 10 @L5.0)', 'NULL', 'ACC 2.0 [Jpn]', 'NULL', 'In folder \"Drafts\";\r\nNot renamed;\r\nHardsub;'),
-(6, 6, 'Koenime', 'mkv', '1920 Ã— 1080', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', ''),
-(7, 7, 'Koenime', 'mkv', '1920 Ã— 1080', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening;'),
-(8, 8, 'UBW', 'mkv', '1920 Ã— 1080', 'H264 (High 10 @L5.1)', 'TRUE', 'ACC 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening;');
+INSERT INTO `animes_videos` (`id`, `anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`, `additional_values`) VALUES
+(1, 1, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind] (Ep. 1, 2, 4, 7, 8); ASS [Und] (Ep. 3, 5, 6, 9, 10)', '', ''),
+(2, 2, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L4.0) (Ep. 1, 3, 5-10); H264 (High 10 @L5.0) (Ep. 2, 4)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening; Adanya gambar tambahan dalam subtitle.', ''),
+(3, 3, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Und]', '', ''),
+(4, 4, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L4.0)', 'NULL', 'ACC 2.0 [Jpn]', 'ASS [Und]', 'Frame drop (Subtitle too heavy) in opening.\r\n', ''),
+(5, 5, 'Koenime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'NULL', 'ACC 2.0 [Jpn]', 'NULL', 'In folder \"Drafts\"; Not renamed; Hardsub.', ''),
+(6, 6, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', '', ''),
+(7, 7, 'Koenime', 'mkv', '1080p', 'HEVC (H265 Main 10 @L4.0)', 'TRUE', 'Opus 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening.', ''),
+(8, 8, 'UBW', 'mkv', '1080p', 'H264 (High 10 @L5.1)', 'TRUE', 'ACC 2.0 [Jpn]', 'ASS [Ind]', 'Frame drop (Subtitle too heavy) in opening; Spin-off still included.', ''),
+(9, 9, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'FALSE', 'FLAC S16 2.0 [Und]', 'ASS [Ind]', 'No Sub in ED (Ep. 1); Error encoding Chap.(Ep. 11); Bonus NCOP & NCED; Spin-off ?.', ''),
+(10, 10, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'TRUE', 'FLAC S16 2.0 [Und]', 'ASS [Ind]', 'Bonus NCOP & NCED; Theres still any steam in video animation, so i think it still TV ver.', ''),
+(11, 11, 'Kusonime', 'mkv', '1080p', 'H264 (High 10 @L5.0)', 'TRUE', 'FLAC S24 2.0 [Und]', 'ASS [Ind]', 'BD?.', '');
 
 -- --------------------------------------------------------
 
@@ -359,7 +399,8 @@ INSERT INTO `genres` (`id`, `genre`) VALUES
 (1, 'Adventure'),
 (2, 'Comedy'),
 (3, 'Fantasy'),
-(4, 'Action');
+(4, 'Action'),
+(5, 'Ecchi');
 
 -- --------------------------------------------------------
 
@@ -380,7 +421,8 @@ INSERT INTO `licensors` (`id`, `licensor`) VALUES
 (1, 'Discotek Media'),
 (2, 'Crunchyroll'),
 (3, 'Sentai Filmworks'),
-(4, 'Funimation');
+(4, 'Funimation'),
+(5, 'Okoruto Noboru');
 
 -- --------------------------------------------------------
 
@@ -420,7 +462,10 @@ INSERT INTO `producers` (`id`, `producer`) VALUES
 (20, 'Hakuhodo DY Music & Pictures'),
 (21, 'Overlap'),
 (22, 'FuRyu'),
-(23, 'Bandai Namco Arts');
+(23, 'Bandai Namco Arts'),
+(24, 'flying DOG'),
+(25, 'Glovision'),
+(26, 'Tencent Games');
 
 -- --------------------------------------------------------
 
@@ -442,7 +487,9 @@ INSERT INTO `studios` (`id`, `studio`) VALUES
 (2, 'J.C.Staff'),
 (3, 'A-1 Pictures'),
 (4, 'asread.'),
-(5, 'White Fox');
+(5, 'White Fox'),
+(6, 'studio MOTHER'),
+(7, 'EMT Squared');
 
 -- --------------------------------------------------------
 
@@ -609,31 +656,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `animes_aliases`
 --
 ALTER TABLE `animes_aliases`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `animes_genres`
 --
 ALTER TABLE `animes_genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `animes_licensors`
 --
 ALTER TABLE `animes_licensors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `animes_producers`
 --
 ALTER TABLE `animes_producers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `animes_source`
@@ -645,43 +692,43 @@ ALTER TABLE `animes_source`
 -- AUTO_INCREMENT for table `animes_studios`
 --
 ALTER TABLE `animes_studios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `animes_themes`
 --
 ALTER TABLE `animes_themes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `animes_videos`
 --
 ALTER TABLE `animes_videos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `licensors`
 --
 ALTER TABLE `licensors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `producers`
 --
 ALTER TABLE `producers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `studios`
 --
 ALTER TABLE `studios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `themes`
