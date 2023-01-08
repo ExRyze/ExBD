@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 07, 2023 at 04:56 PM
+-- Generation Time: Jan 08, 2023 at 08:34 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -257,6 +257,37 @@ INSERT INTO `animes_producers` (`id`, `anime_id`, `producer_id`) VALUES
 (48, 11, 25),
 (49, 11, 8),
 (50, 11, 26);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animes_relations`
+--
+
+CREATE TABLE `animes_relations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `anime_id` int(10) UNSIGNED NOT NULL,
+  `relation` varchar(52) NOT NULL,
+  `relation_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `animes_relations`
+--
+
+INSERT INTO `animes_relations` (`id`, `anime_id`, `relation`, `relation_id`) VALUES
+(2, 1, 'Sequel', 2),
+(3, 2, 'Prequel', 1),
+(4, 6, 'Sequel', 7),
+(5, 8, 'Sequel', 9),
+(6, 9, 'Prequel', 8),
+(7, 7, 'Prequel', 6),
+(8, 1, 'OVA', 3),
+(9, 2, 'OVA', 4),
+(10, 4, 'Parent', 2),
+(11, 3, 'Parent', 1),
+(12, 2, 'Movie', 5),
+(13, 5, 'Parent', 2);
 
 -- --------------------------------------------------------
 
@@ -584,6 +615,14 @@ ALTER TABLE `animes_producers`
   ADD KEY `PRODUCERS` (`producer_id`);
 
 --
+-- Indexes for table `animes_relations`
+--
+ALTER TABLE `animes_relations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ANIME_RELATIONS` (`anime_id`),
+  ADD KEY `RELATIONS` (`relation_id`);
+
+--
 -- Indexes for table `animes_source`
 --
 ALTER TABLE `animes_source`
@@ -684,6 +723,12 @@ ALTER TABLE `animes_producers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
+-- AUTO_INCREMENT for table `animes_relations`
+--
+ALTER TABLE `animes_relations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `animes_source`
 --
 ALTER TABLE `animes_source`
@@ -779,6 +824,13 @@ ALTER TABLE `animes_licensors`
 ALTER TABLE `animes_producers`
   ADD CONSTRAINT `ANIME_PRODUCERS` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `PRODUCERS` FOREIGN KEY (`producer_id`) REFERENCES `producers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `animes_relations`
+--
+ALTER TABLE `animes_relations`
+  ADD CONSTRAINT `ANIME_RELATIONS` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `RELATIONS` FOREIGN KEY (`relation_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `animes_source`

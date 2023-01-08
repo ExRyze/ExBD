@@ -1,6 +1,8 @@
 // Add
 const addAlias = $('.btn-add-alias');
+const addRelation = $('.btn-add-relation');
 setValue(addAlias, $('#addAliasAnimeId'));
+setValue(addRelation, $('#addRelationAnimeId'));
 
 const linkGenre = $('.btn-link-genre');
 const linkTheme = $('.btn-link-theme');

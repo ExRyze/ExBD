@@ -21,6 +21,7 @@ class Admin extends Controller {
   public function animes() {
     Middleware::role('Admin');
     $data['page'] = 'EXBD | Admin - Animes';
+    $data['anime_id'] = $this->model('Animes')->getTitle();
     $data['animes'] = $this->model('Animes')->getAll();
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Aliases')->getAll(), 'aliases', NULL, TRUE);
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Genres')->getAll(), 'genres', 'genre');
@@ -28,6 +29,7 @@ class Admin extends Controller {
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Licensors')->getAll(),'licensors','licensor');
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Producers')->getAll(),'producers','producer');
     $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Studios')->getAll(), 'studios', 'studio');
+    $data['animes'] = Functions::dockingAnime($data['animes'], $this->model('Animes_Relations')->getAll(), 'relations', NULL, TRUE);
     $data['genres'] = $this->model('Genres')->getAll();
     $data['themes'] = $this->model('Themes')->getAll();
     $data['producers'] = $this->model('Producers')->getAll();

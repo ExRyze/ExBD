@@ -7,7 +7,11 @@ class Functions {
       foreach($parent as $i => $child) {
         $parent[$i][$newKey] = [];
         foreach($val as $item) {
-          if($child['id'] === $item['anime_id']) {
+          if($newKey === 'relations' && $child['id'] === $item['anime_id']) {
+            $parent[$i][$newKey][$item['relation']] = ['relation_id' => $item['relation_id'], 'title' => $item['title'], 'slug' => $item['slug']];
+            unset($item);
+          }
+          if($newKey != 'relations' && $child['id'] === $item['anime_id']) {
             array_push($parent[$i][$newKey], $item);
             unset($item);
           } } } return $parent;

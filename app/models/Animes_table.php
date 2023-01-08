@@ -15,7 +15,7 @@ class Animes_table {
   }
 
   public function getAll() {
-    $this->db->query("SELECT {$this->table}.*, `users`.`id`, `users`.`username` FROM {$this->table}, `users` WHERE {$this->table}.`id_user` = `users`.`id` ORDER BY `title` ASC");
+    $this->db->query("SELECT {$this->table}.*, `users`.`username` FROM {$this->table}, `users` WHERE {$this->table}.`id_user` = `users`.`id` ORDER BY `title` ASC");
     return $this->db->resultAll();
   }
 

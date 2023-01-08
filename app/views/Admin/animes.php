@@ -6,7 +6,7 @@
   <main class="p-3 col-11 d-flex flex-column">
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-secondary text-center mb-3">Table Animes</h2>
     <?php Flasher::flasher() ?>
-    <div class="col-12 d-flex mb-3">
+    <div class="col-12 d-flex mb-3 gap-3">
       <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalAddAnime'>Add</a>
     </div>
     <div class="col-12 overflow-auto border border-3 border-dark">
@@ -19,6 +19,7 @@
             <th>Status / Aired - Finished</th>
             <th>Genres / Themes</th>
             <th>Producers / Licensors / Studios</th>
+            <th>Relations</th>
             <th>Created at / Updated at</th>
             <th>Action</th>
           </tr>
@@ -70,6 +71,15 @@
                 <a role='button' class='btn btn-success btn-link-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $anime['id'] ?>>Add</a>
                 <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditStudio'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
               </div>
+            </td>
+            <td><?php foreach($anime['relations'] as $key => $relation) { ?>
+              <div class="d-flex gap-1">
+                <strong><?= $key ?> :</strong>
+                <a href="<?= BASE_URL.'/animes/anime/'.$relation['slug'] ?>"><?= $relation['title'] ?></a>,<br>
+              </div>
+              <?php } ?>
+              <a role='button' class='btn btn-success btn-add-relation' data-bs-toggle='modal' data-bs-target='#modalAddRelation' id=<?= $anime['id'] ?>>Add</a>
+              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditRelation'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
             </td>
             <td class="text-center">
               <?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?> <br><br> <small>Updated :</small> <br> <?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?> <br><br> <strong>By :</strong> <?= $anime['username'] ?>
@@ -171,6 +181,46 @@
         <div class="form-group">
           <label for="alias" class="form-label">Anime alias</label>
           <input type="text" name="alias" id="alias" class="form-control" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade modal-add" id="modalAddRelation" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action=<?= BASE_URL.'/admin/addAnimePart/relations' ?> method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="m-0">Add Relation</h5>
+        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="addRelationAnimeId">
+        <div class="form-group mb-3">
+          <label for="relation">Relation</label>
+          <select class="form-select" name="relation" id="relation" required>
+            <option value="" selected disabled hidden>Relation</option>
+            <option value="Adaption">Adaption</option>
+            <option value="Source">Source</option>
+            <option value="Parent">Parent</option>
+            <option value="Sequel">Sequel</option>
+            <option value="Prequel">Prequel</option>
+            <option value="OVA">OVA</option>
+            <option value="ONA">ONA</option>
+            <option value="Special">Special</option>
+            <option value="Movie">Movie</option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="relation_id">Anime</label>
+          <select class="form-select" name="relation_id" id="relation_id" required>
+            <option value="" selected hidden disabled>Select Anime</option>
+            <?php foreach($data['anime_id'] as $anime)
+            echo "<option value='{$anime['id']}'>{$anime['title']}</option>"; ?>
+          </select>
         </div>
       </div>
       <div class="modal-footer">
@@ -480,6 +530,31 @@
               <input type="hidden" name="origin" value='<?= $alias['origin_alias'] ?>'>
               <div class="d-flex gap-3 align-items-center">
                 <input type="text" name="alias" id="alias" class="form-control" value='<?= $alias['anime_alias'] ?>' readonly>
+                <button type="submit" class="btn-close"></button>
+              </div>
+            </form>
+          <?php } ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id=<?= 'modalEditRelation'.$anime['id'] ?> aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="m-0">Edit Relation</h5>
+          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
+        </div>
+        <div class="modal-body">
+          <?php foreach($anime['relations'] as $key => $relation) { ?>
+            <form action=<?= BASE_URL.'/admin/deleteAnimePart/relations' ?> method="post" class="mb-3">
+              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
+              <input type="hidden" name="relation_id" value=<?= $relation['relation_id'] ?>>
+              <div class="d-flex gap-3 align-items-center">
+                <label for="<?= $key ?>"><?= $key ?></label>
+                <input type="hidden" name="relation" value=<?= $key ?>>
+                <input type="text" name="anime_title" id="<?= $key ?>" class="form-control" value='<?= $relation['title'] ?>' readonly>
                 <button type="submit" class="btn-close"></button>
               </div>
             </form>

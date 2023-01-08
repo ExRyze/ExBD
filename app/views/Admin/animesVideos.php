@@ -7,7 +7,7 @@
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-secondary text-center mb-3">Table Animes Videos</h2>
     <?php Flasher::flasher() ?>
     <div class="col-12 d-flex mb-3 gap-3">
-      <?= (isset($data['key']))? "<a href='".BASE_URL."//admin/animesvideos' class='btn btn-info'>Videos</a>" : "<a role='button' data-bs-toggle='modal' data-bs-target='#modalAddVideo' class='btn btn-success'>Add</a> <a href='".BASE_URL."//admin/animesvideos/history' class='btn btn-info'>History</a>" ?>
+      <?= (isset($data['key']))? "<a href='".BASE_URL."/admin/animesvideos' class='btn btn-info'>Videos</a>" : "<a role='button' data-bs-toggle='modal' data-bs-target='#modalAddVideo' class='btn btn-success'>Add</a> <a href='".BASE_URL."/admin/animesvideos/history' class='btn btn-info'>History</a>" ?>
       <?= (file_exists(STORAGE_URL)) ? '' : "<div class='flasher flasher-warning m-0 text-center p-0'>Drive 'F:' doesn't exists</div>" ?>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
