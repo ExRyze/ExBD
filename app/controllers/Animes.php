@@ -16,13 +16,13 @@ class Animes extends Controller {
     $data['studios'] = $this->model('Animes_Studios')->getAliasesBySlug($slug);
     $data['genres'] = $this->model('Animes_Genres')->getAliasesBySlug($slug);
     $data['themes'] = $this->model('Animes_Themes')->getAliasesBySlug($slug);
-    $this->view('animes/anime', $data);
+    return $this->view('animes/anime', $data);
   }
 
   public function list() {
     $data['page'] = 'EXBD | Animes';
     $data['animes'] = $this->model('Animes')->getAll();
-    $this->view('animes/list', $data);
+    return $this->view('animes/list', $data);
   }
 
   public function video($slug = NULL, $eps = '01') {
@@ -41,13 +41,12 @@ class Animes extends Controller {
     if($_POST['finished'] === '') {$_POST['finished'] = NULL;}
     if($this->model('Animes')->validate()) {
       Flasher::setFlasher('flasher-warning', 'Anime sudah ada');
-      return header('location: '.BASE_URL.'/admin/animes');}
+      return Functions::back();}
     if(!$this->model('Animes')->store()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan!');
-      return header('location: '.BASE_URL.'/admin/animes');
-    }
+      return Functions::back();}
     Flasher::setFlasher('flasher-success', 'Anime berhasil di tambahkan');
-    return header('location: '.BASE_URL.'/admin/animes');
+    return Functions::back();
   }
 
   public function update() {
@@ -56,23 +55,21 @@ class Animes extends Controller {
     if($_POST['finished'] === '') {$_POST['finished'] = NULL;}
     if(!$this->model('Animes')->update()) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan');
-      return header('location: '.BASE_URL.'/admin/animes');
-    }
+      return Functions::back();}
     Flasher::setFlasher('flasher-success', 'Data anime telah di perharui');
-    return header('location: '.BASE_URL.'/admin/animes');
+    return Functions::back();
   }
 
   public function delete($id = NULL) {
     Middleware::role('Admin');
     if($id === NULL) {
       Flasher::setFlasher('flasher-warning', 'Need parameter');
-      return header('location: '.BASE_URL.'/admin/animes');}
+      return Functions::back();}
     if(!$this->model('Animes')->delete($id)) {
       Flasher::setFlasher('flasher-danger', 'Terjadi suatu kesalahan');
-      return header('location: '.BASE_URL.'/admin/animes');
-    }
+      return Functions::back();}
     Flasher::setFlasher('flasher-success', 'Data anime berhasil di hapus');
-    return header('location: '.BASE_URL.'/admin/animes');
+    return Functions::back();
   }
 
 }

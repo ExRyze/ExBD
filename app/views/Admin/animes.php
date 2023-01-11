@@ -7,7 +7,7 @@
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-secondary text-center mb-3">Table Animes</h2>
     <?php Flasher::flasher() ?>
     <div class="col-12 d-flex mb-3 gap-3">
-      <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalAddAnime'>Add</a>
+      <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' uid="<?= $_SESSION['user']['id'] ?>"  key="add" url="Anime">Add</a>
     </div>
     <div class="col-12 overflow-auto border border-3 border-dark">
       <table class="table table-anime m-0 table-bordered border-dark table-hover">
@@ -31,8 +31,8 @@
             <td class="text-center"><?= $key+1 ?></td>
             <td class="title-anime"><p class="fw-bold m-0 pb-2 border-3 border-bottom border-dark"><?= $anime['title'] ?></p>
               <?php foreach($anime['aliases'] as $alias) {echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";} ?>
-              <a role='button' class='btn btn-success btn-add-alias' data-bs-toggle='modal' data-bs-target='#modalAddAlias' id=<?= $anime['id'] ?>>Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditAlias'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+              <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="add" url="Alias">Add</a>
+              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['aliases'])) ?>" key="edit" url="Alias">Edit</a>
             </td>
             <td class="text-center">
               <p class="fw-bold mb-3"><?= $anime['type'] ?></p>
@@ -46,30 +46,35 @@
             <td class="genre-theme-anime">
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['genres']) ? "<p class='mb-0'><strong>Genres :</strong> ".implode(', ', $anime['genres'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-link-genre' data-bs-toggle='modal' data-bs-target='#modalAddGenre' id=<?= $anime['id'] ?>>Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditGenre'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+                <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Genre">New</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['genres'])) ?>" key="add" url="Genre">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['genres'])) ?>" key="edit" url="Genre">Edit</a>
               </div>
               <div>
                 <?= ($anime['themes']) ? "<p class='mb-0'><strong>Themes :</strong> ".implode(', ', $anime['themes'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-link-theme' data-bs-toggle='modal' data-bs-target='#modalAddTheme' id=<?= $anime['id'] ?>>Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditTheme'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+                <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Theme">New</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['themes'])) ?>" key="add" url="Theme">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['themes'])) ?>" key="edit" url="Theme">Edit</a>
               </div>
             </td>
             <td class="producer-licensor-studio-anime">
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['producers']) ? "<p class='mb-0'><strong>Producers :</strong> ".implode(', ', $anime['producers'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-link-producer' data-bs-toggle='modal' data-bs-target='#modalAddProducer' id=<?= $anime['id'] ?>>Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditProducer'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+                <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Producer">New</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['producers'])) ?>" key="add" url="Producer">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['producers'])) ?>" key="edit" url="Producer">Edit</a>
               </div>
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['licensors']) ? "<p class='mb-0'><strong>Licensors :</strong> ".implode(', ', $anime['licensors'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-link-licensor' data-bs-toggle='modal' data-bs-target='#modalAddLicensor' id=<?= $anime['id'] ?>>Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditLicensor'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+                <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Licensor">New</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['licensors'])) ?>" key="add" url="Licensor">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['licensors'])) ?>" key="edit" url="Licensor">Edit</a>
               </div>
               <div>
                 <?= ($anime['studios']) ? "<p class='mb-0'><strong>Studios :</strong> ".implode(', ', $anime['studios'])."</p>" : ''; ?>
-                <a role='button' class='btn btn-success btn-link-studio' data-bs-toggle='modal' data-bs-target='#modalAddStudio' id=<?= $anime['id'] ?>>Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditStudio'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+                <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Studio">New</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['studios'])) ?>" key="add" url="Studio">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['studios'])) ?>" key="edit" url="Studio">Edit</a>
               </div>
             </td>
             <td><?php foreach($anime['relations'] as $key => $relation) { ?>
@@ -78,15 +83,15 @@
                 <a href="<?= BASE_URL.'/animes/anime/'.$relation['slug'] ?>"><?= $relation['title'] ?></a>,<br>
               </div>
               <?php } ?>
-              <a role='button' class='btn btn-success btn-add-relation' data-bs-toggle='modal' data-bs-target='#modalAddRelation' id=<?= $anime['id'] ?>>Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target=<?= '#modalEditRelation'.$anime['id'] ?> id=<?= $anime['id'] ?>>Edit</a>
+              <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['anime_id'])) ?>" key="add" url="Relation">Add</a>
+              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['relations'])) ?>" key="edit" url="Relation">Edit</a>
             </td>
             <td class="text-center">
               <?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?> <br><br> <small>Updated :</small> <br> <?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?> <br><br> <strong>By :</strong> <?= $anime['username'] ?>
             </td>
             <td>
               <div class="d-flex gap-3">
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalEditAnime<?= $anime['id'] ?>'>Edit</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' uid="<?= $_SESSION['user']['id'] ?>" anime="<?= str_replace('"', "'", json_encode($anime)) ?>" key="edit" url="Anime">Edit</a>
                 <a href="<?= BASE_URL.'/animes/delete/'.$anime['id'] ?>" class="btn btn-danger">Delete</a>
               </div>
             </td>
@@ -110,569 +115,16 @@
   </main>
 </div>
 
-<!-- Modal Add -->
-<div class="modal fade modal-add" id="modalAddAnime" aria-hidden="true">
+<div class="modal fade" id="modal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/animes/store' ?> method="post" class="modal-content">
+    <form method="post" class="modal-content">
       <div class="modal-header">
-        <h5 class="m-0">Add Anime</h5>
+        <h5 class="m-0"></h5>
         <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="id_user" value="<?= $_SESSION['user']['id'] ?>">
-        <div class="form-group mb-3">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title" placeholder="Title..." required>
-        </div>
-        <div class="form-group mb-3">
-          <label for="episodes">Episodes</label>
-          <input type="number" class="form-control" name="episodes" id="episodes" min="0" value="0">
-        </div>
-        <div class="form-group mb-3">
-          <label for="status">Status</label>
-          <select class="form-select" name="status" id="status" required>
-            <option value="" selected disabled hidden>Status</option>
-            <option value="Not yet aired">Not yet aired</option>
-            <option value="Currently aired">Currently aired</option>
-            <option value="Finished airing">Finished airing</option>
-          </select>
-        </div>
-        <div class="form-group mb-3">
-          <label for="tipe">Type</label>
-          <select class="form-select" name="tipe" id="tipe" required>
-            <option value="" selected disabled hidden>Type</option>
-            <option value="TV">TV</option>
-            <option value="BD">BD</option>
-            <option value="OVA">OVA</option>
-            <option value="ONA">ONA</option>
-            <option value="OAD">OAD</option>
-            <option value="Movie">Movie</option>
-          </select>
-        </div>
-        <div class="form-group mb-3">
-          <label for="aired">Date Aired</label>
-          <input class="form-control" type="date" name="aired" id="aired">
-        </div>
-        <div class="form-group">
-          <label for="finished">Date Finished</label>
-          <input class="form-control" type="date" name="finished" id="finished">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>
 </div>
-
-<div class="modal fade modal-add" id="modalAddAlias" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/admin/addAnimePart/aliases' ?> method="post" class="modal-content">
-      <div class="modal-header">
-        <h5 class="m-0">Add Alias</h5>
-        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="addAliasAnimeId">
-        <div class="mb-3">
-          <label for="origin" class="form-label">Origin alias</label>
-          <input type="text" name="origin" id="origin" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="alias" class="form-label">Anime alias</label>
-          <input type="text" name="alias" id="alias" class="form-control" required>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="modal fade modal-add" id="modalAddRelation" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/admin/addAnimePart/relations' ?> method="post" class="modal-content">
-      <div class="modal-header">
-        <h5 class="m-0">Add Relation</h5>
-        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="addRelationAnimeId">
-        <div class="form-group mb-3">
-          <label for="relation">Relation</label>
-          <select class="form-select" name="relation" id="relation" required>
-            <option value="" selected disabled hidden>Relation</option>
-            <option value="Adaption">Adaption</option>
-            <option value="Source">Source</option>
-            <option value="Parent">Parent</option>
-            <option value="Sequel">Sequel</option>
-            <option value="Prequel">Prequel</option>
-            <option value="OVA">OVA</option>
-            <option value="ONA">ONA</option>
-            <option value="Special">Special</option>
-            <option value="Movie">Movie</option>
-          </select>
-        </div>
-        <div class="form-group mb-3">
-          <label for="relation_id">Anime</label>
-          <select class="form-select" name="relation_id" id="relation_id" required>
-            <option value="" selected hidden disabled>Select Anime</option>
-            <?php foreach($data['anime_id'] as $anime)
-            echo "<option value='{$anime['id']}'>{$anime['title']}</option>"; ?>
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="modal fade modal-add" id="modalAddGenre" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/admin/addAnimePart/genres' ?> method="post" class="modal-content">
-      <div class="modal-header">
-        <h5 class="m-0">Add Genre</h5>
-        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="linkGenreAnimeId">
-        <div class="form-group mb-2">
-          <label for="genre">Genre</label>
-          <select class="form-select" name="genre" id="genre" required>
-            <option value="" selected hidden disabled>Select genre</option>
-            <?php foreach($data['genres'] as $genre)
-            echo "<option value='{$genre['id']}'>{$genre['genre']}</option>"; ?>
-          </select>
-        </div>
-        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewGenre'>New Genre</a></small>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal fade modal-add" id='modalNewGenre' aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/genres' ?> method="post">
-      <div class="modal-header">
-        <h5>New Genre</h5>
-        <a class="btn-close" data-bs-dismiss="modal"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="addGenreAnimeId">
-        <div class="form-group">
-          <label class="form-label" for='genre'>Genre</label>
-          <input type="text" name='genre' id='genre' class="form-control">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="modal fade modal-add" id="modalAddTheme" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/admin/addAnimePart/themes' ?> method="post" class="modal-content">
-      <div class="modal-header">
-        <h5 class="m-0">Add Theme</h5>
-        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="linkThemeAnimeId">
-        <div class="form-group mb-2">
-          <label for="theme">Theme</label>
-          <select class="form-select" name="theme" id="theme" required>
-            <option value="" selected hidden disabled>Select theme</option>
-            <?php foreach($data['themes'] as $theme)
-            echo "<option value='{$theme['id']}'>{$theme['theme']}</option>"; ?>
-          </select>
-        </div>
-        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewTheme'>New Theme</a></small>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal fade modal-add" id='modalNewTheme' aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/themes' ?> method="post">
-      <div class="modal-header">
-        <h5>New Theme</h5>
-        <a class="btn-close" data-bs-dismiss="modal"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="addThemeAnimeId">
-        <div class="form-group">
-          <label class="form-label" for='theme'>Theme</label>
-          <input type="text" name='theme' id='theme' class="form-control">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="modal fade modal-add" id="modalAddProducer" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/admin/addAnimePart/producers' ?> method="post" class="modal-content">
-      <div class="modal-header">
-        <h5 class="m-0">Add Producer</h5>
-        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="linkProducerAnimeId">
-        <div class="form-group mb-2">
-          <label for="producer">Producer</label>
-          <select class="form-select" name="producer" id="producer" required>
-            <option value="" selected hidden disabled>Select producer</option>
-            <?php foreach($data['producers'] as $producer)
-            echo "<option value='{$producer['id']}'>{$producer['producer']}</option>"; ?>
-          </select>
-        </div>
-        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewProducer'>New Producer</a></small>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal fade modal-add" id='modalNewProducer' aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/producers' ?> method="post">
-      <div class="modal-header">
-        <h5>New Producer</h5>
-        <a class="btn-close" data-bs-dismiss="modal"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="addProducerAnimeId">
-        <div class="form-group">
-          <label class="form-label" for='producer'>Producer</label>
-          <input type="text" name='producer' id='producer' class="form-control">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="modal fade modal-add" id="modalAddLicensor" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/admin/addAnimePart/licensors' ?> method="post" class="modal-content">
-      <div class="modal-header">
-        <h5 class="m-0">Add Licensor</h5>
-        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="linkLicensorAnimeId">
-        <div class="form-group mb-2">
-          <label for="licensor">Licensor</label>
-          <select class="form-select" name="licensor" id="licensor" required>
-            <option value="" selected hidden disabled>Select licensor</option>
-            <?php foreach($data['licensors'] as $licensor)
-            echo "<option value='{$licensor['id']}'>{$licensor['licensor']}</option>"; ?>
-          </select>
-        </div>
-        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewLicensor'>New Licensor</a></small>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal fade modal-add" id='modalNewLicensor' aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/licensors' ?> method="post">
-      <div class="modal-header">
-        <h5>New Licensor</h5>
-        <a class="btn-close" data-bs-dismiss="modal"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="addLicensorAnimeId">
-        <div class="form-group">
-          <label class="form-label" for='licensor'>Licensor</label>
-          <input type="text" name='licensor' id='licensor' class="form-control">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="modal fade modal-add" id="modalAddStudio" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL.'/admin/addAnimePart/studios' ?> method="post" class="modal-content">
-      <div class="modal-header">
-        <h5 class="m-0">Add Studio</h5>
-        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="linkStudioAnimeId">
-        <div class="form-group mb-2">
-          <label for="studio">Studio</label>
-          <select class="form-select" name="studio" id="studio" required>
-            <option value="" selected hidden disabled>Select studio</option>
-            <?php foreach($data['studios'] as $studio)
-            echo "<option value='{$studio['id']}'>{$studio['studio']}</option>"; ?>
-          </select>
-        </div>
-        <small><a class="link-primary" role='button' data-bs-toggle='modal' data-bs-target='#modalNewStudio'>New Studio</a></small>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal fade modal-add" id='modalNewStudio' aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action=<?= BASE_URL.'/admin/addPartsAnimePart/studios' ?> method="post">
-      <div class="modal-header">
-        <h5>New Studio</h5>
-        <a class="btn-close" data-bs-dismiss="modal"></a>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="addStudioAnimeId">
-        <div class="form-group">
-          <label class="form-label" for='studio'>Studio</label>
-          <input type="text" name='studio' id='studio' class="form-control" autofocus>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- Modal Edit -->
-<?php foreach($data['animes'] as $anime) { ?>
-  <div class="modal fade" id="modalEditAnime<?= $anime['id'] ?>" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <form action=<?= BASE_URL.'/animes/update' ?> method="post" class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Anime</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="id_user" value="<?= $_SESSION['user']['id'] ?>">
-          <input type="hidden" name="id" value="<?= $anime['id'] ?>">
-          <div class="form-group mb-3">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Title..." value="<?= $anime['title'] ?>" required>
-          </div>
-          <div class="form-group mb-3">
-            <label for="episodes">Episodes</label>
-            <input type="number" class="form-control" name="episodes" id="episodes" min="0" value="<?= $anime['episodes'] ?>">
-          </div>
-          <div class="form-group mb-3">
-            <label for="status">Status</label>
-            <select class="form-select" name="status" id="status" required>
-              <option value="Not yet aired" <?= ($anime['status'] === 'Not yet aired') ? 'selected' : '' ?>>Not yet aired</option>
-              <option value="Currently aired" <?= ($anime['status'] === 'Currently aired') ? 'selected' : '' ?>>Currently aired</option>
-              <option value="Finished airing" <?= ($anime['status'] === 'Finished airing') ? 'selected' : '' ?>>Finished airing</option>
-            </select>
-          </div>
-          <div class="form-group mb-3">
-            <label for="tipe">Type</label>
-            <select class="form-select" name="tipe" id="tipe" required>
-              <option value="TV" <?= ($anime['type'] === 'TV') ? 'selected' : '' ?>>TV</option>
-              <option value="BD" <?= ($anime['type'] === 'BD') ? 'selected' : '' ?>>BD</option>
-              <option value="OVA" <?= ($anime['type'] === 'OVA') ? 'selected' : '' ?>>OVA</option>
-              <option value="ONA" <?= ($anime['type'] === 'ONA') ? 'selected' : '' ?>>ONA</option>
-              <option value="OAD" <?= ($anime['type'] === 'OAD') ? 'selected' : '' ?>>OAD</option>
-              <option value="Movie" <?= ($anime['type'] === 'Movie') ? 'selected' : '' ?>>Movie</option>
-            </select>
-          </div>
-          <div class="form-group mb-3">
-            <label for="aired">Date Aired</label>
-            <input class="form-control" type="date" name="aired" id="aired" value="<?= $anime['aired'] ?>">
-          </div>
-          <div class="form-group">
-            <label for="finished">Date Finished</label>
-            <input class="form-control" type="date" name="finished" id="finished" value="<?= $anime['finished'] ?>">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal fade" id=<?= 'modalEditAlias'.$anime['id'] ?> aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Alias</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <?php foreach($anime['aliases'] as $alias) { ?>
-            <form action=<?= BASE_URL.'/admin/deleteAnimePart/aliases' ?> method="post" class="mb-3">
-              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
-              <label class="form-label" for="alias"><?= $alias['origin_alias'] ?></label>
-              <input type="hidden" name="origin" value='<?= $alias['origin_alias'] ?>'>
-              <div class="d-flex gap-3 align-items-center">
-                <input type="text" name="alias" id="alias" class="form-control" value='<?= $alias['anime_alias'] ?>' readonly>
-                <button type="submit" class="btn-close"></button>
-              </div>
-            </form>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id=<?= 'modalEditRelation'.$anime['id'] ?> aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Relation</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <?php foreach($anime['relations'] as $key => $relation) { ?>
-            <form action=<?= BASE_URL.'/admin/deleteAnimePart/relations' ?> method="post" class="mb-3">
-              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
-              <input type="hidden" name="relation_id" value=<?= $relation['relation_id'] ?>>
-              <div class="d-flex gap-3 align-items-center">
-                <label for="<?= $key ?>"><?= $key ?></label>
-                <input type="hidden" name="relation" value=<?= $key ?>>
-                <input type="text" name="anime_title" id="<?= $key ?>" class="form-control" value='<?= $relation['title'] ?>' readonly>
-                <button type="submit" class="btn-close"></button>
-              </div>
-            </form>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id=<?= 'modalEditGenre'.$anime['id'] ?> aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Genre</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <?php foreach($anime['genres'] as $genre) { ?>
-            <form action=<?= BASE_URL.'/admin/deleteAnimePart/genres' ?> method="post" class="mb-3">
-              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
-              <div class="d-flex gap-3 align-items-center">
-                <input type="text" name="genre" class="form-control" value='<?= $genre ?>' readonly>
-                <button type="submit" class="btn-close"></button>
-              </div>
-            </form>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id=<?= 'modalEditTheme'.$anime['id'] ?> aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Theme</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <?php foreach($anime['themes'] as $theme) { ?>
-            <form action=<?= BASE_URL.'/admin/deleteAnimePart/themes' ?> method="post" class="mb-3">
-              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
-              <div class="d-flex gap-3 align-items-center">
-                <input type="text" name="theme" class="form-control" value='<?= $theme ?>' readonly>
-                <button type="submit" class="btn-close"></button>
-              </div>
-            </form>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id=<?= 'modalEditProducer'.$anime['id'] ?> aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Producer</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <?php foreach($anime['producers'] as $producer) { ?>
-            <form action=<?= BASE_URL.'/admin/deleteAnimePart/producers' ?> method="post" class="mb-3">
-              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
-              <div class="d-flex gap-3 align-items-center">
-                <input type="text" name="producer" class="form-control" value='<?= $producer ?>' readonly>
-                <button type="submit" class="btn-close"></button>
-              </div>
-            </form>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id=<?= 'modalEditLicensor'.$anime['id'] ?> aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Licensor</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <?php foreach($anime['licensors'] as $licensor) { ?>
-            <form action=<?= BASE_URL.'/admin/deleteAnimePart/licensors' ?> method="post" class="mb-3">
-              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
-              <div class="d-flex gap-3 align-items-center">
-                <input type="text" name="licensor" class="form-control" value='<?= $licensor ?>' readonly>
-                <button type="submit" class="btn-close"></button>
-              </div>
-            </form>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id=<?= 'modalEditStudio'.$anime['id'] ?> aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="m-0">Edit Studio</h5>
-          <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
-        </div>
-        <div class="modal-body">
-          <?php foreach($anime['studios'] as $studio) { ?>
-            <form action=<?= BASE_URL.'/admin/deleteAnimePart/studios' ?> method="post" class="mb-3">
-              <input type="hidden" name="id" value=<?= $anime['id'] ?>>
-              <div class="d-flex gap-3 align-items-center">
-                <input type="text" name="studio" class="form-control" value='<?= $studio ?>' readonly>
-                <button type="submit" class="btn-close"></button>
-              </div>
-            </form>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
-<?php } ?>
-
 <?php require_once ADMIN_FOOT ?>
