@@ -13,14 +13,13 @@ class Modal {
     $.each($(".btn[data-bs-toggle='modal']"), (key, value) => {
       value.addEventListener('click', () => {
         let datas = {
-          anime: ($(value).attr('anime') != undefined) ? JSON.parse($(value).attr('anime').replaceAll("'", '"')) : undefined,
+          anime: ($(value).attr('anime') != undefined) ? JSON.parse($(value).attr('anime').replaceAll("`", '"')) : undefined,
           uid: $(value).attr('uid'),
           id: $(value).attr('id'),
           title: $(value).attr('title'),
           key: $(value).attr('key'),
           url: $(value).attr('url'),
         }
-        console.log(datas.anime);
         this.route(datas);
       })
     })
@@ -146,15 +145,15 @@ class Modal {
             this.modal.foot.remove();
             this.modal.foot = undefined;
             this.modal.head.text('Edit Alias');
-            this.modal.body.append(`<h6 class="text-muted text-center">${datas.title}</h6>`);
+            this.modal.body.html(`<h6 class="text-muted text-center">${datas.title}</h6>`);
             $.each(datas.anime, (key, alias) => {
               this.modal.body.append(`
               <form action="${BASE_URL+'/admin/deleteAnimePart/aliases'}" method="post" class="mb-3">
                 <input type="hidden" name="id" value="${datas.id}">
                 <label class="form-label" for="alias">${alias['origin_alias']}</label>
-                <input type="hidden" name="origin" value='${alias['origin_alias']}'>
+                <input type="hidden" name="origin" value="${alias['origin_alias']}">
                 <div class="d-flex gap-3 align-items-center">
-                  <input type="text" name="alias" id="alias" class="form-control" value='${alias['anime_alias']}' readonly>
+                  <input type="text" name="alias" id="alias" class="form-control" value="${alias['anime_alias']}" readonly>
                   <button type="submit" class="btn-close"></button>
                 </div>
               </form>
@@ -191,7 +190,7 @@ class Modal {
             </div>
             `);
             $.each(datas.anime, (key, genre) => {
-              this.modal.body.find('select').append(`<option value='${genre['id']}'>${genre['genre']}</option>`); })
+              this.modal.body.find('select').append(`<option value="${genre['id']}">${genre['genre']}</option>`); })
             break;
           case 'edit':
             this.modal.foot.remove();
@@ -203,12 +202,23 @@ class Modal {
               <form action="${BASE_URL+'/admin/deleteAnimePart/genres'}" method="post" class="mb-3">
                 <input type="hidden" name="id" value="${datas.id}">
                 <div class="d-flex gap-3 align-items-center">
-                  <input type="text" name="genre" class="form-control" value='${genre}' readonly>
+                  <input type="text" name="genre" class="form-control" value="${genre}" readonly>
                   <button type="submit" class="btn-close"></button>
                 </div>
               </form>
               `);
             })
+            break;
+          case 'modify' :
+            this.modal.form.attr('action', BASE_URL+'/admin/editParts/genres');
+            this.modal.head.text('Modify Genre');
+            this.modal.body.html(`
+            <input type="hidden" name="id" value="${datas.id}">
+            <div class="form-group">
+              <label class="form-label" for='genre'>Genre</label>
+              <input type="text" name='genre' id='genre' class="form-control" value="${datas.title}">
+            </div>
+            `);
             break;
         }
         break;
@@ -240,7 +250,7 @@ class Modal {
             </div>
             `);
             $.each(datas.anime, (key, theme) => {
-              this.modal.body.find('select').append(`<option value='${theme['id']}'>${theme['theme']}</option>`); })
+              this.modal.body.find('select').append(`<option value="${theme['id']}">${theme['theme']}</option>`); })
             break;
           case 'edit':
             this.modal.foot.remove();
@@ -252,14 +262,25 @@ class Modal {
               <form action="${BASE_URL+'/admin/deleteAnimePart/themes'}" method="post" class="mb-3">
                 <input type="hidden" name="id" value="${datas.id}">
                 <div class="d-flex gap-3 align-items-center">
-                  <input type="text" name="theme" class="form-control" value='${theme}' readonly>
+                  <input type="text" name="theme" class="form-control" value="${theme}" readonly>
                   <button type="submit" class="btn-close"></button>
                 </div>
               </form>
               `);
             })
             break;
-        }
+          case 'modify' :
+            this.modal.form.attr('action', BASE_URL+'/admin/editParts/themes');
+            this.modal.head.text('Modify Theme');
+            this.modal.body.html(`
+            <input type="hidden" name="id" value="${datas.id}">
+            <div class="form-group">
+              <label class="form-label" for='theme'>Theme</label>
+              <input type="text" name='theme' id='theme' class="form-control" value="${datas.title}">
+            </div>
+            `);
+            break;
+          }
         break;
       case 'Producer':
         switch (datas.key) {
@@ -289,7 +310,7 @@ class Modal {
             </div>
             `);
             $.each(datas.anime, (key, producer) => {
-              this.modal.body.find('select').append(`<option value='${producer['id']}'>${producer['producer']}</option>`); })
+              this.modal.body.find('select').append(`<option value="${producer['id']}">${producer['producer']}</option>`); })
             break;
           case 'edit':
             this.modal.foot.remove();
@@ -301,14 +322,25 @@ class Modal {
               <form action="${BASE_URL+'/admin/deleteAnimePart/producers'}" method="post" class="mb-3">
                 <input type="hidden" name="id" value="${datas.id}">
                 <div class="d-flex gap-3 align-items-center">
-                  <input type="text" name="producer" class="form-control" value='${producer}' readonly>
+                  <input type="text" name="producer" class="form-control" value="${producer}" readonly>
                   <button type="submit" class="btn-close"></button>
                 </div>
               </form>
               `);
             })
             break;
-        }
+          case 'modify' :
+            this.modal.form.attr('action', BASE_URL+'/admin/editParts/producers');
+            this.modal.head.text('Modify Producer');
+            this.modal.body.html(`
+            <input type="hidden" name="id" value="${datas.id}">
+            <div class="form-group">
+              <label class="form-label" for='producer'>Producer</label>
+              <input type="text" name='producer' id='producer' class="form-control" value="${datas.title}">
+            </div>
+            `);
+            break;
+          }
         break;
       case 'Licensor':
         switch (datas.key) {
@@ -338,7 +370,7 @@ class Modal {
             </div>
             `);
             $.each(datas.anime, (key, licensor) => {
-              this.modal.body.find('select').append(`<option value='${licensor['id']}'>${licensor['licensor']}</option>`); })
+              this.modal.body.find('select').append(`<option value="${licensor['id']}">${licensor['licensor']}</option>`); })
             break;
           case 'edit':
             this.modal.foot.remove();
@@ -350,14 +382,25 @@ class Modal {
               <form action="${BASE_URL+'/admin/deleteAnimePart/licensors'}" method="post" class="mb-3">
                 <input type="hidden" name="id" value="${datas.id}">
                 <div class="d-flex gap-3 align-items-center">
-                  <input type="text" name="licensor" class="form-control" value='${licensor}' readonly>
+                  <input type="text" name="licensor" class="form-control" value="${licensor}" readonly>
                   <button type="submit" class="btn-close"></button>
                 </div>
               </form>
               `);
             })
             break;
-        }
+          case 'modify' :
+            this.modal.form.attr('action', BASE_URL+'/admin/editParts/licensors');
+            this.modal.head.text('Modify Licensor');
+            this.modal.body.html(`
+            <input type="hidden" name="id" value="${datas.id}">
+            <div class="form-group">
+              <label class="form-label" for='licensor'>Licensor</label>
+              <input type="text" name='licensor' id='licensor' class="form-control" value="${datas.title}">
+            </div>
+            `);
+            break;
+          }
         break;
       case 'Studio':
         switch (datas.key) {
@@ -387,7 +430,7 @@ class Modal {
             </div>
             `);
             $.each(datas.anime, (key, studio) => {
-              this.modal.body.find('select').append(`<option value='${studio['id']}'>${studio['studio']}</option>`); })
+              this.modal.body.find('select').append(`<option value="${studio['id']}">${studio['studio']}</option>`); })
             break;
           case 'edit':
             this.modal.foot.remove();
@@ -399,14 +442,25 @@ class Modal {
               <form action="${BASE_URL+'/admin/deleteAnimePart/studios'}" method="post" class="mb-3">
                 <input type="hidden" name="id" value="${datas.id}">
                 <div class="d-flex gap-3 align-items-center">
-                  <input type="text" name="studio" class="form-control" value='${studio}' readonly>
+                  <input type="text" name="studio" class="form-control" value="${studio}" readonly>
                   <button type="submit" class="btn-close"></button>
                 </div>
               </form>
               `);
             })
             break;
-        }
+          case 'modify' :
+            this.modal.form.attr('action', BASE_URL+'/admin/editParts/studios');
+            this.modal.head.text('Modify Studio');
+            this.modal.body.html(`
+            <input type="hidden" name="id" value="${datas.id}">
+            <div class="form-group">
+              <label class="form-label" for='studio'>Studio</label>
+              <input type="text" name='studio' id='studio' class="form-control" value="${datas.title}">
+            </div>
+            `);
+            break;
+          }
         break;
       case 'Relation':
         switch (datas.key) {
@@ -439,7 +493,7 @@ class Modal {
             </div>
             `);
             $.each(datas.anime, (key, relation) => {
-              this.modal.body.find('select#relation_id').append(`<option value='${relation['id']}'>${relation['title']}</option>`); })
+              this.modal.body.find('select#relation_id').append(`<option value="${relation['id']}">${relation['title']}</option>`); })
             break;
           case 'edit':
             this.modal.foot.remove();
@@ -454,7 +508,7 @@ class Modal {
                 <div class="d-flex gap-3 align-items-center">
                   <label class="col-2" for="${key}">${key}</label>
                   <input type="hidden" name="relation" value="${key}">
-                  <input type="text" name="anime_title" id="${key}" class="form-control" value='${relation['title']}' readonly>
+                  <input type="text" name="anime_title" id="${key}" class="form-control" value="${relation['title']}" readonly>
                   <button type="submit" class="btn-close"></button>
                 </div>
               </form>

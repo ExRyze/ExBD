@@ -9,9 +9,9 @@
     <div class="col-12 d-flex overflow-scroll scrollbar-none">
       <?php foreach($data['database'] as $key => $table) { ?>
         <div class="col-3 px-2">
-          <h5 class="col-12 pb-2 m-0 border-bottom border-2 border-secondary text-center mb-3">Table <?= $key ?></h5>
+          <h5 class="col-12 pb-2 m-0 border-bottom border-2 border-secondary text-center mb-3">Table <?= ucfirst($key) ?></h5>
           <div class="col-12 d-flex mb-3">
-            <a role="button" data-bs-toggle="modal" data-bs-target=<?= '#modalAdd'.$table['column'] ?> class="btn btn-success">Add</a>
+            <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' title="" key="new" url="<?= ucfirst($table['column']) ?>">Add</a>
           </div>
           <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
             <table class="table m-0 table-bordered border-dark table-hover">
@@ -27,7 +27,7 @@
                   <td><?= $row[$table['column']] ?></td>
                   <td>
                     <div class="d-flex gap-3">
-                      <a role="button" data-bs-toggle="modal" data-bs-target=<?= '#modalEdit'.$table['column'].$row['id'] ?> class="btn btn-warning">Edit</a>
+                      <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $row['id'] ?>" title="<?= $row[$table['column']] ?>" key="modify" url="<?= ucfirst($table['column']) ?>">Edit</a>
                       <form action="<?= BASE_URL.'/admin/deleteParts/'.$key ?>" method="post">
                         <input type="hidden" name="id" value="<?= $row['id'] ?>">
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -43,54 +43,23 @@
               </tfoot>
             </table>
           </div>
-
-          <div class="modal fade modal-add" id=<?= 'modalAdd'.$table['column'] ?> aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <form class="modal-content" action=<?= BASE_URL.'/admin/addParts/'.$key ?> method="post">
-                <div class="modal-header">
-                  <h5>Add <?= $table['column'] ?></h5>
-                  <a class="btn-close" data-bs-dismiss="modal"></a>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label class="form-label" for=<?= $table['column'] ?>><?= $table['column'] ?></label>
-                    <input type="text" name="<?= $table['column'] ?>" id="<?= $table['column'] ?>" class="form-control">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <?php foreach($table['table'] as $row) { ?>
-            <div class="modal fade modal-add" id=<?= 'modalEdit'.$table['column'].$row['id'] ?> aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <form class="modal-content" action=<?= BASE_URL.'/admin/editParts/'.$key ?> method="post">
-                  <div class="modal-header">
-                    <h5>Add <?= $table['column'] ?></h5>
-                    <a class="btn-close" data-bs-dismiss="modal"></a>
-                  </div>
-                  <div class="modal-body">
-                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                    <div class="form-group">
-                      <label class="form-label" for=<?= $table['column'] ?>><?= $table['column'] ?></label>
-                      <input type="text" name="<?= $table['column'] ?>" id="<?= $table['column'] ?>" class="form-control" value="<?= $row[$table['column']] ?>">
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          <?php } ?>
-
         </div>
       <?php } ?>
     </div>
   </main>
+</div>
+
+<div class="modal fade" id="modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form method="post" class="modal-content">
+      <div class="modal-header">
+        <h5 class="m-0"></h5>
+        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
+      </div>
+      <div class="modal-body">
+      </div>
+    </form>
+  </div>
 </div>
 
 <?php require_once ADMIN_FOOT ?>

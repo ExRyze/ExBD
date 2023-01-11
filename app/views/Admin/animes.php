@@ -32,7 +32,7 @@
             <td class="title-anime"><p class="fw-bold m-0 pb-2 border-3 border-bottom border-dark"><?= $anime['title'] ?></p>
               <?php foreach($anime['aliases'] as $alias) {echo "<p class='m-0'><strong>{$alias['origin_alias']}:</strong> {$alias['anime_alias']}</p>";} ?>
               <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="add" url="Alias">Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['aliases'])) ?>" key="edit" url="Alias">Edit</a>
+              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" anime="<?= str_replace('"', "`", json_encode($anime['aliases'])) ?>" key="edit" url="Alias">Edit</a>
             </td>
             <td class="text-center">
               <p class="fw-bold mb-3"><?= $anime['type'] ?></p>
@@ -47,34 +47,34 @@
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['genres']) ? "<p class='mb-0'><strong>Genres :</strong> ".implode(', ', $anime['genres'])."</p>" : ''; ?>
                 <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Genre">New</a>
-                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['genres'])) ?>" key="add" url="Genre">Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['genres'])) ?>" key="edit" url="Genre">Edit</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($data['genres'])) ?>" key="add" url="Genre">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($anime['genres'])) ?>" key="edit" url="Genre">Edit</a>
               </div>
               <div>
                 <?= ($anime['themes']) ? "<p class='mb-0'><strong>Themes :</strong> ".implode(', ', $anime['themes'])."</p>" : ''; ?>
                 <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Theme">New</a>
-                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['themes'])) ?>" key="add" url="Theme">Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['themes'])) ?>" key="edit" url="Theme">Edit</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($data['themes'])) ?>" key="add" url="Theme">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($anime['themes'])) ?>" key="edit" url="Theme">Edit</a>
               </div>
             </td>
             <td class="producer-licensor-studio-anime">
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['producers']) ? "<p class='mb-0'><strong>Producers :</strong> ".implode(', ', $anime['producers'])."</p>" : ''; ?>
                 <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Producer">New</a>
-                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['producers'])) ?>" key="add" url="Producer">Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['producers'])) ?>" key="edit" url="Producer">Edit</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($data['producers'])) ?>" key="add" url="Producer">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($anime['producers'])) ?>" key="edit" url="Producer">Edit</a>
               </div>
               <div class="pb-2 border-3 border-bottom border-dark mb-2">
                 <?= ($anime['licensors']) ? "<p class='mb-0'><strong>Licensors :</strong> ".implode(', ', $anime['licensors'])."</p>" : ''; ?>
                 <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Licensor">New</a>
-                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['licensors'])) ?>" key="add" url="Licensor">Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['licensors'])) ?>" key="edit" url="Licensor">Edit</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($data['licensors'])) ?>" key="add" url="Licensor">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($anime['licensors'])) ?>" key="edit" url="Licensor">Edit</a>
               </div>
               <div>
                 <?= ($anime['studios']) ? "<p class='mb-0'><strong>Studios :</strong> ".implode(', ', $anime['studios'])."</p>" : ''; ?>
                 <a role='button' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" key="new" url="Studio">New</a>
-                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['studios'])) ?>" key="add" url="Studio">Add</a>
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['studios'])) ?>" key="edit" url="Studio">Edit</a>
+                <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($data['studios'])) ?>" key="add" url="Studio">Add</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($anime['studios'])) ?>" key="edit" url="Studio">Edit</a>
               </div>
             </td>
             <td><?php foreach($anime['relations'] as $key => $relation) { ?>
@@ -83,15 +83,15 @@
                 <a href="<?= BASE_URL.'/animes/anime/'.$relation['slug'] ?>"><?= $relation['title'] ?></a>,<br>
               </div>
               <?php } ?>
-              <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($data['anime_id'])) ?>" key="add" url="Relation">Add</a>
-              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "'", json_encode($anime['relations'])) ?>" key="edit" url="Relation">Edit</a>
+              <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($data['anime_id'])) ?>" key="add" url="Relation">Add</a>
+              <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' id="<?= $anime['id'] ?>" title="<?= $anime['title'] ?>" anime="<?= str_replace('"', "`", json_encode($anime['relations'])) ?>" key="edit" url="Relation">Edit</a>
             </td>
             <td class="text-center">
               <?= date('d M Y H:i:s A', strtotime($anime['created_at'])) ?> <br><br> <small>Updated :</small> <br> <?= date('d M Y H:i:s A', strtotime($anime['updated_at'])) ?> <br><br> <strong>By :</strong> <?= $anime['username'] ?>
             </td>
             <td>
               <div class="d-flex gap-3">
-                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' uid="<?= $_SESSION['user']['id'] ?>" anime="<?= str_replace('"', "'", json_encode($anime)) ?>" key="edit" url="Anime">Edit</a>
+                <a role='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modal' uid="<?= $_SESSION['user']['id'] ?>" anime="<?= str_replace('"', "`", json_encode($anime)) ?>" key="edit" url="Anime">Edit</a>
                 <a href="<?= BASE_URL.'/animes/delete/'.$anime['id'] ?>" class="btn btn-danger">Delete</a>
               </div>
             </td>
