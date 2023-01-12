@@ -31,6 +31,29 @@ class Modal {
     </div>`);
     this.modal.foot = $('#modal form .modal-footer');
     switch (datas.url) {
+      case 'Admin':
+        switch (datas.key) {
+          case 'add':
+            this.modal.form.attr('action', BASE_URL+'/register/admin');
+            this.modal.head.text('Add Admin');
+            this.modal.body.html(`
+            <input type="hidden" name="role" value="Admin">
+            <div class="form-group mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            `);
+          break;
+        }
+        break;
       case 'Anime':
         switch (datas.key) {
           case 'add':
@@ -123,9 +146,9 @@ class Modal {
             break;
         }
         break;
-      case 'Video' :
+      case 'Video':
         switch (datas.key) {
-          case 'add' :
+          case 'add':
             this.modal.form.attr('action', BASE_URL+'/admin/addAnimePart/Videos');
             this.modal.head.text('Add Video');
             this.modal.body.html(`
@@ -176,7 +199,7 @@ class Modal {
             $.each(datas.anime, (key, anime) => {
               this.modal.body.find('select#id').append(`<option value='${anime['id']}'>${anime['title']}</option>`); })
             break;
-          case 'edit' :
+          case 'edit':
             this.modal.form.attr('action', BASE_URL+'/admin/editAnimePart/Videos');
             this.modal.head.text('Edit Video');
             this.modal.body.html(`
@@ -225,7 +248,7 @@ class Modal {
             </div>
             `);
             break;
-          case 'generate' :
+          case 'generate':
             this.modal.head.text('Generate Title');
             if(datas.anime['title'].includes(':')) {datas.anime['title'] = datas.anime['title'].replaceAll(':', '-')}
             if(datas.anime['title'].includes('?')) {datas.anime['title'] = datas.anime['title'].replaceAll('?', '@')}
@@ -393,7 +416,7 @@ class Modal {
               `);
             })
             break;
-          case 'modify' :
+          case 'modify':
             this.modal.form.attr('action', BASE_URL+'/admin/editParts/themes');
             this.modal.head.text('Modify Theme');
             this.modal.body.html(`
@@ -453,7 +476,7 @@ class Modal {
               `);
             })
             break;
-          case 'modify' :
+          case 'modify':
             this.modal.form.attr('action', BASE_URL+'/admin/editParts/producers');
             this.modal.head.text('Modify Producer');
             this.modal.body.html(`
@@ -513,7 +536,7 @@ class Modal {
               `);
             })
             break;
-          case 'modify' :
+          case 'modify':
             this.modal.form.attr('action', BASE_URL+'/admin/editParts/licensors');
             this.modal.head.text('Modify Licensor');
             this.modal.body.html(`
@@ -573,7 +596,7 @@ class Modal {
               `);
             })
             break;
-          case 'modify' :
+          case 'modify':
             this.modal.form.attr('action', BASE_URL+'/admin/editParts/studios');
             this.modal.head.text('Modify Studio');
             this.modal.body.html(`

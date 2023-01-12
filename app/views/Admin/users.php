@@ -7,7 +7,7 @@
     <h2 class="col-12 pb-2 m-0 border-bottom border-4 border-secondary text-center mb-3">Table Users</h2>
     <?php Flasher::flasher() ?>
     <div class="col-12 d-flex mb-3">
-      <a role="button" data-bs-toggle="modal" data-bs-target="#modalAddAdmin" class="btn btn-success">Add Admin</a>
+      <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' key="add" url="Admin">Add Admin</a>
     </div>
     <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
       <table class="table m-0 table-bordered border-dark table-hover">
@@ -65,33 +65,17 @@
   </main>
 </div>
 
-<div class="modal fade" id="modalAddAdmin" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form action=<?= BASE_URL."/register/admin" ?> method="post" class="modal-content">
+    <form method="post" class="modal-content">
       <div class="modal-header">
-        <h5>Add Admin</h5>
-        <a class="btn-close" data-bs-dismiss="modal"></a>
+        <h5 class="m-0"></h5>
+        <a class="btn-close" data-bs-dismiss='modal' role="button"></a>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="role" value="Admin">
-        <div class="form-group mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" name="username" id="username" class="form-control" required>
-        </div>
-        <div class="form-group mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" name="name" id="name" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" id="password" class="form-control" required>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>
 </div>
 
-<?php require_once MAIN_FOOT ?>
+<?php require_once ADMIN_FOOT ?>
