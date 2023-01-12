@@ -13,7 +13,7 @@
           <div class="col-12 d-flex mb-3">
             <a role='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modal' title="" key="new" url="<?= ucfirst($table['column']) ?>">Add</a>
           </div>
-          <div class="mb-3 col-12 overflow-auto border border-3 border-dark">
+          <div class="col-12 overflow-auto border border-3 border-dark">
             <table class="table m-0 table-bordered border-dark table-hover">
               <thead class="bg-secondary text-center">
                 <tr>

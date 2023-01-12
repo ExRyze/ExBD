@@ -21,7 +21,8 @@ class Animes_Videos_table {
   }
 
   public function store() {
-    $this->db->query("INSERT INTO {$this->table} (`anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`) VALUES (:id, :source, :type, :resolution, :tracks, :chapter, :audio, :subtitle, :errors)");
+    var_dump($_POST['errors']);
+    $this->db->query("INSERT INTO {$this->table} (`anime_id`, `source_videos`, `type_videos`, `resolution_videos`, `tracks_videos`, `chapters_videos`, `tracks_audios`, `subtitles_videos`, `additional_errors`, `additional_values`, `status_videos`) VALUES (:id, :source, :type, :resolution, :tracks, :chapter, :audio, :subtitle, :errors, :values, :status)");
     $this->db->bind('id', $_POST['id']);
     $this->db->bind('source', $_POST['source']);
     $this->db->bind('type', $_POST['type']);
@@ -31,6 +32,8 @@ class Animes_Videos_table {
     $this->db->bind('audio', $_POST['audio']);
     $this->db->bind('subtitle', $_POST['subtitle']);
     $this->db->bind('errors', $_POST['errors']);
+    $this->db->bind('values', $_POST['values']);
+    $this->db->bind('status', $_POST['status']);
     return $this->db->rowCount();
   }
 

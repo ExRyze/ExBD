@@ -40,17 +40,15 @@ class Admin extends Controller {
 
   public function animesvideos($history = '') {
     Middleware::role('Admin');
+    $data['anime_id'] = $this->model('Animes')->getTitle();
     if($history === 'history') {
       $data['page'] = 'EXBD | Admin - Animes Videos History';
       $data['key'] = 'history';
       $data['animes'] = $this->model('Animes')->getVideosHistory();
-      $data['anime_id'] = [];
       return $this->view('admin/animesVideos', $data);
     }
     $data['page'] = 'EXBD | Admin - Animes Videos';
     $data['animes'] = $this->model('Animes')->getVideos();
-    $data['anime_id'] = $this->model('Animes')->getTitle();
-    $data['anime_id'] = Functions::filterAnime($data['anime_id'], $data['animes']);
     return $this->view('admin/animesVideos', $data);
   }
 

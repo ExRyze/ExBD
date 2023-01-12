@@ -123,6 +123,130 @@ class Modal {
             break;
         }
         break;
+      case 'Video' :
+        switch (datas.key) {
+          case 'add' :
+            this.modal.form.attr('action', BASE_URL+'/admin/addAnimePart/Videos');
+            this.modal.head.text('Add Video');
+            this.modal.body.html(`
+            <input type="hidden" name="status" id="status" value="${datas.id}" required>
+            <div class="form-group mb-3">
+              <label for="id">Anime</label>
+              <select class="form-select" name="id" id="id" required>
+                <option value="" selected hidden disabled>Select Anime</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="source" class="form-label">Source videos</label>
+                <input type="text" name="source" id="source" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="type" class="form-label">Type videos</label>
+                <input type="text" name="type" id="type" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="resolution" class="form-label">Resolution videos</label>
+                <input type="text" name="resolution" id="resolution" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="tracks" class="form-label">Video tracks</label>
+                <input type="text" name="tracks" id="tracks" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="chapter" class="form-label">Chapters</label>
+                <input type="text" name="chapter" id="chapter" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="audio" class="form-label">Audio tracks</label>
+                <input type="text" name="audio" id="audio" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="subtitle" class="form-label">Subtitles</label>
+                <input type="text" name="subtitle" id="subtitle" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="errors" class="form-label">Additional errors</label>
+                <textarea name="errors" id="errors" class="col-12"></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="values" class="form-label">Additional values</label>
+                <textarea name="values" id="values" class="col-12"></textarea>
+            </div>
+            `);
+            $.each(datas.anime, (key, anime) => {
+              this.modal.body.find('select#id').append(`<option value='${anime['id']}'>${anime['title']}</option>`); })
+            break;
+          case 'edit' :
+            this.modal.form.attr('action', BASE_URL+'/admin/editAnimePart/Videos');
+            this.modal.head.text('Edit Video');
+            this.modal.body.html(`
+            <input type="hidden" name="status" id="status" value="${datas.id}" required>
+            <div class="form-group mb-3">
+              <label for="id">Anime</label>
+              <select class="form-select" name="id" id="id" required>
+                <option value="${datas.anime['id']}" selected>${datas.anime['title']}</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="source" class="form-label">Source videos</label>
+                <input type="text" name="source" id="source" class="form-control" value="${datas.anime['source_videos']}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="type" class="form-label">Type videos</label>
+                <input type="text" name="type" id="type" class="form-control" value="${datas.anime['type_videos']}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="resolution" class="form-label">Resolution videos</label>
+                <input type="text" name="resolution" id="resolution" class="form-control" value="${datas.anime['resolution_videos']}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="tracks" class="form-label">Video tracks</label>
+                <input type="text" name="tracks" id="tracks" class="form-control" value="${datas.anime['tracks_videos']}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="chapter" class="form-label">Chapters</label>
+                <input type="text" name="chapter" id="chapter" class="form-control" value="${datas.anime['chapters_videos']}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="audio" class="form-label">Audio tracks</label>
+                <input type="text" name="audio" id="audio" class="form-control" value="${datas.anime['tracks_audios']}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="subtitle" class="form-label">Subtitles</label>
+                <input type="text" name="subtitle" id="subtitle" class="form-control" value="${datas.anime['subtitles_videos']}" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="errors" class="form-label">Additional errors</label>
+                <textarea name="errors" id="errors" class="col-12">${datas.anime['additional_errors']}</textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="values" class="form-label">Additional values</label>
+                <textarea name="values" id="values" class="col-12">${datas.anime['additional_values']}</textarea>
+            </div>
+            `);
+            break;
+          case 'generate' :
+            this.modal.head.text('Generate Title');
+            if(datas.anime['title'].includes(':')) {datas.anime['title'] = datas.anime['title'].replaceAll(':', '-')}
+            if(datas.anime['title'].includes('?')) {datas.anime['title'] = datas.anime['title'].replaceAll('?', '@')}
+            datas.string = datas.anime['title'];
+            if(datas.anime['type'] === 'Movie') {datas.string += ' – '}
+            if(datas.anime['type'] != 'Movie' && datas.anime['episodes'] === 1) {datas.string += ' – '}
+            if(datas.anime['type'] != 'Movie' && datas.anime['episodes'] != 1) {datas.string += ' Episode 0 – '}
+            datas.string += datas.anime['source_videos']+' '+datas.anime['type']+' '+datas.anime['resolution_videos']+'.'+datas.anime['type_videos'];
+            this.modal.body.html(`
+            <div class="form-group mb-3">
+              <label for="folder">Folder</label>
+              <input class="form-control" type="text" value="${datas.anime['title']}" readonly>
+            </div>
+            <div class="form-group mb-3">
+              <label for="folder">File</label>
+              <input class="form-control" type="text" value="${datas.string}" readonly>
+            </div>
+            `)
+            break;
+        }
+        break;
       case 'Alias':
         switch (datas.key) {
           case 'add':
