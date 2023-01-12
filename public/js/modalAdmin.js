@@ -203,6 +203,7 @@ class Modal {
             this.modal.form.attr('action', BASE_URL+'/admin/editAnimePart/Videos');
             this.modal.head.text('Edit Video');
             this.modal.body.html(`
+            <h6 class="text-muted text-center">${datas.anime['title']}</h6>
             <input type="hidden" name="status" id="status" value="${datas.id}" required>
             <div class="form-group mb-3">
               <label for="id">Anime</label>
@@ -250,6 +251,7 @@ class Modal {
             break;
           case 'generate':
             this.modal.head.text('Generate Title');
+            this.modal.body.html(`<h6 class="text-muted text-center">${datas.anime['title']}</h6>`);
             if(datas.anime['title'].includes(':')) {datas.anime['title'] = datas.anime['title'].replaceAll(':', '-')}
             if(datas.anime['title'].includes('?')) {datas.anime['title'] = datas.anime['title'].replaceAll('?', '@')}
             datas.string = datas.anime['title'];
@@ -257,7 +259,7 @@ class Modal {
             if(datas.anime['type'] != 'Movie' && datas.anime['episodes'] === 1) {datas.string += ' – '}
             if(datas.anime['type'] != 'Movie' && datas.anime['episodes'] != 1) {datas.string += ' Episode 0 – '}
             datas.string += datas.anime['source_videos']+' '+datas.anime['type']+' '+datas.anime['resolution_videos']+'.'+datas.anime['type_videos'];
-            this.modal.body.html(`
+            this.modal.body.append(`
             <div class="form-group mb-3">
               <label for="folder">Folder</label>
               <input class="form-control" type="text" value="${datas.anime['title']}" readonly>
@@ -558,8 +560,8 @@ class Modal {
             <h6 class="text-muted text-center">${datas.title}</h6>
             <input type="hidden" name="id" value="${datas.id}">
             <div class="form-group">
-              <label class="form-label" for='licensor'>Studio</label>
-              <input type="text" name='licensor' id='licensor' class="form-control">
+              <label class="form-label" for='studio'>Studio</label>
+              <input type="text" name='studio' id='studio' class="form-control">
             </div>
             `);
             break;

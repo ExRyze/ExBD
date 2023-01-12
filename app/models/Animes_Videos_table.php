@@ -15,8 +15,9 @@ class Animes_Videos_table {
   }
 
   public function validate() {
-    $this->db->query("SELECT * FROM {$this->table} WHERE `anime_id` = :id");
+    $this->db->query("SELECT * FROM {$this->table} WHERE `anime_id` = :id && `source_videos` = :source");
     $this->db->bind('id', $_POST['id']);
+    $this->db->bind('source', $_POST['source']);
     return $this->db->rowCount();
   }
 
