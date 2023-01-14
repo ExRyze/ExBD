@@ -61,7 +61,7 @@ class Animes_table {
 
   public function store() {
     $this->db->query("INSERT INTO {$this->table} (`slug`, `title`, `episodes`, `type`, `status`, `aired`, `finished`, `created_at`, `updated_at`, `id_user`) VALUES (:slug, :title, :episodes, :tipe, :status, :aired, :finished, :created_at, :created_at, :id_user)");
-    $this->db->bind('slug', str_replace(' ', '_', $_POST['title']));
+    $this->db->bind('slug', str_replace(' ', '_', str_replace('?', '@', str_replace(':', '-', $_POST['title']))));
     $this->db->bind('title', $_POST['title']);
     $this->db->bind('episodes', $_POST['episodes']);
     $this->db->bind('tipe', $_POST['tipe']);
@@ -76,7 +76,7 @@ class Animes_table {
   public function update() {
     $this->db->query("UPDATE {$this->table} SET `slug` = :slug, `title` = :title, `episodes` = :episodes, `type` = :tipe, `status` = :status, `aired` = :aired, `finished` = :finished, `updated_at` = :updated_at, `id_user` = :id_user WHERE `id` = :id");
     $this->db->bind('id', $_POST['id']);
-    $this->db->bind('slug', str_replace(' ', '_', $_POST['title']));
+    $this->db->bind('slug', str_replace(' ', '_', str_replace('?', '@', str_replace(':', '-', $_POST['title']))));
     $this->db->bind('title', $_POST['title']);
     $this->db->bind('episodes', $_POST['episodes']);
     $this->db->bind('tipe', $_POST['tipe']);

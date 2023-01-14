@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 12, 2023 at 03:49 PM
+-- Generation Time: Jan 14, 2023 at 12:00 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -49,17 +49,17 @@ INSERT INTO `animes` (`id`, `slug`, `title`, `type`, `episodes`, `status`, `aire
 (1, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!', 'Kono Subarashii Sekai ni Shukufuku wo!', 'BD', 10, 'Finished airing', '2016-01-14', '2016-03-17', '2022-12-13 00:00:23', '2022-12-15 01:20:42', 2),
 (2, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_2', 'Kono Subarashii Sekai ni Shukufuku wo! 2', 'BD', 10, 'Finished airing', '2017-01-12', '2017-03-16', '2022-12-14 07:26:45', '2022-12-15 01:28:18', 2),
 (3, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_Kono_Subarashii_Choker_ni_Shukufuku_wo!', 'Kono Subarashii Sekai ni Shukufuku wo! Kono Subarashii Choker ni Shukufuku wo!', 'OVA', 1, 'Finished airing', '2016-06-24', NULL, '2022-12-15 01:43:51', '2022-12-15 01:46:03', 2),
-(4, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_2:_Kono_Subarashii_Geijutsu_ni_Shukufuku_wo!', 'Kono Subarashii Sekai ni Shukufuku wo! 2: Kono Subarashii Geijutsu ni Shukufuku wo!', 'OVA', 1, 'Finished airing', '2017-07-24', NULL, '2022-12-17 22:16:50', '2022-12-17 22:16:50', 2),
-(5, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_Movie:_Kurenai_Densetsu', 'Kono Subarashii Sekai ni Shukufuku wo! Movie: Kurenai Densetsu', 'Movie', 1, 'Finished airing', '2019-07-30', NULL, '2022-12-17 22:28:23', '2022-12-17 22:28:23', 2),
-(6, 'Gate:_Jieitai_Kanochi_nite,_Kaku_Tatakaeri', 'Gate: Jieitai Kanochi nite, Kaku Tatakaeri', 'BD', 12, 'Finished airing', '2015-07-04', '2015-09-19', '2022-12-26 00:48:21', '2022-12-26 00:48:21', 2),
-(7, 'Gate:_Jieitai_Kanochi_nite,_Kaku_Tatakaeri_Part_2', 'Gate: Jieitai Kanochi nite, Kaku Tatakaeri Part 2', 'BD', 12, 'Finished airing', '2016-01-09', '2016-03-26', '2022-12-26 01:40:54', '2022-12-26 01:40:54', 2),
+(4, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_2-_Kono_Subarashii_Geijutsu_ni_Shukufuku_wo!', 'Kono Subarashii Sekai ni Shukufuku wo! 2: Kono Subarashii Geijutsu ni Shukufuku wo!', 'OVA', 1, 'Finished airing', '2017-07-24', NULL, '2022-12-17 22:16:50', '2023-01-13 15:40:09', 2),
+(5, 'Kono_Subarashii_Sekai_ni_Shukufuku_wo!_Movie-_Kurenai_Densetsu', 'Kono Subarashii Sekai ni Shukufuku wo! Movie: Kurenai Densetsu', 'Movie', 1, 'Finished airing', '2019-07-30', NULL, '2022-12-17 22:28:23', '2023-01-13 15:40:16', 2),
+(6, 'Gate-_Jieitai_Kanochi_nite,_Kaku_Tatakaeri', 'Gate: Jieitai Kanochi nite, Kaku Tatakaeri', 'BD', 12, 'Finished airing', '2015-07-04', '2015-09-19', '2022-12-26 00:48:21', '2023-01-13 15:39:40', 2),
+(7, 'Gate-_Jieitai_Kanochi_nite,_Kaku_Tatakaeri_Part_2', 'Gate: Jieitai Kanochi nite, Kaku Tatakaeri Part 2', 'BD', 12, 'Finished airing', '2016-01-09', '2016-03-26', '2022-12-26 01:40:54', '2023-01-13 15:40:01', 2),
 (8, 'Arifureta_Shokugyou_de_Sekai_Saikyou', 'Arifureta Shokugyou de Sekai Saikyou', 'BD', 13, 'Finished airing', '2019-07-08', '2019-10-07', '2022-12-26 07:23:06', '2022-12-26 07:23:06', 2),
 (9, 'Arifureta_Shokugyou_de_Sekai_Saikyou_2nd_Season', 'Arifureta Shokugyou de Sekai Saikyou 2nd Season', 'BD', 12, 'Finished airing', '2022-01-13', '2022-03-31', '2023-01-05 07:20:27', '2023-01-05 07:20:27', 2),
 (10, 'Ore_dake_Haireru_Kakushi_Dungeon', 'Ore dake Haireru Kakushi Dungeon', 'TV', 12, 'Finished airing', '2021-01-09', '2021-03-27', '2023-01-05 07:49:42', '2023-01-05 07:49:42', 2),
 (11, 'Yuusha,_Yamemasu', 'Yuusha, Yamemasu', 'TV', 12, 'Finished airing', '2022-04-05', '2022-06-21', '2023-01-05 08:02:34', '2023-01-05 08:02:34', 2),
-(12, 'Tsuujou_Kougeki_ga_Zentai_Kougeki_de_Ni-kai_Kougeki_no_Okaasan_wa_Suki_desu_ka?', 'Tsuujou Kougeki ga Zentai Kougeki de Ni-kai Kougeki no Okaasan wa Suki desu ka?', 'BD', 12, 'Finished airing', '2019-07-13', '2019-09-28', '2023-01-10 04:09:09', '2023-01-12 06:39:44', 2),
-(13, 'Tsuujou_Kougeki_ga_Zentai_Kougeki_de_Ni-kai_Kougeki_no_Okaasan_wa_Suki_desu_ka?_Namiuchigiwa_no_Okaasan_wa_Suki_desu_ka?', 'Tsuujou Kougeki ga Zentai Kougeki de Ni-kai Kougeki no Okaasan wa Suki desu ka? Namiuchigiwa no Okaasan wa Suki desu ka?', 'OVA', 1, 'Finished airing', '2020-03-25', NULL, '2023-01-12 07:16:34', '2023-01-12 07:16:34', 2),
-(14, 'Kawaikereba_Hentai_demo_Suki_ni_Natte_Kuremasu_ka?', 'Kawaikereba Hentai demo Suki ni Natte Kuremasu ka?', 'BD', 12, 'Finished airing', '2019-07-08', '2019-09-23', '2023-01-12 07:38:40', '2023-01-12 07:38:40', 2);
+(12, 'Tsuujou_Kougeki_ga_Zentai_Kougeki_de_Ni-kai_Kougeki_no_Okaasan_wa_Suki_desu_ka?', 'Tsuujou Kougeki ga Zentai Kougeki de Ni-kai Kougeki no Okaasan wa Suki desu ka?', 'BD', 12, 'Finished airing', '2019-07-13', '2019-09-28', '2023-01-10 04:09:09', '2023-01-13 15:29:08', 2),
+(13, 'Tsuujou_Kougeki_ga_Zentai_Kougeki_de_Ni-kai_Kougeki_no_Okaasan_wa_Suki_desu_ka?_Namiuchigiwa_no_Okaasan_wa_Suki_desu_ka?', 'Tsuujou Kougeki ga Zentai Kougeki de Ni-kai Kougeki no Okaasan wa Suki desu ka? Namiuchigiwa no Okaasan wa Suki desu ka?', 'OVA', 1, 'Finished airing', '2020-03-25', NULL, '2023-01-12 07:16:34', '2023-01-13 15:29:23', 2),
+(14, 'Kawaikereba_Hentai_demo_Suki_ni_Natte_Kuremasu_ka@', 'Kawaikereba Hentai demo Suki ni Natte Kuremasu ka?', 'BD', 12, 'Finished airing', '2019-07-08', '2019-09-23', '2023-01-12 07:38:40', '2023-01-13 15:31:35', 2);
 
 -- --------------------------------------------------------
 

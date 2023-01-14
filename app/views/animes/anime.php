@@ -8,7 +8,7 @@
     <section class="col-3 p-2 bg-white me-3 rounded-bottom">
       <div class="p-2 border border-2 border-dark d-flex flex-column gap-3">
         <div class="col-12 d-flex justify-content-center">
-          <img src="<?= STORAGE_ANIMES.'/'.$data['anime']['title'].'/img/Cover.jpg' ?>" class="col-12 p-3 pb-0">
+          <img src="<?= STORAGE_ANIMES.'/'.str_replace('_', ' ', $data['anime']['slug']).'/img/Cover.jpg' ?>" class="col-12 p-3 pb-0">
         </div>
         <div class="d-flex flex-column">
           <h5 class="pb-1 border-bottom border-1 border-dark mb-2">Another Title</h5>

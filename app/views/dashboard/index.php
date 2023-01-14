@@ -19,9 +19,9 @@
           <?php $idx += 1; $index += 1; } ?>
           </div>
           <div class="carousel-inner">
-          <?php foreach($data['animes'] as $anime) { ?>
-            <a href="<?= BASE_URL.'/animes/x/'.$anime['slug'] ?>" class="carousel-item" id="<?= $anime['id'] ?>">
-              <img class="d-block" src="<?= STORAGE_ANIMES.'/'.$anime['title'].'/img/Banner.jpg' ?>">
+          <?php foreach($data['animes'] as $i => $anime) { ?>
+            <a href="<?= BASE_URL.'/animes/anime/'.$anime['slug'] ?>" class="carousel-item <?= ($i === 0)? 'active' : '' ?>" id="<?= $anime['id'] ?>">
+              <img class="d-block" src="<?= STORAGE_ANIMES.'/'.str_replace('_', ' ', $anime['slug']).'/img/Banner.jpg' ?>">
             </a>
           <?php } ?>
           </div>
