@@ -177,7 +177,12 @@ class Modal {
             </div>
             <div class="form-group mb-3">
                 <label for="chapter" class="form-label">Chapters</label>
-                <input type="text" name="chapter" id="chapter" class="form-control" required>
+                <select class="form-select" name="chapter" id="chapter" required>
+                  <option value="" selected hidden disabled>Chapter...</option>
+                  <option value="TRUE">TRUE</option>
+                  <option value="FALSE">FALSE</option>
+                  <option value="NULL">NULL</option>
+                </select>
             </div>
             <div class="form-group mb-3">
                 <label for="audio" class="form-label">Audio tracks</label>
@@ -229,7 +234,11 @@ class Modal {
             </div>
             <div class="form-group mb-3">
                 <label for="chapter" class="form-label">Chapters</label>
-                <input type="text" name="chapter" id="chapter" class="form-control" value="${datas.anime['chapters_videos']}" required>
+                <select class="form-select" name="chapter" id="chapter" required>
+                  <option value="TRUE">TRUE</option>
+                  <option value="FALSE">FALSE</option>
+                  <option value="NULL">NULL</option>
+                </select>
             </div>
             <div class="form-group mb-3">
                 <label for="audio" class="form-label">Audio tracks</label>
@@ -248,8 +257,17 @@ class Modal {
                 <textarea name="values" id="values" class="col-12">${datas.anime['additional_values']}</textarea>
             </div>
             `);
+            $.each($("select[name='chapter'] option"), (key, value) => {
+              console.log($(value).attr("value"));
+              if($(value).attr("value") === datas.anime['chapters_videos']) {
+                $(value).attr("selected", '');
+                return false;
+              }
+            })
             break;
           case 'generate':
+            this.modal.foot.remove();
+            this.modal.foot = undefined;
             this.modal.head.text('Generate Title');
             this.modal.body.html(`<h6 class="text-muted text-center">${datas.anime['title']}</h6>`);
             if(datas.anime['title'].includes(':')) {datas.anime['title'] = datas.anime['title'].replaceAll(':', '-')}
