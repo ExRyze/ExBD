@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,7 @@ Route::get('/login', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return view('staff.dashboard', [
-        'page' => 'Dashboard'
-    ]);
+Route::controller(Dashboard::class)->group(function() {
+    Route::get('/dashboard', 'index');
+    Route::get('/dashboard/user', 'user');
 });

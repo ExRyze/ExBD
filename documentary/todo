@@ -1,4 +1,10 @@
-Coloring
-
 Page :
-Update -  Staff.Dashboard
+Update -  /dashboard
+CUD -  /dashboard/user
+
+Function :
+// Middleware
+
+BackEnd :
+Database
+Register/Login/Logout

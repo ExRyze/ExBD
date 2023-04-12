@@ -2,17 +2,7 @@
 
 @section('main')
 
-  <div class="pagetitle">
-    <h1>{{ $page }}</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        @if ($page != 'Home') 
-          <li class="breadcrumb-item active">{{ $page }}</li>
-        @endif
-      </ol>
-    </nav>
-  </div><!-- End Page Title -->
+  @include('components.pagetitle')
 
   <section class="section dashboard">
     <div class="row">
