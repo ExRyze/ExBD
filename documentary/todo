@@ -1,10 +1,12 @@
 Page :
 Update -  /dashboard
-CUD -  /dashboard/user
+Action to dropdown - /dashboard/user
+Error message - /dashboard/user/add
 
 Function :
 // Middleware
 
 BackEnd :
+CUD -  /dashboard/user
 Database
 Register/Login/Logout

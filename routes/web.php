@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +29,9 @@ Route::get('/login', function () {
 
 Route::controller(Dashboard::class)->group(function() {
     Route::get('/dashboard', 'index');
-    Route::get('/dashboard/user', 'user');
+});
+
+Route::controller(UserController::class)->group(function() {
+    Route::get('/dashboard/user', 'index');
+    Route::get('/dashboard/user/add', 'create');
 });

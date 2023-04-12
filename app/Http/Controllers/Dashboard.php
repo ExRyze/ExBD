@@ -13,11 +13,4 @@ class Dashboard extends Controller
             'page' => $this->getUrl(URL::current())
         ]);
     }
-    
-    public function user() {
-        return view('staff.user', [
-            'page' => $this->getUrl(URL::current()),
-            'table' => User::all()
-        ]);
-    }
 }
