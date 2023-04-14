@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserRequest;
+use Brick\Math\BigInteger;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : View
     {
         return view('staff.user.index', [
             'page' => $this->getUrl(URL::current()),
@@ -23,7 +25,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
         return view('staff.user.create', [
             'page' => $this->getUrl(URL::current()),
@@ -33,9 +35,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(UserRequest $request) : RedirectResponse
     {
-        //
+        // Store Data
+        User::create($request->validated());
+
+        return redirect('/dashboard/user')->with('success', 'New Data User Added');
     }
 
     /**
@@ -57,7 +62,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         //
     }
@@ -65,8 +70,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function delete(User $user, String $id) : RedirectResponse
     {
-        //
+        // Delete
+        $user->where('id', $id)->delete();
+
+        return redirect('/dashboard/user')->with('success', 'Data User Deleted Successfully');
     }
 }

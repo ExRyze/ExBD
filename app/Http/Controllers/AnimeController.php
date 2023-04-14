@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
-use App\Http\Requests\StoreAnimeRequest;
-use App\Http\Requests\UpdateAnimeRequest;
+use App\Http\Requests\AnimeRequest;
 
 class AnimeController extends Controller
 {
@@ -27,7 +26,7 @@ class AnimeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAnimeRequest $request)
+    public function store(AnimeRequest $request)
     {
         //
     }
@@ -51,7 +50,7 @@ class AnimeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAnimeRequest $request, Anime $anime)
+    public function update(AnimeRequest $request, Anime $anime)
     {
         //
     }

@@ -33,5 +33,8 @@ Route::controller(Dashboard::class)->group(function() {
 
 Route::controller(UserController::class)->group(function() {
     Route::get('/dashboard/user', 'index');
-    Route::get('/dashboard/user/add', 'create');
+    Route::get('/dashboard/user/create', 'create');
+    Route::post('/dashboard/user/store', 'store');
+    
+    Route::get('/dashboard/user/delete/{id}', 'delete');
 });

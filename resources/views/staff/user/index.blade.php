@@ -11,9 +11,17 @@
         <div class="card bg-white text-dark">
           <div class="card-body">
             <h5 class="card-title">{{ end($page['arr']) }} Table</h5>
-            <a class="btn btn-success mb-2" href="{{ url("dashboard/user/add") }}">
+
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+            <a class="btn btn-success mb-2" href="{{ url("dashboard/user/create") }}">
               <i class="bi bi-plus-lg"></i>
-              Add
+              Create
             </a>
 
             <!-- Table with stripped rows -->
@@ -35,10 +43,10 @@
                         <i class="bi bi-exclamation-triangle"></i>
                         Edit
                       </a>
-                      <a class="btn btn-danger" href="">
+                      <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelUser{{ $iuser }}">
                         <i class="bi bi-exclamation-octagon"></i>
                         Delete
-                      </a>
+                      </button>
                     </th>
                     <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
@@ -56,5 +64,26 @@
       </div>
     </div>
   </section>
+
+  
+  @foreach ($table as $iuser => $user)
+  <div class="modal fade text-dark" id="DelUser{{ $iuser }}" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure deleting this data user. <strong>Some data from other tables might be deleted too</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+          <a class="btn btn-danger" href="{{ url("dashboard/user/delete/".$user->id) }}">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endforeach
 
 @endsection
