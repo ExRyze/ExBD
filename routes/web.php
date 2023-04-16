@@ -35,6 +35,10 @@ Route::controller(UserController::class)->group(function() {
     Route::get('/dashboard/user', 'index');
     Route::get('/dashboard/user/create', 'create');
     Route::post('/dashboard/user/store', 'store');
-    
-    Route::get('/dashboard/user/delete/{id}', 'delete');
+    Route::get('/dashboard/user/edit/{username}', 'edit');
+    Route::post('/dashboard/user/update/{id}', 'update');
+    Route::get('/dashboard/user/delete/{username}', 'delete');
 });
+Route::get('/dashboard/user/edit', function() {return back();});
+Route::post('/dashboard/user/update', function() {return back();});
+Route::get('/dashboard/user/delete', function() {return back();});

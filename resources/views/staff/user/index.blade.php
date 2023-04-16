@@ -39,7 +39,7 @@
                 @foreach ($table as $iuser => $user)
                   <tr>
                     <th scope="row">
-                      <a class="btn btn-warning" href="">
+                      <a class="btn btn-warning" href="{{ url("/dashboard/user/edit/".$user->username) }}">
                         <i class="bi bi-exclamation-triangle"></i>
                         Edit
                       </a>
@@ -78,8 +78,8 @@
           Are you sure deleting this data user. <strong>Some data from other tables might be deleted too</strong>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/user/delete/".$user->id) }}">Delete</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger" href="{{ url("dashboard/user/delete/".$user->username) }}">Delete</a>
         </div>
       </div>
     </div>

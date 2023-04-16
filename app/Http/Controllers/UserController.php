@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
-use Brick\Math\BigInteger;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
@@ -44,36 +44,38 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(User $user, String $username)
     {
-        //
+        if ($user->where('username', $username)->count() === 0) {
+            return redirect('/dashboard/user');
+        } else {
+            return view('staff.user.edit', [
+                'page' => $this->getUrl(URL::current()),
+                'data' => $user->where('username', $username)->first()
+            ]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request, String $id) : RedirectResponse
     {
-        //
+        // Update Data
+        User::where('id', $id)->update($request->validate(['role' => 'required']));
+
+        return redirect('/dashboard/user')->with('success', 'Data User Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(User $user, String $id) : RedirectResponse
+    public function delete(User $user, String $username) : RedirectResponse
     {
-        // Delete
-        $user->where('id', $id)->delete();
+        // Delete Data
+        $user->where('username', $username)->delete();
 
         return redirect('/dashboard/user')->with('success', 'Data User Deleted Successfully');
     }
