@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Anime;
 use App\Http\Requests\AnimeRequest;
+use Illuminate\Support\Facades\URL;
+use Illuminate\View\View;
 
 class AnimeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : View
     {
-        //
+        return view('staff.anime.index', [
+            'page' => $this->getUrl(URL::current()),
+            'table' => Anime::all()
+        ]);
     }
 
     /**
