@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Staff;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,7 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users|max:255',
-            'password' => 'required|max:255',
+            // 'email' => ['required|max:255', Rule::unique('users')->ignore($this->id)],
             'role' => 'required',
         ];
     }

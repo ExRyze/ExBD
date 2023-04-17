@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\Staff\StoreUserRequest;
+use App\Http\Requests\Staff\UpdateUserRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -35,7 +36,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserRequest $request) : RedirectResponse
+    public function store(StoreUserRequest $request) : RedirectResponse
     {
         // Store Data
         User::create($request->validated());
@@ -61,10 +62,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, String $id) : RedirectResponse
+    public function update(UpdateUserRequest $request, String $id) : RedirectResponse
     {
         // Update Data
-        User::where('id', $id)->update($request->validate(['role' => 'required']));
+        User::where('id', $id)->update($request->validated());
 
         return redirect('/dashboard/user')->with('success', 'Data User Updated Successfully');
     }

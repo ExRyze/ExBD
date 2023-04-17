@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 12, 2023 at 08:52 AM
+-- Generation Time: Apr 17, 2023 at 03:22 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `animes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `episodes` int(11) NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -108,7 +109,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` enum('admin','staff','user','guest') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` enum('Admin','Staff','User','Guest') COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -119,7 +120,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '123', 'admin', NULL, '2023-04-12 07:39:41', '2023-04-12 07:39:41');
+(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '123', 'Admin', NULL, NULL, '2023-04-16 19:09:52'),
+(2, 'User', 'User@gmail.com', NULL, '123', 'User', NULL, '2023-04-16 19:19:36', '2023-04-16 19:19:42');
 
 --
 -- Indexes for dumped tables
@@ -130,6 +132,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`,
 --
 ALTER TABLE `animes`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `animes_title_unique` (`title`),
+  ADD UNIQUE KEY `animes_slug_unique` (`slug`),
   ADD KEY `animes_user_id_foreign` (`user_id`);
 
 --
@@ -157,6 +161,7 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_username_unique` (`username`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
@@ -185,7 +190,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

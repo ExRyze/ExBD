@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('animes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
+            $table->string('slug')->unique();
             $table->string('type');
             $table->integer('episodes');
             $table->string('status');
