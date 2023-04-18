@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 17, 2023 at 03:22 AM
+-- Generation Time: Apr 18, 2023 at 02:41 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -29,20 +29,26 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `animes` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `episodes` int(11) NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_aired` date NOT NULL,
-  `date_finished` date NOT NULL,
-  `source` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `duration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rating` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `episodes` int(11) DEFAULT NULL,
+  `duration` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` enum('TV','ONA','OVA','Special','Movie') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Not yet aired','Currently airing','Finished airing') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `source` enum('Manga','Web manga','Light novel','Original') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_aired` date DEFAULT NULL,
+  `date_finished` date DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `animes`
+--
+
+INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `status`, `source`, `date_aired`, `date_finished`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Anime Title', 'anime_title', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-04-17 18:30:36', '2023-04-17 18:30:36');
 
 -- --------------------------------------------------------
 
@@ -120,8 +126,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '123', 'Admin', NULL, NULL, '2023-04-16 19:09:52'),
-(2, 'User', 'User@gmail.com', NULL, '123', 'User', NULL, '2023-04-16 19:19:36', '2023-04-16 19:19:42');
+(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '123', 'Admin', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -131,10 +136,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`,
 -- Indexes for table `animes`
 --
 ALTER TABLE `animes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `animes_title_unique` (`title`),
-  ADD UNIQUE KEY `animes_slug_unique` (`slug`),
-  ADD KEY `animes_user_id_foreign` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -172,7 +174,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -190,17 +192,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `animes`
---
-ALTER TABLE `animes`
-  ADD CONSTRAINT `animes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

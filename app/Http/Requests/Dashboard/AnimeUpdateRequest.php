@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AnimeRequest extends FormRequest
+class AnimeUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class AnimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // 'email' => ['required|max:255', Rule::unique('users')->ignore($this->id)],
+            'role' => 'required',
         ];
     }
 }

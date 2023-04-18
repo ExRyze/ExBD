@@ -16,18 +16,18 @@
             </a>
         
             <!-- Multi Columns Form -->
-            <form class="row g-3" method="POST" action="/dashboard/user/update/{{ $data->id }}">
+            <form class="row g-3" method="POST" action="/dashboard/user/update/{{ $user->id }}">
               @csrf
               <div class="col-md-12">
                 <label for="inputName5" class="form-label">Username</label>
-                <input disabled value="{{ $data->username }}" type="text" class="form-control @error('username') is-invalid @enderror" id="inputName5" placeholder="Your Username...">
+                <input disabled value="{{ $user->username }}" type="text" class="form-control @error('username') is-invalid @enderror" id="inputName5" placeholder="Your Username...">
                 @error('username')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
                 <label for="inputEmail5" class="form-label">Email</label>
-                <input disabled value="{{ $data->email }}" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail5" placeholder="Youremail@example.com">
+                <input disabled value="{{ $user->email }}" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail5" placeholder="Youremail@example.com">
                 @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -37,21 +37,21 @@
                 <select required name="role" id="inputState" class="form-select @error('role') is-invalid @enderror">
 
                   {{-- Guest --}}
-                  @if ($data->role === "User")
+                  @if ($user->role === "User")
                     <option selected value="User">User</option>
                   @else
                     <option value="User">User</option>
                   @endif
 
                   {{-- Staff --}}
-                  @if ($data->role === "Staff")
+                  @if ($user->role === "Staff")
                     <option selected value="Staff">Staff</option>
                   @else
                     <option value="Staff">Staff</option>
                   @endif
 
                   {{-- Admin --}}
-                  @if ($data->role === "Admin")
+                  @if ($user->role === "Admin")
                     <option selected value="Admin">Admin</option>
                   @else
                     <option value="Admin">Admin</option>

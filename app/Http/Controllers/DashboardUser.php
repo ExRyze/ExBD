@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\Staff\StoreUserRequest;
-use App\Http\Requests\Staff\UpdateUserRequest;
+use App\Http\Requests\Dashboard\UserStoreRequest;
+use App\Http\Requests\Dashboard\UserUpdateRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
-class UserController extends Controller
+class DashboardUser extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index() : View
     {
-        return view('staff.user.index', [
+        return view('dashboard.user.index', [
             'page' => $this->getUrl(URL::current()),
             'table' => User::all()
         ]);
@@ -28,7 +27,7 @@ class UserController extends Controller
      */
     public function create() : View
     {
-        return view('staff.user.create', [
+        return view('dashboard.user.create', [
             'page' => $this->getUrl(URL::current()),
         ]);
     }
@@ -36,9 +35,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request) : RedirectResponse
+    public function store(UserStoreRequest $request) : RedirectResponse
     {
-        // Store Data
         User::create($request->validated());
 
         return redirect('/dashboard/user')->with('success', 'New Data User Added');
@@ -52,9 +50,9 @@ class UserController extends Controller
         if ($user->where('username', $username)->count() === 0) {
             return redirect('/dashboard/user');
         } else {
-            return view('staff.user.edit', [
+            return view('dashboard.user.edit', [
                 'page' => $this->getUrl(URL::current()),
-                'data' => $user->where('username', $username)->first()
+                'user' => $user->where('username', $username)->first()
             ]);
         }
     }
@@ -62,9 +60,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, String $id) : RedirectResponse
+    public function update(UserUpdateRequest $request, String $id) : RedirectResponse
     {
-        // Update Data
         User::where('id', $id)->update($request->validated());
 
         return redirect('/dashboard/user')->with('success', 'Data User Updated Successfully');
@@ -75,7 +72,6 @@ class UserController extends Controller
      */
     public function delete(User $user, String $username) : RedirectResponse
     {
-        // Delete Data
         $user->where('username', $username)->delete();
 
         return redirect('/dashboard/user')->with('success', 'Data User Deleted Successfully');

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Staff;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
-class StoreUserRequest extends FormRequest
+class AnimeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +22,10 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge(['slug' => Str::slug($this->title, '_')]);
         return [
-            'username' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users|max:255',
-            'password' => 'required|max:255',
-            'role' => 'required',
+            'title' => 'required|unique:animes',
+            'slug' => 'required|unique:animes',
         ];
     }
 }
