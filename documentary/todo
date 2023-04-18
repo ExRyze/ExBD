@@ -1,11 +1,10 @@
 Page :
 Update -  /dashboard
-Action to dropdown - /dashboard/user
+Action to dropdown - /dashboard/*
 
 Function :
 Middleware - *
 
 BackEnd :
-CUD - dashboard/anime
 Database
 Register/Login/Logout

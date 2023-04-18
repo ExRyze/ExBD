@@ -60,24 +60,36 @@ class DashboardAnime extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Anime $anime) : View
+    public function edit(Anime $anime, String $slug) : View
     {
-        return view();
+        if ($anime->where('slug', $slug)->count() === 0) {
+            return redirect('/dashboard/anime');
+        } else {
+            return view('dashboard.anime.edit', [
+                'page' => $this->getUrl(URL::current()),
+                'data' => $this->data,
+                'anime' => $anime->where('slug', $slug)->first()
+            ]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AnimeUpdateRequest $request, Anime $anime) : RedirectResponse
+    public function update(AnimeUpdateRequest $request, Anime $anime, String $id) : RedirectResponse
     {
-        return redirect();
+        $anime->where('id', $id)->update($request->validated());
+
+        return redirect('/dashboard/anime')->with('success', 'Data Anime Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Anime $anime) : RedirectResponse
+    public function delete(Anime $anime, String $slug) : RedirectResponse
     {
-        return redirect();
+        $anime->where('slug', $slug)->delete();
+
+        return redirect('/dashboard/anime')->with('success', 'Data Anime Deleted Successfully');
     }
 }

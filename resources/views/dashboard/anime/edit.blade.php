@@ -16,11 +16,11 @@
             </a>
         
             <!-- Multi Columns Form -->
-            <form class="row g-3" method="POST" action="/dashboard/anime/store">
+            <form class="row g-3" method="POST" action="/dashboard/anime/update/{{ $anime->id }}">
               @csrf
               <div class="col-md-12">
                 <label for="title" class="form-label">Title</label>
-                <input required name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Anime's Title...">
+                <input required value="{{ $anime->title }}" name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Anime's Title...">
                 @error('title')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -30,7 +30,11 @@
                 <select name="type" class="form-select @error('type') is-invalid @enderror" id="type">
                   <option selected hidden disabled>Choose Type...</option>
                   @foreach ($data['type'] as $type)
-                    <option value="{{ $type }}">{{ $type }}</option>
+                    @if ($type === $anime->type)
+                      <option selected value="{{ $type }}">{{ $type }}</option>
+                    @else
+                      <option value="{{ $type }}">{{ $type }}</option> 
+                    @endif
                   @endforeach
                 </select>
                 @error('type')
@@ -39,14 +43,14 @@
               </div>
               <div class="col-md-3">
                 <label for="episodes" class="form-label">Episodes</label>
-                <input name="episodes" type="number" min="0" class="form-control @error('episodes') is-invalid @enderror" id="episodes" placeholder="Episodes">
+                <input value="{{ $anime->episodes }}" name="episodes" type="number" min="0" class="form-control @error('episodes') is-invalid @enderror" id="episodes" placeholder="Episodes">
                 @error('episodes')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-3">
                 <label for="duration" class="form-label">Duration</label>
-                <input name="duration" type="number" min="0" class="form-control @error('duration') is-invalid @enderror" id="duration" placeholder="min/eps">
+                <input value="{{ $anime->duration }}" name="duration" type="number" min="0" class="form-control @error('duration') is-invalid @enderror" id="duration" placeholder="min/eps">
                 @error('duration')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -56,7 +60,11 @@
                 <select name="source" class="form-select @error('source') is-invalid @enderror" id="source">
                   <option selected hidden disabled>Choose Source...</option>
                   @foreach ($data['source'] as $source)
-                    <option value="{{ $source }}">{{ $source }}</option>
+                    @if ($source === $anime->source)
+                      <option selected value="{{ $source }}">{{ $source }}</option>
+                    @else
+                      <option value="{{ $source }}">{{ $source }}</option> 
+                    @endif
                   @endforeach
                 </select>
                 @error('source')
@@ -68,7 +76,11 @@
                 <select name="status" class="form-select @error('status') is-invalid @enderror" id="status">
                   <option selected hidden disabled>Choose Status...</option>
                   @foreach ($data['status'] as $status)
-                    <option value="{{ $status }}">{{ $status }}</option>
+                    @if ($status === $anime->status)
+                      <option selected value="{{ $status }}">{{ $status }}</option>
+                    @else
+                      <option value="{{ $status }}">{{ $status }}</option> 
+                    @endif
                   @endforeach
                 </select>
                 @error('status')
@@ -77,14 +89,14 @@
               </div>
               <div class="col-md-4">
                 <label for="date_aired" class="form-label">Date Aired</label>
-                <input name="date_aired" type="date" class="form-control @error('date_aired') is-invalid @enderror" id="date_aired" placeholder="Anime's Type...">
+                <input value="{{ $anime->date_aired }}" name="date_aired" type="date" class="form-control @error('date_aired') is-invalid @enderror" id="date_aired" placeholder="Anime's Type...">
                 @error('date_aired')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-4">
                 <label for="date_finished" class="form-label">Date Finished</label>
-                <input name="date_finished" type="date" class="form-control @error('date_finished') is-invalid @enderror" id="date_finished" placeholder="Anime's Type...">
+                <input value="{{ $anime->date_finished }}" name="date_finished" type="date" class="form-control @error('date_finished') is-invalid @enderror" id="date_finished" placeholder="Anime's Type...">
                 @error('date_finished')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -101,7 +113,7 @@
               <div class="col-12">
                 <div class="col-md-12">
                   <label for="description" class="form-label">Description</label>
-                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Anime's Description..."></textarea>
+                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Anime's Description...">{{ $anime->description }}</textarea>
                   @error('description')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror

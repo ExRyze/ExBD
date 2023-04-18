@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 18, 2023 at 02:41 AM
+-- Generation Time: Apr 18, 2023 at 04:06 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -48,7 +48,7 @@ CREATE TABLE `animes` (
 --
 
 INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `status`, `source`, `date_aired`, `date_finished`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Anime Title', 'anime_title', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-04-17 18:30:36', '2023-04-17 18:30:36');
+(3, 'Anime\'s Title', 'animes_title', 0, '0', 'Movie', 'Finished airing', 'Manga', '2023-04-18', '2023-04-19', 'Anime\'s Description', '2023-04-17 20:03:38', '2023-04-17 20:05:29');
 
 -- --------------------------------------------------------
 
@@ -174,7 +174,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -49,7 +49,10 @@ Route::controller(DashboardAnime::class)->group(function() {
     Route::get('/dashboard/anime', 'index');
     Route::get('/dashboard/anime/create', 'create');
     Route::post('/dashboard/anime/store', 'store');
-    // Route::get('/dashboard/anime/edit/{slug}', 'edit');
-    // Route::post('/dashboard/anime/update/{id}', 'update');
-    // Route::get('/dashboard/anime/delete/{slug}', 'delete');
+    Route::get('/dashboard/anime/edit/{slug}', 'edit');
+    Route::post('/dashboard/anime/update/{id}', 'update');
+    Route::get('/dashboard/anime/delete/{slug}', 'delete');
 });
+Route::get('/dashboard/anime/edit', function() {return back();});
+Route::post('/dashboard/anime/update', function() {return back();});
+Route::get('/dashboard/anime/delete', function() {return back();});

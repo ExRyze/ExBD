@@ -60,9 +60,9 @@ class DashboardUser extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserUpdateRequest $request, String $id) : RedirectResponse
+    public function update(UserUpdateRequest $request, User $user, String $id) : RedirectResponse
     {
-        User::where('id', $id)->update($request->validated());
+        $user->where('id', $id)->update($request->validated());
 
         return redirect('/dashboard/user')->with('success', 'Data User Updated Successfully');
     }

@@ -26,6 +26,14 @@ class AnimeStoreRequest extends FormRequest
         return [
             'title' => 'required|unique:animes',
             'slug' => 'required|unique:animes',
+            'episodes' => '',
+            'duration' => '',
+            'type' => '',
+            'status' => '',
+            'source' => '',
+            'date_aired' => '',
+            'date_finished' => '',
+            'description' => ''
         ];
     }
 }

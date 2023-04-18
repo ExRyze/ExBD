@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class AnimeUpdateRequest extends FormRequest
 {
@@ -21,9 +23,18 @@ class AnimeUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge(['slug' => Str::slug($this->title, '_')]);
         return [
-            // 'email' => ['required|max:255', Rule::unique('users')->ignore($this->id)],
-            'role' => 'required',
+            'title' => ['required', Rule::unique('animes')->ignore($this->id)],
+            'slug' => ['required', Rule::unique('animes')->ignore($this->id)],
+            'episodes' => '',
+            'duration' => '',
+            'type' => '',
+            'status' => '',
+            'source' => '',
+            'date_aired' => '',
+            'date_finished' => '',
+            'description' => ''
         ];
     }
 }
