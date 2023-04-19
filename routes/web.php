@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardAnime;
 use App\Http\Controllers\DashboardUser;
+use App\Http\Controllers\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +23,17 @@ Route::get('/register', function () {
         'page' => 'Register'
     ]);
 });
-Route::get('/login', function () {
-    return view('auth.login', [
-        'page' => 'Login'
-    ]);
+
+Route::controller(Login::class)->group(function() {
+    Route::get('/login', 'index')->name('login');
+    Route::post('/login', 'authLogin');
 });
 
+Route::get('/', function() {return redirect('/dashboard');})->name('home');
+
 Route::controller(Dashboard::class)->group(function() {
-    Route::get('/dashboard', 'index');
-});
+    Route::get('/dashboard', 'index')->name('dashboard');
+})->middleware(['auth', 'role:user']);
 
 Route::controller(DashboardUser::class)->group(function() {
     Route::get('/dashboard/user', 'index');

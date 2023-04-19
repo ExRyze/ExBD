@@ -3,8 +3,8 @@ Update -  /dashboard
 Action to dropdown - /dashboard/*
 
 Function :
-Middleware - *
+Middleware Many Role
 
 BackEnd :
 Database
-Register/Login/Logout
+Register/Logout

@@ -17,6 +17,11 @@ class DashboardAnime extends Controller
         'source' => ['Manga', 'Web manga', 'Light novel', 'Original']
     ];
 
+    public function __construct()
+    {
+        $this->middleware('role:Admin');
+    }
+
     /**
      * Display a listing of the resource.
      */
