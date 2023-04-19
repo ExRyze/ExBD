@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardAnime;
 use App\Http\Controllers\DashboardUser;
-use App\Http\Controllers\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,16 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/register', function () {
-    return view('auth.register', [
-        'page' => 'Register'
-    ]);
-});
-
-Route::controller(Login::class)->group(function() {
-    Route::get('/login', 'index')->name('login');
+Route::controller(Auth::class)->group(function() {
+    Route::get('/login', 'viewLogin')->name('login');
     Route::post('/login', 'authLogin');
+    Route::get('/register', 'viewRegister')->name('register');
+    Route::post('/register', 'authRegister');
+    Route::get('/logout', 'authLogout')->name('logout');
 });
 
 Route::get('/', function() {return redirect('/dashboard');})->name('home');

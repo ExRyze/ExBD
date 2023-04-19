@@ -41,6 +41,24 @@
   </main><!-- End #main -->
 
   @include('components.footer')
+
+  <div class="modal fade text-dark" id="logout" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Logout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure to end your session? Click <strong>Logout</strong> to end session.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger" href="{{ url("logout") }}">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <!-- Vendor JS Files -->
   <script src="{{ url("assets/vendor/apexcharts/apexcharts.min.js") }}"></script>

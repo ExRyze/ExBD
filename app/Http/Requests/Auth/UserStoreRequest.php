@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Gate;
 
-class UserUpdateRequest extends FormRequest
+class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        if (Gate::allows('isAdmin')) {return true;}
-        else {return false;}
+        return true;
     }
 
     /**
@@ -23,9 +21,11 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['password' => bcrypt($this->password)]);
+        $this->merge(['password' => bcrypt($this->password), 'role' => 'User']);
         return [
-            // 'email' => ['required|max:255', Rule::unique('users')->ignore($this->id)],
+            'username' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users|max:255',
+            'password' => 'required|max:255',
             'role' => 'required',
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class UserStoreRequest extends FormRequest
 {
@@ -11,7 +12,8 @@ class UserStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if (Gate::allows('isAdmin')) {return true;}
+        else {return false;}
     }
 
     /**
@@ -21,6 +23,7 @@ class UserStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge(['password' => bcrypt($this->password)]);
         return [
             'username' => 'required|unique:users|max:255',
             'email' => 'required|unique:users|max:255',

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 18, 2023 at 04:06 AM
+-- Generation Time: Apr 19, 2023 at 11:06 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -42,13 +42,6 @@ CREATE TABLE `animes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `animes`
---
-
-INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `status`, `source`, `date_aired`, `date_finished`, `description`, `created_at`, `updated_at`) VALUES
-(3, 'Anime\'s Title', 'animes_title', 0, '0', 'Movie', 'Finished airing', 'Manga', '2023-04-18', '2023-04-19', 'Anime\'s Description', '2023-04-17 20:03:38', '2023-04-17 20:05:29');
 
 -- --------------------------------------------------------
 
@@ -126,7 +119,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '123', 'Admin', NULL, NULL, NULL);
+(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '$2y$10$os4ISq/FXZb8prpB79BuS.wKrUdsWo5449scQb11TRtUojxdMld/2', 'Admin', NULL, NULL, NULL),
+(2, 'Admin', 'Admin@gmail.com', NULL, '$2y$10$ZGG9SPAxO8mx4JIjUanEaOVjKemc70reYHPSEtpvj45SAIhhT6i2a', 'User', NULL, '2023-04-19 01:59:30', '2023-04-19 01:59:30'),
+(3, 'User', 'User@gmail.com', NULL, '$2y$10$Bt9YT1srVnk6eFsco1T.eeQh7bMHHXEFtUgK./ivJLLeynA7O70ay', 'User', NULL, '2023-04-19 03:03:56', '2023-04-19 03:03:56');
 
 --
 -- Indexes for dumped tables
@@ -174,7 +169,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -192,7 +187,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

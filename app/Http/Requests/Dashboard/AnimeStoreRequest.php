@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class AnimeStoreRequest extends FormRequest
@@ -12,7 +13,9 @@ class AnimeStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if (Gate::allows('isAdmin')) {return true;}
+        elseif (Gate::allows('isStaff')) {return true;}
+        else {return false;}
     }
 
     /**

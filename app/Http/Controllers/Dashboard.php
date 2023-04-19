@@ -8,7 +8,7 @@ class Dashboard extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Admin');
+        $this->middleware(['auth']);
     }
 
     public function index() {

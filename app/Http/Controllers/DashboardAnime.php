@@ -19,7 +19,7 @@ class DashboardAnime extends Controller
 
     public function __construct()
     {
-        $this->middleware('role:Admin');
+        $this->middleware(['auth', 'role:Admin']);
     }
 
     /**
