@@ -13,7 +13,7 @@ class Controller extends BaseController
     public function getUrl($url) {
         $url = substr($url, 7);
         $url = explode('/', $url);
-        unset($url[0]);
+        $url[0] = 'Home';
         foreach ($url as $iur => $ur) {
             $url[$iur] = ucfirst($ur);
         }

@@ -28,13 +28,18 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ url("assets/css/style.css") }}" rel="stylesheet">
+  <link href="{{ url("assets/css/ex-style.css") }}" rel="stylesheet">
 
 </head>
 
 <body>
   
   @include('components.header')
-  @include('components.sidebar')
+  @if (isset($page['arr'][1]) && $page['arr'][1] === "Dashboard")
+    @include('components.sidebarD')
+  @else
+    @include('components.sidebarH')
+  @endif
 
   <main id="main" class="main">
     @yield('main')

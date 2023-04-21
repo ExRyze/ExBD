@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth;
-use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardAnime;
 use App\Http\Controllers\DashboardUser;
+use App\Http\Controllers\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,11 +25,11 @@ Route::controller(Auth::class)->group(function() {
     Route::get('/logout', 'authLogout')->name('logout');
 });
 
-Route::get('/', function() {return redirect('/dashboard');})->name('home');
-
-Route::controller(Dashboard::class)->group(function() {
-    Route::get('/dashboard', 'index')->name('dashboard');
-})->middleware(['auth', 'role:user']);
+Route::controller(Home::class)->group(function() {
+    Route::get('/', 'index')->name('home');
+    Route::get('/home', function() {return redirect('/');});
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+});
 
 Route::controller(DashboardUser::class)->group(function() {
     Route::get('/dashboard/user', 'index');
