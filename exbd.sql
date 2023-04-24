@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 19, 2023 at 11:06 AM
+-- Generation Time: Apr 24, 2023 at 07:15 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -40,8 +40,18 @@ CREATE TABLE `animes` (
   `date_finished` date DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `animes`
+--
+
+INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `status`, `source`, `date_aired`, `date_finished`, `description`, `created_at`, `updated_at`, `user_id`) VALUES
+(1, 'Made in Abyss', 'made_in_abyss', 13, '25', 'TV', 'Finished airing', 'Web manga', '2017-07-07', '2017-09-29', NULL, '2023-04-21 23:01:45', '2023-04-21 23:01:45', 1),
+(2, 'Made in Abyss Movie 3: Fukaki Tamashii no Reimei', 'made_in_abyss_movie_3_fukaki_tamashii_no_reimei', 1, '105', 'Movie', 'Finished airing', 'Web manga', '2020-11-07', NULL, NULL, '2023-04-23 23:02:13', '2023-04-23 23:02:13', 1),
+(3, 'Made in Abyss: Retsujitsu no Ougonkyou', 'made_in_abyss_retsujitsu_no_ougonkyou', 12, '25', 'TV', 'Finished airing', 'Web manga', '2022-07-06', '2022-08-28', NULL, '2023-04-23 23:10:56', '2023-04-23 23:10:56', 1);
 
 -- --------------------------------------------------------
 
@@ -119,9 +129,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '$2y$10$os4ISq/FXZb8prpB79BuS.wKrUdsWo5449scQb11TRtUojxdMld/2', 'Admin', NULL, NULL, NULL),
-(2, 'Admin', 'Admin@gmail.com', NULL, '$2y$10$ZGG9SPAxO8mx4JIjUanEaOVjKemc70reYHPSEtpvj45SAIhhT6i2a', 'User', NULL, '2023-04-19 01:59:30', '2023-04-19 01:59:30'),
-(3, 'User', 'User@gmail.com', NULL, '$2y$10$Bt9YT1srVnk6eFsco1T.eeQh7bMHHXEFtUgK./ivJLLeynA7O70ay', 'User', NULL, '2023-04-19 03:03:56', '2023-04-19 03:03:56');
+(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '$2y$10$pAKKVf7ko.fvOvnkbbaL6OAGcST/CTmLI1fkJXkXAEc.06ur8JLLe', 'Admin', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -131,7 +139,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`,
 -- Indexes for table `animes`
 --
 ALTER TABLE `animes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `animes_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `migrations`
@@ -169,7 +178,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -187,7 +196,17 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `animes`
+--
+ALTER TABLE `animes`
+  ADD CONSTRAINT `animes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -40,6 +40,7 @@
                     <th scope="col">Date Finished</th>
                     <th scope="col">Date Created</th>
                     <th scope="col">Date Updated</th>
+                    <th scope="col">User</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -58,13 +59,22 @@
                       <td>{{ $anime->title }}</td>
                       <td>{{ $anime->type }}</td>
                       <td>{{ $anime->episodes }}</td>
-                      <td>{{ $anime->duration }} <small>min/eps</small></td>
+                      <td>{{ $anime->duration }} <small>min./ep.</small></td>
                       <td>{{ $anime->source }}</td>
                       <td>{{ $anime->status }}</td>
+                      @if (!is_null($anime->date_aired))
                       <td>{{ date("Y-m-d", strtotime($anime->date_aired)) }}</td>
+                      @else
+                      <td><em>NULL</em></td>
+                      @endif
+                      @if (!is_null($anime->date_finished))
                       <td>{{ date("Y-m-d", strtotime($anime->date_finished)) }}</td>
+                      @else
+                      <td><em>NULL</em></td>
+                      @endif
                       <td>{{ date("Y-m-d h:i:s A", strtotime($anime->created_at)) }}</td>
-                      <td>{{ date("Y-m-d h:i:s A", strtotime($anime->Updated_at)) }}</td>
+                      <td>{{ date("Y-m-d h:i:s A", strtotime($anime->updated_at)) }}</td>
+                      <td>{{ $anime->user->username }}</td>
                     </tr>
                   @endforeach
                 </tbody>

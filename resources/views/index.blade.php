@@ -2,7 +2,8 @@
 
 @section('main')
 
-    <div class="row">
+    {{-- Carousel --}}
+    {{-- <div class="row">
         <div class="col-12 position-relative">
             <div class="card">
                 <div id="carouselExampleCaptions" class="ex-carousel carousel slide col-8" data-bs-ride="carousel">
@@ -35,6 +36,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    {{--  --}}
+
 
 @endsection

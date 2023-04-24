@@ -21,9 +21,11 @@ class Anime extends Model
         'date_aired',
         'date_finished',
         'description',
+        'user_id'
     ];
 
-    public function user() : BelongsTo {
-        return $this->belongsTo(User::class, "id_user", "id");
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

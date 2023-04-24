@@ -46,7 +46,7 @@
               </div>
               <div class="col-md-3">
                 <label for="duration" class="form-label">Duration</label>
-                <input name="duration" type="number" min="0" class="form-control @error('duration') is-invalid @enderror" id="duration" placeholder="min/eps">
+                <input name="duration" type="number" min="0" class="form-control @error('duration') is-invalid @enderror" id="duration" placeholder="min./ep.">
                 @error('duration')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

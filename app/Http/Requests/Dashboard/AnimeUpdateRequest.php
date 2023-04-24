@@ -26,7 +26,7 @@ class AnimeUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['slug' => Str::slug($this->title, '_')]);
+        $this->merge(['slug' => Str::slug($this->title, '_'), 'user_id' => auth()->user()->id]);
         return [
             'title' => ['required', Rule::unique('animes')->ignore($this->id)],
             'slug' => ['required', Rule::unique('animes')->ignore($this->id)],
@@ -37,7 +37,8 @@ class AnimeUpdateRequest extends FormRequest
             'source' => '',
             'date_aired' => '',
             'date_finished' => '',
-            'description' => ''
+            'description' => '',
+            'user_id' => 'required'
         ];
     }
 }
