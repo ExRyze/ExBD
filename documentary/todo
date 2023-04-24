@@ -1,6 +1,7 @@
 Page :
 Update -  /dashboard
 Action to dropdown - /dashboard/*
+Slug in page title
 
 Function :
 Middleware Many Role

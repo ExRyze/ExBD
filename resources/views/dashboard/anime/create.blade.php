@@ -1,5 +1,5 @@
 @extends('templates.index')
-
+{{-- {{ dd(session()->all()) }} --}}
 @section('main')
 
   @include('components.pagetitle')

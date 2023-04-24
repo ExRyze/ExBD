@@ -38,7 +38,14 @@
         </div>
     </div> --}}
 
-    {{--  --}}
+    {{-- Anime Section --}}
+    <div class="row flex-nowrap overflow-auto">
+        @foreach ($carousel as $indexCarousel => $itemCarousel)
+        <div class="col-3">
+            <img src="{{ url("assets/img/animes/ex-default/Cover.jpg") }}" alt="" width="100%">
+        </div>
+        @endforeach
+    </div>
 
 
 @endsection

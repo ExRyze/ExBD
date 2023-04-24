@@ -29,7 +29,7 @@ class DashboardAnime extends Controller
     {
         return view('dashboard.anime.index', [
             'page' => $this->getUrl(URL::current()),
-            'table' => Anime::all()
+            'table' => Anime::orderBy('title')->get()
         ]);
     }
 

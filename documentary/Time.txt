@@ -98,9 +98,12 @@
 ==> 00:00 <==
 
 /* -- Monday, April 24, 2023 -------------------------------------------------- */
-00:00 ==> 15:00 - 15:15 [ Inserting Data Animes to Database && Disable Carousel (No Used) ]
+00:15 ==> 15:00 - 15:15 [ Inserting Data Animes to Database && Disable Carousel (No Used) ]
+00:51 ==> 15:15 - 16:06 [ Create Logo && Default Image Cover ]
+00:19 ==> 16:06 - 16:25 [ Minor Update Home ]
+00:53 ==> 21:45 - 22:38 [ Storing some Data Animes && Fixing Slug Function and Page Title ]
 =============================================================================== +
-==> 00:00 <==
+==> 02:18 <==
 
 
 
@@ -123,6 +126,6 @@
 `                                  02:20
 `                                  01:20
 `                                  00:00
-`                                  00:00
+`                                  02:18
 =============================================================================== +
-`                                  29:44
+`                                  32:02

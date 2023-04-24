@@ -25,7 +25,7 @@ class AnimeStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['slug' => Str::slug($this->title, '_'), 'user_id' => auth()->user()->id]);
+        $this->merge(['slug' => Str::strtolower(str_replace([' ', ':'], ['_', ''], $this->title)), 'user_id' => auth()->user()->id]);
         return [
             'title' => 'required|unique:animes',
             'slug' => 'required|unique:animes',

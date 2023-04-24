@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 24, 2023 at 07:15 AM
+-- Generation Time: Apr 24, 2023 at 02:38 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -51,7 +51,14 @@ CREATE TABLE `animes` (
 INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `status`, `source`, `date_aired`, `date_finished`, `description`, `created_at`, `updated_at`, `user_id`) VALUES
 (1, 'Made in Abyss', 'made_in_abyss', 13, '25', 'TV', 'Finished airing', 'Web manga', '2017-07-07', '2017-09-29', NULL, '2023-04-21 23:01:45', '2023-04-21 23:01:45', 1),
 (2, 'Made in Abyss Movie 3: Fukaki Tamashii no Reimei', 'made_in_abyss_movie_3_fukaki_tamashii_no_reimei', 1, '105', 'Movie', 'Finished airing', 'Web manga', '2020-11-07', NULL, NULL, '2023-04-23 23:02:13', '2023-04-23 23:02:13', 1),
-(3, 'Made in Abyss: Retsujitsu no Ougonkyou', 'made_in_abyss_retsujitsu_no_ougonkyou', 12, '25', 'TV', 'Finished airing', 'Web manga', '2022-07-06', '2022-08-28', NULL, '2023-04-23 23:10:56', '2023-04-23 23:10:56', 1);
+(3, 'Made in Abyss: Retsujitsu no Ougonkyou', 'made_in_abyss_retsujitsu_no_ougonkyou', 12, '25', 'TV', 'Finished airing', 'Web manga', '2022-07-06', '2022-08-28', NULL, '2023-04-23 23:10:56', '2023-04-23 23:10:56', 1),
+(4, '3D Kanojo: Real Girl 2nd Season', '3d_kanojo_real_girl_2nd_season', 12, '22', 'TV', 'Finished airing', 'Manga', '2019-01-09', '2019-03-27', NULL, '2023-04-24 05:49:58', '2023-04-24 05:49:58', 1),
+(5, '3D Kanojo: Real Girl', '3d_kanojo_real_girl', 12, '22', 'TV', 'Finished airing', 'Manga', '2018-04-04', '2018-06-20', NULL, '2023-04-24 05:52:43', '2023-04-24 05:52:43', 1),
+(6, '3-gatsu no Lion', '3_gatsu_no_lion', 22, '25', 'TV', 'Finished airing', 'Manga', '2016-09-08', '2017-03-18', NULL, '2023-04-24 05:53:51', '2023-04-24 05:53:51', 1),
+(7, '3-gatsu no Lion 2nd Season', '3_gatsu_no_lion_2nd_season', 22, '25', 'TV', 'Finished airing', 'Manga', '2017-09-14', '2018-03-31', NULL, '2023-04-24 05:55:18', '2023-04-24 05:55:18', 1),
+(8, '5-toubun no Hanayome', '5_toubun_no_hanayome', 12, '24', 'TV', 'Finished airing', 'Manga', '2019-01-11', '2019-03-29', NULL, '2023-04-24 05:56:31', '2023-04-24 05:56:31', 1),
+(9, '5-toubun no Hanayome Movie', '5_toubun_no_hanayome_movie', 1, '136', 'Movie', 'Finished airing', 'Manga', '2022-05-20', NULL, NULL, '2023-04-24 05:58:15', '2023-04-24 05:58:15', 1),
+(10, '5-toubun no Hanayome ∬', '5-toubun_no_hanayome_∬', 12, '24', 'TV', 'Finished airing', 'Manga', '2021-01-08', '2021-03-26', NULL, '2023-04-24 06:08:26', '2023-04-24 06:35:49', 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +185,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -13,6 +13,7 @@ class Controller extends BaseController
 
     public function getUrl($url) 
     {
+        $url = urldecode($url);
         $url = substr($url, 7);
         $url = explode('/', $url);
         $url[0] = 'Home';
