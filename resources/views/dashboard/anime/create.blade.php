@@ -10,18 +10,19 @@
 
         <div class="card">
           <div class="card-body">
-            <a class="btn btn-danger mb-2" href="{{ url("dashboard/anime") }}">
-              <i class="bi bi-box-arrow-left"></i>
-              Back
-            </a>
         
-            <!-- Multi Columns Form -->
+            <!-- General -->
             <form class="row g-3" method="POST" action="/dashboard/anime/store">
               @csrf
+              <h4>General</h4>
+              <hr class="m-0">
               <div class="col-md-12">
                 <label for="title" class="form-label">Title</label>
-                <input required name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Anime's Title...">
+                <input required name="title" type="text" class="form-control @error('title') is-invalid @enderror @error('slug') is-invalid @enderror" id="title" placeholder="Anime's Title...">
                 @error('title')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                @error('slug')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
@@ -89,20 +90,11 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              {{-- <div class="col-3">
-                <div class="col-md-12">
-                  <label for="image" class="form-label">Image</label>
-                  <input name="image" type="text" class="form-control @error('image') is-invalid @enderror" id="image" placeholder="Anime's Title...">
-                  @error('image')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-              </div> --}}
               <div class="col-12">
                 <div class="col-md-12">
-                  <label for="description" class="form-label">Description</label>
-                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Anime's Description..."></textarea>
-                  @error('description')
+                  <label for="synopsis" class="form-label">Synopsis</label>
+                  <textarea name="synopsis" class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" placeholder="Anime's Description..."></textarea>
+                  @error('synopsis')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
@@ -111,7 +103,7 @@
                 <button type="reset" class="btn btn-secondary">Reset</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
-            </form><!-- End Multi Columns Form -->
+            </form><!-- End General -->
         
           </div>
         </div>

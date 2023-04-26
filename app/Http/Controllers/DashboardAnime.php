@@ -14,12 +14,13 @@ class DashboardAnime extends Controller
     public $data = [
         'type' => ['TV', 'ONA', 'OVA', 'Special', 'Movie'],
         'status' => ['Not yet aired', 'Currently airing', 'Finished airing'],
-        'source' => ['Manga', 'Web manga', 'Light novel', 'Original']
+        'source' => ['Manga', 'Web manga', 'Light novel', 'Original'],
+        'origin' => ['Synonyms', 'Japanese', 'English']
     ];
 
     public function __construct()
     {
-        $this->middleware(['auth', 'role:Admin']);
+        $this->middleware(['auth', 'role:Admin']); // Add - Allow staff
     }
 
     /**
@@ -52,14 +53,6 @@ class DashboardAnime extends Controller
         Anime::create($request->validated());
 
         return redirect('/dashboard/anime')->with('success', 'New Data Anime Added');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Anime $anime) 
-    {
-        //
     }
 
     /**

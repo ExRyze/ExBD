@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('source', ['Manga', 'Web manga', 'Light novel', 'Original'])->nullable();
             $table->date('date_aired')->nullable();
             $table->date('date_finished')->nullable();
-            $table->text('description')->nullable();
+            $table->text('synopsis')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->nullable()->constrained("users")->cascadeOnUpdate()->nullOnDelete();
         });

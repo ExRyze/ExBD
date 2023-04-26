@@ -7,16 +7,21 @@
   <section class="section">
     <div class="row">
       <div class="col-lg-12">
+        
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
 
         <div class="card">
           <div class="card-body">
-            <a class="btn btn-danger mb-2" href="{{ url("dashboard/anime") }}">
-              <i class="bi bi-box-arrow-left"></i>
-              Back
-            </a>
         
-            <!-- Multi Columns Form -->
-            <form class="row g-3" method="POST" action="/dashboard/anime/update/{{ $anime->id }}">
+            <!-- General -->
+            <h4>General</h4>
+            <hr class="mt-0">
+            <form class="row g-3 form-general" method="POST" action="/dashboard/anime/update/{{ $anime->id }}">
               @csrf
               <div class="col-md-12">
                 <label for="title" class="form-label">Title</label>
@@ -112,9 +117,9 @@
               </div> --}}
               <div class="col-12">
                 <div class="col-md-12">
-                  <label for="description" class="form-label">Description</label>
-                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Anime's Description...">{{ $anime->description }}</textarea>
-                  @error('description')
+                  <label for="synopsis" class="form-label">Synopsis</label>
+                  <textarea name="synopsis" class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" placeholder="Anime's Description...">{{ $anime->synopsis }}</textarea>
+                  @error('synopsis')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
@@ -123,7 +128,72 @@
                 <button type="reset" class="btn btn-secondary">Reset</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
-            </form><!-- End Multi Columns Form -->
+            </form><!-- End General -->
+
+            <!-- Aliases -->
+            <h4 class="mt-5">Aliases</h4>
+            <hr class="mt-0">
+            @foreach ($anime->aliases as $alias)
+            <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/update/{{ $alias->id }}">
+              @csrf
+              <div class="col-md-3">
+                <label for="origin" class="form-label">Origin Alias</label>
+                <select name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
+                  <option required selected hidden disabled>Choose Origin...</option>
+                  @foreach ($data['origin'] as $origin)
+                    @if ($origin === $alias->origin)
+                      <option selected value="{{ $origin }}">{{ $origin }}</option>
+                    @else
+                      <option value="{{ $origin }}">{{ $origin }}</option> 
+                    @endif
+                  @endforeach
+                </select>
+                @error('origin')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-md-9">
+                <label for="alias" class="form-label">Alias</label>
+                <input required value="{{ $alias->alias }}" name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
+                @error('alias')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="text-end">
+                <button type="submit" name="submit" value="update" class="btn btn-warning">Update</button>
+                <button type="submit" name="submit" value="delete" class="btn btn-danger">Delete</button>
+              </div>
+            </form>
+            <hr>
+            @endforeach
+
+            <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/store">
+              @csrf
+              <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+              <div class="col-md-3">
+                <label for="origin" class="form-label">Origin Alias</label>
+                <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
+                  <option selected hidden disabled>Choose Origin...</option>
+                  @foreach ($data['origin'] as $origin)
+                    <option value="{{ $origin }}">{{ $origin }}</option>
+                  @endforeach
+                </select>
+                @error('origin')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-md-9">
+                <label for="alias" class="form-label">Alias</label>
+                <input required name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
+                @error('alias')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="text-end">
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form><!-- End Aliases -->
         
           </div>
         </div>

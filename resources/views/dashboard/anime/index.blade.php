@@ -26,7 +26,7 @@
 
             <!-- Table with stripped rows -->
             <div class="table-responsive">
-              <table class="table datatable table-bordered" style="white-space: nowrap;">
+              <table class="table datatable table-bordered table-hover" style="white-space: nowrap;">
                 <thead>
                   <tr>
                     <th scope="col">Action</th>
@@ -47,7 +47,11 @@
                   @foreach ($table as $ianime => $anime)
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-warning" href="{{ url("/dashboard/anime/edit/".$anime->slug) }}">
+                        <a class="btn btn-info" href="{{ url("anime/".$anime->slug) }}">
+                          <i class="bi bi-info-circle"></i>
+                          Info
+                        </a>
+                        <a class="btn btn-warning" href="{{ url("dashboard/anime/edit/".$anime->slug) }}">
                           <i class="bi bi-exclamation-triangle"></i>
                           Edit
                         </a>
@@ -63,17 +67,17 @@
                       <td>{{ $anime->source }}</td>
                       <td>{{ $anime->status }}</td>
                       @if (!is_null($anime->date_aired))
-                      <td>{{ date("Y-m-d", strtotime($anime->date_aired)) }}</td>
+                      <td>{{ date("M d, Y", strtotime($anime->date_aired)) }}</td>
                       @else
                       <td><em>NULL</em></td>
                       @endif
                       @if (!is_null($anime->date_finished))
-                      <td>{{ date("Y-m-d", strtotime($anime->date_finished)) }}</td>
+                      <td>{{ date("M d, Y", strtotime($anime->date_finished)) }}</td>
                       @else
                       <td><em>NULL</em></td>
                       @endif
-                      <td>{{ date("Y-m-d h:i:s A", strtotime($anime->created_at)) }}</td>
-                      <td>{{ date("Y-m-d h:i:s A", strtotime($anime->updated_at)) }}</td>
+                      <td>{{ date("M d, Y h:i:s A", strtotime($anime->created_at)) }}</td>
+                      <td>{{ date("M d, Y h:i:s A", strtotime($anime->updated_at)) }}</td>
                       <td>{{ $anime->user->username }}</td>
                     </tr>
                   @endforeach

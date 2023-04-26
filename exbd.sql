@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 24, 2023 at 02:38 PM
+-- Generation Time: Apr 26, 2023 at 07:51 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -38,7 +38,7 @@ CREATE TABLE `animes` (
   `source` enum('Manga','Web manga','Light novel','Original') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_aired` date DEFAULT NULL,
   `date_finished` date DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `synopsis` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL
@@ -48,7 +48,7 @@ CREATE TABLE `animes` (
 -- Dumping data for table `animes`
 --
 
-INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `status`, `source`, `date_aired`, `date_finished`, `description`, `created_at`, `updated_at`, `user_id`) VALUES
+INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `status`, `source`, `date_aired`, `date_finished`, `synopsis`, `created_at`, `updated_at`, `user_id`) VALUES
 (1, 'Made in Abyss', 'made_in_abyss', 13, '25', 'TV', 'Finished airing', 'Web manga', '2017-07-07', '2017-09-29', NULL, '2023-04-21 23:01:45', '2023-04-21 23:01:45', 1),
 (2, 'Made in Abyss Movie 3: Fukaki Tamashii no Reimei', 'made_in_abyss_movie_3_fukaki_tamashii_no_reimei', 1, '105', 'Movie', 'Finished airing', 'Web manga', '2020-11-07', NULL, NULL, '2023-04-23 23:02:13', '2023-04-23 23:02:13', 1),
 (3, 'Made in Abyss: Retsujitsu no Ougonkyou', 'made_in_abyss_retsujitsu_no_ougonkyou', 12, '25', 'TV', 'Finished airing', 'Web manga', '2022-07-06', '2022-08-28', NULL, '2023-04-23 23:10:56', '2023-04-23 23:10:56', 1),
@@ -59,6 +59,30 @@ INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `st
 (8, '5-toubun no Hanayome', '5_toubun_no_hanayome', 12, '24', 'TV', 'Finished airing', 'Manga', '2019-01-11', '2019-03-29', NULL, '2023-04-24 05:56:31', '2023-04-24 05:56:31', 1),
 (9, '5-toubun no Hanayome Movie', '5_toubun_no_hanayome_movie', 1, '136', 'Movie', 'Finished airing', 'Manga', '2022-05-20', NULL, NULL, '2023-04-24 05:58:15', '2023-04-24 05:58:15', 1),
 (10, '5-toubun no Hanayome ∬', '5-toubun_no_hanayome_∬', 12, '24', 'TV', 'Finished airing', 'Manga', '2021-01-08', '2021-03-26', NULL, '2023-04-24 06:08:26', '2023-04-24 06:35:49', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_aliases`
+--
+
+CREATE TABLE `anime_aliases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alias` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `anime_id` bigint(20) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_aliases`
+--
+
+INSERT INTO `anime_aliases` (`id`, `origin`, `alias`, `created_at`, `updated_at`, `anime_id`) VALUES
+(3, 'Synonyms', 'Sangatsu no Lion', '2023-04-25 23:49:00', '2023-04-25 23:49:00', 6),
+(4, 'Japanese', '3月のライオン', '2023-04-25 23:49:17', '2023-04-25 23:49:17', 6),
+(5, 'English', 'March Comes In Like a Lion', '2023-04-25 23:50:51', '2023-04-25 23:50:51', 6);
 
 -- --------------------------------------------------------
 
@@ -80,7 +104,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(4, '2023_04_08_050559_create_animes_table', 1);
+(4, '2023_04_08_050559_create_animes_table', 1),
+(5, '2023_04_25_074233_create_anime__aliases_table', 2),
+(6, '2023_04_25_074233_create_anime_aliases_table', 3);
 
 -- --------------------------------------------------------
 
@@ -150,6 +176,13 @@ ALTER TABLE `animes`
   ADD KEY `animes_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `anime_aliases`
+--
+ALTER TABLE `anime_aliases`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `anime_aliases_anime_id_foreign` (`anime_id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -188,10 +221,16 @@ ALTER TABLE `animes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `anime_aliases`
+--
+ALTER TABLE `anime_aliases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -214,6 +253,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `animes`
   ADD CONSTRAINT `animes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_aliases`
+--
+ALTER TABLE `anime_aliases`
+  ADD CONSTRAINT `anime_aliases_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -4,14 +4,14 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link " href="{{ url("dashboard") }}">
+      <a class="nav-link " href="{{ url("/") }}">
         <i class="bi bi-house-door"></i>
         <span>Home</span>
       </a>
     </li><!-- End Home Nav -->
 
     <li class="nav-item">
-      <a class="nav-link " href="{{ url("dashboard/user") }}">
+      <a class="nav-link " href="{{ url("anime") }}">
         <i class="bi bi-play-btn"></i>
         <span>Animes</span>
       </a>

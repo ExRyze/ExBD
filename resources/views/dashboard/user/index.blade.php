@@ -25,7 +25,7 @@
             </a>
 
             <!-- Table with stripped rows -->
-            <table class="table datatable table-bordered">
+            <table class="table datatable table-bordered table-hover">
               <thead>
                 <tr>
                   <th scope="col">Action</th>
@@ -39,7 +39,7 @@
                 @foreach ($table as $iuser => $user)
                   <tr>
                     <th scope="row">
-                      <a class="btn btn-warning" href="{{ url("/dashboard/user/edit/".$user->username) }}">
+                      <a class="btn btn-warning" href="{{ url("dashboard/user/edit/".$user->username) }}">
                         <i class="bi bi-exclamation-triangle"></i>
                         Edit
                       </a>

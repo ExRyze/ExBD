@@ -12,6 +12,7 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // Allow :: Admin
         if (Gate::allows('isAdmin')) {return true;}
         else {return false;}
     }

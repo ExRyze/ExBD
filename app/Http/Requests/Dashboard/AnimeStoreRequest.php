@@ -13,6 +13,7 @@ class AnimeStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // Allow :: Admin && Staff
         if (Gate::allows('isAdmin')) {return true;}
         elseif (Gate::allows('isStaff')) {return true;}
         else {return false;}
@@ -36,7 +37,7 @@ class AnimeStoreRequest extends FormRequest
             'source' => '',
             'date_aired' => '',
             'date_finished' => '',
-            'description' => '',
+            'synopsis' => '',
             'user_id' => 'required'
         ];
     }

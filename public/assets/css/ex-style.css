@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 # Carousel
 --------------------------------------------------------------*/
-.ex-carousel {
+/* .ex-carousel {
   position: relative!important;
 }
 
@@ -35,4 +35,19 @@
 .ex-carousel-indicators > button {
   width: 100%!important;
   height: auto!important;
+} */
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+.no-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.sub-header {
+  margin: -20px -30px 0;
+  box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+  padding: 10px 30px;
+  /* text-align: center; */
 }

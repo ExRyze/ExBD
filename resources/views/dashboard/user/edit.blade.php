@@ -10,10 +10,6 @@
 
         <div class="card">
           <div class="card-body">
-            <a class="btn btn-danger mb-2" href="{{ url("dashboard/user") }}">
-              <i class="bi bi-box-arrow-left"></i>
-              Back
-            </a>
         
             <!-- Multi Columns Form -->
             <form class="row g-3" method="POST" action="/dashboard/user/update/{{ $user->id }}">
