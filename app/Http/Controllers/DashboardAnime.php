@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anime;
 use App\Http\Requests\Dashboard\AnimeStoreRequest;
 use App\Http\Requests\Dashboard\AnimeUpdateRequest;
+use App\Models\Genre;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
@@ -12,11 +13,12 @@ use Illuminate\View\View;
 class DashboardAnime extends Controller
 {
     public $data = [
-        'type' => ['TV', 'ONA', 'OVA', 'Special', 'Movie'],
-        'status' => ['Not yet aired', 'Currently airing', 'Finished airing'],
-        'source' => ['Manga', 'Web manga', 'Light novel', 'Original'],
-        'origin' => ['Synonyms', 'Japanese', 'English']
+        'types' => ['TV', 'ONA', 'OVA', 'Special', 'Movie'],
+        'statuses' => ['Not yet aired', 'Currently airing', 'Finished airing'],
+        'sources' => ['Manga', 'Web manga', 'Light novel', 'Original'],
+        'origins' => ['Synonyms', 'Japanese', 'English']
     ];
+    
 
     public function __construct()
     {
@@ -66,7 +68,8 @@ class DashboardAnime extends Controller
             return view('dashboard.anime.edit', [
                 'page' => $this->getUrl(URL::current()),
                 'data' => $this->data,
-                'anime' => $anime->where('slug', $slug)->first()
+                'anime' => $anime->where('slug', $slug)->first(),
+                'genres' => Genre::all()
             ]);
         }
     }

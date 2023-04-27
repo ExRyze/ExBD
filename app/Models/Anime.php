@@ -36,4 +36,9 @@ class Anime extends Model
     {
         return $this->hasMany(Anime_Alias::class);
     }
+
+    public function genres() : HasMany
+    {
+        return $this->hasMany(Anime_Genres::class);
+    }
 }

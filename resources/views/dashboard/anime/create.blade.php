@@ -30,7 +30,7 @@
                 <label for="type" class="form-label">Type Anime</label>
                 <select name="type" class="form-select @error('type') is-invalid @enderror" id="type">
                   <option selected hidden disabled>Choose Type...</option>
-                  @foreach ($data['type'] as $type)
+                  @foreach ($data['types'] as $type)
                     <option value="{{ $type }}">{{ $type }}</option>
                   @endforeach
                 </select>
@@ -56,7 +56,7 @@
                 <label for="source" class="form-label">Source</label>
                 <select name="source" class="form-select @error('source') is-invalid @enderror" id="source">
                   <option selected hidden disabled>Choose Source...</option>
-                  @foreach ($data['source'] as $source)
+                  @foreach ($data['sources'] as $source)
                     <option value="{{ $source }}">{{ $source }}</option>
                   @endforeach
                 </select>
@@ -68,7 +68,7 @@
                 <label for="status" class="form-label">Status Anime</label>
                 <select name="status" class="form-select @error('status') is-invalid @enderror" id="status">
                   <option selected hidden disabled>Choose Status...</option>
-                  @foreach ($data['status'] as $status)
+                  @foreach ($data['statuses'] as $status)
                     <option value="{{ $status }}">{{ $status }}</option>
                   @endforeach
                 </select>

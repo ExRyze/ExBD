@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 26, 2023 at 07:51 AM
+-- Generation Time: Apr 27, 2023 at 03:41 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -87,6 +87,46 @@ INSERT INTO `anime_aliases` (`id`, `origin`, `alias`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `anime_genres`
+--
+
+CREATE TABLE `anime_genres` (
+  `anime_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `genre_id` bigint(20) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_genres`
+--
+
+INSERT INTO `anime_genres` (`anime_id`, `genre_id`) VALUES
+(6, 3),
+(6, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genres`
+--
+
+CREATE TABLE `genres` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `genres`
+--
+
+INSERT INTO `genres` (`id`, `genre`) VALUES
+(1, 'Action'),
+(2, 'Comedy'),
+(3, 'Drama'),
+(4, 'Slice of Life');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -106,7 +146,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (4, '2023_04_08_050559_create_animes_table', 1),
 (5, '2023_04_25_074233_create_anime__aliases_table', 2),
-(6, '2023_04_25_074233_create_anime_aliases_table', 3);
+(6, '2023_04_25_074233_create_anime_aliases_table', 3),
+(7, '2023_04_26_104527_create_genres_table', 4),
+(8, '2023_04_26_110051_create_anime_genres_table', 4);
 
 -- --------------------------------------------------------
 
@@ -183,6 +225,19 @@ ALTER TABLE `anime_aliases`
   ADD KEY `anime_aliases_anime_id_foreign` (`anime_id`);
 
 --
+-- Indexes for table `anime_genres`
+--
+ALTER TABLE `anime_genres`
+  ADD KEY `anime_genres_anime_id_foreign` (`anime_id`),
+  ADD KEY `anime_genres_genre_id_foreign` (`genre_id`);
+
+--
+-- Indexes for table `genres`
+--
+ALTER TABLE `genres`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -227,10 +282,16 @@ ALTER TABLE `anime_aliases`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `genres`
+--
+ALTER TABLE `genres`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -259,6 +320,13 @@ ALTER TABLE `animes`
 --
 ALTER TABLE `anime_aliases`
   ADD CONSTRAINT `anime_aliases_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_genres`
+--
+ALTER TABLE `anime_genres`
+  ADD CONSTRAINT `anime_genres_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `anime_genres_genre_id_foreign` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

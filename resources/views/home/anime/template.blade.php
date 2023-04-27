@@ -10,30 +10,43 @@
                 <img src="{{ url("assets/img/animes/ex-default/Cover.jpg") }}" alt="" width="100%">
             </div>
             <div class="mb-4">
+                <h5><strong>Alternative Titles</strong></h5>
+                <hr class="mt-0 mb-2">
+                <div class="mb-5">
+                    @foreach ($anime->aliases as $alias)
+                    <p class="py-1 mb-0"><strong>{{ $alias->origin }}:</strong> {{ $alias->alias }} </p>
+                    @endforeach
+                </div>
+
                 <h5><strong>Information</strong></h5>
-                <hr class="mt-0">
-                <p>
-                <strong>Type:</strong> {{ $anime->type }} <br>
-                <strong>Episodes:</strong> {{ $anime->episodes }} <br>
-                <strong>Status:</strong> {{ $anime->status }} <br>
+                <hr class="mt-0 mb-2">
+                <p class="py-1 mb-0"><strong>Type:</strong> {{ $anime->type }} </p>
+                <p class="py-1 mb-0"><strong>Episodes:</strong> {{ $anime->episodes }} </p>
+                <p class="py-1 mb-0"><strong>Status:</strong> {{ $anime->status }} </p>
                 @if ($anime->type === "Movie" && $anime->status != "Finished airing")
-                <strong>Aired:</strong> ? <br>
+                <p class="py-1 mb-0"><strong>Aired:</strong> ? </p>
                 @else
-                <strong>Aired:</strong> {{ date("M d, Y", strtotime($anime->date_aired)) }} <br>
+                <p class="py-1 mb-0"><strong>Aired:</strong> {{ date("M d, Y", strtotime($anime->date_aired)) }} </p>
                 @endif
                 @if ($anime->type != "Movie" && $anime->status === "Finished airing")
-                <strong>Finished:</strong> {{ date("M d, Y", strtotime($anime->date_finished)) }} <br>
+                <p class="py-1 mb-0"><strong>Finished:</strong> {{ date("M d, Y", strtotime($anime->date_finished)) }} </p>
                 @elseif ($anime->type != "Movie" && $anime->status != "Finished airing")
-                <strong>Finished:</strong> ? <br>
+                <p class="py-1 mb-0"><strong>Finished:</strong> ? </p>
                 @endif
-                <strong>Producers:</strong> - <br>
-                <strong>Licensors:</strong> - <br>
-                <strong>Studios:</strong> - <br>
-                <strong>Source:</strong> {{ $anime->source }} <br>
-                <strong>Genres:</strong> - <br>
-                <strong>Themes:</strong> - <br>
-                <strong>Duration:</strong> {{ $anime->duration }} <small>min./ep.</small> <br>
-                <strong>Rating:</strong> - <br>
+                <p class="py-1 mb-0"><strong>Producers:</strong> - </p>
+                <p class="py-1 mb-0"><strong>Licensors:</strong> - </p>
+                <p class="py-1 mb-0"><strong>Studios:</strong> - </p>
+                <p class="py-1 mb-0"><strong>Source:</strong> {{ $anime->source }} </p>
+                <p class="py-1 mb-0"><strong>Genres:</strong>
+                @foreach ($anime->genres as $igenre => $genre)
+                    <a href="#">{{ $genre->genre->genre }}</a>
+                    @break ($igenre === (count($anime->genres)-1))
+                    ,
+                @endforeach
+                </p>
+                <p class="py-1 mb-0"><strong>Themes:</strong> - </p>
+                <p class="py-1 mb-0"><strong>Duration:</strong> {{ $anime->duration }} <small>min./ep.</small> </p>
+                <p class="py-1 mb-0"><strong>Rating:</strong> - </p>
                 </p>
             </div>
         </div>
