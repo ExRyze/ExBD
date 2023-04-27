@@ -60,7 +60,7 @@ class DashboardAnime extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Anime $anime, String $slug) : View
+    public function edit(Anime $anime, String $slug)
     {
         if ($anime->where('slug', $slug)->count() === 0) {
             return redirect('/dashboard/anime');
@@ -69,7 +69,7 @@ class DashboardAnime extends Controller
                 'page' => $this->getUrl(URL::current()),
                 'data' => $this->data,
                 'anime' => $anime->where('slug', $slug)->first(),
-                'genres' => Genre::all()
+                'genres' => Genre::orderBy('genre')->get()
             ]);
         }
     }
@@ -81,7 +81,7 @@ class DashboardAnime extends Controller
     {
         $anime->where('id', $id)->update($request->validated());
 
-        return redirect('/dashboard/anime')->with('success', 'Data Anime Updated Successfully');
+        return back()->with('success', 'Data Anime Updated Successfully');
     }
 
     /**

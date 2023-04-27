@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Anime_Genres;
 use App\Http\Requests\Dashboard\AnimeGenreStoreRequest;
-use App\Http\Requests\Dashboard\AnimeGenreUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardAnimeGenre extends Controller
@@ -47,22 +46,6 @@ class DashboardAnimeGenre extends Controller
      * Display the specified resource.
      */
     public function show(Anime_Genres $anime_Genre)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Anime_Genres $anime_Genre)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(AnimeGenreUpdateRequest $request, Anime_Genres $anime_Genre)
     {
         //
     }

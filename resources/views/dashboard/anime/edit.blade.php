@@ -116,7 +116,7 @@
               <div class="col-12">
                 <div class="col-md-12">
                   <label for="synopsis" class="form-label">Synopsis</label>
-                  <textarea name="synopsis" class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" placeholder="Anime's Description...">{{ $anime->synopsis }}</textarea>
+                  <textarea rows="6" name="synopsis" class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" placeholder="Anime's Description...">{{ $anime->synopsis }}</textarea>
                   @error('synopsis')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
