@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genre;
-use App\Http\Requests\Dashboard\GenreStoreRequest;
+use App\Models\Anime_Theme;
+use App\Http\Requests\Dashboard\AnimeThemeStoreRequest;
 use App\Models\Anime;
-use App\Models\Anime_Genre;
-use Illuminate\Http\RedirectResponse;
 
-class DashboardGenre extends Controller
+class DashboardAnimeTheme extends Controller
 {
     public function __construct()
     {
         // Allow :: Admin && Staff
         $this->middleware(['auth', 'role:Admin|Staff']);
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -35,22 +33,26 @@ class DashboardGenre extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(GenreStoreRequest $request) : RedirectResponse
+    public function store(AnimeThemeStoreRequest $request)
     {
-        Genre::create($request->validated());
+        Anime_Theme::where('anime_id', $request->anime_id)->delete();
 
-        if (isset($request->anime_id)) {
-            Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => Genre::where('genre', $request->genre)->first()->id]);
+        if (isset($request->theme_id)) {
+            $themes = $request->theme_id;
+            foreach ($themes as $theme_id) {
+                Anime_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => $theme_id]);
+            }
             Anime::find($request->anime_id)->touch();
+            return back()->with('success', "New Data Anime's Theme Added");
         }
 
-        return back()->with('success', 'New Data Genre Added');
+        return back()->with('warning', "No Any Theme Selected");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Genre $genre)
+    public function show(Anime_Theme $anime_Theme)
     {
         //
     }
@@ -58,7 +60,7 @@ class DashboardGenre extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Genre $genre)
+    public function destroy(Anime_Theme $anime_Theme)
     {
         //
     }

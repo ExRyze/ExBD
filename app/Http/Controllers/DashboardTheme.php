@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genre;
-use App\Http\Requests\Dashboard\GenreStoreRequest;
+use App\Models\Theme;
+use App\Http\Requests\Dashboard\ThemeStoreRequest;
 use App\Models\Anime;
-use App\Models\Anime_Genre;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Anime_Theme;
 
-class DashboardGenre extends Controller
+class DashboardTheme extends Controller
 {
     public function __construct()
     {
@@ -35,22 +34,22 @@ class DashboardGenre extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(GenreStoreRequest $request) : RedirectResponse
+    public function store(ThemeStoreRequest $request)
     {
-        Genre::create($request->validated());
+        Theme::create($request->validated());
 
         if (isset($request->anime_id)) {
-            Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => Genre::where('genre', $request->genre)->first()->id]);
+            Anime_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => Theme::where('theme', $request->theme)->first()->id]);
             Anime::find($request->anime_id)->touch();
         }
 
-        return back()->with('success', 'New Data Genre Added');
+        return back()->with('success', 'New Data Theme Added');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Genre $genre)
+    public function show(Theme $theme)
     {
         //
     }
@@ -58,7 +57,7 @@ class DashboardGenre extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Genre $genre)
+    public function destroy(Theme $theme)
     {
         //
     }

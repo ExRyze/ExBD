@@ -4,7 +4,9 @@ use App\Http\Controllers\Auth;
 use App\Http\Controllers\DashboardAnime;
 use App\Http\Controllers\DashboardAnimeAlias;
 use App\Http\Controllers\DashboardAnimeGenre;
+use App\Http\Controllers\DashboardAnimeTheme;
 use App\Http\Controllers\DashboardGenre;
+use App\Http\Controllers\DashboardTheme;
 use App\Http\Controllers\DashboardUser;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\HomeAnime;
@@ -58,6 +60,11 @@ Route::controller(DashboardGenre::class)->group(function() {
 });
     // Dashboard/Genre
 
+Route::controller(DashboardTheme::class)->group(function() {
+    Route::post('/dashboard/theme/store', 'store');
+});
+    // Dashboard/Theme
+    
 Route::controller(DashboardAnime::class)->group(function() { // Anime
     Route::get('/dashboard/anime', 'index');
     Route::get('/dashboard/anime/create', 'create');
@@ -76,5 +83,8 @@ Route::controller(DashboardAnimeAlias::class)->group(function() { // Anime Alias
 Route::post('/dashboard/animealias/update', function() {return back();});  
 Route::controller(DashboardAnimeGenre::class)->group(function() { // Anime Genres
     Route::post('/dashboard/animegenre/store', 'store');
+});
+Route::controller(DashboardAnimeTheme::class)->group(function() { // Anime Themes
+    Route::post('/dashboard/animetheme/store', 'store');
 });
     // Dashboard/Anime

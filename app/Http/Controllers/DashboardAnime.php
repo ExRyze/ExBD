@@ -6,6 +6,7 @@ use App\Models\Anime;
 use App\Http\Requests\Dashboard\AnimeStoreRequest;
 use App\Http\Requests\Dashboard\AnimeUpdateRequest;
 use App\Models\Genre;
+use App\Models\Theme;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
@@ -70,7 +71,8 @@ class DashboardAnime extends Controller
                 'page' => $this->getUrl(URL::current()),
                 'data' => $this->data,
                 'anime' => $anime->where('slug', $slug)->first(),
-                'genres' => Genre::orderBy('genre')->get()
+                'genres' => Genre::orderBy('genre')->get(),
+                'themes' => Theme::orderBy('theme')->get()
             ]);
         }
     }

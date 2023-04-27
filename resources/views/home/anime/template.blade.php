@@ -39,12 +39,14 @@
                 <p class="py-1 mb-0"><strong>Source:</strong> {{ $anime->source }} </p>
                 <p class="py-1 mb-0"><strong>Genres:</strong>
                 @foreach ($anime->genres as $igenre => $genre)
-                    <a href="#">{{ $genre->genre->genre }}</a>
-                    @break ($igenre === (count($anime->genres)-1))
-                    ,
+                    <a href="#">{{ $genre->genre->genre }}</a>@break ($igenre === (count($anime->genres)-1)),
                 @endforeach
                 </p>
-                <p class="py-1 mb-0"><strong>Themes:</strong> - </p>
+                <p class="py-1 mb-0"><strong>Themes:</strong>
+                @foreach ($anime->themes as $itheme => $theme)
+                    <a href="#">{{ $theme->theme->theme }}</a>@break ($itheme === (count($anime->themes)-1)),
+                @endforeach
+                </p>
                 <p class="py-1 mb-0"><strong>Duration:</strong> {{ $anime->duration }} <small>min./ep.</small> </p>
                 <p class="py-1 mb-0"><strong>Rating:</strong> - </p>
                 </p>

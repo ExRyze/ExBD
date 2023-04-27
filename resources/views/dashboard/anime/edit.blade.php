@@ -143,12 +143,12 @@
                 <div class="col-md-3 text-center">
                   @foreach ($anime->genres as $animegenre)
                     @if ($genre->id === $animegenre->genre_id)
-                    <input checked type="checkbox" name="genre_id[]" value="{{ $genre->id }}">{{ $genre->genre }} <br>
+                    <label for="{{ $genre->id }}"><input checked type="checkbox" name="genre_id[]" value="{{ $genre->id }}" id="{{ $genre->id }}">{{ $genre->genre }}</label> <br>
                     @php $created = true; @endphp
                     @endif
                   @endforeach
                   @if (!$created)
-                  <input type="checkbox" name="genre_id[]" value="{{ $genre->id }}"> {{ $genre->genre }} <br>
+                  <label for="{{ $genre->id }}"><input type="checkbox" name="genre_id[]" value="{{ $genre->id }}" id="{{ $genre->id }}"> {{ $genre->genre }}</label> <br>
                   @endif
                 </div>
                 @endforeach
@@ -179,6 +179,58 @@
               </form>
             </div>
             <!-- End Genres -->
+
+            <!-- Themes -->
+            <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#themes-form" data-bs-toggle="collapse" aria-expanded="false">
+              <span>Themes</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </h4>
+            <hr class="mt-0">
+            <div id="themes-form" class="collapse" data-bs-parent="#edit-form">
+              <form class="row g-3 form-themes" method="POST" action="/dashboard/animetheme/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                @foreach ($themes as $theme)
+                @php $created = false; @endphp
+                <div class="col-md-3 text-center">
+                  @foreach ($anime->themes as $animetheme)
+                    @if ($theme->id === $animetheme->theme_id)
+                    <label for="{{ $theme->id }}"><input checked type="checkbox" name="theme_id[]" value="{{ $theme->id }}" id="{{ $theme->id }}">{{ $theme->theme }}</label> <br>
+                    @php $created = true; @endphp
+                    @endif
+                  @endforeach
+                  @if (!$created)
+                  <label for="{{ $theme->id }}"><input type="checkbox" name="theme_id[]" value="{{ $theme->id }}" id="{{ $theme->id }}"> {{ $theme->theme }}</label> <br>
+                  @endif
+                </div>
+                @endforeach
+                @error('theme_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+              <hr>
+
+              <form class="row g-3 form-themes" method="POST" action="/dashboard/theme/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                <div class="col-md-12">
+                  <label for="theme" class="form-label">Theme</label>
+                  <input required name="theme" type="text" class="form-control @error('theme') is-invalid @enderror" id="theme" placeholder="Theme">
+                  @error('theme')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- End Themes -->
 
             <!-- Aliases -->
             <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#aliases-form" data-bs-toggle="collapse" aria-expanded="false">

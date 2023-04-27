@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anime_Genres;
+use App\Models\Anime_Genre;
 use App\Http\Requests\Dashboard\AnimeGenreStoreRequest;
 use App\Models\Anime;
 use Illuminate\Http\RedirectResponse;
@@ -36,12 +36,12 @@ class DashboardAnimeGenre extends Controller
      */
     public function store(AnimeGenreStoreRequest $request) : RedirectResponse
     {
-        Anime_Genres::where('anime_id', $request->anime_id)->delete();
+        Anime_Genre::where('anime_id', $request->anime_id)->delete();
 
         if (isset($request->genre_id)) {
             $genres = $request->genre_id;
             foreach ($genres as $genre_id) {
-                Anime_Genres::create(['anime_id' => $request->anime_id, 'genre_id' => $genre_id]);
+                Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => $genre_id]);
             }
             Anime::find($request->anime_id)->touch();
             return back()->with('success', "New Data Anime's Genre Added");
@@ -53,7 +53,7 @@ class DashboardAnimeGenre extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Anime_Genres $anime_Genre)
+    public function show(Anime_Genre $anime_Genre)
     {
         //
     }
@@ -61,7 +61,7 @@ class DashboardAnimeGenre extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Anime_Genres $anime_Genre)
+    public function destroy(Anime_Genre $anime_Genre)
     {
         //
     }
