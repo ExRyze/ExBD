@@ -51,11 +51,7 @@
             </div>
         </div>
         <div class="col-9 pt-3">
-            <div class="mb-4">
-                <h5><strong>Synopsis</strong></h5>
-                <hr class="mt-0">
-                <p>{{ $anime->synopsis }}</p>
-            </div>
+            @yield('article')
         </div>
     </div>
 

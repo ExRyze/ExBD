@@ -18,6 +18,9 @@ class Controller extends BaseController
         $url = explode('/', $url);
         $url[0] = 'Home';
         foreach ($url as $iur => $ur) {
+            if (str_contains($ur, '_')) {
+                $ur = str_replace('_', ' ', $ur);
+            }
             $url[$iur] = ucfirst($ur);
         }
         return ["arr" => $url, "path" => ""];

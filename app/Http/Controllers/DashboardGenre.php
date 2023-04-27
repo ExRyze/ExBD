@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use App\Http\Requests\Dashboard\GenreStoreRequest;
+use App\Models\Anime;
 use App\Models\Anime_Genres;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardGenre extends Controller
 {
+    public function __construct()
+    {
+        // Allow :: Admin && Staff
+        $this->middleware(['auth', 'role:Admin|Staff']);
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -34,6 +41,7 @@ class DashboardGenre extends Controller
 
         if (isset($request->anime_id)) {
             Anime_Genres::create(['anime_id' => $request->anime_id, 'genre_id' => Genre::where('genre', $request->genre)->first()->id]);
+            Anime::find($request->anime_id)->touch();
         }
 
         return back()->with('success', 'New Data Genre Added');

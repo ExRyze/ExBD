@@ -13,9 +13,27 @@ class HasRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, String $role): Response
+    public function handle(Request $request, Closure $next, String|Array $role): Response
     {
-        if (auth()->user()->role != $role) {
+        $allow = false;
+        switch ($role) {
+            case str_contains($role, '|') :
+                $roles = explode('|', $role);
+                foreach ($roles as $role) {
+                    if (auth()->user()->role === $role) {
+                        $allow = true;
+                    }
+                }
+                break;
+                
+            default :
+                if (auth()->user()->role === $role) {
+                    $allow = true;
+                }
+                break;
+        }
+        
+        if (!$allow) {
             return redirect('/');
         }
 

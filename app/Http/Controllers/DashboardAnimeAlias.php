@@ -11,7 +11,8 @@ class DashboardAnimeAlias extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'role:Admin']); // Add - Allow staff
+        // Allow :: Admin && Staff
+        $this->middleware(['auth', 'role:Admin|Staff']);
     }
 
     /**

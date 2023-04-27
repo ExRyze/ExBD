@@ -11,7 +11,7 @@ class Home extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:Admin')->only('dashboard');
+        $this->middleware('role:Admin|Staff')->only('dashboard');
     }
 
     public function index() : View

@@ -25,37 +25,39 @@
             </a>
 
             <!-- Table with stripped rows -->
-            <table class="table datatable table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Action</th>
-                  <th scope="col">Username</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Date Created</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($table as $iuser => $user)
+            <div class="table-responsive">
+              <table class="table datatable table-bordered table-hover" style="white-space: nowrap;"">
+                <thead>
                   <tr>
-                    <th scope="row">
-                      <a class="btn btn-warning" href="{{ url("dashboard/user/edit/".$user->username) }}">
-                        <i class="bi bi-exclamation-triangle"></i>
-                        Edit
-                      </a>
-                      <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelUser{{ $iuser }}">
-                        <i class="bi bi-exclamation-octagon"></i>
-                        Delete
-                      </button>
-                    </th>
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->role }}</td>
-                    <td>{{ date("Y-m-d h:i:s A", strtotime($user->created_at)) }}</td>
+                    <th scope="col">Action</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Date Created</th>
                   </tr>
-                @endforeach
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  @foreach ($table as $iuser => $user)
+                    <tr>
+                      <th scope="row">
+                        <a class="btn btn-warning" href="{{ url("dashboard/user/edit/".$user->username) }}">
+                          <i class="bi bi-exclamation-triangle"></i>
+                          Edit
+                        </a>
+                        <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelUser{{ $iuser }}">
+                          <i class="bi bi-exclamation-octagon"></i>
+                          Delete
+                        </button>
+                      </th>
+                      <td>{{ $user->username }}</td>
+                      <td>{{ $user->email }}</td>
+                      <td>{{ $user->role }}</td>
+                      <td>{{ date("Y-m-d h:i:s A", strtotime($user->created_at)) }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
             <!-- End Table with stripped rows -->
 
           </div>
