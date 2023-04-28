@@ -6,6 +6,7 @@ use App\Models\Anime;
 use App\Http\Requests\Dashboard\AnimeStoreRequest;
 use App\Http\Requests\Dashboard\AnimeUpdateRequest;
 use App\Models\Genre;
+use App\Models\Licensor;
 use App\Models\Producer;
 use App\Models\Theme;
 use Illuminate\Http\RedirectResponse;
@@ -75,6 +76,7 @@ class DashboardAnime extends Controller
                 'genres' => Genre::orderBy('genre')->get(),
                 'themes' => Theme::orderBy('theme')->get(),
                 'producers' => Producer::orderBy('producer')->get(),
+                'licensors' => Licensor::orderBy('licensor')->get(),
             ]);
         }
     }

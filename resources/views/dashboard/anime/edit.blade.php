@@ -284,6 +284,58 @@
             </div>
             <!-- End Producers -->
 
+            <!-- Licensors -->
+            <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#licensors-form" data-bs-toggle="collapse" aria-expanded="false">
+              <span>Licensors</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </h4>
+            <hr class="mt-0">
+            <div id="licensors-form" class="collapse" data-bs-parent="#edit-form">
+              <form class="row g-3 form-licensors" method="POST" action="/dashboard/animelicensor/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                @foreach ($licensors as $licensor)
+                @php $created = false; @endphp
+                <div class="col-md-3 text-center">
+                  @foreach ($anime->licensors as $animelicensor)
+                    @if ($licensor->id === $animelicensor->licensor_id)
+                    <label for="licensor{{ $licensor->id }}"><input checked type="checkbox" name="licensor_id[]" value="{{ $licensor->id }}" id="licensor{{ $licensor->id }}">{{ $licensor->licensor }}</label> <br>
+                    @php $created = true; @endphp
+                    @endif
+                  @endforeach
+                  @if (!$created)
+                  <label for="licensor{{ $licensor->id }}"><input type="checkbox" name="licensor_id[]" value="{{ $licensor->id }}" id="licensor{{ $licensor->id }}"> {{ $licensor->licensor }}</label> <br>
+                  @endif
+                </div>
+                @endforeach
+                @error('licensor_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+              <hr>
+
+              <form class="row g-3 form-licensors" method="POST" action="/dashboard/licensor/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                <div class="col-md-12">
+                  <label for="licensor" class="form-label">Licensor</label>
+                  <input required name="licensor" type="text" class="form-control @error('licensor') is-invalid @enderror" id="licensor" placeholder="Licensor">
+                  @error('licensor')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- End Licensors -->
+
             <!-- Aliases -->
             <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#aliases-form" data-bs-toggle="collapse" aria-expanded="false">
               <span>Aliases</span>

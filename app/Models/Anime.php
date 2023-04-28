@@ -51,4 +51,9 @@ class Anime extends Model
     {
         return $this->hasMany(Anime_Producer::class);
     }
+
+    public function licensors() : HasMany
+    {
+        return $this->hasMany(Anime_Licensor::class);
+    }
 }

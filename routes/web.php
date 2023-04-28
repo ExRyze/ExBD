@@ -4,9 +4,11 @@ use App\Http\Controllers\Auth;
 use App\Http\Controllers\DashboardAnime;
 use App\Http\Controllers\DashboardAnimeAlias;
 use App\Http\Controllers\DashboardAnimeGenre;
+use App\Http\Controllers\DashboardAnimeLicensor;
 use App\Http\Controllers\DashboardAnimeProducer;
 use App\Http\Controllers\DashboardAnimeTheme;
 use App\Http\Controllers\DashboardGenre;
+use App\Http\Controllers\DashboardLicensor;
 use App\Http\Controllers\DashboardProducer;
 use App\Http\Controllers\DashboardTheme;
 use App\Http\Controllers\DashboardUser;
@@ -72,6 +74,11 @@ Route::controller(DashboardProducer::class)->group(function() {
 });
     // Dashboard/Producer
     
+Route::controller(DashboardLicensor::class)->group(function() {
+    Route::post('/dashboard/licensor/store', 'store');
+});
+    // Dashboard/Licensor
+    
 Route::controller(DashboardAnime::class)->group(function() { // Anime
     Route::get('/dashboard/anime', 'index');
     Route::get('/dashboard/anime/create', 'create');
@@ -96,5 +103,8 @@ Route::controller(DashboardAnimeTheme::class)->group(function() { // Anime Theme
 });
 Route::controller(DashboardAnimeProducer::class)->group(function() { // Anime Producers
     Route::post('/dashboard/animeproducer/store', 'store');
+});
+Route::controller(DashboardAnimeLicensor::class)->group(function() { // Anime Licensors
+    Route::post('/dashboard/animelicensor/store', 'store');
 });
     // Dashboard/Anime
