@@ -336,6 +336,58 @@
             </div>
             <!-- End Licensors -->
 
+            <!-- Studios -->
+            <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#studios-form" data-bs-toggle="collapse" aria-expanded="false">
+              <span>Studios</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </h4>
+            <hr class="mt-0">
+            <div id="studios-form" class="collapse" data-bs-parent="#edit-form">
+              <form class="row g-3 form-studios" method="POST" action="/dashboard/animestudio/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                @foreach ($studios as $studio)
+                @php $created = false; @endphp
+                <div class="col-md-3 text-center">
+                  @foreach ($anime->studios as $animestudio)
+                    @if ($studio->id === $animestudio->studio_id)
+                    <label for="studio{{ $studio->id }}"><input checked type="checkbox" name="studio_id[]" value="{{ $studio->id }}" id="studio{{ $studio->id }}">{{ $studio->studio }}</label> <br>
+                    @php $created = true; @endphp
+                    @endif
+                  @endforeach
+                  @if (!$created)
+                  <label for="studio{{ $studio->id }}"><input type="checkbox" name="studio_id[]" value="{{ $studio->id }}" id="studio{{ $studio->id }}"> {{ $studio->studio }}</label> <br>
+                  @endif
+                </div>
+                @endforeach
+                @error('studio_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+              <hr>
+
+              <form class="row g-3 form-studios" method="POST" action="/dashboard/studio/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                <div class="col-md-12">
+                  <label for="studio" class="form-label">Studio</label>
+                  <input required name="studio" type="text" class="form-control @error('studio') is-invalid @enderror" id="studio" placeholder="Studio">
+                  @error('studio')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- End Studios -->
+
             <!-- Aliases -->
             <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#aliases-form" data-bs-toggle="collapse" aria-expanded="false">
               <span>Aliases</span>
