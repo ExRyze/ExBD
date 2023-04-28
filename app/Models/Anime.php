@@ -46,4 +46,9 @@ class Anime extends Model
     {
         return $this->hasMany(Anime_Theme::class);
     }
+
+    public function producers() : HasMany
+    {
+        return $this->hasMany(Anime_Producer::class);
+    }
 }

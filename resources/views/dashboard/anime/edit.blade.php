@@ -143,12 +143,12 @@
                 <div class="col-md-3 text-center">
                   @foreach ($anime->genres as $animegenre)
                     @if ($genre->id === $animegenre->genre_id)
-                    <label for="{{ $genre->id }}"><input checked type="checkbox" name="genre_id[]" value="{{ $genre->id }}" id="{{ $genre->id }}">{{ $genre->genre }}</label> <br>
+                    <label for="genre{{ $genre->id }}"><input checked type="checkbox" name="genre_id[]" value="{{ $genre->id }}" id="genre{{ $genre->id }}">{{ $genre->genre }}</label> <br>
                     @php $created = true; @endphp
                     @endif
                   @endforeach
                   @if (!$created)
-                  <label for="{{ $genre->id }}"><input type="checkbox" name="genre_id[]" value="{{ $genre->id }}" id="{{ $genre->id }}"> {{ $genre->genre }}</label> <br>
+                  <label for="genre{{ $genre->id }}"><input type="checkbox" name="genre_id[]" value="{{ $genre->id }}" id="genre{{ $genre->id }}"> {{ $genre->genre }}</label> <br>
                   @endif
                 </div>
                 @endforeach
@@ -195,12 +195,12 @@
                 <div class="col-md-3 text-center">
                   @foreach ($anime->themes as $animetheme)
                     @if ($theme->id === $animetheme->theme_id)
-                    <label for="{{ $theme->id }}"><input checked type="checkbox" name="theme_id[]" value="{{ $theme->id }}" id="{{ $theme->id }}">{{ $theme->theme }}</label> <br>
+                    <label for="theme{{ $theme->id }}"><input checked type="checkbox" name="theme_id[]" value="{{ $theme->id }}" id="theme{{ $theme->id }}">{{ $theme->theme }}</label> <br>
                     @php $created = true; @endphp
                     @endif
                   @endforeach
                   @if (!$created)
-                  <label for="{{ $theme->id }}"><input type="checkbox" name="theme_id[]" value="{{ $theme->id }}" id="{{ $theme->id }}"> {{ $theme->theme }}</label> <br>
+                  <label for="theme{{ $theme->id }}"><input type="checkbox" name="theme_id[]" value="{{ $theme->id }}" id="theme{{ $theme->id }}"> {{ $theme->theme }}</label> <br>
                   @endif
                 </div>
                 @endforeach
@@ -231,6 +231,58 @@
               </form>
             </div>
             <!-- End Themes -->
+
+            <!-- Producers -->
+            <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#producers-form" data-bs-toggle="collapse" aria-expanded="false">
+              <span>Producers</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </h4>
+            <hr class="mt-0">
+            <div id="producers-form" class="collapse" data-bs-parent="#edit-form">
+              <form class="row g-3 form-producers" method="POST" action="/dashboard/animeproducer/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                @foreach ($producers as $producer)
+                @php $created = false; @endphp
+                <div class="col-md-3 text-center">
+                  @foreach ($anime->producers as $animeproducer)
+                    @if ($producer->id === $animeproducer->producer_id)
+                    <label for="producer{{ $producer->id }}"><input checked type="checkbox" name="producer_id[]" value="{{ $producer->id }}" id="producer{{ $producer->id }}">{{ $producer->producer }}</label> <br>
+                    @php $created = true; @endphp
+                    @endif
+                  @endforeach
+                  @if (!$created)
+                  <label for="producer{{ $producer->id }}"><input type="checkbox" name="producer_id[]" value="{{ $producer->id }}" id="producer{{ $producer->id }}"> {{ $producer->producer }}</label> <br>
+                  @endif
+                </div>
+                @endforeach
+                @error('producer_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+              <hr>
+
+              <form class="row g-3 form-producers" method="POST" action="/dashboard/producer/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                <div class="col-md-12">
+                  <label for="producer" class="form-label">Producer</label>
+                  <input required name="producer" type="text" class="form-control @error('producer') is-invalid @enderror" id="producer" placeholder="Producer">
+                  @error('producer')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- End Producers -->
 
             <!-- Aliases -->
             <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#aliases-form" data-bs-toggle="collapse" aria-expanded="false">
