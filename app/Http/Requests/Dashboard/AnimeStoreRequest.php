@@ -4,7 +4,6 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Str;
 
 class AnimeStoreRequest extends FormRequest
 {
@@ -26,7 +25,8 @@ class AnimeStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['slug' => Str::strtolower(str_replace([' ', ':'], ['_', ''], $this->title)), 'user_id' => auth()->user()->id]);
+        $this->merge(['slug' => strtolower(str_replace([' ', ':'], ['_', ''], $this->title)), 'user_id' => auth()->user()->id]);
+
         return [
             'title' => 'required|unique:animes',
             'slug' => 'required|unique:animes',

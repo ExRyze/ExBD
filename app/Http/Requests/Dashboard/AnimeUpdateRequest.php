@@ -27,6 +27,8 @@ class AnimeUpdateRequest extends FormRequest
     public function rules(): array
     {
         $this->merge(['slug' => strtolower(str_replace([' ', ':'], ['_', ''], $this->title)), 'user_id' => auth()->user()->id]);
+        if (isset($this->file) === true) {$this->merge(['image' => 'Cover.jpg']);}
+
         return [
             'title' => ['required', Rule::unique('animes')->ignore($this->id)],
             'slug' => ['required', Rule::unique('animes')->ignore($this->id)],
@@ -38,6 +40,7 @@ class AnimeUpdateRequest extends FormRequest
             'date_aired' => '',
             'date_finished' => '',
             'synopsis' => '',
+            'image' => '',
             'user_id' => 'required'
         ];
     }

@@ -12,10 +12,10 @@
           <div class="card-body">
         
             <!-- General -->
-            <form class="row g-3" method="POST" action="/dashboard/anime/store">
+            <h4>General</h4>
+            <hr class="m-0">
+            <form class="row g-3" method="POST" action="/dashboard/anime/store" enctype="multipart/form-data">
               @csrf
-              <h4>General</h4>
-              <hr class="m-0">
               <div class="col-md-12">
                 <label for="title" class="form-label">Title</label>
                 <input required name="title" type="text" class="form-control @error('title') is-invalid @enderror @error('slug') is-invalid @enderror" id="title" placeholder="Anime's Title...">

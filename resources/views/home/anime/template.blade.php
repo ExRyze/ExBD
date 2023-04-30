@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-3 d-flex flex-column ps-0 pt-3" style="box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);">
             <div class="mb-4">
-                <img src="{{ url("assets/img/animes/ex-default/Cover.jpg") }}" alt="" width="100%">
+                @include('components.animecover')
             </div>
             <div class="mb-4">
                 <h5><strong>Alternative Titles</strong></h5>
@@ -33,9 +33,21 @@
                 @elseif ($anime->type != "Movie" && $anime->status != "Finished airing")
                 <p class="py-1 mb-0"><strong>Finished:</strong> ? </p>
                 @endif
-                <p class="py-1 mb-0"><strong>Producers:</strong> - </p>
-                <p class="py-1 mb-0"><strong>Licensors:</strong> - </p>
-                <p class="py-1 mb-0"><strong>Studios:</strong> - </p>
+                <p class="py-1 mb-0"><strong>Producers:</strong>
+                @foreach ($anime->producers as $iproducer => $producer)
+                    <a href="#">{{ $producer->producer->producer }}</a>@break ($iproducer === (count($anime->producers)-1)),
+                @endforeach
+                </p>
+                <p class="py-1 mb-0"><strong>Licensors:</strong>
+                @foreach ($anime->licensors as $ilicensor => $licensor)
+                    <a href="#">{{ $licensor->licensor->licensor }}</a>@break ($ilicensor === (count($anime->licensors)-1)),
+                @endforeach
+                </p>
+                <p class="py-1 mb-0"><strong>Studios:</strong>
+                @foreach ($anime->studios as $istudio => $studio)
+                    <a href="#">{{ $studio->studio->studio }}</a>@break ($istudio === (count($anime->studios)-1)),
+                @endforeach
+                </p>
                 <p class="py-1 mb-0"><strong>Source:</strong> {{ $anime->source }} </p>
                 <p class="py-1 mb-0"><strong>Genres:</strong>
                 @foreach ($anime->genres as $igenre => $genre)

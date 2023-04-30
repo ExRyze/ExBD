@@ -11,6 +11,7 @@ use App\Models\Producer;
 use App\Models\Studio;
 use App\Models\Theme;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
@@ -56,7 +57,7 @@ class DashboardAnime extends Controller
      * Store a newly created resource in storage.
      */
     public function store(AnimeStoreRequest $request) : RedirectResponse
-    {
+    {        
         Anime::create($request->validated());
 
         return redirect('/dashboard/anime')->with('success', 'New Data Anime Added');
@@ -88,6 +89,11 @@ class DashboardAnime extends Controller
      */
     public function update(AnimeUpdateRequest $request, Anime $anime, String $id) : RedirectResponse
     {
+
+        if ($request->file('file') != null) {
+            $request->file('file')->storeAs('public/images/animes/'.$request->slug, 'Cover.jpg');
+        }
+
         $anime->where('id', $id)->update($request->validated());
 
         return back()->with('success', 'Data Anime Updated Successfully');

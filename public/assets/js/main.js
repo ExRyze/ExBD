@@ -39,6 +39,29 @@
   }
 
   /**
+   * Preview image input
+   */
+  if(select("#imgInp")) {
+    // on("change", "#imgInp", function(e) {
+    //   const [file] = imgInp.files
+    //   if (file) {
+    //     imgPrev.src = URL.createObjectURL(file)
+    //   }
+    // })
+    imgInp.onchange = evt => {
+      const [file] = imgInp.files
+      if (file) {
+        imgPrev.src = URL.createObjectURL(file)
+      }
+    }
+    on('click', '#imgRst', function(e) {
+      imgPrev.src = "http://127.0.0.1:8000/storage/images/animes/ex-default/Cover.jpg"
+      imgInp.value = null
+      img.value = null
+    })
+  }
+
+  /**
    * Sidebar toggle
    */
   if (select('.toggle-sidebar-btn')) {

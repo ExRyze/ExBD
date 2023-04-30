@@ -127,7 +127,7 @@
 00:02 ==> 15:07 - 15:09 [ Table Responsive User ]
 00:13 ==> 15:10 - 15:23 [ Middleware Allow May Role ]
 00:10 ==> 15:23 - 15:33 [ Fixing Paragraph Synopsis in Anime's Details ]
-00:07 ==> 15:33 - 15:40 [ Fixing Slug in Pagetitle && Fixing Minor Problem at Middleware Role ]
+00:07 ==> 15:33 - 15:40 [ Fixing Slug in Pagetitle & & Fixing Minor Problem at Middleware Role ]
 00:11 ==> 16:33 - 16:44 [ Update Logo ]
 00:49 ==> 16:44 - 17:33 [ Creating Anime's Themes Functions ]
 =============================================================================== +
@@ -137,8 +137,20 @@
 00:45 ==> 11:25 - 12:10 [ Creating Anime's Producers Functions ]
 00:20 ==> 20:53 - 21:13 [ Creating Anime's Licensors Functions ]
 00:20 ==> 21:15 - 21:35 [ Creating Anime's Studios Functions ]
+00:03 ==> 21:40 - 21:43 [ Update Anime's Datas in Anime's Details ]
 =============================================================================== +
-==> 01:25 <==
+==> 01:28 <==
+
+/* -- Saturday, April 29, 2023 -------------------------------------------------- */
+02:35 ==> 16:05 - 18:40 [ Draf 07 - Upload Image ]
+=============================================================================== +
+==> 02:35 <==
+
+/* -- Sunday, April 30, 2023 -------------------------------------------------- */
+01:28 ==> 14:45 - 16:13 [ Finishing Draf 07 ]
+01:39 ==> 19:57 - 21:36 [ Uploading Anime's Image && Display The Anime's Image ]
+=============================================================================== +
+==> 03:07 <==
 
 
 
@@ -167,6 +179,8 @@
 `                                  03:59
 `                                  02:58
 `                                  03:53
-`                                  01:25
+`                                  01:28
+`                                  02:35
+`                                  03:07
 =============================================================================== +
-`                                  44:17
+`                                  50:01

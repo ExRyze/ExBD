@@ -18,7 +18,7 @@ class Home extends Controller
     {
         return view('home.index', [
             'page' => $this->getUrl(URL::current()),
-            'carousel' => Anime::orderBy('date_aired', 'DESC')->take(10)->get()
+            'animes' => Anime::orderBy('date_aired', 'DESC')->take(10)->get()
         ]);
     }
 
