@@ -685,10 +685,14 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-
-  .toggle-sidebar #main,
+  
+  .toggle-sidebar #main {
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+  
   .toggle-sidebar #footer {
-    margin-left: 0;
+    margin-left: 0px;
   }
 
   .toggle-sidebar .sidebar {

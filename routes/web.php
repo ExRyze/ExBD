@@ -16,6 +16,8 @@ use App\Http\Controllers\DashboardTheme;
 use App\Http\Controllers\DashboardUser;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\HomeAnime;
+use App\Http\Controllers\HomeSetting;
+use App\Http\Controllers\HomeUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,8 +45,20 @@ Route::controller(Home::class)->group(function() {
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 }); // Home && Dashboard
 
+Route::controller(HomeUser::class)->group(function() {
+    Route::get('/user/{username}', 'index');
+}); 
+Route::get('/user', function() {return back();});
+    // Home/User
+
+Route::controller(HomeSetting::class)->group(function() {
+    Route::get('/setting', 'profile');
+    Route::get('/setting/profile', 'profile');
+    Route::post('/setting/profile/update/{id}', 'updateProfile');
+}); // Home/Setting
+
 Route::controller(HomeAnime::class)->group(function() {
-    Route::get('/anime', 'index')->name('home');
+    Route::get('/anime', 'index');
     Route::get('/anime/{slug}', 'details');
 }); // Home/Anime
 

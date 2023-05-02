@@ -35,8 +35,10 @@
 <body>
   
   @include('components.header')
-  @if (isset($page['arr'][1]) && $page['arr'][1] === "Dashboard")
+  @if(isset($page['arr'][1]) && $page['arr'][1] === "Dashboard")
     @include('components.sidebarD')
+  @elseif(isset($page['arr'][1]) && $page['arr'][1] === "Setting")
+    @include('components.sidebarS')
   @else
     @include('components.sidebarH')
   @endif

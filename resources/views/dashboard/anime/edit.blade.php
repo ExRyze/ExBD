@@ -37,14 +37,14 @@
                 <div class="col-md-12 mb-3">
                   <label for="file" class="form-label">Image</label>
                   <input name="file" class="form-control @error('file') is-invalid @enderror" type="file" id="imgInp" accept="image/jpeg">
-                  <input type="hidden" name="image" id="img" value="{{ $anime->file }}">
+                  <input type="hidden" name="image" id="img" value="{{ $anime->image }}">
                   @error('file')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <button type="button" id="imgRst" class="btn btn-secondary">Reset image</button>
               </div>
-              <div class="col-md-9 row g-3">
+              <div class="col-md-9 row g-3 align-content-start">
                 <div class="col-md-12">
                   <label for="title" class="form-label">Title</label>
                   <input required value="{{ $anime->title }}" name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Anime's Title...">
@@ -128,14 +128,12 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-12">
-                  <div class="col-md-12">
-                    <label for="synopsis" class="form-label">Synopsis</label>
-                    <textarea rows="6" name="synopsis" class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" placeholder="Anime's Description...">{{ $anime->synopsis }}</textarea>
-                    @error('synopsis')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                  </div>
+                <div class="col-md-12">
+                  <label for="synopsis" class="form-label">Synopsis</label>
+                  <textarea rows="6" name="synopsis" class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" placeholder="Anime's Description...">{{ $anime->synopsis }}</textarea>
+                  @error('synopsis')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                 </div>
               </div>
               <div class="text-end">

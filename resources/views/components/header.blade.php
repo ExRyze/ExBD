@@ -19,7 +19,7 @@
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
 
-      <li class="nav-item d-block d-lg-none">
+      <li class="nav-item d-block d-xl-none">
         <a class="nav-link nav-icon search-bar-toggle " href="#">
           <i class="bi bi-search"></i>
         </a>
@@ -169,7 +169,11 @@
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="{{ url("assets/img/profile-img.jpg") }}" alt="Profile" class="rounded-circle">
+          @if (auth()->user()->image === null || !Storage::disk('local')->exists('/public/images/users/'.auth()->user()->image))
+          <img id="imgPrev" src="{{ url("storage/images/users/ex-default.jpg") }}" alt="" width="100%" style="aspect-ratio: 1/1;" loading="lazy" class="rounded-circle">
+          @else
+          <img id="imgPrev" src="{{ url("storage/images/users/".auth()->user()->image) }}" alt="" width="100%" style="aspect-ratio: 1/1;" loading="lazy" class="rounded-circle">
+          @endif
           <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->username }}</span>
         </a><!-- End Profile Iamge Icon -->
 
@@ -183,7 +187,7 @@
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+            <a class="dropdown-item d-flex align-items-center" href="{{ url("user/".auth()->user()->username) }}">
               <i class="bi bi-person"></i>
               <span>My Profile</span>
             </a>
@@ -203,7 +207,7 @@
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+            <a class="dropdown-item d-flex align-items-center" href="{{ url("setting") }}">
               <i class="bi bi-gear"></i>
               <span>Account Settings</span>
             </a>

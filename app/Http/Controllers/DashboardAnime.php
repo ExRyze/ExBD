@@ -89,9 +89,8 @@ class DashboardAnime extends Controller
      */
     public function update(AnimeUpdateRequest $request, Anime $anime, String $id) : RedirectResponse
     {
-
         if ($request->file('file') != null) {
-            $request->file('file')->storeAs('public/images/animes/'.$request->slug, 'Cover.jpg');
+            $request->file('file')->storeAs('public/images/animes/'.$request->slug.'/Cover.jpg');
         }
 
         $anime->where('id', $id)->update($request->validated());

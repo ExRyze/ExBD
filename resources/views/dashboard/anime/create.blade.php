@@ -14,7 +14,7 @@
             <!-- General -->
             <h4>General</h4>
             <hr class="m-0">
-            <form class="row g-3" method="POST" action="/dashboard/anime/store" enctype="multipart/form-data">
+            <form class="row g-3" method="POST" action="/dashboard/anime/store">
               @csrf
               <div class="col-md-12">
                 <label for="title" class="form-label">Title</label>

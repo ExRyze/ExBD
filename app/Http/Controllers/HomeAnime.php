@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
