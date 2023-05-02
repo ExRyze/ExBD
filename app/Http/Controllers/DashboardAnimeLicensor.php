@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime_Licensor;
-use App\Http\Requests\Dashboard\AnimeLicensorStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeLicensorStoreRequest;
 use App\Models\Anime;
 use Illuminate\Http\RedirectResponse;
 

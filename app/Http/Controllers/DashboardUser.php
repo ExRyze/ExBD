@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\Dashboard\UserStoreRequest;
-use App\Http\Requests\Dashboard\UserUpdateRequest;
+use App\Http\Requests\Dashboard\User\UserStoreRequest;
+use App\Http\Requests\Dashboard\User\UserUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;

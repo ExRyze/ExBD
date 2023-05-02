@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\Component;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class GenreStoreRequest extends FormRequest
+class ProducerStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class GenreStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'genre' => 'required|unique:genres|max:255'
+            'producer' => 'required|unique:producers|max:255'
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
-use App\Http\Requests\Dashboard\GenreStoreRequest;
+use App\Http\Requests\Dashboard\Component\GenreStoreRequest;
 use App\Models\Anime;
 use App\Models\Anime_Genre;
 use Illuminate\Http\RedirectResponse;

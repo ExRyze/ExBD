@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\Anime;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class AnimeStoreRequest extends FormRequest
+class AnimeThemeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,20 +25,8 @@ class AnimeStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['slug' => strtolower(str_replace([' ', ':'], ['_', ''], $this->title)), 'user_id' => auth()->user()->id]);
-
         return [
-            'title' => 'required|unique:animes',
-            'slug' => 'required|unique:animes',
-            'episodes' => '',
-            'duration' => '',
-            'type' => '',
-            'status' => '',
-            'source' => '',
-            'date_aired' => '',
-            'date_finished' => '',
-            'synopsis' => '',
-            'user_id' => 'required'
+            'anime_id' => 'required',
         ];
     }
 }

@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\Component;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class UserStoreRequest extends FormRequest
+class ThemeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // Allow :: Admin
+        // Allow :: Admin && Staff
         if (Gate::allows('isAdmin')) {return true;}
+        elseif (Gate::allows('isStaff')) {return true;}
         else {return false;}
     }
 
@@ -24,12 +25,8 @@ class UserStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['password' => bcrypt($this->password)]);
         return [
-            'username' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users|max:255',
-            'password' => 'required|max:255',
-            'role' => 'required',
+            'theme' => 'required|unique:themes|max:255'
         ];
     }
 }

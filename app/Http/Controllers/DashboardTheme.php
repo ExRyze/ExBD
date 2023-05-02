@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Theme;
-use App\Http\Requests\Dashboard\ThemeStoreRequest;
+use App\Http\Requests\Dashboard\Component\ThemeStoreRequest;
 use App\Models\Anime;
 use App\Models\Anime_Theme;
 

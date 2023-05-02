@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Dashboard\AnimeAliasStoreRequest;
-use App\Http\Requests\Dashboard\AnimeAliasUpdateRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeAliasStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeAliasUpdateRequest;
 use App\Models\Anime_Alias;
 use Illuminate\Http\RedirectResponse;
 

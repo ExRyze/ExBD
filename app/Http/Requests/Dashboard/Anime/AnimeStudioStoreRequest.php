@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\Anime;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class AnimeThemeStoreRequest extends FormRequest
+class AnimeStudioStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

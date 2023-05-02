@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\Anime;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class AnimeLicensorStoreRequest extends FormRequest
+class AnimeAliasStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,8 @@ class AnimeLicensorStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'origin' => 'required',
+            'alias' => 'required',
             'anime_id' => 'required',
         ];
     }

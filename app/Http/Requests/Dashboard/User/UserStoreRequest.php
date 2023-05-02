@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class ProducerStoreRequest extends FormRequest
+class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // Allow :: Admin && Staff
+        // Allow :: Admin
         if (Gate::allows('isAdmin')) {return true;}
-        elseif (Gate::allows('isStaff')) {return true;}
         else {return false;}
     }
 
@@ -25,8 +24,12 @@ class ProducerStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge(['password' => bcrypt($this->password)]);
         return [
-            'producer' => 'required|unique:producers|max:255'
+            'username' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users|max:255',
+            'password' => 'required|max:255',
+            'role' => 'required',
         ];
     }
 }

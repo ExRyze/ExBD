@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class AnimeAliasStoreRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // Allow :: Admin && Staff
+        // Allow :: Admin
         if (Gate::allows('isAdmin')) {return true;}
-        elseif (Gate::allows('isStaff')) {return true;}
         else {return false;}
     }
 
@@ -25,10 +24,10 @@ class AnimeAliasStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge(['password' => bcrypt($this->password)]);
         return [
-            'origin' => 'required',
-            'alias' => 'required',
-            'anime_id' => 'required',
+            // 'email' => ['required|max:255', Rule::unique('users')->ignore($this->id)],
+            'role' => 'required',
         ];
     }
 }

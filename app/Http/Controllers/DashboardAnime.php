@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
-use App\Http\Requests\Dashboard\AnimeStoreRequest;
-use App\Http\Requests\Dashboard\AnimeUpdateRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeUpdateRequest;
 use App\Models\Genre;
 use App\Models\Licensor;
 use App\Models\Producer;
 use App\Models\Studio;
 use App\Models\Theme;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 

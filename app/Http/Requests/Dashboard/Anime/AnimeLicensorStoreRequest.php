@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\Anime;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class UserUpdateRequest extends FormRequest
+class AnimeLicensorStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // Allow :: Admin
+        // Allow :: Admin && Staff
         if (Gate::allows('isAdmin')) {return true;}
+        elseif (Gate::allows('isStaff')) {return true;}
         else {return false;}
     }
 
@@ -24,10 +25,8 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['password' => bcrypt($this->password)]);
         return [
-            // 'email' => ['required|max:255', Rule::unique('users')->ignore($this->id)],
-            'role' => 'required',
+            'anime_id' => 'required',
         ];
     }
 }

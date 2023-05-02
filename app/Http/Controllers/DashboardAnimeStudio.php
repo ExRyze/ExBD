@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime_Studio;
-use App\Http\Requests\Dashboard\AnimeStudioStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeStudioStoreRequest;
 use App\Models\Anime;
 use Illuminate\Http\RedirectResponse;
 

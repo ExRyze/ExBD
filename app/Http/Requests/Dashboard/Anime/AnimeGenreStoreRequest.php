@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\Anime;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class StudioStoreRequest extends FormRequest
+class AnimeGenreStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StudioStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'studio' => 'required|unique:studios|max:255'
+            'anime_id' => 'required',
         ];
     }
 }
