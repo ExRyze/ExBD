@@ -3,11 +3,13 @@
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\DashboardAnime;
 use App\Http\Controllers\DashboardAnimeAlias;
+use App\Http\Controllers\DashboardAnimeComponents;
 use App\Http\Controllers\DashboardAnimeGenre;
 use App\Http\Controllers\DashboardAnimeLicensor;
 use App\Http\Controllers\DashboardAnimeProducer;
 use App\Http\Controllers\DashboardAnimeStudio;
 use App\Http\Controllers\DashboardAnimeTheme;
+use App\Http\Controllers\DashboardComponents;
 use App\Http\Controllers\DashboardGenre;
 use App\Http\Controllers\DashboardLicensor;
 use App\Http\Controllers\DashboardProducer;
@@ -74,32 +76,16 @@ Route::get('/dashboard/user/edit', function() {return back();});
 Route::post('/dashboard/user/update', function() {return back();});
 Route::get('/dashboard/user/delete', function() {return back();});
     // Dashboard/User
-  
-Route::controller(DashboardGenre::class)->group(function() {
-    Route::post('/dashboard/genre/store', 'store');
+   
+Route::controller(DashboardComponents::class)->group(function() {
+    Route::post('/dashboard/producer/store', 'storeProducer');
+    Route::post('/dashboard/licensor/store', 'storeLicensor');
+    Route::post('/dashboard/studio/store', 'storeStudio');
+    Route::post('/dashboard/genre/store', 'storeGenre');
+    Route::post('/dashboard/theme/store', 'storeTheme');
 });
-    // Dashboard/Genre
+    // Dashboard/{Component}
 
-Route::controller(DashboardTheme::class)->group(function() {
-    Route::post('/dashboard/theme/store', 'store');
-});
-    // Dashboard/Theme
-
-Route::controller(DashboardProducer::class)->group(function() {
-    Route::post('/dashboard/producer/store', 'store');
-});
-    // Dashboard/Producer
-    
-Route::controller(DashboardLicensor::class)->group(function() {
-    Route::post('/dashboard/licensor/store', 'store');
-});
-    // Dashboard/Licensor
-    
-Route::controller(DashboardStudio::class)->group(function() {
-    Route::post('/dashboard/studio/store', 'store');
-});
-    // Dashboard/Studio
-    
 Route::controller(DashboardAnime::class)->group(function() { // Anime
     Route::get('/dashboard/anime', 'index');
     Route::get('/dashboard/anime/create', 'create');
@@ -110,25 +96,17 @@ Route::controller(DashboardAnime::class)->group(function() { // Anime
 });
 Route::get('/dashboard/anime/edit', function() {return back();});
 Route::post('/dashboard/anime/update', function() {return back();});
-Route::get('/dashboard/anime/delete', function() {return back();});    
-Route::controller(DashboardAnimeAlias::class)->group(function() { // Anime Alias
-    Route::post('/dashboard/animealias/store', 'store');
-    Route::post('/dashboard/animealias/update/{id}', 'update');
-});
-Route::post('/dashboard/animealias/update', function() {return back();});  
-Route::controller(DashboardAnimeGenre::class)->group(function() { // Anime Genres
-    Route::post('/dashboard/animegenre/store', 'store');
-});
-Route::controller(DashboardAnimeTheme::class)->group(function() { // Anime Themes
-    Route::post('/dashboard/animetheme/store', 'store');
-});
-Route::controller(DashboardAnimeProducer::class)->group(function() { // Anime Producers
-    Route::post('/dashboard/animeproducer/store', 'store');
-});
-Route::controller(DashboardAnimeLicensor::class)->group(function() { // Anime Licensors
-    Route::post('/dashboard/animelicensor/store', 'store');
-});
-Route::controller(DashboardAnimeStudio::class)->group(function() { // Anime Studios
-    Route::post('/dashboard/animestudio/store', 'store');
-});
+Route::get('/dashboard/anime/delete', function() {return back();});
     // Dashboard/Anime
+     
+Route::controller(DashboardAnimeComponents::class)->group(function() {
+    Route::post('/dashboard/animealias/store', 'storeAlias');
+    Route::post('/dashboard/animealias/update/{id}', 'updateAlias');
+    Route::post('/dashboard/animeproducer/store', 'storeProducer');
+    Route::post('/dashboard/animelicensor/store', 'storeLicensor');
+    Route::post('/dashboard/animestudio/store', 'storeStudio');
+    Route::post('/dashboard/animegenre/store', 'storeGenre');
+    Route::post('/dashboard/animetheme/store', 'storeTheme');
+});
+Route::post('/dashboard/animealias/update', function() {return back();}); 
+    // Dashboard/{AnimeComponent}
