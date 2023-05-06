@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Anime extends Model
 {
@@ -60,5 +61,10 @@ class Anime extends Model
     public function studios() : HasMany
     {
         return $this->hasMany(Anime_Studio::class);
+    }
+
+    public function folder() : HasOne
+    {
+        return $this->hasOne(Folder_Anime::class);
     }
 }

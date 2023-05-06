@@ -177,8 +177,18 @@
 
 /* -- Friday, May 5, 2023 -------------------------------------------------- */
 00:25 ==> 13:23 - 13:48 [ Simplifying Anime's Components and Components ]
+00:15 ==> 13:50 - 14:05 [ Draf 08 - CRUD Functions for Folder Anime (Read) ]
+00:25 ==> 17:50 - 18:15 [ Continue Draf 08 - CRUD Functions for Folder Anime (Read => Create) ]
+00:17 ==> 20:13 - 20:30 [ Continue Draf 08 - CRUD Functions for Folder Anime (Read => Create) ]
 =============================================================================== +
-==> 00:25 <==
+==> 01:22 <==
+
+/* -- Friday, May 5, 2023 -------------------------------------------------- */
+00:24 ==> 13:18 - 13:42 [ Continue Draf 08 - CRUD Functions for Folder Anime (Read and Create) ]
+00:29 ==> 15:50 - 16:19 [ Continue Draf 08 - CRUD Functions for Folder Anime (Read, Create => Update) ]
+00:05 ==> 16:20 - 16:25 [ Continue Draf 08 - CRUD Functions for Folder Anime (Read, Create, Update => Delete) ]
+=============================================================================== +
+==> 00:58 <==
 
 
 
@@ -214,6 +224,7 @@
 `                                  01:33
 `                                  00:00
 `                                  00:00
-`                                  00:25
+`                                  01:22
+`                                  00:58
 =============================================================================== +
-`                                  54:36
+`                                  56:31

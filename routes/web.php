@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardAnimeProducer;
 use App\Http\Controllers\DashboardAnimeStudio;
 use App\Http\Controllers\DashboardAnimeTheme;
 use App\Http\Controllers\DashboardComponents;
+use App\Http\Controllers\DashboardFolder;
 use App\Http\Controllers\DashboardGenre;
 use App\Http\Controllers\DashboardLicensor;
 use App\Http\Controllers\DashboardProducer;
@@ -73,7 +74,7 @@ Route::controller(DashboardUser::class)->group(function() {
     Route::get('/dashboard/user/delete/{username}', 'delete');
 });
 Route::get('/dashboard/user/edit', function() {return back();});
-Route::post('/dashboard/user/update', function() {return back();});
+Route::get('/dashboard/user/update', function() {return back();});
 Route::get('/dashboard/user/delete', function() {return back();});
     // Dashboard/User
    
@@ -95,7 +96,7 @@ Route::controller(DashboardAnime::class)->group(function() { // Anime
     Route::get('/dashboard/anime/delete/{slug}', 'delete');
 });
 Route::get('/dashboard/anime/edit', function() {return back();});
-Route::post('/dashboard/anime/update', function() {return back();});
+Route::get('/dashboard/anime/update', function() {return back();});
 Route::get('/dashboard/anime/delete', function() {return back();});
     // Dashboard/Anime
      
@@ -108,5 +109,13 @@ Route::controller(DashboardAnimeComponents::class)->group(function() {
     Route::post('/dashboard/animegenre/store', 'storeGenre');
     Route::post('/dashboard/animetheme/store', 'storeTheme');
 });
-Route::post('/dashboard/animealias/update', function() {return back();}); 
+Route::get('/dashboard/animealias/update', function() {return back();}); 
     // Dashboard/{AnimeComponent}
+     
+Route::controller(DashboardFolder::class)->group(function() {
+    Route::get('/dashboard/video/anime', 'folderAnime');
+    Route::post('/dashboard/folder/anime/store', 'storeAnime');
+    Route::post('/dashboard/folder/anime/update', 'updateAnime');
+    Route::get('/dashboard/folder/anime/delete/{id}', 'deleteAnime');
+});
+Route::get('/dashboard/folder/anime/delete', function() {return back();});

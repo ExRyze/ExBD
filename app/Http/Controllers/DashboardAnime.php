@@ -23,7 +23,6 @@ class DashboardAnime extends Controller
         'origins' => ['Synonyms', 'Japanese', 'English']
     ];
     
-
     public function __construct()
     {
         // Allow :: Admin && Staff
@@ -56,7 +55,7 @@ class DashboardAnime extends Controller
      * Store a newly created resource in storage.
      */
     public function store(AnimeStoreRequest $request) : RedirectResponse
-    {        
+    {
         Anime::create($request->validated());
 
         return redirect('/dashboard/anime')->with('success', 'New Data Anime Added');

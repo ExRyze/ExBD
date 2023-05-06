@@ -17,6 +17,7 @@ return new class extends Migration
             $table->boolean('approved');
             $table->timestamps();
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained("users")->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

@@ -1,5 +1,5 @@
 @extends('templates.index')
-
+{{-- {{ dd($table[0]->videos->count()) }} --}}
 @section('main')
 
   @include('components.pagetitle')
@@ -19,9 +19,16 @@
             </div>
             @endif
 
-            <a class="btn btn-success mb-2" href="{{ url("dashboard/anime/create") }}">
+            @if (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session('warning') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+            <a class="btn btn-warning mb-2" type="button" data-bs-toggle="modal" data-bs-target="#NewFolder">
               <i class="bi bi-plus-lg"></i>
-              Create
+              New Folder
             </a>
 
             <!-- Table with stripped rows -->
@@ -30,55 +37,44 @@
                 <thead>
                   <tr>
                     <th scope="col">Action</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Episodes</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Source</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date Aired</th>
-                    <th scope="col">Date Finished</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Total Videos</th>
+                    <th scope="col">Approved</th>
                     <th scope="col">Date Created</th>
                     <th scope="col">Date Updated</th>
                     <th scope="col">User</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($table as $ianime => $anime)
+                  @foreach ($table as $ifolder => $folder)
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-info" href="{{ url("anime/".$anime->slug) }}">
-                          <i class="bi bi-info-circle"></i>
-                          Info
-                        </a>
-                        <a class="btn btn-warning" href="{{ url("dashboard/anime/edit/".$anime->slug) }}">
-                          <i class="bi bi-exclamation-triangle"></i>
-                          Edit
-                        </a>
-                        <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelAnime{{ $ianime }}">
+                        <form class="d-inline" action="/dashboard/folder/anime/update" method="post">
+                          @csrf
+                          <input type="hidden" name="id" value="{{ $folder->id }}">
+                          @if ($folder->approved === 0)
+                          <button type="submit" name="submit" value="approve" class="btn btn-success">
+                            <i class="bi bi-check-circle"></i>
+                            Approve
+                          </button>
+                          @else
+                          <button type="submit" name="submit" value="refuse" class="btn btn-warning">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            Refuse
+                          </button>
+                          @endif
+                        </form>
+                        <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelFolder{{ $ifolder }}">
                           <i class="bi bi-exclamation-octagon"></i>
                           Delete
                         </button>
                       </th>
-                      <td>{{ $anime->title }}</td>
-                      <td>{{ $anime->type }}</td>
-                      <td>{{ $anime->episodes }}</td>
-                      <td>{{ $anime->duration }} <small>min./ep.</small></td>
-                      <td>{{ $anime->source }}</td>
-                      <td>{{ $anime->status }}</td>
-                      @if (!is_null($anime->date_aired))
-                      <td>{{ date("M d, Y", strtotime($anime->date_aired)) }}</td>
-                      @else
-                      <td><em>NULL</em></td>
-                      @endif
-                      @if (!is_null($anime->date_finished))
-                      <td>{{ date("M d, Y", strtotime($anime->date_finished)) }}</td>
-                      @else
-                      <td><em>NULL</em></td>
-                      @endif
-                      <td>{{ date("M d, Y h:i:s A", strtotime($anime->created_at)) }}</td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($anime->updated_at)) }}</td>
-                      <td>{{ $anime->user->username }}</td>
+                      <td>{{ $folder->slug }}</td>
+                      <td>{{ $folder->videos->count() }} eps.</td>
+                      <td><em>{{ $folder->approved === 0 ? "False" : "True" }}</em></td>
+                      <td>{{ date("M d, Y h:i:s A", strtotime($folder->created_at)) }}</td>
+                      <td>{{ date("M d, Y h:i:s A", strtotime($folder->updated_at)) }}</td>
+                      <td>{{ $folder->user->username }}</td>
                     </tr>
                   @endforeach
                 </tbody>
@@ -93,21 +89,44 @@
     </div>
   </section>
 
-  
-  @foreach ($table as $ianime => $anime)
-  <div class="modal fade text-dark" id="DelAnime{{ $ianime }}" tabindex="-1" aria-hidden="true" style="display: none;">
+  <div class="modal fade text-dark" id="NewFolder" tabindex="-1" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <form class="modal-content" action="/dashboard/folder/anime/store" method="POST">
+        @csrf
         <div class="modal-header">
-          <h5 class="modal-title">Delete <strong>{{ $anime->title }}</strong></h5>
+          <h5 class="modal-title">New Folder</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure deleting this data anime. <strong>Some data from other tables might be deleted too</strong>
+          <label for="anime" class="form-label">Anime</label>
+          <select required name="anime" class="form-select" id="anime">
+            <option selected hidden disabled>Choose Anime...</option>
+            @foreach ($animes as $ianime => $anime)
+              <option value="{{ $anime->title }}">{{ $anime->title }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  @foreach ($table as $ifolder => $folder)
+  <div class="modal fade text-dark" id="DelFolder{{ $ifolder }}" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete <strong>{{ $folder->title }}</strong></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure deleting this data folder. <strong>All data videos in this folder will stored in history</strong>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/anime/delete/".$anime->slug) }}">Delete</a>
+          <a class="btn btn-danger" href="{{ url("dashboard/folder/anime/delete/".$folder->id) }}">Delete</a>
         </div>
       </div>
     </div>

@@ -65,7 +65,7 @@
       </a>
       <ul id="videos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="{{ url("dashboard/anime") }}">
+          <a href="{{ url("dashboard/video/anime") }}">
             <i class="bi bi-circle"></i><span>Anime</span>
           </a>
         </li>
