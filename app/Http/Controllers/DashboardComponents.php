@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Dashboard\Component\GenreStoreRequest;
 use App\Http\Requests\Dashboard\Component\LicensorStoreRequest;
+use App\Http\Requests\Dashboard\Component\MistakeStoreRequest;
 use App\Http\Requests\Dashboard\Component\ProducerStoreRequest;
 use App\Http\Requests\Dashboard\Component\StudioStoreRequest;
 use App\Http\Requests\Dashboard\Component\ThemeStoreRequest;
@@ -15,9 +16,12 @@ use App\Models\Anime_Studio;
 use App\Models\Anime_Theme;
 use App\Models\Genre;
 use App\Models\Licensor;
+use App\Models\Mistake;
 use App\Models\Producer;
 use App\Models\Studio;
 use App\Models\Theme;
+use App\Models\Video_Anime;
+use App\Models\Video_Anime_Mistake;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardComponents extends Controller
@@ -90,5 +94,17 @@ class DashboardComponents extends Controller
         }
 
         return back()->with('success', 'New Data Theme Added');
+    }
+    
+    public function storeMistake(MistakeStoreRequest $request)
+    {
+        Mistake::create($request->validated());
+
+        if (isset($request->video_anime_id)) {
+            Video_Anime_Mistake::create(['video_anime_id' => $request->video_anime_id, 'mistake_id' => Mistake::where('mistake', $request->mistake)->first()->id]);
+            Video_Anime::find($request->video_anime_id)->touch();
+        }
+
+        return back()->with('success', 'New Data Mistake Added');
     }
 }

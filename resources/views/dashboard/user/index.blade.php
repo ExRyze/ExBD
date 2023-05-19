@@ -26,7 +26,7 @@
 
             <!-- Table with stripped rows -->
             <div class="table-responsive">
-              <table class="table datatable table-bordered table-hover" style="white-space: nowrap;"">
+              <table class="table datatable table-bordered table-hover" style="white-space: nowrap;">
                 <thead>
                   <tr>
                     <th scope="col">Action</th>

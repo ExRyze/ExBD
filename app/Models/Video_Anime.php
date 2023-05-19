@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Video_Anime extends Model
 {
@@ -15,12 +16,15 @@ class Video_Anime extends Model
     protected $fillable = [
         'lenght_video',
         'resolution',
+        'size',
         'video_tracks',
         'chapters',
-        'audio',
-        'subtitle',
-        'size',
+        'episode',
+        'audio_tracks',
         'origin',
+        'type',
+        'cover',
+        'folder_anime_id',
     ];
 
     public function folder() : BelongsTo
@@ -28,5 +32,13 @@ class Video_Anime extends Model
         return $this->belongsTo(Folder_Anime::class);
     }
 
-    // Has Mistakes
+    public function mistakes() : HasMany
+    {
+        return $this->hasMany(Video_Anime_Mistake::class, 'video_anime_id', 'id');
+    }
+
+    public function subtitles() : HasMany
+    {
+        return $this->hasMany(Video_Anime_Subtitle::class, 'video_anime_id', 'id');
+    }
 }

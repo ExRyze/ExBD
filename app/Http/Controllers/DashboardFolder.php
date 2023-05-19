@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Dashboard\Folder\FolderAnimeStoreRequest;
-use App\Http\Requests\Dashboard\Folder\FolderAnimeUpdateRequest;
+use App\Http\Requests\Dashboard\Folder\FolderAnimeApproveRequest;
 use App\Models\Anime;
 use App\Models\Folder_Anime;
 use Illuminate\Contracts\View\View;
@@ -23,7 +23,7 @@ class DashboardFolder extends Controller
      */
     public function folderAnime() : View
     {
-        return view('dashboard.video.anime.index', [
+        return view('dashboard.folder.anime', [
             'page' => $this->getUrl(URL::current()),
             'table' => Folder_Anime::orderBy('slug')->get(),
             'animes' => Anime::join('folder_animes', 'animes.id', '=', 'folder_animes.anime_id', 'left outer')->where('folder_animes.id', NULL)->orderBy('title')->get()
@@ -37,20 +37,20 @@ class DashboardFolder extends Controller
     {
         Folder_Anime::create($request->validated());
 
-        return redirect('/dashboard/video/anime')->with('success', 'New Folder Anime Added');
+        return redirect('/dashboard/folder/anime')->with('success', 'New Folder Anime Added');
     }
 
     /**
      * Update Folder
      */
-    public function updateAnime(FolderAnimeUpdateRequest $request) : RedirectResponse
+    public function updateAnime(FolderAnimeApproveRequest $request) : RedirectResponse
     {
         Folder_Anime::where('id', $request->id)->update($request->validated());
 
         if ($request->submit === 'approve') {
-            return redirect('/dashboard/video/anime')->with('success', 'Folder Approved');
+            return back()->with('success', 'Folder Approved');
         } else {
-            return redirect('/dashboard/video/anime')->with('warning', 'Folder Refused');
+            return back()->with('warning', 'Folder Refused');
         }
     }
 
@@ -61,6 +61,6 @@ class DashboardFolder extends Controller
     {
         Folder_Anime::where('id', $id)->delete();
 
-        return redirect('/dashboard/video/anime')->with('success', 'Folder Anime Deleted');
+        return redirect('/dashboard/folder/anime')->with('success', 'Folder Anime Deleted');
     }
 }

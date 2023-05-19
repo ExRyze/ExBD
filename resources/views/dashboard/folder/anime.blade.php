@@ -1,5 +1,5 @@
 @extends('templates.index')
-{{-- {{ dd($table[0]->videos->count()) }} --}}
+{{-- {{ dd($table[0]->anime) }} --}}
 @section('main')
 
   @include('components.pagetitle')
@@ -31,6 +31,11 @@
               New Folder
             </a>
 
+            <a class="btn btn-info mb-2" href="{{ url("dashboard/video/history/anime") }}">
+              <i class="bi bi-clock-history"></i>
+              Histories
+            </a>
+
             <!-- Table with stripped rows -->
             <div class="table-responsive">
               <table class="table datatable table-bordered table-hover" style="white-space: nowrap;">
@@ -49,6 +54,10 @@
                   @foreach ($table as $ifolder => $folder)
                     <tr>
                       <th scope="row">
+                        <a class="btn btn-info" href="{{ url("dashboard/video/anime/".$folder->anime->slug) }}">
+                          <i class="bi bi-play-btn"></i>
+                          Videos
+                        </a>
                         <form class="d-inline" action="/dashboard/folder/anime/update" method="post">
                           @csrf
                           <input type="hidden" name="id" value="{{ $folder->id }}">

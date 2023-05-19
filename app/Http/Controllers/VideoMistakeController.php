@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Video_Mistake;
-// use App\Http\Requests\StoreVideo_MistakeRequest;
-// use App\Http\Requests\UpdateVideo_MistakeRequest;
+use App\Models\Video_Anime_Mistake;
+// use App\Http\Requests\StoreVideo_Anime_MistakeRequest;
+// use App\Http\Requests\UpdateVideo_Anime_MistakeRequest;
 
 class VideoMistakeController extends Controller
 {
@@ -35,7 +35,7 @@ class VideoMistakeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Video_Mistake $video_Mistake)
+    public function show(Video_Anime_Mistake $video_Mistake)
     {
         //
     }
@@ -43,7 +43,7 @@ class VideoMistakeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Video_Mistake $video_Mistake)
+    public function edit(Video_Anime_Mistake $video_Mistake)
     {
         //
     }
@@ -51,7 +51,7 @@ class VideoMistakeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update( $request, Video_Mistake $video_Mistake)
+    public function update( $request, Video_Anime_Mistake $video_Mistake)
     {
         //
     }
@@ -59,7 +59,7 @@ class VideoMistakeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Video_Mistake $video_Mistake)
+    public function destroy(Video_Anime_Mistake $video_Mistake)
     {
         //
     }

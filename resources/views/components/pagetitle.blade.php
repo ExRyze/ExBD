@@ -10,6 +10,8 @@
             @break
           @elseif ($ipg === 0)
             <li class="breadcrumb-item"><a href="{{ url("/") }}">{{ $pg }}</a></li>
+          @elseif (str_contains($pg, '_'))
+            <li class="breadcrumb-item"><a href="{{ url($page['path'].="/".strtolower($pg)) }}">{{ str_replace('_', ' ', $pg) }}</a></li>
           @else
             <li class="breadcrumb-item"><a href="{{ url($page['path'].="/".strtolower($pg)) }}">{{ $pg }}</a></li>
           @endif
