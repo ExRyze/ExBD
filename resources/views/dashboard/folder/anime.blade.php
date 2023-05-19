@@ -58,7 +58,7 @@
                           <i class="bi bi-play-btn"></i>
                           Videos
                         </a>
-                        <form class="d-inline" action="/dashboard/folder/anime/update" method="post">
+                        <form class="d-inline" action="/dashboard/folder/anime/approve" method="post">
                           @csrf
                           <input type="hidden" name="id" value="{{ $folder->id }}">
                           @if ($folder->approved === 0)

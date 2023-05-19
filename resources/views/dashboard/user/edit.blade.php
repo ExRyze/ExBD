@@ -31,28 +31,14 @@
               <div class="col-md-6">
                 <label for="inputState" class="form-label">Role</label>
                 <select required name="role" id="inputState" class="form-select @error('role') is-invalid @enderror">
-
-                  {{-- Guest --}}
-                  @if ($user->role === "User")
-                    <option selected value="User">User</option>
-                  @else
-                    <option value="User">User</option>
-                  @endif
-
-                  {{-- Staff --}}
-                  @if ($user->role === "Staff")
-                    <option selected value="Staff">Staff</option>
-                  @else
-                    <option value="Staff">Staff</option>
-                  @endif
-
-                  {{-- Admin --}}
-                  @if ($user->role === "Admin")
-                    <option selected value="Admin">Admin</option>
-                  @else
-                    <option value="Admin">Admin</option>
-                  @endif
-
+                  <option selected hidden disabled>Choose Role...</option>
+                  @foreach ($data['roles'] as $role)
+                    @if ($role === $user->role)
+                      <option selected value="{{ $role }}">{{ $role }}</option>
+                    @else
+                      <option value="{{ $role }}">{{ $role }}</option> 
+                    @endif
+                  @endforeach
                 </select>
                 @error('role')
                 <div class="invalid-feedback">{{ $message }}</div>

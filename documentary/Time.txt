@@ -268,9 +268,12 @@
 00:35 ==> 15:01 - 15:36 [ Continue Draf 09 - Mistake ]
 00:19 ==> 15:37 - 15:56 [ Continue Draf 09 - History ]
 00:32 ==> 16:28 - 17:00 [ Continue Draf 09 - Subtitle ]
-00:03 ==> 17:47 - 17:50 [ Continue Draf 09 - History Delete ]
+00:03 ==> 17:47 - 17:50 [ Finishing Draf 09 - History Delete ]
+00:06 ==> 17:56 - 18:02 [ Remove Reset Button in Checkbox Group ]
+00:01 ==> 18:03 - 18:04 [ Change Folder Update into Folder Approve ]
+00:06 ==> 18:15 - 18:21 [ Add Role Data Variable into Controller DashboardUser ]
 =============================================================================== +
-==> 01:29 <==
+==> 01:42 <==
 
 
 
@@ -320,6 +323,6 @@
 `                                  00:05
 `                                  00:14
 `                                  01:11
-`                                  01:29
+`                                  01:42
 =============================================================================== +
-`                                  64:41
+`                                  64:54

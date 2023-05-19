@@ -39,9 +39,9 @@
                 <label for="inputState" class="form-label">Role</label>
                 <select required name="role" id="inputState" class="form-select @error('role') is-invalid @enderror">
                   <option selected hidden disabled>Choose Role...</option>
-                  <option value="User">User</option>
-                  <option value="Staff">Staff</option>
-                  <option value="Admin">Admin</option>
+                  @foreach ($data['roles'] as $role)
+                    <option value="{{ $role }}">{{ $role }}</option>
+                  @endforeach
                 </select>
                 @error('role')
                 <div class="invalid-feedback">{{ $message }}</div>

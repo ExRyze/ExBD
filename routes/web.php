@@ -119,7 +119,7 @@ Route::get('/dashboard/animealias/update', function() {return back();});
 Route::controller(DashboardFolder::class)->group(function() {
     Route::get('/dashboard/folder/anime', 'folderAnime');
     Route::post('/dashboard/folder/anime/store', 'storeAnime');
-    Route::post('/dashboard/folder/anime/update', 'updateAnime');
+    Route::post('/dashboard/folder/anime/approve', 'approveAnime');
     Route::get('/dashboard/folder/anime/delete/{id}', 'deleteAnime');
 });
 Route::get('/dashboard/folder/anime/delete', function() {return back();});

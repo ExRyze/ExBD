@@ -41,9 +41,9 @@ class DashboardFolder extends Controller
     }
 
     /**
-     * Update Folder
+     * Approve Folder
      */
-    public function updateAnime(FolderAnimeApproveRequest $request) : RedirectResponse
+    public function approveAnime(FolderAnimeApproveRequest $request) : RedirectResponse
     {
         Folder_Anime::where('id', $request->id)->update($request->validated());
 

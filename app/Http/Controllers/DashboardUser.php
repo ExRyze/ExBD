@@ -12,6 +12,10 @@ use Illuminate\View\View;
 class DashboardUser extends Controller
 {
 
+    public $data = [
+        'roles' => ['Admin', 'Staff', 'User']
+    ];
+
     public function __construct()
     {
         $this->middleware(['auth', 'role:Admin']);
@@ -35,6 +39,7 @@ class DashboardUser extends Controller
     {
         return view('dashboard.user.create', [
             'page' => $this->getUrl(URL::current()),
+            'data' => $this->data
         ]);
     }
 
@@ -58,7 +63,8 @@ class DashboardUser extends Controller
         } else {
             return view('dashboard.user.edit', [
                 'page' => $this->getUrl(URL::current()),
-                'user' => $user->where('username', $username)->first()
+                'user' => $user->where('username', $username)->first(),
+                'data' => $this->data
             ]);
         }
     }
