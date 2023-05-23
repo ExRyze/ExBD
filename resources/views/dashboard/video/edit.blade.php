@@ -32,14 +32,14 @@
               @csrf
               <input required type="hidden" name="id" value="{{ $video->id }}">
               <div class="col-md-3">
-                <label for="lenght_video" class="form-label">Lenght video</label>
+                <label for="lenght_video" class="form-label form-required">Lenght video</label>
                 <input required name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="{{ $video->lenght_video }}" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
                 @error('lenght_video')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
-                <label for="resolution" class="form-label">Resolution</label>
+                <label for="resolution" class="form-label form-required">Resolution</label>
                 <div class="d-flex gap-2">
                   <input required name="width" type="number" min="0" class="form-control @error('resolution') is-invalid @enderror" id="widht" placeholder="3840/1920/1280/854/640" value="{{ explode('x', $video->resolution)[0] }}">
                   X
@@ -50,31 +50,31 @@
                 @enderror
               </div>
               <div class="col-md-3">
-                <label for="size" class="form-label">Size</label>
-                <input required name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB" value="{{ $video->size }}">
+                <label for="size" class="form-label form-required">Size</label>
+                <input required step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB" value="{{ $video->size }}">
                 @error('size')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-4">
                 <label for="video_tracks" class="form-label">Video tracks</label>
-                <input name="video_tracks" type="text" class="form-control @error('video_tracks') is-invalid @enderror" id="video_tracks" placeholder="H264 (...)" value="{{ $video->video_tracks }}">
+                <input name="video_tracks" type="text" class="form-control @error('video_tracks') is-invalid @enderror" id="video_tracks" value="{{ $video->video_tracks }}">
                 @error('video_tracks')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-3">
                 <label for="audio_tracks" class="form-label">Audio tracks</label>
-                <input name="audio_tracks" type="text" class="form-control @error('audio_tracks') is-invalid @enderror" id="audio_tracks" placeholder="ACC 2.0 [...]" value="{{ $video->audio_tracks }}">
+                <input name="audio_tracks" type="text" class="form-control @error('audio_tracks') is-invalid @enderror" id="audio_tracks" value="{{ $video->audio_tracks }}">
                 @error('audio_tracks')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-3">
-                <label for="chapters" class="form-label">Chapter</label>
+                <label for="chapters" class="form-label form-required">Chapter</label>
                 <select required name="chapters" class="form-select @error('chapters') is-invalid @enderror" id="chapters">
                   @foreach ($data['chapters'] as $chapter)
-                    <option value="{{ $chapter }}" {{ $video->chapter === $chapter ? "selected" : "" }}>{{ $chapter }}</option>
+                    <option value="{{ $chapter }}" {{ $video->chapters === $chapter ? "selected" : "" }}>{{ $chapter }}</option>
                   @endforeach
                 </select>
                 @error('chapters')
@@ -82,14 +82,14 @@
                 @enderror
               </div>
               <div class="col-md-2">
-                <label for="episode" class="form-label">Episode</label>
-                <input name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00" value="{{ $video->episode }}">
+                <label for="episode" class="form-label form-required">Episode</label>
+                <input required step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" value="{{ $video->episode }}">
                 @error('episode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-5">
-                <label for="origin" class="form-label">Origin</label>
+                <label for="origin" class="form-label form-required">Origin</label>
                 <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                   @foreach ($data['origins'] as $origin)
                     <option value="{{ $origin }}" {{ $video->origin === $origin ? "selected" : "" }}>{{ $origin }}</option>
@@ -100,7 +100,7 @@
                 @enderror
               </div>
               <div class="col-md-5">
-                <label for="type" class="form-label">Type</label>
+                <label for="type" class="form-label form-required">Type</label>
                 <select required name="type" class="form-select @error('type') is-invalid @enderror" id="type">
                   @foreach ($data['types'] as $type)
                     <option value="{{ $type }}" {{ $video->type === $type ? "selected" : "" }}>{{ $type }}</option>

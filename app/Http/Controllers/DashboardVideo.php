@@ -16,8 +16,8 @@ class DashboardVideo extends Controller
 {
     public $data = [
         'chapters' => ["True", "False", "Null"],
-        'origins' => ["Koenime", "Kusonime"],
-        'types' => ["mkv", " mp4"],
+        'origins' => ["Koenime", "Kusonime", "Oploverz"],
+        'types' => ["mkv", "mp4"],
     ];
 
     public function __construct()
@@ -66,7 +66,7 @@ class DashboardVideo extends Controller
     {
         return view('dashboard.video.edit', [
             'page' => $this->getUrl(URL::current()),
-            'mistakes' => Mistake::all(),
+            'mistakes' => Mistake::orderBy('mistake')->get(),
             'anime' => Anime::where('slug', $slug)->first(),
             'video' => Video_Anime::where('id', $id)->first(),
             'data' => $this->data

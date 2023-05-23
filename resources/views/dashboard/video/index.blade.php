@@ -47,6 +47,7 @@
                 <thead>
                   <tr>
                     <th scope="col">Action</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Episode</th>
                     <th scope="col">Lenght Video</th>
                     <th scope="col">Resolution</th>
@@ -64,7 +65,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($table->folder->videos as $ivideo => $video)
+                  @foreach ($table->folder->videos->reverse() as $ivideo => $video)
                     <tr>
                       <th scope="row">
                         <a class="btn btn-warning" href="{{ url("dashboard/video/anime/$table->slug/edit/$video->id") }}">
@@ -91,6 +92,11 @@
                           Delete
                         </button>
                       </th>
+                      @php 
+                        $title = ($table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".($table->type === "TV" ? ($video->approved === 0 ? "TV" : "TV") : $table->type)." ".(explode('x', $video->resolution)[1])."p");
+                      @endphp
+                      {{-- If too long --}}
+                      <td>{{ strlen($title) > 255 ? "Title too long" : $title  }}</td>
                       <td>{{ $video->episode }}</td>
                       <td>{{ $video->lenght_video }}</td>
                       <td>{{ $video->resolution }}</td>
@@ -100,12 +106,11 @@
                       {{-- <td>{{ $video->subtitle }}</td> --}}
                       <td>{{ $video->origin }}</td>
                       <td>{{ $video->type }}</td>
-                      <td>{{ $video->size }}</td>
+                      <td>{{ $video->size }} MB</td>
                       <td><em>{{ $video->cover === 0 ? "False" : "True" }}</em></td>
                       <td><em>{{ $video->approved === 0 ? "False" : "True" }}</em></td>
                       <td>{{ date("M d, Y h:i:s A", strtotime($video->created_at)) }}</td>
                       <td>{{ date("M d, Y h:i:s A", strtotime($video->updated_at)) }}</td>
-                      <td>{{ $table->folder->user->username }}</td>
                     </tr>
                   @endforeach
                 </tbody>

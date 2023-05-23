@@ -25,14 +25,13 @@ class VideoAnimeUpdateRequest extends FormRequest
     public function rules(): array
     {
         $this->merge(['resolution' => $this->width."x".$this->height]);
-        if ($this->cover === NULL) {$this->merge(['cover' => NULL]);}
         return [
             'lenght_video' => 'required|max:10',
             'resolution' => 'required|max:11',
             'size' => 'required',
             'video_tracks' => '',
             'chapters' => 'required',
-            'episode' => '',
+            'episode' => 'required',
             'audio_tracks' => '',
             'origin' => 'required|max:255',
             'type' => 'required',

@@ -31,7 +31,7 @@ class VideoAnimeStoreRequest extends FormRequest
             'size' => 'required',
             'video_tracks' => '',
             'chapters' => 'required',
-            'episode' => '',
+            'episode' => 'required',
             'audio_tracks' => '',
             'origin' => 'required|max:255',
             'type' => 'required',

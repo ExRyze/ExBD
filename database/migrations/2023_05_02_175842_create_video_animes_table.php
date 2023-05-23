@@ -16,11 +16,11 @@ return new class extends Migration
             $table->id();
             $table->string('lenght_video', 10);
             $table->string('resolution', 11);
-            $table->integer('size');
+            $table->double('size', 12, 1);
             $table->string('video_tracks')->nullable();
             $table->string('audio_tracks')->nullable();
             $table->string('chapters');
-            $table->integer('episode')->nullable();
+            $table->double('episode', 12, 1);
             $table->string('origin');
             $table->enum('type', ['mkv', 'mp4']);
             $table->boolean('cover')->default(0);

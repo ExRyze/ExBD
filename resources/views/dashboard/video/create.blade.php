@@ -18,14 +18,14 @@
               @csrf
               <input required type="hidden" name="folder_anime_id" value="{{ $anime->folder->id }}">
               <div class="col-md-3">
-                <label for="lenght_video" class="form-label">Lenght video</label>
+                <label for="lenght_video" class="form-label form-required">Lenght video</label>
                 <input required name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="00:00:00" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
                 @error('lenght_video')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
-                <label for="resolution" class="form-label">Resolution</label>
+                <label for="resolution" class="form-label form-required">Resolution</label>
                 <div class="d-flex gap-2">
                   <input required name="width" type="number" min="0" class="form-control @error('resolution') is-invalid @enderror" id="widht" placeholder="3840/1920/1280/854/640">
                   X
@@ -36,8 +36,8 @@
                 @enderror
               </div>
               <div class="col-md-3">
-                <label for="size" class="form-label">Size</label>
-                <input required name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB">
+                <label for="size" class="form-label form-required">Size</label>
+                <input required step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB">
                 @error('size')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -57,7 +57,7 @@
                 @enderror
               </div>
               <div class="col-md-3">
-                <label for="chapters" class="form-label">Chapter</label>
+                <label for="chapters" class="form-label form-required">Chapter</label>
                 <select required name="chapters" class="form-select @error('chapters') is-invalid @enderror" id="chapters">
                   <option selected hidden disabled>Choose Chapter...</option>
                   @foreach ($data['chapters'] as $chapter)
@@ -69,14 +69,14 @@
                 @enderror
               </div>
               <div class="col-md-2">
-                <label for="episode" class="form-label">Episode</label>
-                <input name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00">
+                <label for="episode" class="form-label form-required">Episode</label>
+                <input required step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00">
                 @error('episode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-5">
-                <label for="origin" class="form-label">Origin</label>
+                <label for="origin" class="form-label form-required">Origin</label>
                 <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                   <option selected hidden disabled>Choose Origin...</option>
                   @foreach ($data['origins'] as $origin)
@@ -88,7 +88,7 @@
                 @enderror
               </div>
               <div class="col-md-5">
-                <label for="type" class="form-label">Type</label>
+                <label for="type" class="form-label form-required">Type</label>
                 <select required name="type" class="form-select @error('type') is-invalid @enderror" id="type">
                   <option selected hidden disabled>Choose Type...</option>
                   @foreach ($data['types'] as $type)
