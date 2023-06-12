@@ -69,7 +69,7 @@ class DashboardVideo extends Controller
         $video = explode('_', $video);
         $video = Video_Anime::where([
             ['episode', $video[1]],
-            ['origin', $video[3]],
+            ['origin', 'like', $video[3]],
             ['resolution', 'like', '%'.rtrim((explode('.', end($video)))[0], 'p')],
             ['type', (explode('.', end($video)))[1]],
         ])->first();
@@ -91,7 +91,9 @@ class DashboardVideo extends Controller
     {
         Video_Anime::where('id', $request->id)->update($request->validated());
 
-        return back()->with('success', 'Video Anime Updated Successfully');
+        $title = str_replace(' ', '_', strtolower($slug." Ep ".(strlen($request->episode) === 1 ? "0".$request->episode : $request->episode)." - ".$request->origin." ".(explode('x', $request->resolution)[1])."p.".$request->type));
+
+        return redirect("/dashboard/video/anime/$slug/edit/$title")->with('success', 'Video Anime Updated Successfully');
     }
 
     /**
