@@ -129,7 +129,7 @@ Route::controller(DashboardVideo::class)->group(function() {
     Route::get('/dashboard/video/anime/{slug}', 'videoAnime');
     Route::get('/dashboard/video/anime/{slug}/create', 'createAnime');
     Route::post('/dashboard/video/anime/{slug}/store', 'storeAnime');
-    Route::get('/dashboard/video/anime/{slug}/edit/{id}', 'editAnime');
+    Route::get('/dashboard/video/anime/{slug}/edit/{title}', 'editAnime');
     Route::post('/dashboard/video/anime/{slug}/update', 'updateAnime');
     Route::post('/dashboard/video/anime/{slug}/approve', 'approveAnime');
     Route::get('/dashboard/video/anime/{slug}/delete/{id}', 'deleteAnime');
@@ -138,7 +138,7 @@ Route::get('/dashboard/video', function() {return back();});
 Route::get('/dashboard/video/anime', function() {return back();});
 Route::get('/dashboard/video/anime/{slug}/edit', function() {return back();});
 Route::get('/dashboard/video/anime/{slug}/delete', function() {return back();});
-    // Dashboard/Folder
+    // Dashboard/video
 
 Route::controller(DashboardVideoComponents::class)->group(function() {
     Route::post('/dashboard/videoanimesubtitle/store', 'storeAnimeSubtitle');

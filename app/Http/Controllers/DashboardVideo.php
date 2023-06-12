@@ -62,13 +62,24 @@ class DashboardVideo extends Controller
     /**
      * Edit Video
      */
-    public function editAnime(String $slug, String $id) : View
+    public function editAnime(String $slug, String $title) : View
     {
+        $anime = Anime::where('slug', $slug)->first(['id', 'slug']);
+        $video = substr($title, strlen($anime->folder->slug)+1);
+        $video = explode('_', $video);
+        $video = Video_Anime::where([
+            ['episode', $video[1]],
+            ['origin', $video[3]],
+            ['resolution', 'like', '%'.rtrim((explode('.', end($video)))[0], 'p')],
+            ['type', (explode('.', end($video)))[1]],
+        ])->first();
+
+        // One Piece Ep 616 - Koenime TV 720p	
         return view('dashboard.video.edit', [
             'page' => $this->getUrl(URL::current()),
             'mistakes' => Mistake::orderBy('mistake')->get(),
-            'anime' => Anime::where('slug', $slug)->first(),
-            'video' => Video_Anime::where('id', $id)->first(),
+            'anime' => $anime,
+            'video' => $video,
             'data' => $this->data
         ]);
     }
