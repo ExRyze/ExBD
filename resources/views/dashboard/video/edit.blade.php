@@ -1,5 +1,5 @@
 @extends('templates.index')
-{{-- {{ dd($errors) }} --}}
+
 @section('main')
 
   @include('components.pagetitle')

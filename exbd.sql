@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 12, 2023 at 02:41 PM
+-- Generation Time: Jun 13, 2023 at 07:39 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -1010,7 +1010,12 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (228, '00:23:38', '1280x720', 152.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'Null', 613.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 00:00:51', '2023-06-12 00:50:03', 4),
 (229, '00:23:39', '1280x720', 152.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'Null', 614.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 00:02:02', '2023-06-12 06:57:20', 4),
 (230, '00:23:39', '1280x720', 152.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'Null', 615.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 00:03:11', '2023-06-12 07:19:08', 4),
-(231, '00:23:38', '1280x720', 125.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'Null', 616.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 00:04:55', '2023-06-12 14:38:21', 4);
+(231, '00:23:38', '1280x720', 125.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'Null', 616.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 00:04:55', '2023-06-12 14:38:21', 4),
+(232, '00:23:39', '1280x720', 128.0, 'H264 (High @L3.1)', 'ACC S16 2.0 [Und]', 'Null', 617.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 14:45:36', '2023-06-12 15:08:32', 4),
+(233, '00:23:38', '1280x720', 128.0, 'H264 (High @L3.1)', 'ACC S16 2.0 [Und]', 'Null', 618.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 15:09:27', '2023-06-12 15:30:57', 4),
+(234, '00:23:38', '1280x720', 125.0, 'H264 (High @L3.1)', 'ACC S16 2.0 [Und]', 'Null', 619.0, 'Koenime', 'mkv', 0, 1, '2023-06-12 15:32:05', '2023-06-13 01:14:16', 4),
+(235, '00:23:39', '1280x720', 126.0, 'H264 (High @L3.1)', 'ACC S16 2.0 [Und]', 'Null', 620.0, 'Koenime', 'mkv', 0, 1, '2023-06-13 01:15:26', '2023-06-13 01:39:02', 4),
+(236, '00:23:39', '1280x720', 125.0, 'H264 (High @L3.1)', 'ACC S16 2.0 [Und]', 'Null', 621.0, 'Koenime', 'mkv', 0, 1, '2023-06-13 01:40:17', '2023-06-13 06:28:32', 4);
 
 --
 -- Triggers `video_animes`
@@ -1126,7 +1131,27 @@ INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (231, 3, 0),
 (231, 2, 0),
 (231, 9, 0),
-(231, 5, 0);
+(231, 5, 0),
+(232, 3, 0),
+(232, 2, 0),
+(232, 9, 0),
+(232, 5, 0),
+(233, 3, 0),
+(233, 2, 0),
+(233, 9, 0),
+(233, 5, 0),
+(234, 3, 0),
+(234, 2, 0),
+(234, 9, 0),
+(234, 5, 0),
+(235, 3, 0),
+(235, 2, 0),
+(235, 9, 0),
+(235, 5, 0),
+(236, 3, 0),
+(236, 2, 0),
+(236, 9, 0),
+(236, 5, 0);
 
 --
 -- Triggers `video_anime_mistakes`
@@ -1178,7 +1203,12 @@ INSERT INTO `video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id
 (24, 'Oploverz', 'Null', 228, 0),
 (25, 'Oploverz', 'Null', 229, 0),
 (26, 'Oploverz', 'Null', 230, 0),
-(27, 'Oploverz', 'Null', 231, 0);
+(27, 'Oploverz', 'Null', 231, 0),
+(28, 'Oploverz', 'Null', 232, 0),
+(29, 'Oploverz', 'Null', 233, 0),
+(30, 'Oploverz', 'Null', 234, 0),
+(31, 'Oploverz', 'Null', 235, 0),
+(32, 'Oploverz', 'Null', 236, 0);
 
 --
 -- Triggers `video_anime_subtitles`
@@ -1449,13 +1479,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `video_animes`
 --
 ALTER TABLE `video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- AUTO_INCREMENT for table `video_anime_subtitles`
 --
 ALTER TABLE `video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables

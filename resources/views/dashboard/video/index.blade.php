@@ -97,7 +97,7 @@
                         </button>
                       </th>
                       @php 
-                        $title = str_replace(' ', '_', $table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".($table->type === "TV" ? ($video->approved === 0 ? "TV" : "TV") : $table->type)." ".(explode('x', $video->resolution)[1])."p.".$video->type);
+                        $title = $table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".($table->type === "TV" ? ($video->approved === 0 ? "TV" : "TV") : $table->type)." ".(explode('x', $video->resolution)[1])."p.".$video->type;
                       @endphp
                       <td>{{ strlen($title) > 255 ? "Title too long" : $title  }}</td>
                       <td>{{ $video->episode }}</td>
