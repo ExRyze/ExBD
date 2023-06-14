@@ -59,7 +59,6 @@
                     <th scope="col">Type</th>
                     <th scope="col">Size</th>
                     <th scope="col">Cover</th>
-                    <th scope="col">Approved</th>
                     <th scope="col">Date Created</th>
                     <th scope="col">Date Updated</th>
                   </tr>
@@ -111,7 +110,6 @@
                       <td>{{ $video->type }}</td>
                       <td>{{ $video->size }} MB</td>
                       <td><em>{{ $video->cover === 0 ? "False" : "True" }}</em></td>
-                      <td><em>{{ $video->approved === 0 ? "False" : "True" }}</em></td>
                       <td>{{ date("M d, Y h:i:s A", strtotime($video->created_at)) }}</td>
                       <td>{{ date("M d, Y h:i:s A", strtotime($video->updated_at)) }}</td>
                     </tr>

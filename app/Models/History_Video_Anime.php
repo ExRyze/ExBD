@@ -12,5 +12,13 @@ class History_Video_Anime extends Model
 
     public $table = "history_video_animes";
 
-    // Has Mistakes
+    public function mistakes() : HasMany
+    {
+        return $this->hasMany(History_Video_Anime_Mistake::class, 'video_anime_id', 'id');
+    }
+
+    public function subtitles() : HasMany
+    {
+        return $this->hasMany(History_Video_Anime_Subtitle::class, 'video_anime_id', 'id');
+    }
 }

@@ -32,6 +32,6 @@ class Folder_Anime extends Model
 
     public function videos() : HasMany
     {
-        return $this->hasMany(Video_Anime::class, 'folder_anime_id', 'id');
+        return $this->hasMany(Video_Anime::class, 'folder_anime_id', 'id')->orderBy('episode');
     }
 }

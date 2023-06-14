@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Dashboard\Video;
 
+use App\Models\History_Video_Anime;
+use App\Models\Video_Anime;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
@@ -24,8 +26,14 @@ class VideoAnimeStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['resolution' => $this->width."x".$this->height]);
+        $video = Video_Anime::orderBy('id', 'DESC')->first('id')->id;
+        $history = History_Video_Anime::orderBy('id', 'DESC')->first('id')->id;
+        $this->merge([
+            'resolution' => $this->width."x".$this->height,
+            'id' => ($video > $history) ? $video+1 : $history+1
+        ]);
         return [
+            'id' => 'required|unique:video_animes',
             'lenght_video' => 'required|max:10',
             'resolution' => 'required|max:11',
             'size' => 'required',
