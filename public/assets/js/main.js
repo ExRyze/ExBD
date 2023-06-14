@@ -39,6 +39,19 @@
   }
 
   /**
+   * Sidebar toggle
+   */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (select('#copy')) {
+      select('#copy', true).forEach((element) => {
+        element.addEventListener('click', () => {
+          navigator.clipboard.writeText(element.innerText.slice(0, -4))
+        })
+      });
+    }
+  })
+
+  /**
    * Preview image input
    */
   if(select("#imgInp")) {
