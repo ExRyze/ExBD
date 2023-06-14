@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 14, 2023 at 04:45 AM
+-- Generation Time: Jun 14, 2023 at 02:47 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -616,8 +616,11 @@ INSERT INTO `mistakes` (`id`, `mistake`) VALUES
 (6, 'Watermark (Softsub)'),
 (7, 'Edited'),
 (8, 'Broken audio'),
-(9, 'No closing subtitle'),
-(10, 'Broken subtitle');
+(9, 'No preview subtitle'),
+(10, 'Broken subtitle'),
+(11, 'No opening subtitle'),
+(12, 'No ending subtitle'),
+(13, 'No recap subtitle');
 
 -- --------------------------------------------------------
 
@@ -1044,9 +1047,9 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (244, '00:23:39', '848x480', 77.0, NULL, NULL, 'Null', 626.0, 'Adikanime', 'mp4', 0, 1, '2023-06-14 01:36:10', '2023-06-14 02:11:33', 4),
 (245, '00:23:24', '1280x720', 100.0, 'H264 (High @L4.0)', 'ACC 2.0 [Und]', 'Null', 627.0, 'Adikanime', 'mkv', 0, 1, '2023-06-14 01:45:19', '2023-06-14 02:19:01', 4),
 (246, '00:23:23', '848x480', 69.0, 'H264 (High @L3.1)', 'ACC 2.0 [Und]', 'Null', 628.0, 'Adikanime', 'mkv', 0, 1, '2023-06-14 01:46:35', '2023-06-14 02:28:54', 4),
-(247, '00:23:39', '848x480', 71.2, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 629.0, 'Adikanime', 'mkv', 0, 0, '2023-06-14 01:47:37', '2023-06-14 01:47:37', 4),
-(248, '00:23:38', '848x480', 81.3, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 630.0, 'Adikanime', 'mkv', 0, 0, '2023-06-14 01:48:41', '2023-06-14 01:48:41', 4),
-(249, '00:23:39', '848x480', 82.2, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 631.0, 'Adikanime', 'mkv', 0, 0, '2023-06-14 01:49:27', '2023-06-14 01:49:27', 4),
+(247, '00:23:39', '848x480', 71.2, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 629.0, 'Adikanime', 'mkv', 0, 1, '2023-06-14 01:47:37', '2023-06-14 06:39:39', 4),
+(248, '00:23:38', '848x480', 81.3, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 630.0, 'Adikanime', 'mkv', 0, 1, '2023-06-14 01:48:41', '2023-06-14 13:52:03', 4),
+(249, '00:23:39', '848x480', 82.2, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 631.0, 'Adikanime', 'mkv', 0, 1, '2023-06-14 01:49:27', '2023-06-14 14:11:40', 4),
 (250, '00:23:39', '848x480', 79.1, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 632.0, 'Adikanime', 'mkv', 0, 0, '2023-06-14 01:50:28', '2023-06-14 01:50:28', 4),
 (251, '00:23:39', '848x480', 77.0, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 633.0, 'Adikanime', 'mkv', 0, 0, '2023-06-14 01:51:26', '2023-06-14 01:51:26', 4),
 (252, '00:23:39', '848x480', 81.4, 'H264 (High @L3.2)', 'ACC 1.0 [Und]', 'Null', 634.0, 'Adikanime', 'mkv', 0, 0, '2023-06-14 01:52:13', '2023-06-14 01:52:13', 4),
@@ -1213,7 +1216,20 @@ INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (245, 3, 0),
 (245, 9, 0),
 (246, 3, 0),
-(246, 9, 0);
+(246, 9, 0),
+(247, 3, 0),
+(247, 2, 0),
+(247, 9, 0),
+(247, 11, 0),
+(247, 5, 0),
+(248, 3, 0),
+(248, 2, 0),
+(248, 9, 0),
+(248, 5, 0),
+(249, 3, 0),
+(249, 2, 0),
+(249, 9, 0),
+(249, 5, 0);
 
 --
 -- Triggers `video_anime_mistakes`
@@ -1277,7 +1293,10 @@ INSERT INTO `video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id
 (40, 'Oploverz', 'Null', 244, 0),
 (41, 'Adikanime', 'ASS [Und]', 245, 0),
 (42, 'Adikanime', 'ASS [Und]', 246, 0),
-(43, 'Oploverz', 'Null', 254, 0);
+(43, 'Oploverz', 'Null', 254, 0),
+(46, 'Oploverz', 'Null', 247, 0),
+(47, 'Oploverz', 'Null', 248, 0),
+(48, 'Oploverz', 'Null', 249, 0);
 
 --
 -- Triggers `video_anime_subtitles`
@@ -1488,13 +1507,13 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT for table `history_video_animes`
 --
 ALTER TABLE `history_video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
 
 --
 -- AUTO_INCREMENT for table `history_video_anime_subtitles`
 --
 ALTER TABLE `history_video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `licensors`
@@ -1512,7 +1531,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `mistakes`
 --
 ALTER TABLE `mistakes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1554,7 +1573,7 @@ ALTER TABLE `video_animes`
 -- AUTO_INCREMENT for table `video_anime_subtitles`
 --
 ALTER TABLE `video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables

@@ -294,8 +294,9 @@
 /* -- Wednesday, June 14, 2023 -------------------------------------------------- */
 00:40 ==> 11:16 - 11:56 [ Fixing Duplicated Data && Adding Security to not Duplicating Data ]
 00:35 ==> 17:00 - 17:35 [ Add Event Listener Click Title Video Anime Will Copy the Title ]
+00:30 ==> 22:15 - 22:45 [ Update Structure Display Information of Video Anime, History Video Anime and History All Video Anime ]
 =============================================================================== +
-==> 01:15 <==
+==> 01:45 <==
 
 
 
@@ -346,6 +347,6 @@
 [Tue, May 23, 2023]                01:00
 [Mon, Jun 12, 2023]                01:12
 [Tue, Jun 13, 2023]                00:57
-[Wed, Jun 14, 2023]                01:15
+[Wed, Jun 14, 2023]                01:45
 =============================================================================== +
-`                                  75:58
+`                                  76:28

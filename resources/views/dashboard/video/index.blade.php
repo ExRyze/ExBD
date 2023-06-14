@@ -48,18 +48,15 @@
                   <tr>
                     <th scope="col">Action</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Episode</th>
+                    <th scope="col">Subtitles</th>
+                    <th scope="col">Mistakes</th>
                     <th scope="col">Lenght Video</th>
                     <th scope="col">Resolution</th>
                     <th scope="col">Chapters</th>
                     <th scope="col">Video Tracks</th>
                     <th scope="col">Audio Tracks</th>
-                    {{-- <th scope="col">Subtitle</th> --}}
-                    <th scope="col">Origin</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Size</th>
                     <th scope="col">Cover</th>
-                    <th scope="col">Date Created</th>
                     <th scope="col">Date Updated</th>
                   </tr>
                 </thead>
@@ -101,18 +98,23 @@
                       <td>
                         <button class="btn btn-success bg-transparent border-0 text-dark" id="copy">{{ strlen($title) > 255 ? "Title too long" : $title  }}</button>
                       </td>
-                      <td>{{ $video->episode }}</td>
+                      <td>
+                        @foreach ($video->subtitles as $subtitle)
+                          <p class="m-0">{{ $subtitle->origin.': '.$subtitle->subtitle }}</p>
+                        @endforeach
+                      </td>
+                      <td>
+                        @foreach ($video->mistakes as $mistake)
+                          <p class="m-0">{{ $mistake->mistake->mistake }}</p>
+                        @endforeach
+                      </td>
                       <td>{{ $video->lenght_video }}</td>
                       <td>{{ $video->resolution }}</td>
                       <td>{{ $video->chapters }}</td>
                       <td>{{ $video->video_tracks }}</td>
                       <td>{{ $video->audio_tracks }}</td>
-                      {{-- <td>{{ $video->subtitle }}</td> --}}
-                      <td>{{ $video->origin }}</td>
-                      <td>{{ $video->type }}</td>
                       <td>{{ $video->size }} MB</td>
                       <td><em>{{ $video->cover === 0 ? "False" : "True" }}</em></td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($video->created_at)) }}</td>
                       <td>{{ date("M d, Y h:i:s A", strtotime($video->updated_at)) }}</td>
                     </tr>
                   @endforeach

@@ -32,18 +32,18 @@
                     <th scope="col">Action</th>
                     <th scope="col">Folder</th>
                     <th scope="col">Episode</th>
+                    <th scope="col">Origin</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Subtitles</th>
+                    <th scope="col">Mistakes</th>
                     <th scope="col">Lenght Video</th>
                     <th scope="col">Resolution</th>
                     <th scope="col">Chapters</th>
                     <th scope="col">Video Tracks</th>
                     <th scope="col">Audio Tracks</th>
-                    {{-- <th scope="col">Subtitle</th> --}}
-                    <th scope="col">Origin</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Size</th>
                     <th scope="col">Cover</th>
                     <th scope="col">Approved</th>
-                    <th scope="col">Date Created</th>
                     <th scope="col">Date Updated</th>
                   </tr>
                 </thead>
@@ -62,18 +62,26 @@
                       </th>
                       <td>{{ $history->slug }}</td>
                       <td>{{ $history->episode }}</td>
+                      <td>{{ $history->origin }}</td>
+                      <td>{{ $history->type }}</td>
+                      <td>
+                        @foreach ($history->subtitles as $subtitle)
+                          <p class="m-0">{{ $subtitle->origin.': '.$subtitle->subtitle }}</p>
+                        @endforeach
+                      </td>
+                      <td>
+                        @foreach ($history->mistakes as $mistake)
+                          <p class="m-0">{{ $mistake->mistake->mistake }}</p>
+                        @endforeach
+                      </td>
                       <td>{{ $history->lenght_video }}</td>
                       <td>{{ $history->resolution }}</td>
                       <td>{{ $history->chapters }}</td>
                       <td>{{ $history->video_tracks }}</td>
                       <td>{{ $history->audio_tracks }}</td>
-                      {{-- <td>{{ $history->subtitle }}</td> --}}
-                      <td>{{ $history->origin }}</td>
-                      <td>{{ $history->type }}</td>
                       <td>{{ $history->size }}</td>
                       <td><em>{{ $history->cover === 0 ? "False" : "True" }}</em></td>
                       <td><em>{{ $history->approved === 0 ? "False" : "True" }}</em></td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($history->created_at)) }}</td>
                       <td>{{ date("M d, Y h:i:s A", strtotime($history->updated_at)) }}</td>
                     </tr>
                   @endforeach
