@@ -57,6 +57,10 @@
   /* text-align: center; */
 }
 
+.sub-header .title {
+  margin: 0;
+}
+
 .ex-chevron.collapsed i.bi-chevron-down {
   transform: rotate( 0deg );            
 }

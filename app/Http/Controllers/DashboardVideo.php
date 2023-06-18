@@ -16,7 +16,7 @@ class DashboardVideo extends Controller
 {
     public $data = [
         'chapters' => ["True", "False", "Null"],
-        'origins' => ["Adikanime", "Koenime", "Kusonime", "Oploverz"],
+        'origins' => ["Adikanime", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs"],
         'types' => ["mkv", "mp4"],
     ];
 
