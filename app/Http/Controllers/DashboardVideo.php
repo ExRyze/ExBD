@@ -54,9 +54,21 @@ class DashboardVideo extends Controller
      */
     public function storeAnime(VideoAnimeStoreRequest $request, String $slug) : RedirectResponse
     {
-        Video_Anime::create($request->validated());
+        $video = Video_Anime::where([
+            ['episode', $request->episode],
+            ['origin', 'like', $request->origin],
+            ['resolution', 'like', '%'.$request->height],
+            ['type', $request->type],
+        ])->first();
 
-        return redirect('/dashboard/video/anime/'.$slug)->with('success', 'New Video Anime Added');
+        if (!$video) {
+            Video_Anime::create($request->validated());
+    
+            return redirect('/dashboard/video/anime/'.$slug)->with('success', 'New Video Anime Added');
+        } else {
+            return back()->with('danger', "Video data already exists");
+        }
+
     }
 
     /**
