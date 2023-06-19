@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Dashboard\Video\VideoMistakeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoSubtitleStoreRequest;
+use App\Models\Mistake;
 use App\Models\Video_Anime;
 use App\Models\Video_Anime_Mistake;
 use App\Models\Video_Anime_Subtitle;
@@ -24,6 +25,13 @@ class DashboardVideoComponents extends Controller
     public function storeAnimeSubtitle(VideoSubtitleStoreRequest $request) : RedirectResponse
     {
         Video_Anime_Subtitle::create($request->validated());
+
+        if ($request->subtitle === 'Null') {
+            Video_Anime_Mistake::create([
+                'video_anime_id' => $request->video_anime_id, 
+                'mistake_id' => Mistake::where('mistake', 'Hardsub')->first('id')->id
+            ]);
+        }
 
         return back()->with('success', "New Data Video Anime's Subtitle Added");
     }
@@ -50,6 +58,13 @@ class DashboardVideoComponents extends Controller
     public function destroyAnimeSubtitle(Request $request) : RedirectResponse
     {
         Video_Anime_Subtitle::where('id', $request->id)->delete();
+
+        if ($request->subtitle === 'Null') {
+            Video_Anime_Mistake::where([
+                ['video_anime_id', $request->video_anime_id], 
+                ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+            ])->delete();
+        }
 
         return back()->with('success', "Data Video Anime's Subtitle Deleted Successfully");
     }

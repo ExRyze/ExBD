@@ -101,7 +101,7 @@ class DashboardComponents extends Controller
         Mistake::create($request->validated());
 
         if (isset($request->video_anime_id)) {
-            Video_Anime_Mistake::create(['video_anime_id' => $request->video_anime_id, 'mistake_id' => Mistake::where('mistake', $request->mistake)->first()->id]);
+            Video_Anime_Mistake::create(['video_anime_id' => $request->video_anime_id, 'mistake_id' => Mistake::where('mistake', $request->mistake)->first('id')->id]);
             Video_Anime::find($request->video_anime_id)->touch();
         }
 

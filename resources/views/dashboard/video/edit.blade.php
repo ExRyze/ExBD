@@ -139,6 +139,7 @@
               <form class="row g-3 form-subtitles" method="POST" action="/dashboard/videoanimesubtitle/delete">
                 @csrf
                 <input type="hidden" name="id" value="{{ $subtitle->id }}">
+                <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
                 <div class="col-md-3">
                   <label for="origin" class="form-label">Origin Alias</label>
                   <select readonly name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">

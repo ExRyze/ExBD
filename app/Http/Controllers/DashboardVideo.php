@@ -6,8 +6,10 @@ use App\Http\Requests\Dashboard\Video\VideoAnimeApproveRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeUpdateRequest;
 use App\Models\Anime;
+use App\Models\History_Video_Anime;
 use App\Models\Mistake;
 use App\Models\Video_Anime;
+use App\Models\Video_Anime_Mistake;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
@@ -61,14 +63,30 @@ class DashboardVideo extends Controller
             ['type', $request->type],
         ])->first();
 
-        if (!$video) {
+        
+        $history = History_Video_Anime::where([
+            ['episode', $request->episode],
+            ['origin', 'like', $request->origin],
+            ['resolution', 'like', '%'.$request->height],
+            ['type', $request->type],
+        ])->first();
+
+        if (!$video && !$history) {
             Video_Anime::create($request->validated());
+
+            if ($request->chapters != 'True') {
+                Video_Anime_Mistake::create([
+                    'video_anime_id' => Video_Anime::orderBy('id', 'DESC')->first('id')->id, 
+                    'mistake_id' => Mistake::where('mistake', '!Chapter')->first('id')->id
+                ]);
+            }
     
             return redirect('/dashboard/video/anime/'.$slug)->with('success', 'New Video Anime Added');
+        } else if ($history && !$video) {
+            return back()->with('danger', "Video data already exists in History");
         } else {
-            return back()->with('danger', "Video data already exists");
+            return back()->with('danger', "Video data already exists in Folder");
         }
-
     }
 
     /**
@@ -102,6 +120,23 @@ class DashboardVideo extends Controller
     public function updateAnime(VideoAnimeUpdateRequest $request, String $slug) : RedirectResponse
     {
         Video_Anime::where('id', $request->id)->update($request->validated());
+
+        $mistake = Video_Anime_Mistake::where([
+            ['video_anime_id', $request->id], 
+            ['mistake_id', Mistake::where('mistake', '!Chapter')->first('id')->id]
+        ])->first();
+
+        if ($request->chapters != 'True' && !$mistake) {
+            Video_Anime_Mistake::create([
+                'video_anime_id' => $request->id, 
+                'mistake_id' => Mistake::where('mistake', '!Chapter')->first('id')->id
+            ]);
+        } else if ($request->chapters === 'True') {
+            Video_Anime_Mistake::where([
+                ['video_anime_id', $request->id], 
+                ['mistake_id', Mistake::where('mistake', '!Chapter')->first('id')->id]
+            ])->delete();
+        }
 
         $title = str_replace(' ', '_', strtolower($slug." Ep ".(strlen($request->episode) === 1 ? "0".$request->episode : $request->episode)." - ".$request->origin." ".(explode('x', $request->resolution)[1])."p.".$request->type));
 

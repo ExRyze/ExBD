@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 19, 2023 at 01:29 PM
+-- Generation Time: Jun 19, 2023 at 02:41 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -1144,7 +1144,7 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (319, '00:23:39', '1920x1080', 274.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 697.0, 'Koenime', 'mkv', 0, 0, '2023-06-19 08:05:06', '2023-06-19 08:05:06', 4),
 (320, '00:23:39', '1920x1080', 283.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 698.0, 'Koenime', 'mkv', 0, 0, '2023-06-19 08:05:51', '2023-06-19 08:05:51', 4),
 (321, '00:23:55', '1920x1080', 287.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 699.0, 'Koenime', 'mkv', 0, 0, '2023-06-19 08:06:36', '2023-06-19 08:06:36', 4),
-(322, '00:23:39', '1920x1080', 267.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 700.0, 'Koenime', 'mkv', 0, 0, '2023-06-19 08:07:18', '2023-06-19 08:07:18', 4);
+(326, '00:23:39', '1920x1080', 267.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 701.0, 'Koenime', 'mkv', 0, 0, '2023-06-19 14:18:27', '2023-06-19 14:39:25', 4);
 
 --
 -- Triggers `video_animes`
@@ -1498,7 +1498,8 @@ INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (300, 5, 0),
 (301, 3, 0),
 (301, 2, 0),
-(301, 5, 0);
+(301, 5, 0),
+(326, 3, 0);
 
 --
 -- Triggers `video_anime_mistakes`
@@ -1824,7 +1825,7 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT for table `history_video_animes`
 --
 ALTER TABLE `history_video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=326;
 
 --
 -- AUTO_INCREMENT for table `history_video_anime_subtitles`
@@ -1884,13 +1885,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `video_animes`
 --
 ALTER TABLE `video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=323;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=327;
 
 --
 -- AUTO_INCREMENT for table `video_anime_subtitles`
 --
 ALTER TABLE `video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- Constraints for dumped tables
