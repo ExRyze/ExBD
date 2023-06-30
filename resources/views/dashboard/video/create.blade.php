@@ -25,6 +25,13 @@
               @csrf
               <input required type="hidden" name="folder_anime_id" value="{{ $anime->folder->id }}">
               <div class="col-md-3">
+                <label for="size" class="form-label form-required">Size</label>
+                <input required step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB">
+                @error('size')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-md-3">
                 <label for="lenght_video" class="form-label form-required">Lenght video</label>
                 <input required name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="00:00:00" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
                 @error('lenght_video')
@@ -42,24 +49,10 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-3">
-                <label for="size" class="form-label form-required">Size</label>
-                <input required step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB">
-                @error('size')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
               <div class="col-md-4">
                 <label for="video_tracks" class="form-label">Video tracks</label>
                 <input name="video_tracks" type="text" class="form-control @error('video_tracks') is-invalid @enderror" id="video_tracks" placeholder="H264 (...)">
                 @error('video_tracks')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
-              <div class="col-md-3">
-                <label for="audio_tracks" class="form-label">Audio tracks</label>
-                <input name="audio_tracks" type="text" class="form-control @error('audio_tracks') is-invalid @enderror" id="audio_tracks" placeholder="ACC 2.0 [...]">
-                @error('audio_tracks')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
@@ -72,6 +65,13 @@
                   @endforeach
                 </select>
                 @error('chapters')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-md-3">
+                <label for="audio_tracks" class="form-label">Audio tracks</label>
+                <input name="audio_tracks" type="text" class="form-control @error('audio_tracks') is-invalid @enderror" id="audio_tracks" placeholder="ACC 2.0 [...]">
+                @error('audio_tracks')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>

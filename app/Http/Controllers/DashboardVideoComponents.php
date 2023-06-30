@@ -26,7 +26,12 @@ class DashboardVideoComponents extends Controller
     {
         Video_Anime_Subtitle::create($request->validated());
 
-        if ($request->subtitle === 'Null') {
+        $mistake = Video_Anime_Mistake::where([
+            ['video_anime_id', $request->video_anime_id], 
+            ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+        ])->first();
+
+        if ($request->subtitle === 'Null' && !$mistake) {
             Video_Anime_Mistake::create([
                 'video_anime_id' => $request->video_anime_id, 
                 'mistake_id' => Mistake::where('mistake', 'Hardsub')->first('id')->id
