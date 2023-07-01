@@ -12,21 +12,32 @@ use App\Models\Video_Anime;
 use App\Models\Video_Anime_Mistake;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
 class DashboardVideo extends Controller
 {
-    public $data = [
+    protected $data = [
         'chapters' => ["True", "False", "Null"],
         'origins' => ["Adikanime", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs"],
         'types' => ["mkv", "mp4"],
     ];
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         // Allow :: Admin
         $this->middleware(['auth', 'role:Admin']);
+
+        // $this->checkFolder($request->route('slug'));
     }
+
+    // public function checkFolder(String $slug) : RedirectResponse
+    // {
+    //     if (Anime::where('slug', $slug)->count() === 0) {
+    //         $slug = str_replace('_', ' ', $slug);
+    //         return redirect('/dashboard/folder/anime')->with('warning', "Error 404: Folder '{$slug}' not found!");
+    //     }
+    // }
 
     /**
      * Index Video

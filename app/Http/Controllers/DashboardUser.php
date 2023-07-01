@@ -59,7 +59,7 @@ class DashboardUser extends Controller
     public function edit(User $user, String $username)
     {
         if ($user->where('username', $username)->count() === 0) {
-            return redirect('/dashboard/user');
+            return redirect('/dashboard/user')->with('warning', "Error 404: User '{$username}' not found!");
         } else {
             return view('dashboard.user.edit', [
                 'page' => $this->getUrl(URL::current()),

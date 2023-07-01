@@ -67,7 +67,8 @@ class DashboardAnime extends Controller
     public function edit(Anime $anime, String $slug)
     {
         if ($anime->where('slug', $slug)->count() === 0) {
-            return redirect('/dashboard/anime');
+            $slug = str_replace('_', ' ', $slug);
+            return redirect('/dashboard/anime')->with('warning', "Error 404: Anime '{$slug}' not found!");
         } else {
             return view('dashboard.anime.edit', [
                 'page' => $this->getUrl(URL::current()),

@@ -19,6 +19,13 @@
             </div>
             @endif
 
+            @if (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session('warning') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
             <a class="btn btn-success mb-2" href="{{ url("dashboard/user/create") }}">
               <i class="bi bi-plus-lg"></i>
               Create
