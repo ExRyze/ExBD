@@ -40,14 +40,14 @@
               </div>
               <div class="col-md-9 row g-3 align-content-start">
                 <div class="col-md-12">
-                  <label for="username" class="form-label">Username</label>
+                  <label for="username" class="form-label form-required">Username</label>
                   <input required name="username" value="{{ $user->username }}" type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Your Username...">
                   @error('username')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-md-12">
-                  <label for="email" class="form-label">Email</label>
+                  <label for="email" class="form-label form-required">Email</label>
                   <input required name="email" value="{{ $user->email }}" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Youremail@example.com">
                   @error('email')
                   <div class="invalid-feedback">{{ $message }}</div>

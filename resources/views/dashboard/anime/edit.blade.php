@@ -46,7 +46,7 @@
               </div>
               <div class="col-md-9 row g-3 align-content-start">
                 <div class="col-md-12">
-                  <label for="title" class="form-label">Title</label>
+                  <label for="title" class="form-label form-required">Title</label>
                   <input required value="{{ $anime->title }}" name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Anime's Title...">
                   @error('title')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -179,7 +179,7 @@
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
-                  <label for="genre" class="form-label">Genre</label>
+                  <label for="genre" class="form-label form-required">Genre</label>
                   <input required name="genre" type="text" class="form-control @error('genre') is-invalid @enderror" id="genre" placeholder="Genre">
                   @error('genre')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -230,7 +230,7 @@
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
-                  <label for="theme" class="form-label">Theme</label>
+                  <label for="theme" class="form-label form-required">Theme</label>
                   <input required name="theme" type="text" class="form-control @error('theme') is-invalid @enderror" id="theme" placeholder="Theme">
                   @error('theme')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -281,7 +281,7 @@
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
-                  <label for="producer" class="form-label">Producer</label>
+                  <label for="producer" class="form-label form-required">Producer</label>
                   <input required name="producer" type="text" class="form-control @error('producer') is-invalid @enderror" id="producer" placeholder="Producer">
                   @error('producer')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -332,7 +332,7 @@
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
-                  <label for="licensor" class="form-label">Licensor</label>
+                  <label for="licensor" class="form-label form-required">Licensor</label>
                   <input required name="licensor" type="text" class="form-control @error('licensor') is-invalid @enderror" id="licensor" placeholder="Licensor">
                   @error('licensor')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -383,7 +383,7 @@
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
-                  <label for="studio" class="form-label">Studio</label>
+                  <label for="studio" class="form-label form-required">Studio</label>
                   <input required name="studio" type="text" class="form-control @error('studio') is-invalid @enderror" id="studio" placeholder="Studio">
                   @error('studio')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -408,9 +408,9 @@
               <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/update/{{ $alias->id }}">
                 @csrf
                 <div class="col-md-3">
-                  <label for="origin" class="form-label">Origin Alias</label>
-                  <select name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
-                    <option required selected hidden disabled>Choose Origin...</option>
+                  <label for="origin" class="form-label form-required">Origin Alias</label>
+                  <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
+                    <option selected hidden disabled>Choose Origin...</option>
                     @foreach ($data['origins'] as $origin)
                       @if ($origin === $alias->origin)
                         <option selected value="{{ $origin }}">{{ $origin }}</option>
@@ -424,7 +424,7 @@
                   @enderror
                 </div>
                 <div class="col-md-9">
-                  <label for="alias" class="form-label">Alias</label>
+                  <label for="alias" class="form-label form-required">Alias</label>
                   <input required value="{{ $alias->alias }}" name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
                   @error('alias')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -442,7 +442,7 @@
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-3">
-                  <label for="origin" class="form-label">Origin Alias</label>
+                  <label for="origin" class="form-label form-required">Origin Alias</label>
                   <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                     <option selected hidden disabled>Choose Origin...</option>
                     @foreach ($data['origins'] as $origin)
@@ -454,7 +454,7 @@
                   @enderror
                 </div>
                 <div class="col-md-9">
-                  <label for="alias" class="form-label">Alias</label>
+                  <label for="alias" class="form-label form-required">Alias</label>
                   <input required name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
                   @error('alias')
                   <div class="invalid-feedback">{{ $message }}</div>

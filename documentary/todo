@@ -12,11 +12,11 @@ Database
 
 Anything Else :
 Sorting aliases
-Add * Where Form is needed
 Regex validation lenght video
-Disable autocomplete form
 To get folder, dont use anime slug, use folder slug
 All about slug in history
 Alert edit video anime
 Add data anime, like actor, all the staff, and more
 Also scoring, its mean, create functions of user
+Update subtitle function
+Error not found custom in edit

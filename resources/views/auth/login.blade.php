@@ -75,14 +75,17 @@
                     @csrf
                     <div class="col-12">
                       <label for="username" class="form-label">Username</label>
-                      <input type="text" name="username" class="form-control" id="username" required>
-                      <div class="invalid-feedback">Please enter your username!</div>
+                      <input required name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Your Username...">
+                      @error('username')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
-
                     <div class="col-12">
                       <label for="password" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="password" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <input required name="password" type="password" autocomplete="current-password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Your Password">
+                      @error('password')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
 
                     {{-- <div class="col-12">

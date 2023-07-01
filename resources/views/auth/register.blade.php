@@ -44,7 +44,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">NiceAdmin</span>
+                  <span class="d-none d-lg-block">ExBD</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -60,22 +60,22 @@
                   <form class="row g-3 needs-validation" method="POST" action="{{ url("register") }}">
                     @csrf
                     <div class="col-12">
-                      <label for="inputName5" class="form-label">Username</label>
-                      <input required name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="inputName5" placeholder="Your Username...">
+                      <label for="username" class="form-label">Username</label>
+                      <input required name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Your Username...">
                       @error('username')
                       <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="col-12">
-                      <label for="inputEmail5" class="form-label">Email</label>
-                      <input required name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail5" placeholder="Youremail@example.com">
+                      <label for="email" class="form-label">Email</label>
+                      <input required name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Youremail@example.com">
                       @error('email')
                       <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="col-12">
-                      <label for="inputPassword5" class="form-label">Password</label>
-                      <input required name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword5" placeholder="Your Password">
+                      <label for="password" class="form-label">Password</label>
+                      <input required name="password" type="password" autocomplete="new-password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Your Password">
                       @error('password')
                       <div class="invalid-feedback">{{ $message }}</div>
                       @enderror

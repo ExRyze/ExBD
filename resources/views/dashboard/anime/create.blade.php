@@ -17,7 +17,7 @@
             <form class="row g-3" method="POST" action="/dashboard/anime/store">
               @csrf
               <div class="col-md-12">
-                <label for="title" class="form-label">Title</label>
+                <label for="title" class="form-label form-required">Title</label>
                 <input required name="title" type="text" class="form-control @error('title') is-invalid @enderror @error('slug') is-invalid @enderror" id="title" placeholder="Anime's Title...">
                 @error('title')
                 <div class="invalid-feedback">{{ $message }}</div>

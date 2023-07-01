@@ -26,14 +26,14 @@
               <input required type="hidden" name="folder_anime_id" value="{{ $anime->folder->id }}">
               <div class="col-md-3">
                 <label for="size" class="form-label form-required">Size</label>
-                <input required step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB">
+                <input required autocomplete="off" step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB">
                 @error('size')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-3">
                 <label for="lenght_video" class="form-label form-required">Lenght video</label>
-                <input required name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="00:00:00" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
+                <input required autocomplete="off" name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="00:00:00" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
                 @error('lenght_video')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -77,7 +77,7 @@
               </div>
               <div class="col-md-2">
                 <label for="episode" class="form-label form-required">Episode</label>
-                <input required step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00">
+                <input required autocomplete="off" step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00">
                 @error('episode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

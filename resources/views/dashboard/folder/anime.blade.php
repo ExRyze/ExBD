@@ -107,7 +107,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <label for="anime" class="form-label">Anime</label>
+          <label for="anime" class="form-label form-required">Anime</label>
           <select required name="anime" class="form-select" id="anime">
             <option selected hidden disabled>Choose Anime...</option>
             @foreach ($animes as $ianime => $anime)

@@ -33,14 +33,14 @@
               <input required type="hidden" name="id" value="{{ $video->id }}">
               <div class="col-md-3">
                 <label for="size" class="form-label form-required">Size</label>
-                <input required step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB" value="{{ $video->size }}">
+                <input required autocomplete="off" step="0.1" name="size" type="number" min="0" class="form-control @error('size') is-invalid @enderror" id="size" placeholder="0 MB" value="{{ $video->size }}">
                 @error('size')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-3">
                 <label for="lenght_video" class="form-label form-required">Lenght video</label>
-                <input required name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="{{ $video->lenght_video }}" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
+                <input required autocomplete="off" name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="{{ $video->lenght_video }}" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
                 @error('lenght_video')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -83,7 +83,7 @@
               </div>
               <div class="col-md-2">
                 <label for="episode" class="form-label form-required">Episode</label>
-                <input required step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" value="{{ $video->episode }}">
+                <input required autocomplete="off" step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" value="{{ $video->episode }}">
                 @error('episode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -171,7 +171,7 @@
                 @csrf
                 <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
                 <div class="col-md-3">
-                  <label for="origin" class="form-label">Origin Subtitle</label>
+                  <label for="origin" class="form-label form-required">Origin Subtitle</label>
                   <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                     <option selected hidden disabled>Choose Origin...</option>
                     @foreach ($data['origins'] as $origin)
@@ -183,7 +183,7 @@
                   @enderror
                 </div>
                 <div class="col-md-9">
-                  <label for="subtitle" class="form-label">Subtitle</label>
+                  <label for="subtitle" class="form-label form-required">Subtitle</label>
                   <input required name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" placeholder="Subtitle">
                   @error('subtitle')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -234,7 +234,7 @@
                 @csrf
                 <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
                 <div class="col-md-12">
-                  <label for="mistake" class="form-label">Mistakes</label>
+                  <label for="mistake" class="form-label form-required">Mistakes</label>
                   <input required name="mistake" type="text" class="form-control @error('mistake') is-invalid @enderror" id="mistake" placeholder="Mistakes">
                   @error('mistake')
                   <div class="invalid-feedback">{{ $message }}</div>
