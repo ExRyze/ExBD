@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Dashboard\Video\VideoMistakeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoSubtitleStoreRequest;
+use App\Http\Requests\Dashboard\Video\VideoSubtitleUpdateRequest;
 use App\Models\Mistake;
 use App\Models\Video_Anime;
 use App\Models\Video_Anime_Mistake;
@@ -58,9 +59,52 @@ class DashboardVideoComponents extends Controller
     }
 
     /**
+     * Update Anime Component
+     */
+    public function updateAnimeSubtitle(VideoSubtitleUpdateRequest $request) : RedirectResponse
+    {
+        if ($request->submit === 'update') {
+
+            // Check Another Subtitle if 'Null'
+            $subtitle = Video_Anime_Subtitle::where([
+                ['id', '!=', $request->id],
+                ['video_anime_id', $request->video_anime_id],
+                ['subtitle', 'Null']
+            ])->first();
+
+            // Check Mistake if 'Hardsub'
+            $mistake = Video_Anime_Mistake::where([
+                ['video_anime_id', $request->video_anime_id], 
+                ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+            ])->first();
+    
+            // Toggle Mistake
+            if ($request->subtitle === 'Null' && !$mistake) {
+                Video_Anime_Mistake::create([
+                    'video_anime_id' => $request->video_anime_id, 
+                    'mistake_id' => Mistake::where('mistake', 'Hardsub')->first('id')->id
+                ]);
+            } else if ($request->subtitle != 'Null' && !$subtitle && $mistake) {
+                Video_Anime_Mistake::where([
+                    ['video_anime_id', $request->video_anime_id], 
+                    ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+                ])->delete();
+            }
+
+            Video_Anime_Subtitle::where('id', $request->id)->update($request->validated());
+            
+            return back()->with('success', "Data Video Anime's Subtitle Updated Successfully");
+        }
+
+        $this->destroyAnimeSubtitle($request);
+
+        return back()->with('success', "Data Video Anime's Subtitle Deleted Successfully");
+    }
+
+    /**
      * Delete Anime Component
      */
-    public function destroyAnimeSubtitle(Request $request) : RedirectResponse
+    public function destroyAnimeSubtitle(Request $request) : void
     {
         Video_Anime_Subtitle::where('id', $request->id)->delete();
 
@@ -70,7 +114,5 @@ class DashboardVideoComponents extends Controller
                 ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
             ])->delete();
         }
-
-        return back()->with('success', "Data Video Anime's Subtitle Deleted Successfully");
     }
 }

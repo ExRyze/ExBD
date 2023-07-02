@@ -20,7 +20,9 @@ return new class extends Migration
 
         DB::unprepared('CREATE TRIGGER Create_History_Anime_Video_Mistake AFTER UPDATE ON `video_anime_mistakes` FOR EACH ROW
         BEGIN
-          INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrive`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
+            IF OLD.remove != NEW.remove THEN
+                INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrive`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
+            END IF;
         END');
     }
 

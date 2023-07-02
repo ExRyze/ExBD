@@ -142,7 +142,7 @@ Route::get('/dashboard/video/anime/{slug}/delete', function() {return back();});
 
 Route::controller(DashboardVideoComponents::class)->group(function() {
     Route::post('/dashboard/videoanimesubtitle/store', 'storeAnimeSubtitle');
-    Route::post('/dashboard/videoanimesubtitle/delete', 'destroyAnimeSubtitle');
+    Route::post('/dashboard/videoanimesubtitle/update', 'updateAnimeSubtitle');
     Route::post('/dashboard/videoanimemistake/store', 'storeAnimeMistake');
 }); // Dashboard/{VideoComponent}
 

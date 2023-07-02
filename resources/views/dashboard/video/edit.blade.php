@@ -136,16 +136,18 @@
             <hr class="mt-0">
             <div id="subtitles-form" class="collapse" data-bs-parent="#edit-form">
               @foreach ($video->subtitles as $subtitle)
-              <form class="row g-3 form-subtitles" method="POST" action="/dashboard/videoanimesubtitle/delete">
+              <form class="row g-3 form-subtitles" method="POST" action="/dashboard/videoanimesubtitle/update">
                 @csrf
                 <input type="hidden" name="id" value="{{ $subtitle->id }}">
                 <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
                 <div class="col-md-3">
-                  <label for="origin" class="form-label">Origin Alias</label>
-                  <select readonly name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
+                  <label for="origin" class="form-label form-required">Origin Subtitle</label>
+                  <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                     @foreach ($data['origins'] as $origin)
                       @if ($origin === $subtitle->origin)
                         <option selected value="{{ $origin }}">{{ $origin }}</option>
+                      @else
+                        <option value="{{ $origin }}">{{ $origin }}</option>
                       @endif
                     @endforeach
                   </select>
@@ -154,14 +156,15 @@
                   @enderror
                 </div>
                 <div class="col-md-9">
-                  <label for="subtitle" class="form-label">Subtitle</label>
-                  <input readonly value="{{ $subtitle->subtitle }}" name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" placeholder="Alias">
+                  <label for="subtitle" class="form-label form-required">Subtitle</label>
+                  <input required value="{{ $subtitle->subtitle }}" name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" placeholder="Subtitle">
                   @error('subtitle')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="text-end">
-                  <button type="submit" class="btn btn-danger">Delete</button>
+                  <button type="submit" name="submit" value="update" class="btn btn-warning">Update</button>
+                  <button type="submit" name="submit" value="delete" class="btn btn-danger">Delete</button>
                 </div>
               </form>
               <hr>

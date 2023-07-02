@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 30, 2023 at 02:39 PM
+-- Generation Time: Jul 02, 2023 at 02:16 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -800,7 +800,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `image`, `bio`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '$2y$10$pAKKVf7ko.fvOvnkbbaL6OAGcST/CTmLI1fkJXkXAEc.06ur8JLLe', 'Admin', 'ExRyze.jpg', 'Normal People', NULL, NULL, '2023-05-01 10:26:47');
+(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '$2y$10$pAKKVf7ko.fvOvnkbbaL6OAGcST/CTmLI1fkJXkXAEc.06ur8JLLe', 'Admin', 'ExRyze.jpg', 'Normal People', NULL, NULL, '2023-07-01 06:06:16');
 
 -- --------------------------------------------------------
 
@@ -1208,18 +1208,43 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (387, '00:23:55', '1920x1080', 208.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 761.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:01:53', '2023-06-30 09:46:30', 4),
 (388, '00:23:55', '1920x1080', 219.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 762.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:02:45', '2023-06-30 13:56:47', 4),
 (389, '00:23:55', '1920x1080', 219.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 763.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:03:24', '2023-06-30 14:26:47', 4),
-(390, '00:23:55', '1920x1080', 231.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'True', 764.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:04:05', '2023-06-30 01:04:05', 4),
-(391, '00:23:55', '1920x1080', 221.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'True', 765.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:04:48', '2023-06-30 01:04:48', 4),
-(392, '00:23:39', '1920x1080', 198.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'True', 766.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:05:39', '2023-06-30 01:05:39', 4),
-(393, '00:23:55', '1920x1080', 212.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'True', 767.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:06:14', '2023-06-30 01:06:14', 4),
-(394, '00:23:39', '1920x1080', 203.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'True', 768.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:07:10', '2023-06-30 01:07:10', 4),
-(395, '00:23:55', '1920x1080', 225.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'True', 769.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:07:55', '2023-06-30 01:07:55', 4),
-(396, '00:23:55', '1920x1080', 235.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'True', 770.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:08:39', '2023-06-30 01:08:39', 4),
-(397, '00:23:39', '1920x1080', 202.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'True', 771.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:09:33', '2023-06-30 01:09:33', 4),
-(398, '00:23:39', '1920x1080', 209.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'True', 772.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:10:17', '2023-06-30 01:10:17', 4),
-(399, '00:23:39', '1920x1080', 211.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'True', 773.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:11:22', '2023-06-30 01:11:22', 4),
-(400, '00:23:39', '1920x1080', 206.0, 'H264 (High @L4.1)', 'ACC 1.0 [New]', 'True', 774.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:12:03', '2023-06-30 01:12:03', 4),
-(401, '00:23:39', '1920x1080', 216.0, 'H264 (High @L4.1)', 'ACC 1.0 [New]', 'True', 775.0, 'Koenime', 'mkv', 0, 0, '2023-06-30 01:13:23', '2023-06-30 01:13:23', 4);
+(390, '00:23:55', '1920x1080', 231.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 764.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:04:05', '2023-07-01 00:12:16', 4),
+(391, '00:23:55', '1920x1080', 221.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 765.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:04:48', '2023-06-30 15:49:55', 4),
+(392, '00:23:39', '1920x1080', 198.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'False', 766.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:05:39', '2023-07-01 00:33:45', 4),
+(393, '00:23:55', '1920x1080', 212.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 767.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:06:14', '2023-07-01 00:52:12', 4),
+(394, '00:23:39', '1920x1080', 203.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'False', 768.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:07:10', '2023-07-01 01:24:46', 4),
+(395, '00:23:55', '1920x1080', 225.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 769.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:07:55', '2023-07-01 02:08:55', 4),
+(396, '00:23:55', '1920x1080', 235.0, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'False', 770.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:08:39', '2023-07-01 02:12:50', 4),
+(397, '00:23:39', '1920x1080', 202.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'False', 771.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:09:33', '2023-07-01 03:30:04', 4),
+(398, '00:23:39', '1920x1080', 209.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'Null', 772.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:10:17', '2023-07-01 07:38:10', 4),
+(399, '00:23:39', '1920x1080', 211.0, 'H264 (High @L5.0)', 'ACC 1.0 [New]', 'False', 773.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:11:22', '2023-07-01 08:03:31', 4),
+(400, '00:23:39', '1920x1080', 206.0, 'H264 (High @L4.1)', 'ACC 1.0 [New]', 'False', 774.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:12:03', '2023-07-01 08:26:04', 4),
+(401, '00:23:39', '1920x1080', 216.0, 'H264 (High @L4.1)', 'ACC 1.0 [New]', 'False', 775.0, 'Koenime', 'mkv', 0, 1, '2023-06-30 01:13:23', '2023-07-01 14:35:25', 4),
+(402, '00:23:55', '1920x1080', 208.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 776.0, 'Koenime', 'mkv', 0, 1, '2023-07-01 14:27:37', '2023-07-01 14:57:10', 4),
+(403, '00:23:55', '1920x1080', 199.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 777.0, 'Koenime', 'mkv', 0, 1, '2023-07-01 14:28:12', '2023-07-01 15:16:34', 4),
+(404, '00:23:39', '1920x1080', 212.0, 'H264 (High @L4.1)', 'ACC 1.0 [New]', 'False', 778.0, 'Koenime', 'mkv', 0, 1, '2023-07-01 14:28:57', '2023-07-01 15:44:01', 4),
+(405, '00:23:55', '1920x1080', 233.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 779.0, 'Koenime', 'mkv', 0, 1, '2023-07-01 14:29:52', '2023-07-01 15:48:04', 4),
+(406, '00:23:55', '1920x1080', 222.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 780.0, 'Koenime', 'mkv', 0, 1, '2023-07-01 14:30:38', '2023-07-02 03:10:21', 4),
+(407, '00:23:39', '1920x1080', 203.0, 'H264 (High @L4.1)', 'ACC 1.0 [New]', 'False', 781.0, 'Koenime', 'mkv', 0, 1, '2023-07-02 03:12:13', '2023-07-02 03:17:03', 4),
+(408, '00:23:39', '1920x1080', 212.0, 'H264 (High @L4.1)', 'ACC 1.0 [New]', 'False', 782.0, 'Koenime', 'mkv', 0, 1, '2023-07-02 03:12:56', '2023-07-02 03:54:29', 4),
+(409, '00:23:55', '1920x1080', 236.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 783.0, 'Koenime', 'mkv', 0, 1, '2023-07-02 03:14:00', '2023-07-02 13:14:57', 4),
+(410, '00:23:55', '1920x1080', 232.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 784.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 03:14:43', '2023-07-02 03:14:43', 4),
+(411, '00:23:55', '1920x1080', 238.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'Null', 785.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 03:15:24', '2023-07-02 03:15:24', 4),
+(412, '00:23:55', '1920x1080', 221.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 786.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:34:02', '2023-07-02 12:34:02', 4),
+(413, '00:23:55', '1920x1080', 240.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 787.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:35:00', '2023-07-02 12:35:00', 4),
+(414, '00:23:55', '1920x1080', 229.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 788.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:35:46', '2023-07-02 12:35:46', 4),
+(415, '00:23:55', '1920x1080', 231.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 789.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:36:29', '2023-07-02 12:36:29', 4),
+(416, '00:23:55', '1920x1080', 243.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 790.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:37:20', '2023-07-02 12:37:20', 4),
+(417, '00:23:55', '1920x1080', 223.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 791.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:38:06', '2023-07-02 12:38:06', 4),
+(418, '00:23:55', '1920x1080', 229.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 792.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:38:45', '2023-07-02 12:38:45', 4),
+(419, '00:23:55', '1920x1080', 215.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 793.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:39:45', '2023-07-02 12:39:45', 4),
+(420, '00:23:55', '1920x1080', 225.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 794.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:40:31', '2023-07-02 12:40:31', 4),
+(421, '00:23:55', '1920x1080', 246.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 795.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:41:27', '2023-07-02 12:41:27', 4),
+(422, '00:23:55', '1920x1080', 245.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 796.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:42:03', '2023-07-02 12:42:03', 4),
+(423, '00:23:55', '1920x1080', 243.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 797.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:42:54', '2023-07-02 12:42:54', 4),
+(424, '00:23:55', '1920x1080', 240.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 798.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:43:28', '2023-07-02 12:43:28', 4),
+(425, '00:23:55', '1920x1080', 291.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 799.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:44:21', '2023-07-02 12:44:21', 4),
+(426, '00:23:55', '1920x1080', 260.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 800.0, 'Koenime', 'mkv', 0, 0, '2023-07-02 12:44:57', '2023-07-02 12:44:57', 4);
 
 --
 -- Triggers `video_animes`
@@ -1824,15 +1849,73 @@ INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (389, 3, 0),
 (389, 2, 0),
 (389, 5, 0),
-(378, 2, 0);
+(378, 2, 0),
+(391, 3, 0),
+(391, 2, 0),
+(390, 3, 0),
+(390, 2, 0),
+(392, 3, 0),
+(392, 2, 0),
+(392, 5, 0),
+(393, 3, 0),
+(393, 2, 0),
+(393, 5, 0),
+(394, 3, 0),
+(394, 2, 0),
+(394, 5, 0),
+(395, 3, 0),
+(395, 2, 0),
+(395, 5, 0),
+(396, 3, 0),
+(396, 2, 0),
+(396, 5, 0),
+(397, 3, 0),
+(397, 2, 0),
+(397, 5, 0),
+(398, 3, 0),
+(398, 2, 0),
+(398, 5, 0),
+(399, 3, 0),
+(399, 2, 0),
+(400, 3, 0),
+(400, 2, 0),
+(400, 5, 0),
+(401, 3, 0),
+(401, 2, 0),
+(401, 5, 0),
+(402, 3, 0),
+(402, 2, 0),
+(402, 5, 0),
+(403, 3, 0),
+(403, 2, 0),
+(403, 5, 0),
+(404, 3, 0),
+(404, 2, 0),
+(405, 3, 0),
+(405, 2, 0),
+(405, 5, 0),
+(406, 3, 0),
+(406, 2, 0),
+(411, 3, 0),
+(407, 3, 0),
+(407, 2, 0),
+(407, 5, 0),
+(408, 3, 0),
+(408, 2, 0),
+(408, 5, 0),
+(409, 3, 0),
+(409, 5, 0),
+(409, 2, 0);
 
 --
 -- Triggers `video_anime_mistakes`
 --
 DELIMITER $$
 CREATE TRIGGER `Create_History_Anime_Video_Mistake` AFTER UPDATE ON `video_anime_mistakes` FOR EACH ROW BEGIN
-          INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrive`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
-        END
+	IF OLD.remove != NEW.remove THEN
+    	INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrive`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
+	END IF;
+END
 $$
 DELIMITER ;
 
@@ -2023,15 +2106,37 @@ INSERT INTO `video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id
 (181, 'Oploverz', 'Null', 387, 0),
 (182, 'Oploverz', 'Null', 388, 0),
 (183, 'Oploverz', 'Null', 389, 0),
-(184, 'Oploverz', 'Null', 378, 0);
+(184, 'Oploverz', 'Null', 378, 0),
+(185, 'Oploverz', 'Null', 390, 0),
+(186, 'Oploverz', 'Null', 391, 0),
+(187, 'Oploverz', 'Null', 392, 0),
+(188, 'Oploverz', 'Null', 393, 0),
+(189, 'Oploverz', 'Null', 394, 0),
+(190, 'Oploverz', 'Null', 395, 0),
+(191, 'Oploverz', 'Null', 396, 0),
+(192, 'Oploverz', 'Null', 397, 0),
+(193, 'Oploverz', 'Null', 398, 0),
+(194, 'Oploverz', 'Null', 399, 0),
+(195, 'Oploverz', 'Null', 400, 0),
+(196, 'Oploverz', 'Null', 401, 0),
+(197, 'Oploverz', 'Null', 402, 0),
+(198, 'Oploverz', 'Null', 403, 0),
+(199, 'Oploverz', 'Null', 404, 0),
+(200, 'Oploverz', 'Null', 405, 0),
+(201, 'Oploverz', 'Null', 406, 0),
+(202, 'Oploverz', 'Null', 407, 0),
+(203, 'Oploverz', 'Null', 408, 0),
+(204, 'Oploverz', 'Null', 409, 0);
 
 --
 -- Triggers `video_anime_subtitles`
 --
 DELIMITER $$
 CREATE TRIGGER `Create_History_Anime_Video_Subtitle` AFTER UPDATE ON `video_anime_subtitles` FOR EACH ROW BEGIN
-          INSERT INTO `history_video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrive`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
-        END
+	IF OLD.remove != NEW.remove THEN
+    INSERT INTO `history_video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrive`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
+	END IF;
+END
 $$
 DELIMITER ;
 
@@ -2234,13 +2339,13 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT for table `history_video_animes`
 --
 ALTER TABLE `history_video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=410;
 
 --
 -- AUTO_INCREMENT for table `history_video_anime_subtitles`
 --
 ALTER TABLE `history_video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT for table `licensors`
@@ -2294,13 +2399,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `video_animes`
 --
 ALTER TABLE `video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=402;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=427;
 
 --
 -- AUTO_INCREMENT for table `video_anime_subtitles`
 --
 ALTER TABLE `video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
 -- Constraints for dumped tables
