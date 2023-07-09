@@ -46,7 +46,7 @@
                 @enderror
               </div>
               <div class="col-md-6">
-                <label for="resolution" class="form-label form-required">Resolution</label>
+                <label for="widht" class="form-label form-required">Resolution</label>
                 <div class="d-flex gap-2">
                   <input required name="width" type="number" min="0" class="form-control @error('resolution') is-invalid @enderror" id="widht" placeholder="3840/1920/1280/854/640" value="{{ explode('x', $video->resolution)[0] }}">
                   X

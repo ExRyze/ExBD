@@ -19,7 +19,7 @@ class DashboardVideo extends Controller
 {
     protected $data = [
         'chapters' => ["True", "False", "Null"],
-        'origins' => ["Adikanime", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs"],
+        'origins' => ["Adikanime", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs", "Unknown"],
         'types' => ["mkv", "mp4"],
     ];
 
