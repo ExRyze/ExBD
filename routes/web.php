@@ -2,21 +2,10 @@
 
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\DashboardAnime;
-use App\Http\Controllers\DashboardAnimeAlias;
 use App\Http\Controllers\DashboardAnimeComponents;
-use App\Http\Controllers\DashboardAnimeGenre;
-use App\Http\Controllers\DashboardAnimeLicensor;
-use App\Http\Controllers\DashboardAnimeProducer;
-use App\Http\Controllers\DashboardAnimeStudio;
-use App\Http\Controllers\DashboardAnimeTheme;
 use App\Http\Controllers\DashboardComponents;
 use App\Http\Controllers\DashboardFolder;
-use App\Http\Controllers\DashboardGenre;
 use App\Http\Controllers\DashboardHistory;
-use App\Http\Controllers\DashboardLicensor;
-use App\Http\Controllers\DashboardProducer;
-use App\Http\Controllers\DashboardStudio;
-use App\Http\Controllers\DashboardTheme;
 use App\Http\Controllers\DashboardUser;
 use App\Http\Controllers\DashboardVideo;
 use App\Http\Controllers\DashboardVideoComponents;
