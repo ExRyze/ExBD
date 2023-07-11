@@ -59,11 +59,11 @@
                           Info
                         </a>
                         <a class="btn btn-warning" href="{{ url("dashboard/anime/edit/".$anime->slug) }}">
-                          <i class="bi bi-exclamation-triangle"></i>
+                          <i class="ri ri-edit-2-line"></i>
                           Edit
                         </a>
                         <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelAnime{{ $ianime }}">
-                          <i class="bi bi-exclamation-octagon"></i>
+                          <i class="bi bi-trash"></i>
                           Delete
                         </button>
                       </th>

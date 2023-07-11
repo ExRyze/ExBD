@@ -48,11 +48,11 @@
                     <tr>
                       <th scope="row">
                         <a class="btn btn-warning" href="{{ url("dashboard/user/edit/".$user->username) }}">
-                          <i class="bi bi-exclamation-triangle"></i>
+                          <i class="ri ri-edit-2-line"></i>
                           Edit
                         </a>
                         <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelUser{{ $iuser }}">
-                          <i class="bi bi-exclamation-octagon"></i>
+                          <i class="bi bi-trash"></i>
                           Delete
                         </button>
                       </th>

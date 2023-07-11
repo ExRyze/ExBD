@@ -52,11 +52,11 @@
                     <tr>
                       <th scope="row">
                         <a class="btn btn-warning" href="{{ url("dashboard/video/history/anime/$history->slug/retrive/$history->id") }}">
-                          <i class="bi bi-exclamation-triangle"></i>
+                          <i class="bx bx-reset"></i>
                           Retrive
                         </a>
                         <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelHistory{{ $ihistory }}">
-                          <i class="bi bi-exclamation-octagon"></i>
+                          <i class="bi bi-trash"></i>
                           Delete
                         </button>
                       </th>

@@ -69,7 +69,7 @@
                     <tr>
                       <th scope="row">
                         <a class="btn btn-warning" href="{{ url("dashboard/video/anime/$table->slug/edit/$title") }}">
-                          <i class="bi bi-exclamation-triangle"></i>
+                          <i class="ri ri-edit-2-line"></i>
                           Edit
                         </a>
                         <form class="d-inline" action="/dashboard/video/anime/{{ $table->slug }}/approve" method="post">
@@ -88,7 +88,7 @@
                           @endif
                         </form>
                         <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelVideo{{ $ivideo }}">
-                          <i class="bi bi-exclamation-octagon"></i>
+                          <i class="bi bi-trash"></i>
                           Delete
                         </button>
                       </th>

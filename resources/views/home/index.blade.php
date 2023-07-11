@@ -39,19 +39,19 @@
     </div> --}}
 
     {{-- Anime Section --}}
-    <div class="row flex-nowrap overflow-auto no-scrollbar">
+    <div class="row cards-small no-scrollbar">
         @foreach ($animes as $anime)
-        <a class="col-2 mb-4 text-light" href="{{ url("anime/".$anime->slug) }}">
-          <div class="bg-secondary rounded d-flex flex-column overflow-hidden" style="height: 100%;">
-  
+        <a class="card-link" href="{{ url("anime/".$anime->slug) }}">
+        <div class="card-wrap">
+
             {{-- Image --}}
             @include('components.animecover')
-          
+        
             {{-- Description --}}
-            <div class="col-12 p-2">
-              <h6>{{ $anime->title }}</h6>
+            <div class="description">
+            <h6>{{ $anime->title }}</h6>
             </div>
-          </div>
+        </div>
         </a>
         @endforeach
     </div>

@@ -4,6 +4,11 @@ Update -  /anime
 Update -  /dashboard
 Change size of image to same level
 
+Style :
+Header - Color
+Sidebar - Color
+Dashboard - Color
+
 Function :
 Edit Profile (Add User Image)
 
@@ -21,3 +26,4 @@ Also scoring, its mean, create functions of user
 Error not found custom in edit at DashboardVideo
 User username use _ or %20
 Approving use local storage
+Form Buttons (Update/Submit)
