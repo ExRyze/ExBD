@@ -28,4 +28,6 @@ User username use _ or %20
 Approving use local storage
 Form Buttons (Update/Submit)
 All cell in data-table is copyable
-Compacting animes's relations?
+
+Condition:
+If create new table like films or something like animes that has many relation, rename all tables component animes
