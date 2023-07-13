@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 13, 2023 at 04:51 AM
+-- Generation Time: Jul 13, 2023 at 05:00 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -589,11 +589,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (4, '2023_04_08_050559_create_animes_table', 1),
-(5, '2023_04_25_074233_create_anime_components_package', 3),
-(15, '2023_04_28_212245_create_anime_relations_mtm_package', 10),
-(25, '2023_05_02_173544_create_folder_animes_table', 12),
-(27, '2023_05_02_175840_create_mistakes_table', 13),
-(33, '2023_05_02_175841_create_video_animes_package', 14);
+(5, '2023_04_25_074233_create_anime_components_package', 1),
+(6, '2023_04_28_212245_create_anime_relations_mtm_package', 1),
+(7, '2023_05_02_173544_create_folder_animes_table', 1),
+(8, '2023_05_02_175840_create_mistakes_table', 1),
+(9, '2023_05_02_175841_create_video_animes_package', 1);
 
 -- --------------------------------------------------------
 
@@ -2698,7 +2698,7 @@ ALTER TABLE `licensors`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `mistakes`
