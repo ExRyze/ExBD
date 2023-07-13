@@ -26,7 +26,7 @@
             </div>
             @endif
 
-            <a class="btn btn-warning mb-2" href="{{ url("dashboard/folder/anime") }}">
+            <a class="btn btn-warning mb-2" href="{{ url("dashboard/anime/folder") }}">
               <i class="bi bi-folder"></i>
               Folders
             </a>
@@ -36,7 +36,7 @@
               History
             </a>
 
-            <a class="btn btn-success mb-2" href="{{ url("dashboard/video/anime/$table->slug/create") }}">
+            <a class="btn btn-success mb-2" href="{{ url("dashboard/anime/video/$table->slug/create") }}">
               <i class="bi bi-plus-lg"></i>
               Create
             </a>
@@ -68,11 +68,11 @@
                     {{-- If too long --}}
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-warning" href="{{ url("dashboard/video/anime/$table->slug/edit/$title") }}">
+                        <a class="btn btn-warning" href="{{ url("dashboard/anime/video/$table->slug/edit/$title") }}">
                           <i class="ri ri-edit-2-line"></i>
                           Edit
                         </a>
-                        <form class="d-inline" action="/dashboard/video/anime/{{ $table->slug }}/approve" method="post">
+                        <form class="d-inline" action="/dashboard/anime/video/{{ $table->slug }}/approve" method="post">
                           @csrf
                           <input type="hidden" name="id" value="{{ $video->id }}">
                           @if ($video->approved === 0)
@@ -143,7 +143,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/video/anime/$table->slug/delete/$video->id") }}">Delete</a>
+          <a class="btn btn-danger" href="{{ url("dashboard/anime/video/$table->slug/delete/$video->id") }}">Delete</a>
         </div>
       </div>
     </div>

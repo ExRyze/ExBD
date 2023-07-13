@@ -28,7 +28,7 @@
             <!-- General -->
             <h4>General</h4>
             <hr class="mt-0">
-            <form class="row g-3" method="POST" action="/dashboard/video/anime/{{ $anime->slug }}/update">
+            <form class="row g-3" method="POST" action="/dashboard/anime/video/{{ $anime->slug }}/update">
               @csrf
               <input required type="hidden" name="id" value="{{ $video->id }}">
               <div class="col-md-3">
@@ -136,7 +136,7 @@
             <hr class="mt-0">
             <div id="subtitles-form" class="collapse" data-bs-parent="#edit-form">
               @foreach ($video->subtitles as $subtitle)
-              <form class="row g-3 form-subtitles" method="POST" action="/dashboard/videoanimesubtitle/update">
+              <form class="row g-3 form-subtitles" method="POST" action="/dashboard/animevideosubtitle/update">
                 @csrf
                 <input type="hidden" name="id" value="{{ $subtitle->id }}">
                 <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
@@ -170,7 +170,7 @@
               <hr>
               @endforeach
 
-              <form class="row g-3 form-subtitles" method="POST" action="/dashboard/videoanimesubtitle/store">
+              <form class="row g-3 form-subtitles" method="POST" action="/dashboard/animevideosubtitle/store">
                 @csrf
                 <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
                 <div class="col-md-3">
@@ -207,7 +207,7 @@
             </h4>
             <hr class="mt-0">
             <div id="mistakes-form" class="collapse" data-bs-parent="#edit-form">
-              <form class="row g-3 form-mistakes" method="POST" action="/dashboard/videoanimemistake/store">
+              <form class="row g-3 form-mistakes" method="POST" action="/dashboard/animevideomistake/store">
                 @csrf
                 <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
                 @foreach ($mistakes as $mistake)

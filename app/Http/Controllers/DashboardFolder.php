@@ -37,7 +37,7 @@ class DashboardFolder extends Controller
     {
         Folder_Anime::create($request->validated());
 
-        return redirect('/dashboard/folder/anime')->with('success', 'New Folder Anime Added');
+        return back()->with('success', 'New Folder Anime Added');
     }
 
     /**
@@ -61,6 +61,6 @@ class DashboardFolder extends Controller
     {
         Folder_Anime::where('id', $id)->delete();
 
-        return redirect('/dashboard/folder/anime')->with('success', 'Folder Anime Deleted');
+        return back()->with('success', 'Folder Anime Deleted');
     }
 }

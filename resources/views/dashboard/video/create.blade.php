@@ -21,7 +21,7 @@
             <!-- General -->
             <h4>General</h4>
             <hr class="m-0">
-            <form class="row g-3" method="POST" action="/dashboard/video/anime/{{ $anime->slug }}/store">
+            <form class="row g-3" method="POST" action="/dashboard/anime/video/{{ $anime->slug }}/store">
               @csrf
               <input required type="hidden" name="folder_anime_id" value="{{ $anime->folder->id }}">
               <div class="col-md-3">

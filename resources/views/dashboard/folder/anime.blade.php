@@ -54,7 +54,7 @@
                   @foreach ($table as $ifolder => $folder)
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-info" href="{{ url("dashboard/video/anime/".$folder->anime->slug) }}">
+                        <a class="btn btn-info" href="{{ url("dashboard/anime/video/".$folder->anime->slug) }}">
                           <i class="bi bi-play-btn"></i>
                           Videos
                         </a>
@@ -135,7 +135,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/folder/anime/delete/".$folder->id) }}">Delete</a>
+          <a class="btn btn-danger" href="{{ url("dashboard/anime/folder/delete/".$folder->id) }}">Delete</a>
         </div>
       </div>
     </div>

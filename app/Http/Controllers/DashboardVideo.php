@@ -92,7 +92,7 @@ class DashboardVideo extends Controller
                 ]);
             }
     
-            return redirect('/dashboard/video/anime/'.$slug)->with('success', 'New Video Anime Added');
+            return redirect('/dashboard/anime/video/'.$slug)->with('success', 'New Video Anime Added');
         } else if ($history && !$video) {
             return back()->with('danger', "Video data already exists in History");
         } else {
@@ -115,7 +115,6 @@ class DashboardVideo extends Controller
             ['type', (explode('.', end($video)))[1]],
         ])->first();
 
-        // One Piece Ep 616 - Koenime TV 720p	
         return view('dashboard.video.edit', [
             'page' => $this->getUrl(URL::current()),
             'mistakes' => Mistake::orderBy('mistake')->get(),
@@ -151,7 +150,7 @@ class DashboardVideo extends Controller
 
         $title = str_replace(' ', '_', strtolower($slug." Ep ".(strlen($request->episode) === 1 ? "0".$request->episode : $request->episode)." - ".$request->origin." ".(explode('x', $request->resolution)[1])."p.".$request->type));
 
-        return redirect("/dashboard/video/anime/$slug/edit/$title")->with('success', 'Video Anime Updated Successfully');
+        return redirect("/dashboard/anime/video/$slug/edit/$title")->with('success', 'Video Anime Updated Successfully');
     }
 
     /**

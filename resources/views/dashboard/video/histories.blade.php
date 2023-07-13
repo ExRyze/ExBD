@@ -19,7 +19,7 @@
             </div>
             @endif
 
-            <a class="btn btn-warning mb-2" href="{{ url("dashboard/folder/anime") }}">
+            <a class="btn btn-warning mb-2" href="{{ url("dashboard/anime/folder") }}">
               <i class="bi bi-folder"></i>
               Folders
             </a>
@@ -51,7 +51,7 @@
                   @foreach ($table as $ihistory => $history)
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-warning" href="{{ url("dashboard/video/history/anime/$history->slug/retrive/$history->id") }}">
+                        <a class="btn btn-warning" href="{{ url("dashboard/anime/history/video/$history->slug/retrive/$history->id") }}">
                           <i class="bx bx-reset"></i>
                           Retrive
                         </a>
@@ -110,7 +110,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/video/history/anime/$history->slug/delete/$history->id") }}">Delete</a>
+          <a class="btn btn-danger" href="{{ url("dashboard/anime/history/video/$history->slug/delete/$history->id") }}">Delete</a>
         </div>
       </div>
     </div>

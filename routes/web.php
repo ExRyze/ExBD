@@ -106,42 +106,41 @@ Route::get('/dashboard/animealias/update', function() {return back();});
     // Dashboard/{AnimeComponent}
      
 Route::controller(DashboardFolder::class)->group(function() {
-    Route::get('/dashboard/folder/anime', 'folderAnime');
-    Route::post('/dashboard/folder/anime/store', 'storeAnime');
-    Route::post('/dashboard/folder/anime/approve', 'approveAnime');
-    Route::get('/dashboard/folder/anime/delete/{id}', 'deleteAnime');
+    Route::get('/dashboard/anime/folder', 'folderAnime');
+    Route::post('/dashboard/anime/folder/store', 'storeAnime');
+    Route::post('/dashboard/anime/folder/approve', 'approveAnime');
+    Route::get('/dashboard/anime/folder/delete/{id}', 'deleteAnime');
 });
-Route::get('/dashboard/folder/anime/delete', function() {return back();});
+Route::get('/dashboard/anime/folder/delete', function() {return back();});
     // Dashboard/Folder
      
 Route::controller(DashboardVideo::class)->group(function() {
-    Route::get('/dashboard/video/anime/{slug}', 'videoAnime');
-    Route::get('/dashboard/video/anime/{slug}/create', 'createAnime');
-    Route::post('/dashboard/video/anime/{slug}/store', 'storeAnime');
-    Route::get('/dashboard/video/anime/{slug}/edit/{title}', 'editAnime');
-    Route::post('/dashboard/video/anime/{slug}/update', 'updateAnime');
-    Route::post('/dashboard/video/anime/{slug}/approve', 'approveAnime');
-    Route::get('/dashboard/video/anime/{slug}/delete/{id}', 'deleteAnime');
+    Route::get('/dashboard/anime/video/{slug}', 'videoAnime');
+    Route::get('/dashboard/anime/video/{slug}/create', 'createAnime');
+    Route::post('/dashboard/anime/video/{slug}/store', 'storeAnime');
+    Route::get('/dashboard/anime/video/{slug}/edit/{title}', 'editAnime');
+    Route::post('/dashboard/anime/video/{slug}/update', 'updateAnime');
+    Route::post('/dashboard/anime/video/{slug}/approve', 'approveAnime');
+    Route::get('/dashboard/anime/video/{slug}/delete/{id}', 'deleteAnime');
 });
-Route::get('/dashboard/video', function() {return back();});
-Route::get('/dashboard/video/anime', function() {return back();});
-Route::get('/dashboard/video/anime/{slug}/edit', function() {return back();});
-Route::get('/dashboard/video/anime/{slug}/delete', function() {return back();});
+Route::get('/dashboard/anime/video', function() {return back();});
+Route::get('/dashboard/anime/video/{slug}/edit', function() {return back();});
+Route::get('/dashboard/anime/video/{slug}/delete', function() {return back();});
     // Dashboard/video
 
 Route::controller(DashboardVideoComponents::class)->group(function() {
-    Route::post('/dashboard/videoanimesubtitle/store', 'storeAnimeSubtitle');
-    Route::post('/dashboard/videoanimesubtitle/update', 'updateAnimeSubtitle');
-    Route::post('/dashboard/videoanimemistake/store', 'storeAnimeMistake');
+    Route::post('/dashboard/animevideosubtitle/store', 'storeAnimeSubtitle');
+    Route::post('/dashboard/animevideosubtitle/update', 'updateAnimeSubtitle');
+    Route::post('/dashboard/animevideomistake/store', 'storeAnimeMistake');
 }); // Dashboard/{VideoComponent}
 
 Route::controller(DashboardHistory::class)->group(function() {
-    Route::get('/dashboard/video/history/anime', 'historiesAnime');
-    Route::get('/dashboard/video/history/anime/{slug}', 'historyAnime');
-    Route::get('/dashboard/video/history/anime/{slug}/retrive/{id}', 'retriveAnime');
-    Route::get('/dashboard/video/history/anime/{slug}/delete/{id}', 'deleteAnime');
+    Route::get('/dashboard/anime/history/video', 'historiesAnime');
+    Route::get('/dashboard/anime/history/video/{slug}', 'historyAnime');
+    Route::get('/dashboard/anime/history/video/{slug}/retrive/{id}', 'retriveAnime');
+    Route::get('/dashboard/anime/history/video/{slug}/delete/{id}', 'deleteAnime');
 });
-Route::get('/dashboard/video/history', function() {return back();});
-Route::get('/dashboard/video/history/anime/{slug}/delete', function() {return back();});
-Route::get('/dashboard/video/history/anime/{slug}/retrive', function() {return back();});
+Route::get('/dashboard/anime/history', function() {return back();});
+Route::get('/dashboard/anime/history/video/{slug}/delete', function() {return back();});
+Route::get('/dashboard/anime/history/video/{slug}/retrive', function() {return back();});
     // Dashboard/History
