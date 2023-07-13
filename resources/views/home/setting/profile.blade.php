@@ -22,8 +22,9 @@
             <!-- Profile -->
             <h4>Profile</h4>
             <hr class="mt-0">
-            <form class="row g-3 form-general" method="POST" action="/setting/profile/update/{{ $user->id }}" enctype="multipart/form-data">
+            <form class="row g-3 form-general" method="POST" action="/setting/profile/update" enctype="multipart/form-data">
               @csrf
+              <input type="hidden" name="id" value="{{ $user->id }}">
               <div class="col-md-3">
                 <div class="mb-4">
                   @include('components.userprofile')

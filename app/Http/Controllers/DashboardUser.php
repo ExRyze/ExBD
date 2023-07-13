@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Requests\Dashboard\User\UserStoreRequest;
 use App\Http\Requests\Dashboard\User\UserUpdateRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
@@ -72,9 +73,9 @@ class DashboardUser extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserUpdateRequest $request, User $user, String $id) : RedirectResponse
+    public function update(UserUpdateRequest $request) : RedirectResponse
     {
-        $user->where('id', $id)->update($request->validated());
+        User::where('id', $request->id)->update($request->validated());
 
         return redirect('/dashboard/user')->with('success', 'Data User Updated Successfully');
     }
@@ -82,9 +83,9 @@ class DashboardUser extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(User $user, String $username) : RedirectResponse
+    public function delete(Request $request) : RedirectResponse
     {
-        $user->where('username', $username)->delete();
+        User::where('id', $request->id)->delete();
 
         return redirect('/dashboard/user')->with('success', 'Data User Deleted Successfully');
     }

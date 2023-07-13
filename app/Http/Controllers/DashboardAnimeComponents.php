@@ -119,15 +119,15 @@ class DashboardAnimeComponents extends Controller
     /**
      * Update Anime Component
      */
-    public function updateAlias(AnimeAliasUpdateRequest $request, Anime_Alias $anime_Alias, String $id) : RedirectResponse
+    public function updateAlias(AnimeAliasUpdateRequest $request, Anime_Alias $anime_Alias) : RedirectResponse
     {
         if ($request->submit === 'update') {
-            $anime_Alias->where('id', $id)->update($request->validated());
+            $anime_Alias->where('id', $request->id)->update($request->validated());
             
             return back()->with('success', "Data Anime's Alias Updated Successfully");
         }
 
-        $this->destroyAlias($anime_Alias, $id);
+        $this->destroyAlias($anime_Alias, $request->id);
 
         return back()->with('success', "Data Anime's Alias Deleted Successfully");
     }

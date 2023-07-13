@@ -23,13 +23,13 @@ class HomeSetting extends Controller
         ]);
     }
 
-    public function updateProfile(SettingUserProfileRequest $request, User $user, String $id) : RedirectResponse
+    public function updateProfile(SettingUserProfileRequest $request) : RedirectResponse
     {
         if ($request->file('file') != null) {
             $request->file('file')->storeAs('public/images/users/'.$request->username.'.jpg');
         }
 
-        $user->where('id', $id)->update($request->validated());
+        User::where('id', $request->id)->update($request->validated());
 
         return back()->with('success', 'Data User Updated Successfully');
     }

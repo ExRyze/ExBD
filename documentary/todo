@@ -2,7 +2,6 @@ Page :
 Update -  /
 Update -  /anime
 Update -  /dashboard
-Change size of image to same level
 
 Style :
 Header - Color
@@ -14,6 +13,9 @@ Edit Profile (Add User Image)
 
 BackEnd :
 Database
+
+Error:
+If route is post, and you enter route but just with get, it will become error
 
 Anything Else :
 Sorting aliases
@@ -33,3 +35,6 @@ Delete data dont use get, instead post (using form)
 Condition:
 If create new table like films or something like animes that has many relation, rename all tables component animes.
 If the above is done, change the relevant url of thats. 
+
+Testing:
+Dashboard data delete

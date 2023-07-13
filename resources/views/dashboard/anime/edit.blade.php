@@ -28,8 +28,9 @@
             <!-- General -->
             <h4>General</h4>
             <hr class="mt-0">
-            <form class="row g-3 form-general" method="POST" action="/dashboard/anime/update/{{ $anime->id }}" enctype="multipart/form-data">
+            <form class="row g-3 form-general" method="POST" action="/dashboard/anime/update" enctype="multipart/form-data">
               @csrf
+              <input type="hidden" name="id" value="{{ $anime->id }}">
               <div class="col-md-3">
                 <div class="mb-4">
                   @include('components.animecover')
@@ -405,8 +406,9 @@
             <hr class="mt-0">
             <div id="aliases-form" class="collapse" data-bs-parent="#edit-form">
               @foreach ($anime->aliases as $alias)
-              <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/update/{{ $alias->id }}">
+              <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/update">
                 @csrf
+                <input type="hidden" name="id" value="{{ $alias->id }}">
                 <div class="col-md-3">
                   <label for="origin" class="form-label form-required">Origin Alias</label>
                   <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">

@@ -11,6 +11,7 @@ use App\Models\Producer;
 use App\Models\Studio;
 use App\Models\Theme;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
@@ -86,13 +87,13 @@ class DashboardAnime extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AnimeUpdateRequest $request, Anime $anime, String $id) : RedirectResponse
+    public function update(AnimeUpdateRequest $request) : RedirectResponse
     {
         if ($request->file('file') != null) {
             $request->file('file')->storeAs('public/images/animes/'.$request->slug.'/Cover.jpg');
         }
 
-        $anime->where('id', $id)->update($request->validated());
+        Anime::where('id', $request->id)->update($request->validated());
 
         return back()->with('success', 'Data Anime Updated Successfully');
     }
@@ -100,9 +101,9 @@ class DashboardAnime extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Anime $anime, String $slug) : RedirectResponse
+    public function delete(Request $request) : RedirectResponse
     {
-        $anime->where('slug', $slug)->delete();
+        Anime::where('id', $request->id)->delete();
 
         return redirect('/dashboard/anime')->with('success', 'Data Anime Deleted Successfully');
     }

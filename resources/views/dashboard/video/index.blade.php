@@ -31,7 +31,7 @@
               Folders
             </a>
 
-            <a class="btn btn-info mb-2" href="{{ url("dashboard/video/history/anime/$table->slug") }}">
+            <a class="btn btn-info mb-2" href="{{ url("dashboard/anime/history/video/$table->slug") }}">
               <i class="bi bi-clock-history"></i>
               History
             </a>
@@ -142,8 +142,12 @@
           Are you sure deleting this data video. <strong>Data video will stored in history</strong>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/anime/video/$table->slug/delete/$video->id") }}">Delete</a>
+          <form action="/dashboard/anime/video/{{ $table->slug }}/delete" method="post" class="mb-1">
+            @csrf
+            <input type="hidden" name="id" value="{{ $video->id }}">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancel</button>
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+          </form>
         </div>
       </div>
     </div>

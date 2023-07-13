@@ -113,8 +113,12 @@
           Are you sure deleting this data anime. <strong>Some data from other tables might be deleted too</strong>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/anime/delete/".$anime->slug) }}">Delete</a>
+          <form action="/dashboard/anime/delete" method="post" class="mb-1">
+            @csrf
+            <input type="hidden" name="id" value="{{ $anime->id }}">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancel</button>
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+          </form>
         </div>
       </div>
     </div>

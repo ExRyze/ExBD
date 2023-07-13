@@ -8,6 +8,7 @@ use App\Models\Folder_Anime;
 use App\Models\History_Video_Anime;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
 class DashboardHistory extends Controller
@@ -36,7 +37,7 @@ class DashboardHistory extends Controller
     {
         return view('dashboard.video.history', [
             'page' => $this->getUrl(URL::current()),
-            'table' => History_Video_Anime::where('slug', str_replace(['_'], [' '], $slug))->get(),
+            'table' => History_Video_Anime::where('slug', str_replace(['_'], [' '], $slug))->orderBy('episode', 'desc')->get(),
             'slug' =>  $slug
         ]);
     }
@@ -44,10 +45,10 @@ class DashboardHistory extends Controller
     /**
      * Retrive Video
      */
-    public function retriveAnime(String $slug, String $id) : RedirectResponse
+    public function retriveAnime(Request $request, String $slug) : RedirectResponse
     {
-        History_Video_Anime::where('id', $id)->touch();
-        History_Video_Anime::where('id', $id)->delete();
+        History_Video_Anime::where('id', $request->id)->touch();
+        History_Video_Anime::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Has Been Retrived');
     }
@@ -55,9 +56,9 @@ class DashboardHistory extends Controller
     /**
      * Delete Folder
      */
-    public function deleteAnime(String $slug, String $id) : RedirectResponse
+    public function deleteAnime(Request $request, String $slug) : RedirectResponse
     {
-        History_Video_Anime::where('id', $id)->delete();
+        History_Video_Anime::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Has Been Permanently Delete');
     }

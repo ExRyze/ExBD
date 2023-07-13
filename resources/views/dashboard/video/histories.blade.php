@@ -51,10 +51,11 @@
                   @foreach ($table as $ihistory => $history)
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-warning" href="{{ url("dashboard/anime/history/video/$history->slug/retrive/$history->id") }}">
-                          <i class="bx bx-reset"></i>
-                          Retrive
-                        </a>
+                        <form action="/dashboard/anime/history/video/{{ $history->slug }}/retrive" method="post" class="mb-1">
+                          @csrf
+                          <input type="hidden" name="id" value="{{ $history->id }}">
+                          <button type="submit" class="btn btn-warning"><i class="bx bx-reset"></i> Retrive</button>
+                        </form>
                         <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelHistory{{ $ihistory }}">
                           <i class="bi bi-trash"></i>
                           Delete
@@ -109,8 +110,12 @@
           Are you sure deleting this data history. <strong>Data history will permanently deleted.</strong>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger" href="{{ url("dashboard/anime/history/video/$history->slug/delete/$history->id") }}">Delete</a>
+          <form action="/dashboard/anime/history/video/{{ $history->slug }}/delete" method="post" class="mb-1">
+            @csrf
+            <input type="hidden" name="id" value="{{ $history->id }}">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancel</button>
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+          </form>
         </div>
       </div>
     </div>

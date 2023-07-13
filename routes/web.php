@@ -49,7 +49,7 @@ Route::get('/user', function() {return back();});
 Route::controller(HomeSetting::class)->group(function() {
     Route::get('/setting', 'profile');
     Route::get('/setting/profile', 'profile');
-    Route::post('/setting/profile/update/{id}', 'updateProfile');
+    Route::post('/setting/profile/update', 'updateProfile');
 }); // Home/Setting
 
 Route::controller(HomeAnime::class)->group(function() {
@@ -62,12 +62,10 @@ Route::controller(DashboardUser::class)->group(function() {
     Route::get('/dashboard/user/create', 'create');
     Route::post('/dashboard/user/store', 'store');
     Route::get('/dashboard/user/edit/{username}', 'edit');
-    Route::post('/dashboard/user/update/{id}', 'update');
-    Route::get('/dashboard/user/delete/{username}', 'delete');
+    Route::post('/dashboard/user/update', 'update');
+    Route::post('/dashboard/user/delete', 'delete');
 });
 Route::get('/dashboard/user/edit', function() {return back();});
-Route::get('/dashboard/user/update', function() {return back();});
-Route::get('/dashboard/user/delete', function() {return back();});
     // Dashboard/User
    
 Route::controller(DashboardComponents::class)->group(function() {
@@ -85,33 +83,29 @@ Route::controller(DashboardAnime::class)->group(function() { // Anime
     Route::get('/dashboard/anime/create', 'create');
     Route::post('/dashboard/anime/store', 'store');
     Route::get('/dashboard/anime/edit/{slug}', 'edit');
-    Route::post('/dashboard/anime/update/{id}', 'update');
-    Route::get('/dashboard/anime/delete/{slug}', 'delete');
+    Route::post('/dashboard/anime/update/', 'update');
+    Route::post('/dashboard/anime/delete', 'delete');
 });
 Route::get('/dashboard/anime/edit', function() {return back();});
-Route::get('/dashboard/anime/update', function() {return back();});
-Route::get('/dashboard/anime/delete', function() {return back();});
     // Dashboard/Anime
      
 Route::controller(DashboardAnimeComponents::class)->group(function() {
     Route::post('/dashboard/animealias/store', 'storeAlias');
-    Route::post('/dashboard/animealias/update/{id}', 'updateAlias');
+    Route::post('/dashboard/animealias/update', 'updateAlias');
     Route::post('/dashboard/animeproducer/store', 'storeProducer');
     Route::post('/dashboard/animelicensor/store', 'storeLicensor');
     Route::post('/dashboard/animestudio/store', 'storeStudio');
     Route::post('/dashboard/animegenre/store', 'storeGenre');
     Route::post('/dashboard/animetheme/store', 'storeTheme');
 });
-Route::get('/dashboard/animealias/update', function() {return back();}); 
     // Dashboard/{AnimeComponent}
      
 Route::controller(DashboardFolder::class)->group(function() {
     Route::get('/dashboard/anime/folder', 'folderAnime');
     Route::post('/dashboard/anime/folder/store', 'storeAnime');
     Route::post('/dashboard/anime/folder/approve', 'approveAnime');
-    Route::get('/dashboard/anime/folder/delete/{id}', 'deleteAnime');
+    Route::post('/dashboard/anime/folder/delete', 'deleteAnime');
 });
-Route::get('/dashboard/anime/folder/delete', function() {return back();});
     // Dashboard/Folder
      
 Route::controller(DashboardVideo::class)->group(function() {
@@ -121,11 +115,10 @@ Route::controller(DashboardVideo::class)->group(function() {
     Route::get('/dashboard/anime/video/{slug}/edit/{title}', 'editAnime');
     Route::post('/dashboard/anime/video/{slug}/update', 'updateAnime');
     Route::post('/dashboard/anime/video/{slug}/approve', 'approveAnime');
-    Route::get('/dashboard/anime/video/{slug}/delete/{id}', 'deleteAnime');
+    Route::post('/dashboard/anime/video/{slug}/delete', 'deleteAnime');
 });
 Route::get('/dashboard/anime/video', function() {return back();});
 Route::get('/dashboard/anime/video/{slug}/edit', function() {return back();});
-Route::get('/dashboard/anime/video/{slug}/delete', function() {return back();});
     // Dashboard/video
 
 Route::controller(DashboardVideoComponents::class)->group(function() {
@@ -137,10 +130,8 @@ Route::controller(DashboardVideoComponents::class)->group(function() {
 Route::controller(DashboardHistory::class)->group(function() {
     Route::get('/dashboard/anime/history/video', 'historiesAnime');
     Route::get('/dashboard/anime/history/video/{slug}', 'historyAnime');
-    Route::get('/dashboard/anime/history/video/{slug}/retrive/{id}', 'retriveAnime');
-    Route::get('/dashboard/anime/history/video/{slug}/delete/{id}', 'deleteAnime');
+    Route::post('/dashboard/anime/history/video/{slug}/retrive', 'retriveAnime');
+    Route::post('/dashboard/anime/history/video/{slug}/delete', 'deleteAnime');
 });
 Route::get('/dashboard/anime/history', function() {return back();});
-Route::get('/dashboard/anime/history/video/{slug}/delete', function() {return back();});
-Route::get('/dashboard/anime/history/video/{slug}/retrive', function() {return back();});
     // Dashboard/History

@@ -8,6 +8,7 @@ use App\Models\Anime;
 use App\Models\Folder_Anime;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
 class DashboardFolder extends Controller
@@ -57,9 +58,9 @@ class DashboardFolder extends Controller
     /**
      * Delete Folder
      */
-    public function deleteAnime(String $id) : RedirectResponse
+    public function deleteAnime(Request $request) : RedirectResponse
     {
-        Folder_Anime::where('id', $id)->delete();
+        Folder_Anime::where('id', $request->id)->delete();
 
         return back()->with('success', 'Folder Anime Deleted');
     }

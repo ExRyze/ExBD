@@ -171,9 +171,9 @@ class DashboardVideo extends Controller
     /**
      * Delete Video
      */
-    public function deleteAnime(String $slug, String $id) : RedirectResponse
+    public function deleteAnime(Request $request, String $slug) : RedirectResponse
     {
-        Video_Anime::where('id', $id)->delete();
+        Video_Anime::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Deleted');
     }

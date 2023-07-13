@@ -12,8 +12,9 @@
           <div class="card-body">
         
             <!-- Multi Columns Form -->
-            <form class="row g-3" method="POST" action="/dashboard/user/update/{{ $user->id }}">
+            <form class="row g-3" method="POST" action="/dashboard/user/update">
               @csrf
+              <input type="hidden" name="id" value="{{ $user->id }}">
               <div class="col-md-12">
                 <label for="username" class="form-label form-required">Username</label>
                 <input required disabled value="{{ $user->username }}" type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Your Username...">
