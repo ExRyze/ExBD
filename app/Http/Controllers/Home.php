@@ -23,6 +23,7 @@ class Home extends Controller
     }
 
     public function dashboard() {
+        // dd($this->getUrl(URL::current()));
         return view('dashboard.index', [
             'page' => $this->getUrl(URL::current())
         ]);

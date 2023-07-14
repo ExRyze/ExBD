@@ -28,6 +28,7 @@
 
   /* ExBD - Color (Primary) */
   --ex-light: #FBFEF9;
+  --ex-grey: #6c757d;
   --ex-dark: #04080F;
   --ex-red: #D10000;
   --ex-yellow: #ffc107;
@@ -36,6 +37,7 @@
   --ex-blue: #0054D1;
 
   --ex-light-rgb: 251, 254, 249;
+  --ex-grey-rgb: 108, 117, 125;
   --ex-dark-rgb: 4, 8, 15;
   --ex-red-rgb: 209, 0, 0;
   --ex-yellow-rgb: 255, 193, 7;
@@ -45,6 +47,7 @@
 
   /* ExBD - Color (Secondary) */
   --exs-light: #edfae3; /* dark: 5% */
+  --exs-grey: #5c636a;
   --exs-dark: #091222; /* light: 5% */
   --exs-red: #b20000; /* dark: 15% */
   --exs-yellow: #ffca2c; /* light: 15% */
@@ -405,7 +408,8 @@ h6 {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: var(--ex-light);
+  border-radius: 4px;
+  background-color: var(--ex-grey);
 }
 
 @media (min-width: 1200px) {
@@ -469,7 +473,7 @@ h6 {
   font-weight: 600;
   color: var(--ex-light);
   transition: 0.3;
-  background: var(--ex-dark);
+  background: var(--exs-dark);
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -481,17 +485,17 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: var(--ex-light);
+  color: var(--ex-grey);
   background: var(--ex-dark);
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: var(--ex-light);
+  color: var(--ex-grey);
 }
 
 .sidebar-nav .nav-link:hover {
   color: var(--ex-light);
-  background: rgba(var(--ex-light-rgb), 0.2);
+  background-color: var(--exs-dark);
 }
 
 .sidebar-nav .nav-link:hover i {
@@ -518,7 +522,7 @@ h6 {
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: var(--ex-light);
+  color: var(--ex-grey);
   transition: 0.3;
   padding: 10px 0 10px 10px;
   margin: 0 0 0 30px;
@@ -536,7 +540,7 @@ h6 {
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
   color: var(--ex-light);
-  background-color: rgba(var(--ex-light-rgb), 0.2);
+  background-color: var(--exs-dark);
 }
 
 .sidebar-nav .nav-content a.active i {
@@ -794,6 +798,11 @@ h6 {
   border-color: var(--ex-blue)!important;
 }
 
+.bg-secondary {
+  background-color: var(--ex-grey)!important;
+  border-color: var(--ex-grey)!important;
+}
+
 .bg-success {
   background-color: var(--ex-green)!important;
   border-color: var(--ex-green)!important;
@@ -825,6 +834,10 @@ h6 {
 
 .text-primary {
   color: var(--ex-blue)!important;
+}
+
+.text-secondary {
+  color: var(--ex-grey)!important;
 }
 
 .text-success {
@@ -868,6 +881,15 @@ h6 {
   --bs-btn-color: var(--ex-light);
   --bs-btn-hover-bg: var(--exs-blue);
   --bs-btn-hover-border-color: var(--exs-blue);
+  --bs-btn-hover-color: var(--ex-light);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--ex-grey);
+  --bs-btn-border-color: var(--ex-grey);
+  --bs-btn-color: var(--ex-light);
+  --bs-btn-hover-bg: var(--exs-grey);
+  --bs-btn-hover-border-color: var(--exs-grey);
   --bs-btn-hover-color: var(--ex-light);
 }
 
@@ -1145,67 +1167,76 @@ h6 {
 }
 
 /* Backgrounds */
-.bg-secondary-light {
+.bgs-light {
   background-color: var(--exs-light)!important;
   border-color: var(--exs-light)!important;
 }
 
-.bg-secondary-dark {
+.bgs-dark {
   background-color: var(--exs-dark)!important;
   border-color: var(--exs-dark)!important;
 }
 
-.bg-secondary {
+.bgs-primary {
   background-color: var(--exs-blue)!important;
   border-color: var(--exs-blue)!important;
 }
 
-.bg-secondary-success {
+.bgs-secondary {
+  background-color: var(--exs-grey)!important;
+  border-color: var(--exs-grey)!important;
+}
+
+.bgs-success {
   background-color: var(--exs-green)!important;
   border-color: var(--exs-green)!important;
 }
 
-.bg-secondary-warning {
+.bgs-warning {
   background-color: var(--exs-yellow)!important;
   border-color: var(--exs-yellow)!important;
 }
 
-.bg-secondary-danger {
+.bgs-danger {
   background-color: var(--exs-red)!important;
   border-color: var(--exs-red)!important;
 }
 
-.bg-secondary-info {
+.bgs-info {
   background-color: var(--exs-clay)!important;
   border-color: var(--exs-clay)!important;
 }
 
 /* Colors */
-.text-secondary-light {
+.texts-light {
   color: var(--exs-light)!important;
 }
 
-.text-secondary-dark {
+.texts-dark {
   color: var(--exs-dark)!important;
 }
 
-.text-secondary {
+.texts-primary {
   color: var(--exs-blue)!important;
 }
 
-.text-secondary-success {
+.texts-secondary {
+  color: var(--exs-blue)!important;
+}
+
+.texts-success {
   color: var(--exs-green)!important;
 }
 
-.text-secondary-warning {
+.texts-warning {
   color: var(--exs-yellow)!important;
 }
 
-.text-secondary-danger {
+.texts-danger {
   color: var(--exs-red)!important;
 }
 
-.text-secondary-info {
+.texts-info {
   color: var(--exs-clay)!important;
 }
 

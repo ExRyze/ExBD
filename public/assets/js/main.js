@@ -45,7 +45,7 @@
     if (select('#copy')) {
       select('#copy', true).forEach((element) => {
         element.addEventListener('click', () => {
-          navigator.clipboard.writeText(element.innerText.slice(0, -4))
+          navigator.clipboard.writeText(element.innerText.slice(element.getAttribute('ltrim'), element.getAttribute('rtrim')))
         })
       });
     }

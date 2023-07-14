@@ -79,6 +79,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{ url("assets/js/main.js") }}"></script>
+  <script src="{{ url("assets/js/sidebar.js") }}"></script>
 
 </body>
 

@@ -4,7 +4,7 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link " href="{{ url("/") }}">
+      <a class="nav-link collapsed" id="Home" href="{{ url("/") }}">
         <i class="bi bi-house-door"></i>
         <span>Home</span>
       </a>
@@ -13,7 +13,7 @@
     <li class="nav-heading">Settings</li>
 
     <li class="nav-item">
-      <a class="nav-link " href="{{ url("setting") }}">
+      <a class="nav-link collapsed" id="Profile" href="{{ url("setting/profile") }}">
         <i class="bi bi-play-btn"></i>
         <span>Profile</span>
       </a>

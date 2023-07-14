@@ -47,7 +47,6 @@ Route::get('/user', function() {return back();});
     // Home/User
 
 Route::controller(HomeSetting::class)->group(function() {
-    Route::get('/setting', 'profile');
     Route::get('/setting/profile', 'profile');
     Route::post('/setting/profile/update', 'updateProfile');
 }); // Home/Setting

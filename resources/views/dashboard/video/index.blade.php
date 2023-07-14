@@ -96,7 +96,11 @@
                         $title = $table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".($table->type === "TV" ? ($video->approved === 0 ? "TV" : "TV") : $table->type)." ".(explode('x', $video->resolution)[1])."p.".$video->type;
                       @endphp
                       <td>
-                        <button class="btn btn-success bg-transparent border-0 text-dark" id="copy">{{ strlen($title) > 255 ? "Title too long" : $title  }}</button>
+                        @if (strlen($title) > 255)
+                        <button class="btn btn-success bg-transparent border-0 text-dark">Title too long</button>
+                        @else
+                        <button class="btn btn-success bg-transparent border-0 text-dark" id="copy" rtrim="-4">{{ $title }}</button>
+                        @endif
                       </td>
                       <td>
                         @foreach ($video->subtitles as $subtitle)
