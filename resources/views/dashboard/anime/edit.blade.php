@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                   <label for="file" class="form-label">Image</label>
-                  <input name="file" class="form-control @error('file') is-invalid @enderror" type="file" id="imgInp" accept="image/jpeg">
+                  <input id="file" name="file" class="form-control @error('file') is-invalid @enderror" type="file" id="imgInp" accept="image/jpeg">
                   <input type="hidden" name="image" id="img" value="{{ $anime->image }}">
                   @error('file')
                   <div class="invalid-feedback">{{ $message }}</div>

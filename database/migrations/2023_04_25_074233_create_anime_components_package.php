@@ -49,6 +49,22 @@ return new class extends Migration
             $table->id();
             $table->string('studio');
         });
+        
+        // ==================== anime_mistake table ====================
+        Schema::create('mistakes', function (Blueprint $table) {
+            $table->id();
+            $table->string('mistake');
+        });
+        
+        // ==================== folder_animes table ====================
+        Schema::create('folder_animes', function (Blueprint $table) {
+            $table->id();
+            $table->string('slug');
+            $table->boolean('approved');
+            $table->timestamps();
+            $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained("users")->cascadeOnUpdate()->nullOnDelete();
+        });
     }
 
     /**
@@ -73,5 +89,11 @@ return new class extends Migration
         
         // anime_studios table
         Schema::dropIfExists('studios');
+        
+        // anime_mistakes table
+        Schema::dropIfExists('mistakes');
+        
+        // folder_anime table
+        Schema::dropIfExists('folder_animes');
     }
 };
