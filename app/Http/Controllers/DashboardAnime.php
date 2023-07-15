@@ -21,7 +21,8 @@ class DashboardAnime extends Controller
         'types' => ['TV', 'ONA', 'OVA', 'Special', 'Movie'],
         'statuses' => ['Not yet aired', 'Currently airing', 'Finished airing'],
         'sources' => ['Manga', 'Web manga', 'Light novel', 'Original'],
-        'origins' => ['Synonyms', 'Japanese', 'English']
+        'origins' => ['Synonyms', 'Japanese', 'English'],
+        'relations' => ['Sequel']
     ];
     
     public function __construct()
@@ -80,6 +81,7 @@ class DashboardAnime extends Controller
                 'producers' => Producer::orderBy('producer')->get(),
                 'licensors' => Licensor::orderBy('licensor')->get(),
                 'studios' => Studio::orderBy('studio')->get(),
+                'relations' => Anime::orderBy('title')->where('slug', '!=', $slug)->select('id', 'title')->get()
             ]);
         }
     }

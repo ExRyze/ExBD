@@ -7,6 +7,8 @@ use App\Http\Requests\Dashboard\Anime\AnimeAliasUpdateRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeGenreStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeLicensorStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeProducerStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeRelationStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeRelationUpdateRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeStudioStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeThemeStoreRequest;
 use App\Models\Anime;
@@ -14,6 +16,7 @@ use App\Models\Anime_Alias;
 use App\Models\Anime_Genre;
 use App\Models\Anime_Licensor;
 use App\Models\Anime_Producer;
+use App\Models\Anime_Relation;
 use App\Models\Anime_Studio;
 use App\Models\Anime_Theme;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +36,7 @@ class DashboardAnimeComponents extends Controller
     {
         Anime_Alias::create($request->validated());
 
-        return back()->with('success', "New Data Anime's Alias Added");
+        return back()->with('success', "New Data Anime Alias Added");
     }
     
     public function storeProducer(AnimeProducerStoreRequest $request) : RedirectResponse
@@ -46,7 +49,7 @@ class DashboardAnimeComponents extends Controller
                 Anime_Producer::create(['anime_id' => $request->anime_id, 'producer_id' => $producer_id]);
             }
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime's Producer Added");
+            return back()->with('success', "New Data Anime Producer Added");
         }
 
         return back()->with('warning', "No Any Producer Selected");
@@ -62,7 +65,7 @@ class DashboardAnimeComponents extends Controller
                 Anime_Licensor::create(['anime_id' => $request->anime_id, 'licensor_id' => $licensor_id]);
             }
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime's Licensor Added");
+            return back()->with('success', "New Data Anime Licensor Added");
         }
 
         return back()->with('warning', "No Any Licensor Selected");
@@ -78,7 +81,7 @@ class DashboardAnimeComponents extends Controller
                 Anime_Studio::create(['anime_id' => $request->anime_id, 'studio_id' => $studio_id]);
             }
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime's Studio Added");
+            return back()->with('success', "New Data Anime Studio Added");
         }
 
         return back()->with('warning', "No Any Studio Selected");
@@ -94,13 +97,13 @@ class DashboardAnimeComponents extends Controller
                 Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => $genre_id]);
             }
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime's Genre Added");
+            return back()->with('success', "New Data Anime Genre Added");
         }
 
         return back()->with('warning', "No Any Genre Selected");
     }
     
-    public function storeTheme(AnimeThemeStoreRequest $request)
+    public function storeTheme(AnimeThemeStoreRequest $request) : RedirectResponse
     {
         Anime_Theme::where('anime_id', $request->anime_id)->delete();
 
@@ -110,10 +113,17 @@ class DashboardAnimeComponents extends Controller
                 Anime_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => $theme_id]);
             }
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime's Theme Added");
+            return back()->with('success', "New Data Anime Theme Added");
         }
 
         return back()->with('warning', "No Any Theme Selected");
+    }
+    
+    public function storeRelation(AnimeRelationStoreRequest $request) : RedirectResponse
+    {
+        Anime_Relation::create($request->validated());
+
+        return back()->with('success', 'New Data Relation Added');
     }
 
     /**
@@ -124,12 +134,25 @@ class DashboardAnimeComponents extends Controller
         if ($request->submit === 'update') {
             $anime_Alias->where('id', $request->id)->update($request->validated());
             
-            return back()->with('success', "Data Anime's Alias Updated Successfully");
+            return back()->with('success', "Data Anime Alias Updated Successfully");
         }
 
         $this->destroyAlias($anime_Alias, $request->id);
 
-        return back()->with('success', "Data Anime's Alias Deleted Successfully");
+        return back()->with('success', "Data Anime Alias Deleted Successfully");
+    }
+    
+    public function updateRelation(AnimeRelationUpdateRequest $request, Anime_Relation $anime_Relation) : RedirectResponse
+    {
+        if ($request->submit === 'update') {
+            $anime_Relation->where('id', $request->id)->update($request->validated());
+            
+            return back()->with('success', "Data Anime Relation Updated Successfully");
+        }
+
+        $this->destroyRelation($anime_Relation, $request->id);
+
+        return back()->with('success', "Data Anime Relation Deleted Successfully");
     }
 
     /**
@@ -138,5 +161,10 @@ class DashboardAnimeComponents extends Controller
     public function destroyAlias(Anime_Alias $anime_Alias, String $id) : void
     {
         $anime_Alias->where('id', $id)->delete();
+    }
+    
+    public function destroyRelation(Anime_Relation $anime_Relation, String $id)
+    {
+        $anime_Relation->where('id', $id)->delete();
     }
 }

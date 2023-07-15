@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -33,6 +34,7 @@ class Anime extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Components
     public function aliases() : HasMany
     {
         return $this->hasMany(Anime_Alias::class);
@@ -63,6 +65,18 @@ class Anime extends Model
         return $this->hasMany(Anime_Studio::class);
     }
 
+    // Relations
+    public function sequel() : HasMany
+    {
+        return $this->hasMany(Anime_Relation::class, 'anime_id', 'id')->where('relation', 'Sequel');
+    }
+
+    public function prequel() : HasMany
+    {
+        return $this->hasMany(Anime_Relation::class, 'relation_id', 'id')->where('relation', 'Sequel');
+    }
+
+    // Files
     public function folder() : HasOne
     {
         return $this->hasOne(Folder_Anime::class);

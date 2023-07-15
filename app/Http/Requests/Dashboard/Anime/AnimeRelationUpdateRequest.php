@@ -5,7 +5,7 @@ namespace App\Http\Requests\Dashboard\Anime;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class AnimeAliasUpdateRequest extends FormRequest
+class AnimeRelationUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,8 @@ class AnimeAliasUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'origin' => 'required',
-            'alias' => 'required',
+            'relation' => 'required',
+            'relation_id' => 'required',
         ];
     }
 }

@@ -31,7 +31,7 @@ switch (true) {
     break;
     
   // Dashboard/Animes
-  case url.includes("home/dashboard/anime") && !url.includes("folder") :
+  case url.includes("home/dashboard/anime") && !(url.includes("folder") || url.includes("video")) :
     document.querySelector('.nav-link#Anime').classList.remove('collapsed');
     document.querySelector('.nav-link#Anime').setAttribute('data-bs-toggle', 'collapsed');
     document.querySelector('.nav-link#Anime + #components-nav').classList.remove('collapse');
@@ -47,7 +47,7 @@ switch (true) {
   //   break;
     
   // Dashboard/Animes/Folder
-  case url.includes("home/dashboard/anime/folder") :
+  case url.includes("home/dashboard/anime/folder") || url.includes("home/dashboard/anime/video") :
     document.querySelector('.nav-link#Anime').classList.remove('collapsed');
     document.querySelector('.nav-link#Anime').setAttribute('data-bs-toggle', 'collapsed');
     document.querySelector('.nav-link#Anime + #components-nav').classList.remove('collapse');

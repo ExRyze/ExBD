@@ -96,6 +96,8 @@ Route::controller(DashboardAnimeComponents::class)->group(function() {
     Route::post('/dashboard/animestudio/store', 'storeStudio');
     Route::post('/dashboard/animegenre/store', 'storeGenre');
     Route::post('/dashboard/animetheme/store', 'storeTheme');
+    Route::post('/dashboard/animerelation/store', 'storeRelation');
+    Route::post('/dashboard/animerelation/update', 'updateRelation');
 });
     // Dashboard/{AnimeComponent}
      

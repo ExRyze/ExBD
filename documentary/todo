@@ -5,7 +5,6 @@ Update -  /dashboard
 
 Style :
 Header - Color
-Sidebar - Color
 Dashboard - Color
 
 Function :
@@ -27,13 +26,14 @@ Add data anime, like actor, all the staff, and more
 Also scoring, its mean, create functions of user
 Error not found custom in edit at DashboardVideo
 User username use _ or %20
-Approving use local storage
+Approving use local storage, Alternative route, Use API :)
 Form Buttons (Update/Submit)
 All cell in data-table is copyable
+Anime alias doesnt need time stamp
+Make form edit relation with, <p> then when clicked become form then you can edit or delete
 
 Condition:
 If create new table like films or something like animes that has many relation, rename all tables component animes.
 If the above is done, change the relevant url of thats. 
 
 Testing:
-Dashboard data delete

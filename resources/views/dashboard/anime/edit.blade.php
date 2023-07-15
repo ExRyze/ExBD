@@ -143,6 +143,78 @@
               </div>
             </form><!-- End General -->
 
+            <!-- Aliases -->
+            <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#aliases-form" data-bs-toggle="collapse" aria-expanded="false">
+              <span>Aliases</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </h4>
+            <hr class="mt-0">
+            <div id="aliases-form" class="collapse" data-bs-parent="#edit-form">
+              @foreach ($anime->aliases as $alias)
+              <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/update">
+                @csrf
+                <input type="hidden" name="id" value="{{ $alias->id }}">
+                <div class="col-md-3">
+                  <label for="origin" class="form-label form-required">Origin Alias</label>
+                  <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
+                    <option selected hidden disabled>Choose Origin...</option>
+                    @foreach ($data['origins'] as $origin)
+                      @if ($origin === $alias->origin)
+                        <option selected value="{{ $origin }}">{{ $origin }}</option>
+                      @else
+                        <option value="{{ $origin }}">{{ $origin }}</option> 
+                      @endif
+                    @endforeach
+                  </select>
+                  @error('origin')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="col-md-9">
+                  <label for="alias" class="form-label form-required">Alias</label>
+                  <input required value="{{ $alias->alias }}" name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
+                  @error('alias')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="text-end">
+                  <button type="submit" name="submit" value="update" class="btn btn-warning">Update</button>
+                  <button type="submit" name="submit" value="delete" class="btn btn-danger">Delete</button>
+                </div>
+              </form>
+              <hr>
+              @endforeach
+
+              <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/store">
+                @csrf
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                <div class="col-md-3">
+                  <label for="origin" class="form-label form-required">Origin Alias</label>
+                  <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
+                    <option selected hidden disabled>Choose Origin...</option>
+                    @foreach ($data['origins'] as $origin)
+                      <option value="{{ $origin }}">{{ $origin }}</option>
+                    @endforeach
+                  </select>
+                  @error('origin')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="col-md-9">
+                  <label for="alias" class="form-label form-required">Alias</label>
+                  <input required name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
+                  @error('alias')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="text-end">
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- End Aliases -->
+
             <!-- Genres -->
             <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#genres-form" data-bs-toggle="collapse" aria-expanded="false">
               <span>Genres</span>
@@ -398,37 +470,57 @@
             </div>
             <!-- End Studios -->
 
-            <!-- Aliases -->
-            <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#aliases-form" data-bs-toggle="collapse" aria-expanded="false">
-              <span>Aliases</span>
+            <!-- Relations -->
+            <h4 class="mt-5 d-flex ex-chevron collapsed" type="button" data-bs-target="#relations-form" data-bs-toggle="collapse" aria-expanded="false">
+              <span>Relations</span>
               <i class="bi bi-chevron-down ms-auto"></i>
             </h4>
             <hr class="mt-0">
-            <div id="aliases-form" class="collapse" data-bs-parent="#edit-form">
-              @foreach ($anime->aliases as $alias)
-              <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/update">
-                @csrf
-                <input type="hidden" name="id" value="{{ $alias->id }}">
+            <div id="relations-form" class="collapse" data-bs-parent="#edit-form">
+              <div class="row g-3">
+              @foreach ($anime->prequel as $prequel)
                 <div class="col-md-3">
-                  <label for="origin" class="form-label form-required">Origin Alias</label>
-                  <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
-                    <option selected hidden disabled>Choose Origin...</option>
-                    @foreach ($data['origins'] as $origin)
-                      @if ($origin === $alias->origin)
-                        <option selected value="{{ $origin }}">{{ $origin }}</option>
+                  <p>Prequel</p>
+                </div>
+                <div class="col-md-9">
+                  <p>: <a href="{{ url("dashboard/anime/edit/".$prequel->anime->slug) }}">{{ $prequel->anime->title }}</a></p>
+                </div>
+              @endforeach
+              </div>
+              @foreach ($anime->sequel as $sequel)
+              <form class="row g-3 form-relations" method="POST" action="/dashboard/animerelation/update">
+                @csrf
+                <input type="hidden" name="id" value="{{ $sequel->id }}">
+                <input type="hidden" name="anime_id" value="{{ $anime->id }}">
+                <div class="col-md-3">
+                  <label for="relation" class="form-label form-required">Relation Type</label>
+                  <select required name="relation" class="form-select @error('relation') is-invalid @enderror" id="relation">
+                    <option selected hidden disabled>Choose Relation...</option>
+                    @foreach ($data['relations'] as $relation)
+                      @if ($relation === $sequel->relation)
+                        <option selected value="{{ $relation }}">{{ $relation }}</option>
                       @else
-                        <option value="{{ $origin }}">{{ $origin }}</option> 
+                        <option value="{{ $relation }}">{{ $relation }}</option> 
                       @endif
                     @endforeach
                   </select>
-                  @error('origin')
+                  @error('relation')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-md-9">
-                  <label for="alias" class="form-label form-required">Alias</label>
-                  <input required value="{{ $alias->alias }}" name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
-                  @error('alias')
+                  <label for="relation_id" class="form-label form-required">Anime Relation</label>
+                  <select required name="relation_id" class="form-select @error('relation_id') is-invalid @enderror" id="relation_id">
+                    <option selected hidden disabled>Choose Anime...</option>
+                    @foreach ($relations as $relation)
+                      @if ($relation->id === $sequel->relation_id)
+                        <option selected value="{{ $relation->id }}">{{ $relation->title }}</option>
+                      @else
+                        <option value="{{ $relation->id }}">{{ $relation->title }}</option> 
+                      @endif
+                    @endforeach
+                  </select>
+                  @error('relation_id')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
@@ -437,28 +529,33 @@
                   <button type="submit" name="submit" value="delete" class="btn btn-danger">Delete</button>
                 </div>
               </form>
-              <hr>
               @endforeach
+              <hr>
 
-              <form class="row g-3 form-aliases" method="POST" action="/dashboard/animealias/store">
+              <form class="row g-3 form-relations" method="POST" action="/dashboard/animerelation/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-3">
-                  <label for="origin" class="form-label form-required">Origin Alias</label>
-                  <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
-                    <option selected hidden disabled>Choose Origin...</option>
-                    @foreach ($data['origins'] as $origin)
-                      <option value="{{ $origin }}">{{ $origin }}</option>
+                  <label for="relation" class="form-label form-required">Relation Type</label>
+                  <select required name="relation" class="form-select @error('relation') is-invalid @enderror" id="relation">
+                    <option selected hidden disabled>Choose Relation...</option>
+                    @foreach ($data['relations'] as $relation)
+                      <option value="{{ $relation }}">{{ $relation }}</option>
                     @endforeach
                   </select>
-                  @error('origin')
+                  @error('relation')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-md-9">
-                  <label for="alias" class="form-label form-required">Alias</label>
-                  <input required name="alias" type="text" class="form-control @error('alias') is-invalid @enderror" id="alias" placeholder="Alias">
-                  @error('alias')
+                  <label for="relation_id" class="form-label form-required">Anime Relation</label>
+                  <select required name="relation_id" class="form-select @error('relation_id') is-invalid @enderror" id="relation_id">
+                    <option selected hidden disabled>Choose Anime...</option>
+                    @foreach ($relations as $relation)
+                      <option value="{{ $relation->id }}">{{ $relation->title }}</option>
+                    @endforeach
+                  </select>
+                  @error('relation_id')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
@@ -468,7 +565,7 @@
                 </div>
               </form>
             </div>
-            <!-- End Aliases -->
+            <!-- End Relations -->
         
           </div>
         </div>
