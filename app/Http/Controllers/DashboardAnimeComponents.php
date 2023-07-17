@@ -121,6 +121,15 @@ class DashboardAnimeComponents extends Controller
     
     public function storeRelation(AnimeRelationStoreRequest $request) : RedirectResponse
     {
+        $check_sequel = Anime::where('id', $request->relation_id)->first()->prequel;
+        if($request->relation === "Sequel" && $check_sequel->isNotEmpty()) {
+            if ($check_sequel[0]->anime_id === $request->anime_id) {
+                return back()->with('warning', "Anime can't be a sequel and prequel at the same time!");
+            }
+        } else if (Anime_Relation::where([['relation', $request->relation], ['relation_id', $request->relation_id]])->first()) {
+            return back()->with('warning', "Relation can't be duplicated!");
+        }
+
         Anime_Relation::create($request->validated());
 
         return back()->with('success', 'New Data Relation Added');

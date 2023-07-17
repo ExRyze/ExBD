@@ -477,18 +477,40 @@
             </h4>
             <hr class="mt-0">
             <div id="relations-form" class="collapse" data-bs-parent="#edit-form">
+              @if($anime->prequel->isNotEmpty())
               <div class="row g-3">
-              @foreach ($anime->prequel as $prequel)
-                <div class="col-md-3">
-                  <p>Prequel</p>
+                <div class="col-md-2">
+                  <p class="mb-0">Prequel</p>
+                </div>
+                <div class="col-md-1">
+                  <p class="text-end mb-0">:</p>
                 </div>
                 <div class="col-md-9">
-                  <p>: <a href="{{ url("dashboard/anime/edit/".$prequel->anime->slug) }}">{{ $prequel->anime->title }}</a></p>
+                  @foreach ($anime->prequel as $prequel)
+                  <a href="{{ url("dashboard/anime/edit/".$prequel->anime->slug) }}">{{ $prequel->anime->title }}</a><br>
+                  @endforeach
                 </div>
-              @endforeach
               </div>
-              @foreach ($anime->sequel as $sequel)
-              <form class="row g-3 form-relations" method="POST" action="/dashboard/animerelation/update">
+              @endif
+              @if($anime->sequel->isNotEmpty())
+              <div class="row g-3">
+                <div class="col-md-2">
+                  <p class="mb-0">Sequel</p>
+                </div>
+                <div class="col-md-1">
+                  <p class="text-end mb-0">:</p>
+                </div>
+                <div class="col-md-9">
+                  @foreach ($anime->sequel as $isequel => $sequel)
+                  <a class="me-2" href="{{ url("dashboard/anime/edit/".$sequel->connection->slug) }}">{{ $sequel->connection->title }}</a>
+                  <button class="btn btn-warning py-1" style="line-height: 1;" type="button" data-bs-target="#sequel-edit{{ $isequel }}" data-bs-toggle="collapse" aria-expanded="false"><i class="ri ri-edit-2-line"></i> Edit</button> <br>
+                  @endforeach
+                </div>
+              </div>
+              @endif
+              @foreach ($anime->sequel as $isequel => $sequel)
+              <form class="row g-3 mt-3 form-relations collapse" id="sequel-edit{{ $isequel }}" data-bs-parent="#relations-form" method="POST" action="/dashboard/animerelation/update">
+                <hr class="mt-0">
                 @csrf
                 <input type="hidden" name="id" value="{{ $sequel->id }}">
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
@@ -531,7 +553,6 @@
               </form>
               @endforeach
               <hr>
-
               <form class="row g-3 form-relations" method="POST" action="/dashboard/animerelation/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
