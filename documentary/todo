@@ -31,6 +31,8 @@ Form Buttons (Update/Submit)
 All cell in data-table is copyable
 Anime alias doesnt need time stamp
 Make form edit relation with, <p> then when clicked become form then you can edit or delete
+Sorting data table time
+Grouping Controller
 
 Condition:
 If create new table like films or something like animes that has many relation, rename all tables component animes.

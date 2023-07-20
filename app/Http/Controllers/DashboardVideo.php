@@ -55,11 +55,22 @@ class DashboardVideo extends Controller
      */
     public function createAnime(String $slug) : View
     {
-        return view('dashboard.video.create', [
-            'page' => $this->getUrl(URL::current()),
-            'anime' => Anime::where('slug', $slug)->first(),
-            'data' => $this->data
-        ]);
+        $anime = Anime::where('slug', $slug)->first();
+        $video = Video_Anime::where('folder_anime_id', $anime->folder->id)->latest()->first();
+        if ($video->count()) {
+            return view('dashboard.video.create-exist', [
+                'page' => $this->getUrl(URL::current()),
+                'anime' => $anime,
+                'video' => $video,
+                'data' => $this->data
+            ]);
+        } else {
+            return view('dashboard.video.create', [
+                'page' => $this->getUrl(URL::current()),
+                'anime' => $anime,
+                'data' => $this->data
+            ]);
+        }
     }
 
     /**
@@ -103,11 +114,15 @@ class DashboardVideo extends Controller
     /**
      * Edit Video
      */
-    public function editAnime(String $slug, String $title) : View
+    public function editAnime(Video_Anime $video_Anime, String $slug, String $title) : View
     {
         $anime = Anime::where('slug', $slug)->first(['id', 'slug']);
         $video = substr($title, strlen($anime->folder->slug)+1);
         $video = explode('_', $video);
+        
+        $next = $video_Anime->where('episode', $video[1]+1)->orWhere('episode', $video[1]+0.5)->get();
+        $prev = $video_Anime->where('episode', $video[1]-1)->orWhere('episode', $video[1]-0.5)->get();
+        
         $video = Video_Anime::where([
             ['episode', $video[1]],
             ['origin', 'like', $video[3]],
@@ -118,8 +133,11 @@ class DashboardVideo extends Controller
         return view('dashboard.video.edit', [
             'page' => $this->getUrl(URL::current()),
             'mistakes' => Mistake::orderBy('mistake')->get(),
+            'table' => Anime::where('slug', $slug)->first(),
             'anime' => $anime,
             'video' => $video,
+            'next' => $next,
+            'prev' => $prev,
             'data' => $this->data
         ]);
     }

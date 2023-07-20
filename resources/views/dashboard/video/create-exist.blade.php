@@ -33,7 +33,7 @@
               </div>
               <div class="col-md-3">
                 <label for="lenght_video" class="form-label form-required">Lenght video</label>
-                <input required autocomplete="off" name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="00:00:00" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
+                <input required autocomplete="off" name="lenght_video" type="text" class="form-control @error('lenght_video') is-invalid @enderror" id="lenght_video" value="{{ $video->lenght_video }}" pattern="[0-9][0-9]:[0-5][0-9]:[0-5][0-9]">
                 @error('lenght_video')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -41,9 +41,9 @@
               <div class="col-md-6">
                 <label for="widht" class="form-label form-required">Resolution</label>
                 <div class="d-flex gap-2">
-                  <input required name="width" type="number" min="0" class="form-control @error('resolution') is-invalid @enderror" id="widht" placeholder="3840/1920/1280/854/640">
+                  <input required name="width" type="number" min="0" class="form-control @error('resolution') is-invalid @enderror" id="widht" placeholder="3840/1920/1280/854/640" value="{{ explode('x', $video->resolution)[0] }}">
                   X
-                  <input required name="height" type="number" min="0" class="form-control @error('resolution') is-invalid @enderror" id="height" placeholder="2160/1080/720/480/360">
+                  <input required name="height" type="number" min="0" class="form-control @error('resolution') is-invalid @enderror" id="height" placeholder="2160/1080/720/480/360" value="{{ explode('x', $video->resolution)[1] }}">
                 </div>
                 @error('resolution')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -51,7 +51,7 @@
               </div>
               <div class="col-md-4">
                 <label for="video_tracks" class="form-label">Video tracks</label>
-                <input name="video_tracks" type="text" class="form-control @error('video_tracks') is-invalid @enderror" id="video_tracks" placeholder="H264 (...)">
+                <input name="video_tracks" type="text" class="form-control @error('video_tracks') is-invalid @enderror" id="video_tracks" placeholder="H264 (...)" value="{{ $video->video_tracks }}">
                 @error('video_tracks')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -61,7 +61,7 @@
                 <select required name="chapters" class="form-select @error('chapters') is-invalid @enderror" id="chapters">
                   <option selected hidden disabled>Choose Chapter...</option>
                   @foreach ($data['chapters'] as $chapter)
-                    <option value="{{ $chapter }}">{{ $chapter }}</option>
+                    <option value="{{ $chapter }}" {{ $video->chapters === $chapter ? "selected" : "" }}>{{ $chapter }}</option>
                   @endforeach
                 </select>
                 @error('chapters')
@@ -70,14 +70,14 @@
               </div>
               <div class="col-md-3">
                 <label for="audio_tracks" class="form-label">Audio tracks</label>
-                <input name="audio_tracks" type="text" class="form-control @error('audio_tracks') is-invalid @enderror" id="audio_tracks" placeholder="ACC 2.0 [...]">
+                <input name="audio_tracks" type="text" class="form-control @error('audio_tracks') is-invalid @enderror" id="audio_tracks" placeholder="ACC 2.0 [...]" value="{{ $video->audio_tracks }}">
                 @error('audio_tracks')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-2">
                 <label for="episode" class="form-label form-required">Episode</label>
-                <input required autocomplete="off" step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00">
+                <input required autocomplete="off" step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00" value="{{ ($video->episode)+1 }}">
                 @error('episode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -87,7 +87,7 @@
                 <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                   <option selected hidden disabled>Choose Origin...</option>
                   @foreach ($data['origins'] as $origin)
-                    <option value="{{ $origin }}">{{ $origin }}</option>
+                    <option value="{{ $origin }}" {{ $video->origin === $origin ? "selected" : "" }}>{{ $origin }}</option>
                   @endforeach
                 </select>
                 @error('origin')
@@ -99,7 +99,7 @@
                 <select required name="type" class="form-select @error('type') is-invalid @enderror" id="type">
                   <option selected hidden disabled>Choose Type...</option>
                   @foreach ($data['types'] as $type)
-                    <option value="{{ $type }}">{{ $type }}</option>
+                    <option value="{{ $type }}" {{ $video->type === $type ? "selected" : "" }}>{{ $type }}</option>
                   @endforeach
                 </select>
                 @error('type')
@@ -109,11 +109,15 @@
               <div class="col-md-2 d-flex align-items-end">
                 <label for="cover" class="form-label"></label>
                 <div class="form-check">
-                  <input name="cover" value="1" class="form-check-input @error('cover') is-invalid @enderror" type="checkbox" id="cover">
+                  <input name="cover" value="1" {{ $video->cover === 1 ? "checked" : "" }} class="form-check-input @error('cover') is-invalid @enderror" type="checkbox" id="cover">
                   <label class="form-check-label" for="cover">
                     Cover
                   </label>
                 </div>
+                @error('cover')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
                 @error('cover')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

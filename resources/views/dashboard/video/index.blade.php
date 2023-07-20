@@ -119,7 +119,7 @@
                       <td>{{ $video->audio_tracks }}</td>
                       <td>{{ $video->size }} MB</td>
                       <td><em>{{ $video->cover === 0 ? "False" : "True" }}</em></td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($video->updated_at)) }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($video->updated_at)) }}</td>
                     </tr>
                   @endforeach
                 </tbody>
