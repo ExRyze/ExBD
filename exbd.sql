@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 21, 2023 at 10:16 AM
+-- Generation Time: Jul 21, 2023 at 10:26 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -72,8 +72,6 @@ CREATE TABLE `anime_aliases` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
   `anime_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -81,45 +79,45 @@ CREATE TABLE `anime_aliases` (
 -- Dumping data for table `anime_aliases`
 --
 
-INSERT INTO `anime_aliases` (`id`, `origin`, `alias`, `created_at`, `updated_at`, `anime_id`) VALUES
-(4, 'Japanese', '3月のライオン', '2023-04-25 23:49:17', '2023-04-25 23:49:17', 6),
-(5, 'English', 'March Comes In Like a Lion', '2023-04-25 23:50:51', '2023-04-25 23:50:51', 6),
-(6, 'Synonyms', 'Sangatsu no Lion Second Season', '2023-04-26 19:53:06', '2023-04-26 19:53:06', 7),
-(7, 'Japanese', '3月のライオン 第2シリーズ', '2023-04-26 19:53:20', '2023-04-26 19:53:20', 7),
-(8, 'English', 'March Comes In Like A Lion 2nd Season', '2023-04-26 19:53:34', '2023-04-26 19:53:34', 7),
-(9, 'Synonyms', '3D Girlfriend', '2023-04-26 19:54:58', '2023-04-26 19:54:58', 5),
-(10, 'Japanese', '３Ｄ彼女　リアルガール', '2023-04-26 19:55:15', '2023-04-26 19:55:15', 5),
-(11, 'English', 'Real Girl', '2023-04-26 19:55:34', '2023-04-26 19:55:34', 5),
-(12, 'Synonyms', '3D Girlfriend 2nd Season', '2023-04-26 19:57:30', '2023-04-26 19:57:30', 4),
-(13, 'Japanese', '3D彼女 リアルガール第2シーズン', '2023-04-26 19:57:46', '2023-04-26 19:57:46', 4),
-(14, 'English', 'Real Girl Season 2', '2023-04-26 19:58:02', '2023-04-26 19:58:02', 4),
-(15, 'Synonyms', 'Gotoubun no Hanayome', '2023-04-26 19:59:07', '2023-04-26 19:59:07', 8),
-(16, 'Synonyms', 'The Five Wedded Brides', '2023-04-26 19:59:19', '2023-04-26 19:59:19', 8),
-(17, 'Japanese', '五等分の花嫁', '2023-04-26 19:59:33', '2023-04-26 19:59:33', 8),
-(18, 'English', 'The Quintessential Quintuplets', '2023-04-26 19:59:46', '2023-04-26 19:59:46', 8),
-(19, 'Synonyms', 'Gotoubun no Hanayome 2nd Season', '2023-04-26 20:02:04', '2023-04-26 20:02:04', 10),
-(20, 'Synonyms', 'The Five Wedded Brides 2nd Season', '2023-04-26 20:02:15', '2023-04-26 20:02:15', 10),
-(21, 'Synonyms', '5-toubun no Hanayome 2nd Season', '2023-04-26 20:02:28', '2023-04-26 20:02:28', 10),
-(22, 'Synonyms', 'The Quintessential Quintuplets 2nd Season', '2023-04-26 20:02:41', '2023-04-26 20:02:41', 10),
-(23, 'Japanese', '五等分の花嫁∬', '2023-04-26 20:02:55', '2023-04-26 20:02:55', 10),
-(24, 'English', 'The Quintessential Quintuplets 2', '2023-04-26 20:03:09', '2023-04-26 20:03:09', 10),
-(25, 'Synonyms', 'Gotoubun no Hanayome', '2023-04-26 20:04:01', '2023-04-26 20:04:01', 9),
-(26, 'Synonyms', 'The Five Wedded Brides', '2023-04-26 20:04:21', '2023-04-26 20:04:21', 9),
-(27, 'Synonyms', 'The Quintessential Quintuplets', '2023-04-26 20:04:32', '2023-04-26 20:04:32', 9),
-(28, 'Japanese', '映画 五等分の花嫁', '2023-04-26 20:04:44', '2023-04-26 20:04:44', 9),
-(29, 'English', 'The Quintessential Quintuplets Movie', '2023-04-26 20:04:55', '2023-04-26 20:04:55', 9),
-(30, 'Japanese', 'メイドインアビス', '2023-04-26 20:05:45', '2023-04-26 20:05:45', 1),
-(31, 'English', 'Made in Abyss', '2023-04-26 20:05:57', '2023-04-26 20:05:57', 1),
-(32, 'Synonyms', 'Gekijouban Made in Abyss: Fukaki Tamashii no Reimei', '2023-04-26 20:08:13', '2023-04-26 20:08:13', 2),
-(33, 'Synonyms', 'Made in Abyss: Dawn of the Deep Soul', '2023-04-26 20:08:21', '2023-04-26 20:08:21', 2),
-(34, 'Japanese', '劇場版メイドインアビス 深き魂の黎明', '2023-04-26 20:08:32', '2023-04-26 20:08:32', 2),
-(35, 'English', 'Made in Abyss: Dawn of the Deep Soul', '2023-04-26 20:08:48', '2023-04-26 20:08:48', 2),
-(36, 'Japanese', 'メイドインアビス 烈日の黄金郷', '2023-04-26 20:09:32', '2023-04-26 20:09:32', 3),
-(37, 'English', 'Made in Abyss: The Golden City of the Scorching Sun', '2023-04-26 20:09:43', '2023-04-26 20:09:43', 3),
-(38, 'Synonyms', 'OP', '2023-04-30 13:32:51', '2023-04-30 13:32:51', 11),
-(39, 'Japanese', 'ONE PIECE', '2023-04-30 13:33:08', '2023-04-30 13:33:08', 11),
-(40, 'English', 'One Piece', '2023-04-30 13:33:25', '2023-04-30 13:33:25', 11),
-(42, 'Synonyms', 'Sangatsu no Lion', '2023-07-13 10:57:07', '2023-07-13 10:57:07', 6);
+INSERT INTO `anime_aliases` (`id`, `origin`, `alias`, `anime_id`) VALUES
+(4, 'Japanese', '3月のライオン', 6),
+(5, 'English', 'March Comes In Like a Lion', 6),
+(6, 'Synonyms', 'Sangatsu no Lion Second Season', 7),
+(7, 'Japanese', '3月のライオン 第2シリーズ', 7),
+(8, 'English', 'March Comes In Like A Lion 2nd Season', 7),
+(9, 'Synonyms', '3D Girlfriend', 5),
+(10, 'Japanese', '３Ｄ彼女　リアルガール', 5),
+(11, 'English', 'Real Girl', 5),
+(12, 'Synonyms', '3D Girlfriend 2nd Season', 4),
+(13, 'Japanese', '3D彼女 リアルガール第2シーズン', 4),
+(14, 'English', 'Real Girl Season 2', 4),
+(15, 'Synonyms', 'Gotoubun no Hanayome', 8),
+(16, 'Synonyms', 'The Five Wedded Brides', 8),
+(17, 'Japanese', '五等分の花嫁', 8),
+(18, 'English', 'The Quintessential Quintuplets', 8),
+(19, 'Synonyms', 'Gotoubun no Hanayome 2nd Season', 10),
+(20, 'Synonyms', 'The Five Wedded Brides 2nd Season', 10),
+(21, 'Synonyms', '5-toubun no Hanayome 2nd Season', 10),
+(22, 'Synonyms', 'The Quintessential Quintuplets 2nd Season', 10),
+(23, 'Japanese', '五等分の花嫁∬', 10),
+(24, 'English', 'The Quintessential Quintuplets 2', 10),
+(25, 'Synonyms', 'Gotoubun no Hanayome', 9),
+(26, 'Synonyms', 'The Five Wedded Brides', 9),
+(27, 'Synonyms', 'The Quintessential Quintuplets', 9),
+(28, 'Japanese', '映画 五等分の花嫁', 9),
+(29, 'English', 'The Quintessential Quintuplets Movie', 9),
+(30, 'Japanese', 'メイドインアビス', 1),
+(31, 'English', 'Made in Abyss', 1),
+(32, 'Synonyms', 'Gekijouban Made in Abyss: Fukaki Tamashii no Reimei', 2),
+(33, 'Synonyms', 'Made in Abyss: Dawn of the Deep Soul', 2),
+(34, 'Japanese', '劇場版メイドインアビス 深き魂の黎明', 2),
+(35, 'English', 'Made in Abyss: Dawn of the Deep Soul', 2),
+(36, 'Japanese', 'メイドインアビス 烈日の黄金郷', 3),
+(37, 'English', 'Made in Abyss: The Golden City of the Scorching Sun', 3),
+(38, 'Synonyms', 'OP', 11),
+(39, 'Japanese', 'ONE PIECE', 11),
+(40, 'English', 'One Piece', 11),
+(42, 'Synonyms', 'Sangatsu no Lion', 6);
 
 -- --------------------------------------------------------
 

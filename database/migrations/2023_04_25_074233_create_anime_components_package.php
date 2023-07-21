@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('origin');
             $table->text('alias');
-            $table->timestamps();
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
         });
         

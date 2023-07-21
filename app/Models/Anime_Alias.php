@@ -11,6 +11,8 @@ class Anime_Alias extends Model
     use HasFactory;
 
     public $table = "anime_aliases";
+
+    public $timestamps = false;
     
     protected $fillable = [
         'origin',

@@ -41,6 +41,7 @@ class DashboardAnimeComponents extends Controller
     public function storeAlias(AnimeAliasStoreRequest $request) : RedirectResponse
     {
         Anime_Alias::create($request->validated());
+        Anime::find($request->anime_id)->touch();
 
         return back()->with('success', "New Data Anime Alias Added");
     }
@@ -125,11 +126,13 @@ class DashboardAnimeComponents extends Controller
     {
         if ($request->submit === 'update') {
             $anime_Alias->where('id', $request->id)->update($request->validated());
+            Anime::find($request->anime_id)->touch();
             
             return back()->with('success', "Data Anime Alias Updated Successfully");
         }
 
         $this->destroyAlias($anime_Alias, $request->id);
+        Anime::find($request->anime_id)->touch();
 
         return back()->with('success', "Data Anime Alias Deleted Successfully");
     }
