@@ -34,7 +34,7 @@
               </li>
               @foreach ($prev as $pre)
               @php 
-                $title = (str_replace(' ', '_', strtolower($table->folder->slug." Ep ".(strlen($pre->episode) === 1 ? "0".$pre->episode : $pre->episode)." - ".$pre->origin." ".(explode('x', $pre->resolution)[1])."p.".$pre->type)));
+                $title = (str_replace(' ', '_', strtolower($table->folder->slug." Ep ".(strlen($pre->episode) === 1 ? "0".$pre->episode : $pre->episode)." - ".$pre->origin." ".($table->type === "TV" ? ($pre->bd === 0 ? "TV" : "BD") : $table->type." ".($pre->bd === 0 ? "TV" : "BD"))." ".(explode('x', $pre->resolution)[1])."p.".$pre->type)));
               @endphp
               <li class="dropdown-item">
                 <a class="m-0" href="{{ url("dashboard/anime/video/$table->slug/edit/$title") }}">{{ $title }}</a>
@@ -59,7 +59,7 @@
               </li>
               @foreach ($next as $nex)
               @php 
-                $title = (str_replace(' ', '_', strtolower($table->folder->slug." Ep ".(strlen($nex->episode) === 1 ? "0".$nex->episode : $nex->episode)." - ".$nex->origin." ".(explode('x', $nex->resolution)[1])."p.".$nex->type)));
+                $title = (str_replace(' ', '_', strtolower($table->folder->slug." Ep ".(strlen($nex->episode) === 1 ? "0".$nex->episode : $nex->episode)." - ".$nex->origin." ".($table->type === "TV" ? ($nex->bd === 0 ? "TV" : "BD") : $table->type." ".($nex->bd === 0 ? "TV" : "BD"))." ".(explode('x', $nex->resolution)[1])."p.".$nex->type)));
               @endphp
               <li class="dropdown-item">
                 <a class="m-0" href="{{ url("dashboard/anime/video/$table->slug/edit/$title") }}">{{ $title }}</a>
@@ -164,14 +164,14 @@
                   @enderror
                 </div>
                 <div class="col-md-2 d-flex align-items-end">
-                  <label for="cover" class="form-label"></label>
+                  <label for="bd" class="form-label"></label>
                   <div class="form-check">
-                    <input name="cover" value="1" {{ $video->cover === 1 ? "checked" : "" }} class="form-check-input @error('cover') is-invalid @enderror" type="checkbox" id="cover">
-                    <label class="form-check-label" for="cover">
-                      Cover
+                    <input name="bd" value="1" {{ $video->bd === 1 ? "checked" : "" }} class="form-check-input @error('bd') is-invalid @enderror" type="checkbox" id="bd">
+                    <label class="form-check-label" for="bd">
+                      Blu-ray
                     </label>
                   </div>
-                  @error('cover')
+                  @error('bd')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>

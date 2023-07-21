@@ -56,19 +56,20 @@
                     <th scope="col">Video Tracks</th>
                     <th scope="col">Audio Tracks</th>
                     <th scope="col">Size</th>
-                    <th scope="col">Cover</th>
+                    <th scope="col">Blu-ray</th>
                     <th scope="col">Date Updated</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($table->folder->videos->reverse() as $ivideo => $video)
                     @php 
-                      $title = (str_replace(' ', '_', strtolower($table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".(explode('x', $video->resolution)[1])."p.".$video->type)));
+                      $title = $table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".($table->type === "TV" ? ($video->bd === 0 ? "TV" : "BD") : $table->type." ".($video->bd === 0 ? "TV" : "BD"))." ".(explode('x', $video->resolution)[1])."p.".$video->type;
+                      $path = str_replace(' ', '_', strtolower($title));
                     @endphp
                     {{-- If too long --}}
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-warning" href="{{ url("dashboard/anime/video/$table->slug/edit/$title") }}">
+                        <a class="btn btn-warning" href="{{ url("dashboard/anime/video/$table->slug/edit/$path") }}">
                           <i class="ri ri-edit-2-line"></i>
                           Edit
                         </a>
@@ -92,9 +93,6 @@
                           Delete
                         </button>
                       </th>
-                      @php 
-                        $title = $table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".($table->type === "TV" ? ($video->approved === 0 ? "TV" : "TV") : $table->type)." ".(explode('x', $video->resolution)[1])."p.".$video->type;
-                      @endphp
                       <td>
                         @if (strlen($title) > 255)
                         <button class="btn btn-success bg-transparent border-0 text-dark">Title too long</button>
@@ -118,7 +116,7 @@
                       <td>{{ $video->video_tracks }}</td>
                       <td>{{ $video->audio_tracks }}</td>
                       <td>{{ $video->size }} MB</td>
-                      <td><em>{{ $video->cover === 0 ? "False" : "True" }}</em></td>
+                      <td><em>{{ $video->bd === 0 ? "False" : "True" }}</em></td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($video->updated_at)) }}</td>
                     </tr>
                   @endforeach

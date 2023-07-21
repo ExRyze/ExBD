@@ -168,7 +168,7 @@ class DashboardAnimeVideo extends Controller
         $anime = Anime::where('slug', $slug)->first(['id', 'slug']);
         $video = substr($title, strlen($anime->folder->slug)+1);
         $video = explode('_', $video);
-        
+
         $next = $video_Anime->where('episode', $video[1]+1)->orWhere('episode', $video[1]+0.5)->get();
         $prev = $video_Anime->where('episode', $video[1]-1)->orWhere('episode', $video[1]-0.5)->get();
         
@@ -177,7 +177,10 @@ class DashboardAnimeVideo extends Controller
             ['origin', 'like', $video[3]],
             ['resolution', 'like', '%'.rtrim((explode('.', end($video)))[0], 'p')],
             ['type', (explode('.', end($video)))[1]],
+            ['bd', ($video[4] != 'tv' || $video[4] != 'bd') ? (($video[4] === "tv" ? 0 : 1)) : (($video[5] === "tv" ? 0 : 1))]
         ])->first();
+
+        // One Piece Ep 900 - Koenime TV 1080p
 
         return view('dashboard.video.edit', [
             'page' => $this->getUrl(URL::current()),

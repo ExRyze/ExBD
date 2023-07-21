@@ -23,7 +23,7 @@ class Video_Anime extends Model
         'audio_tracks',
         'origin',
         'type',
-        'cover',
+        'bd',
         'folder_anime_id',
     ];
 

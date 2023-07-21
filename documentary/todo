@@ -30,7 +30,6 @@ Approving use local storage, Alternative route, Use API :)
 Form Buttons (Update/Submit)
 All cell in data-table is copyable
 Sorting data table time
-Change field cover in anime video into bd/tv
 
 Condition:
 If create new table like films or something like animes that has many relation, rename all tables component animes.

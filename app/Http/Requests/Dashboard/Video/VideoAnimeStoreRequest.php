@@ -43,7 +43,7 @@ class VideoAnimeStoreRequest extends FormRequest
             'audio_tracks' => '',
             'origin' => 'required|max:255',
             'type' => 'required',
-            'cover' => '',
+            'bd' => '',
             'folder_anime_id' => 'required'
         ];
     }

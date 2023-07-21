@@ -25,7 +25,7 @@ class VideoAnimeUpdateRequest extends FormRequest
     public function rules(): array
     {
         $this->merge(['resolution' => $this->width."x".$this->height]);
-        if ($this->cover === null) {$this->merge(['cover' => 0]);}
+        if ($this->cover === null) {$this->merge(['bd' => 0]);}
         return [
             'lenght_video' => 'required|max:10',
             'resolution' => 'required|max:11',
@@ -36,7 +36,7 @@ class VideoAnimeUpdateRequest extends FormRequest
             'audio_tracks' => '',
             'origin' => 'required|max:255',
             'type' => 'required',
-            'cover' => ''
+            'bd' => ''
         ];
     }
 }

@@ -107,18 +107,14 @@
                 @enderror
               </div>
               <div class="col-md-2 d-flex align-items-end">
-                <label for="cover" class="form-label"></label>
+                <label for="bd" class="form-label"></label>
                 <div class="form-check">
-                  <input name="cover" value="1" {{ $video->cover === 1 ? "checked" : "" }} class="form-check-input @error('cover') is-invalid @enderror" type="checkbox" id="cover">
-                  <label class="form-check-label" for="cover">
-                    Cover
+                  <input name="bd" value="1" {{ $video->bd === 1 ? "checked" : "" }} class="form-check-input @error('bd') is-invalid @enderror" type="checkbox" id="bd">
+                  <label class="form-check-label" for="bd">
+                    Blu-ray
                   </label>
                 </div>
-                @error('cover')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
-                @error('cover')
+                @error('bd')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
