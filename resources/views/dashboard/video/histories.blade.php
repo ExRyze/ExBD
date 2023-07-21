@@ -61,7 +61,11 @@
                           Delete
                         </button>
                       </th>
-                      <td>{{ $history->slug }}</td>
+                      <td>
+                        <a class="btn btn-success bg-transparent border-0 text-dark" href="{{ url("dashboard/anime/history/video/".str_replace(' ', '_', strtolower($history->slug))) }}">
+                          {{ $history->slug }}
+                        </a>
+                      </td>
                       <td>{{ $history->episode }}</td>
                       <td>{{ $history->origin }}</td>
                       <td>{{ $history->type }}</td>
@@ -83,7 +87,7 @@
                       <td>{{ $history->size }}</td>
                       <td><em>{{ $history->bd === 0 ? "False" : "True" }}</em></td>
                       <td><em>{{ $history->approved === 0 ? "False" : "True" }}</em></td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($history->updated_at)) }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($history->updated_at)) }}</td>
                     </tr>
                   @endforeach
                 </tbody>

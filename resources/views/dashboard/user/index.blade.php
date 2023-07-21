@@ -59,7 +59,7 @@
                       <td>{{ $user->username }}</td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->role }}</td>
-                      <td>{{ date("Y-m-d h:i:s A", strtotime($user->created_at)) }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($user->created_at)) }}</td>
                     </tr>
                   @endforeach
                 </tbody>

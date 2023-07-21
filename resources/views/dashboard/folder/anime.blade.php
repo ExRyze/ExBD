@@ -46,7 +46,6 @@
                     <th scope="col">Size</th>
                     <th scope="col">Total Videos</th>
                     <th scope="col">Date Created</th>
-                    <th scope="col">Date Updated</th>
                     <th scope="col">User</th>
                   </tr>
                 </thead>
@@ -81,8 +80,7 @@
                       <td>{{ $folder->slug }}</td>
                       <td>{{ $folder->videos->sum('size') }} MB</td>
                       <td>{{ $folder->videos->count() }} eps.</td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($folder->created_at)) }}</td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($folder->updated_at)) }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($folder->created_at)) }}</td>
                       <td>{{ $folder->user->username }}</td>
                     </tr>
                   @endforeach

@@ -45,7 +45,6 @@
                     <th scope="col">Status</th>
                     <th scope="col">Date Aired</th>
                     <th scope="col">Date Finished</th>
-                    <th scope="col">Date Created</th>
                     <th scope="col">Date Updated</th>
                     <th scope="col">User</th>
                   </tr>
@@ -83,8 +82,7 @@
                       @else
                       <td><em>NULL</em></td>
                       @endif
-                      <td>{{ date("M d, Y h:i:s A", strtotime($anime->created_at)) }}</td>
-                      <td>{{ date("M d, Y h:i:s A", strtotime($anime->updated_at)) }}</td>
+                      <td>{{ date("Y-m-d H:i:s", strtotime($anime->updated_at)) }}</td>
                       <td>{{ $anime->user->username }}</td>
                     </tr>
                   @endforeach
