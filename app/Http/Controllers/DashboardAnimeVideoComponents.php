@@ -12,7 +12,7 @@ use App\Models\Video_Anime_Subtitle;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class DashboardVideoComponents extends Controller
+class DashboardAnimeVideoComponents extends Controller
 {
     public function __construct()
     {

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Dashboard\Folder\FolderAnimeApproveRequest;
+use App\Http\Requests\Dashboard\Folder\FolderAnimeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeApproveRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeUpdateRequest;
 use App\Models\Anime;
+use App\Models\Folder_Anime;
 use App\Models\History_Video_Anime;
 use App\Models\Mistake;
 use App\Models\Video_Anime;
@@ -15,7 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
-class DashboardVideo extends Controller
+class DashboardAnimeVideo extends Controller
 {
     protected $data = [
         'chapters' => ["True", "False", "Null"],
@@ -40,9 +43,55 @@ class DashboardVideo extends Controller
     // }
 
     /**
+     * Index Folder
+     */
+    public function folder() : View
+    {
+        return view('dashboard.folder.anime', [
+            'page' => $this->getUrl(URL::current()),
+            'table' => Folder_Anime::orderBy('slug')->get(),
+            'animes' => Anime::join('folder_animes', 'animes.id', '=', 'folder_animes.anime_id', 'left outer')->where('folder_animes.id', NULL)->orderBy('title')->get()
+        ]);
+    }
+
+    /**
+     * Store Folder
+     */
+    public function storeFolder(FolderAnimeStoreRequest $request) : RedirectResponse
+    {
+        Folder_Anime::create($request->validated());
+
+        return back()->with('success', 'New Folder Anime Added');
+    }
+
+    /**
+     * Approve Folder
+     */
+    public function approveFolder(FolderAnimeApproveRequest $request) : RedirectResponse
+    {
+        Folder_Anime::where('id', $request->id)->update($request->validated());
+
+        if ($request->submit === 'approve') {
+            return back()->with('success', 'Folder Approved');
+        } else {
+            return back()->with('warning', 'Folder Refused');
+        }
+    }
+
+    /**
+     * Delete Folder
+     */
+    public function deleteFolder(Request $request) : RedirectResponse
+    {
+        Folder_Anime::where('id', $request->id)->delete();
+
+        return back()->with('success', 'Folder Anime Deleted');
+    }
+
+    /**
      * Index Video
      */
-    public function videoAnime(String $slug) : View
+    public function video(String $slug) : View
     {
         return view('dashboard.video.index', [
             'page' => $this->getUrl(URL::current()),
@@ -53,7 +102,7 @@ class DashboardVideo extends Controller
     /**
      * Create Video
      */
-    public function createAnime(String $slug) : View
+    public function createVideo(String $slug) : View
     {
         $anime = Anime::where('slug', $slug)->first();
         $video = Video_Anime::where('folder_anime_id', $anime->folder->id)->latest()->first();
@@ -76,7 +125,7 @@ class DashboardVideo extends Controller
     /**
      * Store Video
      */
-    public function storeAnime(VideoAnimeStoreRequest $request, String $slug) : RedirectResponse
+    public function storeVideo(VideoAnimeStoreRequest $request, String $slug) : RedirectResponse
     {
         $video = Video_Anime::where([
             ['episode', $request->episode],
@@ -114,7 +163,7 @@ class DashboardVideo extends Controller
     /**
      * Edit Video
      */
-    public function editAnime(Video_Anime $video_Anime, String $slug, String $title) : View
+    public function editVideo(Video_Anime $video_Anime, String $slug, String $title) : View
     {
         $anime = Anime::where('slug', $slug)->first(['id', 'slug']);
         $video = substr($title, strlen($anime->folder->slug)+1);
@@ -145,7 +194,7 @@ class DashboardVideo extends Controller
     /**
      * Update Video
      */
-    public function updateAnime(VideoAnimeUpdateRequest $request, String $slug) : RedirectResponse
+    public function updateVideo(VideoAnimeUpdateRequest $request, String $slug) : RedirectResponse
     {
         Video_Anime::where('id', $request->id)->update($request->validated());
 
@@ -174,7 +223,7 @@ class DashboardVideo extends Controller
     /**
      * Approve Video
      */
-    public function approveAnime(VideoAnimeApproveRequest $request, String $slug) : RedirectResponse
+    public function approveVideo(VideoAnimeApproveRequest $request, String $slug) : RedirectResponse
     {
         // dd($request);
         Video_Anime::where('id', $request->id)->update($request->validated());
@@ -189,10 +238,54 @@ class DashboardVideo extends Controller
     /**
      * Delete Video
      */
-    public function deleteAnime(Request $request, String $slug) : RedirectResponse
+    public function deleteVideo(Request $request, String $slug) : RedirectResponse
     {
         Video_Anime::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Deleted');
+    }
+
+    /**
+     * Index All History
+     */
+    public function histories() : View
+    {
+        return view('dashboard.video.histories', [
+            'page' => $this->getUrl(URL::current()),
+            'table' => History_Video_Anime::orderBy('slug')->get(),
+        ]);
+    }
+
+    /**
+     * Index History
+     */
+    public function history(String $slug) : View
+    {
+        return view('dashboard.video.history', [
+            'page' => $this->getUrl(URL::current()),
+            'table' => History_Video_Anime::where('slug', str_replace(['_'], [' '], $slug))->orderBy('episode', 'desc')->get(),
+            'slug' =>  $slug
+        ]);
+    }
+
+    /**
+     * Retrieve Video
+     */
+    public function retrieveHistory(Request $request, String $slug) : RedirectResponse
+    {
+        History_Video_Anime::where('id', $request->id)->touch();
+        History_Video_Anime::where('id', $request->id)->delete();
+
+        return back()->with('success', 'Video Anime Has Been Retrieved');
+    }
+
+    /**
+     * Delete History
+     */
+    public function deleteHistory(Request $request, String $slug) : RedirectResponse
+    {
+        History_Video_Anime::where('id', $request->id)->delete();
+
+        return back()->with('success', 'Video Anime Has Been Permanently Delete');
     }
 }

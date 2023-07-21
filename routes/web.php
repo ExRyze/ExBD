@@ -2,13 +2,11 @@
 
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\DashboardAnime;
+use App\Http\Controllers\DashboardAnimeRelationsMTM;
 use App\Http\Controllers\DashboardAnimeComponents;
-use App\Http\Controllers\DashboardComponents;
-use App\Http\Controllers\DashboardFolder;
-use App\Http\Controllers\DashboardHistory;
 use App\Http\Controllers\DashboardUser;
-use App\Http\Controllers\DashboardVideo;
-use App\Http\Controllers\DashboardVideoComponents;
+use App\Http\Controllers\DashboardAnimeVideo;
+use App\Http\Controllers\DashboardAnimeVideoComponents;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\HomeAnime;
 use App\Http\Controllers\HomeSetting;
@@ -66,16 +64,6 @@ Route::controller(DashboardUser::class)->group(function() {
 });
 Route::get('/dashboard/user/edit', function() {return back();});
     // Dashboard/User
-   
-Route::controller(DashboardComponents::class)->group(function() {
-    Route::post('/dashboard/producer/store', 'storeProducer');
-    Route::post('/dashboard/licensor/store', 'storeLicensor');
-    Route::post('/dashboard/studio/store', 'storeStudio');
-    Route::post('/dashboard/genre/store', 'storeGenre');
-    Route::post('/dashboard/theme/store', 'storeTheme');
-    Route::post('/dashboard/mistake/store', 'storeMistake');
-});
-    // Dashboard/{Component}
 
 Route::controller(DashboardAnime::class)->group(function() { // Anime
     Route::get('/dashboard/anime', 'index');
@@ -87,10 +75,20 @@ Route::controller(DashboardAnime::class)->group(function() { // Anime
 });
 Route::get('/dashboard/anime/edit', function() {return back();});
     // Dashboard/Anime
-     
+   
 Route::controller(DashboardAnimeComponents::class)->group(function() {
     Route::post('/dashboard/animealias/store', 'storeAlias');
     Route::post('/dashboard/animealias/update', 'updateAlias');
+    Route::post('/dashboard/producer/store', 'storeProducer');
+    Route::post('/dashboard/licensor/store', 'storeLicensor');
+    Route::post('/dashboard/studio/store', 'storeStudio');
+    Route::post('/dashboard/genre/store', 'storeGenre');
+    Route::post('/dashboard/theme/store', 'storeTheme');
+    Route::post('/dashboard/mistake/store', 'storeMistake');
+});
+    // Dashboard/{Component}
+     
+Route::controller(DashboardAnimeRelationsMTM::class)->group(function() {
     Route::post('/dashboard/animeproducer/store', 'storeProducer');
     Route::post('/dashboard/animelicensor/store', 'storeLicensor');
     Route::post('/dashboard/animestudio/store', 'storeStudio');
@@ -100,39 +98,37 @@ Route::controller(DashboardAnimeComponents::class)->group(function() {
     Route::post('/dashboard/animerelation/update', 'updateRelation');
 });
     // Dashboard/{AnimeComponent}
-     
-Route::controller(DashboardFolder::class)->group(function() {
-    Route::get('/dashboard/anime/folder', 'folderAnime');
-    Route::post('/dashboard/anime/folder/store', 'storeAnime');
-    Route::post('/dashboard/anime/folder/approve', 'approveAnime');
-    Route::post('/dashboard/anime/folder/delete', 'deleteAnime');
-});
-    // Dashboard/Folder
-     
-Route::controller(DashboardVideo::class)->group(function() {
-    Route::get('/dashboard/anime/video/{slug}', 'videoAnime');
-    Route::get('/dashboard/anime/video/{slug}/create', 'createAnime');
-    Route::post('/dashboard/anime/video/{slug}/store', 'storeAnime');
-    Route::get('/dashboard/anime/video/{slug}/edit/{title}', 'editAnime');
-    Route::post('/dashboard/anime/video/{slug}/update', 'updateAnime');
-    Route::post('/dashboard/anime/video/{slug}/approve', 'approveAnime');
-    Route::post('/dashboard/anime/video/{slug}/delete', 'deleteAnime');
+
+Route::controller(DashboardAnimeVideo::class)->group(function() {
+
+    // Folder
+    Route::get('/dashboard/anime/folder', 'folder');
+    Route::post('/dashboard/anime/folder/store', 'storeFolder');
+    Route::post('/dashboard/anime/folder/approve', 'approveFolder');
+    Route::post('/dashboard/anime/folder/delete', 'deleteFolder');
+
+    // Video
+    Route::get('/dashboard/anime/video/{slug}', 'video');
+    Route::get('/dashboard/anime/video/{slug}/create', 'createVideo');
+    Route::post('/dashboard/anime/video/{slug}/store', 'storeVideo');
+    Route::get('/dashboard/anime/video/{slug}/edit/{title}', 'editVideo');
+    Route::post('/dashboard/anime/video/{slug}/update', 'updateVideo');
+    Route::post('/dashboard/anime/video/{slug}/approve', 'approveVideo');
+    Route::post('/dashboard/anime/video/{slug}/delete', 'deleteVideo');
+
+    // History
+    Route::get('/dashboard/anime/history/video', 'histories');
+    Route::get('/dashboard/anime/history/video/{slug}', 'history');
+    Route::post('/dashboard/anime/history/video/{slug}/retrieve', 'retrieveHistory');
+    Route::post('/dashboard/anime/history/video/{slug}/delete', 'deleteHistory');
 });
 Route::get('/dashboard/anime/video', function() {return back();});
 Route::get('/dashboard/anime/video/{slug}/edit', function() {return back();});
+Route::get('/dashboard/anime/history', function() {return back();});
     // Dashboard/video
 
-Route::controller(DashboardVideoComponents::class)->group(function() {
+Route::controller(DashboardAnimeVideoComponents::class)->group(function() {
     Route::post('/dashboard/animevideosubtitle/store', 'storeAnimeSubtitle');
     Route::post('/dashboard/animevideosubtitle/update', 'updateAnimeSubtitle');
     Route::post('/dashboard/animevideomistake/store', 'storeAnimeMistake');
-}); // Dashboard/{VideoComponent}
-
-Route::controller(DashboardHistory::class)->group(function() {
-    Route::get('/dashboard/anime/history/video', 'historiesAnime');
-    Route::get('/dashboard/anime/history/video/{slug}', 'historyAnime');
-    Route::post('/dashboard/anime/history/video/{slug}/retrive', 'retriveAnime');
-    Route::post('/dashboard/anime/history/video/{slug}/delete', 'deleteAnime');
-});
-Route::get('/dashboard/anime/history', function() {return back();});
-    // Dashboard/History
+}); // Dashboard/{VideoAnimeComponent}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 20, 2023 at 02:48 PM
+-- Generation Time: Jul 21, 2023 at 10:16 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -55,7 +55,7 @@ INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `st
 (3, 'Made in Abyss: Retsujitsu no Ougonkyou', 'made_in_abyss_retsujitsu_no_ougonkyou', 12, '25', 'TV', 'Finished airing', 'Web manga', '2022-07-06', '2022-08-28', 'After surviving the brutal challenges of Idofront, Riko now possesses a White Whistle, allowing her to descend into the Abyss\'s sixth layer—The Capital of the Unreturned. Alongside Reg and Nanachi, Riko begins to explore the uncharted domain, where the ruins of the promised Golden City are located.\r\n\r\nAs the trio starts to adapt to the harsh environment, they soon encounter dangerous creatures and treacherous landscapes. Their expedition leads them to a village inhabited by strange beings known as \"hollows.\" Despite the creeping sense of unease that welcomes them, the three venture onward to uncover the mysteries of the settlement and long-lost legacies of the forgotten adventurers who once descended into the horrors of the unexplored Abyss.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-23 23:10:56', '2023-04-30 07:56:15', 1),
 (4, '3D Kanojo: Real Girl 2nd Season', '3d_kanojo_real_girl_2nd_season', 12, '22', 'TV', 'Finished airing', 'Manga', '2019-01-09', '2019-03-27', 'Teenage otaku Tsutsui is finally starting to feel comfortable in his relationship with his beautiful classmate Iroha, but the real world continues to make things tough for both of them. With the school cultural festival coming up, Tsutsui gets stuck working on the festival committee while Iroha\'s classmates pressure her to enter the beauty contest. Meanwhile, Tsutsui\'s best friend Itou finally works up the courage to confess his feelings to Ayado, but she turns him down. As Itou works to get over this rejection and Tsutsui struggles just to survive the festival, they both decide to do whatever they can to become better people. Will their good intentions pave the way to a happy outcome, or will more hearts be broken along the way?\r\n\r\n(Source: ANN)', 'Cover.jpg', '2023-04-24 05:49:58', '2023-04-30 12:47:54', 1),
 (5, '3D Kanojo: Real Girl', '3d_kanojo_real_girl', 12, '22', 'TV', 'Finished airing', 'Manga', '2018-04-04', '2018-06-20', 'For Hikari Tsutsui, life within the two-dimensional realm is much simpler. Socially inept and awkward, he immerses himself in video games and anime, only to be relentlessly ridiculed and ostracized by his classmates. Sharing his misery is Yuuto Itou, his only friend, who wears cat ears and is equally obsessed with the world of games.\r\n\r\nAfter being forced to clean the pool as punishment for arriving late, Tsutsui meets Iroha Igarashi, but he attempts to steer clear of her, as her notoriety precedes her. Brazenly blunt, loathed by female classmates, and infamous for messing around with boys, Tsutsui believes that getting involved with her would cause nothing but problems.\r\n\r\n3D Kanojo: Real Girl is a story revolving around these two outcasts—a boy full of emotions he has never experienced before, struggling to lay them bare, and a girl who strives to break him out of his shell.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-24 05:52:43', '2023-04-30 12:48:24', 1),
-(6, '3-gatsu no Lion', '3-gatsu_no_lion', 22, '25', 'TV', 'Finished airing', 'Manga', '2016-09-08', '2017-03-18', 'Having reached professional status in middle school, Rei Kiriyama is one of the few elite in the world of shogi. Due to this, he faces an enormous amount of pressure, both from the shogi community and his adoptive family. Seeking independence from his tense home life, he moves into an apartment in Tokyo. As a 17-year-old living on his own, Rei tends to take poor care of himself, and his reclusive personality ostracizes him from his peers in school and at the shogi hall.\r\n\r\nHowever, not long after his arrival in Tokyo, Rei meets Akari, Hinata, and Momo Kawamoto, a trio of sisters living with their grandfather who owns a traditional wagashi shop. Akari, the oldest of the three girls, is determined to combat Rei\'s loneliness and poorly sustained lifestyle with motherly hospitality. The Kawamoto sisters, coping with past tragedies, also share with Rei a unique familial bond that he has lacked for most of his life. As he struggles to maintain himself physically and mentally through his shogi career, Rei must learn how to interact with others and understand his own complex emotions.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-24 05:53:51', '2023-07-03 14:12:57', 1),
+(6, '3-gatsu no Lion', '3-gatsu_no_lion', 22, '25', 'TV', 'Finished airing', 'Manga', '2016-09-08', '2017-03-18', 'Having reached professional status in middle school, Rei Kiriyama is one of the few elite in the world of shogi. Due to this, he faces an enormous amount of pressure, both from the shogi community and his adoptive family. Seeking independence from his tense home life, he moves into an apartment in Tokyo. As a 17-year-old living on his own, Rei tends to take poor care of himself, and his reclusive personality ostracizes him from his peers in school and at the shogi hall.\r\n\r\nHowever, not long after his arrival in Tokyo, Rei meets Akari, Hinata, and Momo Kawamoto, a trio of sisters living with their grandfather who owns a traditional wagashi shop. Akari, the oldest of the three girls, is determined to combat Rei\'s loneliness and poorly sustained lifestyle with motherly hospitality. The Kawamoto sisters, coping with past tragedies, also share with Rei a unique familial bond that he has lacked for most of his life. As he struggles to maintain himself physically and mentally through his shogi career, Rei must learn how to interact with others and understand his own complex emotions.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-24 05:53:51', '2023-07-21 09:58:02', 1),
 (7, '3-gatsu no Lion 2nd Season', '3-gatsu_no_lion_2nd_season', 22, '25', 'TV', 'Finished airing', 'Manga', '2017-09-14', '2018-03-31', 'Now in his second year of high school, Rei Kiriyama continues pushing through his struggles in the professional shogi world as well as his personal life. Surrounded by vibrant personalities at the shogi hall, the school club, and in the local community, his solitary shell slowly begins to crack. Among them are the three Kawamoto sisters—Akari, Hinata, and Momo—who forge an affectionate and familial bond with Rei. Through these ties, he realizes that everyone is burdened by their own emotional hardships and begins learning how to rely on others while supporting them in return.\r\n\r\nNonetheless, the life of a professional is not easy. Between tournaments, championships, and title matches, the pressure mounts as Rei advances through the ranks and encounters incredibly skilled opponents. As he manages his relationships with those who have grown close to him, the shogi player continues to search for the reason he plays the game that defines his career.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-24 05:55:18', '2023-04-30 12:53:40', 1),
 (8, '5-toubun no Hanayome', '5-toubun_no_hanayome', 12, '24', 'TV', 'Finished airing', 'Manga', '2019-01-11', '2019-03-29', 'Fuutarou Uesugi is an ace high school student, but leads an otherwise tough life. His standoffish personality and reclusive nature have left him friendless, and his father is debt-ridden, forcing his family to scrape by.\r\n\r\nOne day during his lunch break, Uesugi argues with a female transfer student who has claimed \"his seat,\" leading both of them to dislike each other. That same day, he is presented with a golden opportunity to clear his family\'s debt: a private tutoring gig for a wealthy family\'s daughter, with a wage of five times the market price. He accepts the proposal, but is horrified to discover that the client, Itsuki Nakano, is the girl he confronted earlier!\r\n\r\nAfter unsuccessfully trying to get back on Itsuki\'s good side, Uesugi finds out that his problems don\'t end there: Itsuki is actually a quintuplet, so in addition to her, he must also tutor her sisters—Miku, Yotsuba, Nino, and Ichika—who, despite the very real threat of flunking, want nothing to do with a tutor. However, his family\'s livelihood is on the line so Uesugi pushes on, adamant in his resolve to rid the sisters of their detest for studying and successfully lead them to graduation.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-24 05:56:31', '2023-04-30 12:40:15', 1),
 (9, '5-toubun no Hanayome Movie', '5-toubun_no_hanayome_movie', 1, '136', 'Movie', 'Finished airing', 'Manga', '2022-05-20', NULL, 'Futaro has led five quintuplets to the point where they can graduate and pursue their own dreams. Now, finally, they had reached their final school festival. Having decided to make this occasion one to remember, Futaro searches for his feelings for the five quintuplets.\r\n\r\n(source: ANN)', 'Cover.jpg', '2023-04-24 05:58:15', '2023-04-30 12:20:38', 1),
@@ -316,7 +316,6 @@ CREATE TABLE `anime_studios` (
 
 INSERT INTO `anime_studios` (`anime_id`, `studio_id`) VALUES
 (7, 1),
-(6, 1),
 (5, 2),
 (4, 2),
 (8, 3),
@@ -325,7 +324,8 @@ INSERT INTO `anime_studios` (`anime_id`, `studio_id`) VALUES
 (1, 5),
 (2, 5),
 (3, 5),
-(11, 6);
+(11, 6),
+(6, 1);
 
 -- --------------------------------------------------------
 
@@ -1381,11 +1381,11 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (553, '00:23:50', '1920x1080', 269.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 890.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 00:58:02', '2023-07-20 12:54:48', 4),
 (554, '00:23:50', '1920x1080', 283.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 891.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 00:58:48', '2023-07-20 13:06:30', 4),
 (555, '00:23:50', '1920x1080', 237.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 892.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 00:59:29', '2023-07-20 14:43:06', 4),
-(556, '00:23:50', '1920x1080', 294.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 893.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:00:04', '2023-07-20 01:00:04', 4),
-(557, '00:23:50', '1920x1080', 248.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 894.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:00:40', '2023-07-20 01:00:40', 4),
-(558, '00:23:50', '1920x1080', 260.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 895.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:01:11', '2023-07-20 01:01:11', 4),
-(559, '00:23:50', '1920x1080', 275.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 896.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:01:44', '2023-07-20 01:01:44', 4),
-(560, '00:23:50', '1920x1080', 288.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 897.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:02:26', '2023-07-20 01:02:26', 4),
+(556, '00:23:50', '1920x1080', 294.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 893.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 01:00:04', '2023-07-20 15:26:05', 4),
+(557, '00:23:50', '1920x1080', 248.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 894.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 01:00:40', '2023-07-21 00:27:48', 4),
+(558, '00:23:50', '1920x1080', 260.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 895.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 01:01:11', '2023-07-21 00:51:36', 4),
+(559, '00:23:50', '1920x1080', 275.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 896.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 01:01:44', '2023-07-21 06:30:24', 4),
+(560, '00:23:50', '1920x1080', 288.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 897.0, 'Koenime', 'mkv', 0, 1, '2023-07-20 01:02:26', '2023-07-21 09:57:45', 4),
 (561, '00:23:50', '1920x1080', 268.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 898.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:03:05', '2023-07-20 01:03:05', 4),
 (562, '00:23:50', '1920x1080', 252.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 899.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:03:38', '2023-07-20 01:03:38', 4),
 (563, '00:23:50', '1920x1080', 241.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'True', 900.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 01:04:12', '2023-07-20 01:04:12', 4),
@@ -1464,7 +1464,32 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (635, '00:23:40', '848x480', 69.8, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 372.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:11:33', '2023-07-20 07:11:33', 4),
 (636, '00:23:50', '848x480', 69.9, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 373.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:11:53', '2023-07-20 07:11:53', 4),
 (637, '00:23:35', '848x480', 68.6, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 374.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:12:19', '2023-07-20 07:12:19', 4),
-(638, '00:23:19', '848x480', 69.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 375.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:12:46', '2023-07-20 07:12:46', 4);
+(638, '00:23:19', '848x480', 69.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 375.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:12:46', '2023-07-20 07:12:46', 4),
+(639, '00:23:40', '848x480', 69.0, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 376.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:54:11', '2023-07-20 14:54:11', 4),
+(640, '00:23:40', '848x480', 69.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 377.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:54:29', '2023-07-20 14:54:29', 4),
+(641, '00:23:40', '848x480', 70.3, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 378.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:55:55', '2023-07-20 14:55:55', 4),
+(642, '00:23:35', '848x480', 68.1, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 379.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:56:20', '2023-07-20 14:56:20', 4),
+(643, '00:23:35', '848x480', 69.9, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 380.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:56:40', '2023-07-20 14:56:40', 4),
+(644, '00:23:39', '848x480', 70.0, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 381.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:56:57', '2023-07-20 14:56:57', 4),
+(645, '00:23:39', '848x480', 69.1, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 382.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:57:17', '2023-07-20 14:57:17', 4),
+(646, '00:23:39', '848x480', 69.6, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 383.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:57:37', '2023-07-20 14:57:37', 4),
+(647, '00:23:39', '848x480', 69.7, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 384.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:57:56', '2023-07-20 14:57:56', 4),
+(648, '00:24:00', '848x480', 71.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 385.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 14:58:20', '2023-07-20 14:58:20', 4),
+(649, '00:23:39', '848x480', 70.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 386.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:17:41', '2023-07-20 15:17:41', 4),
+(650, '00:23:39', '848x480', 70.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 387.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:17:59', '2023-07-20 15:17:59', 4),
+(651, '00:23:40', '848x480', 69.3, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 388.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:18:20', '2023-07-20 15:18:20', 4),
+(652, '00:23:40', '848x480', 69.5, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 389.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:18:41', '2023-07-20 15:18:41', 4),
+(653, '00:23:40', '848x480', 69.1, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 390.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:19:02', '2023-07-20 15:19:02', 4),
+(654, '00:23:40', '848x480', 69.1, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 391.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:19:19', '2023-07-20 15:19:19', 4),
+(655, '00:23:34', '848x480', 69.7, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 392.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:19:40', '2023-07-20 15:19:40', 4),
+(656, '00:23:34', '848x480', 69.3, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 393.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:19:56', '2023-07-20 15:19:56', 4),
+(657, '00:23:35', '848x480', 68.9, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 394.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:20:23', '2023-07-20 15:20:23', 4),
+(658, '00:23:35', '848x480', 68.3, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 395.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:20:44', '2023-07-20 15:20:44', 4),
+(659, '00:23:35', '848x480', 69.1, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 396.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:21:01', '2023-07-20 15:21:01', 4),
+(660, '00:23:20', '848x480', 67.7, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 397.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:21:21', '2023-07-20 15:21:21', 4),
+(661, '00:23:35', '848x480', 70.8, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 398.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:21:49', '2023-07-20 15:21:49', 4),
+(662, '00:23:20', '848x480', 67.9, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 399.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:22:15', '2023-07-20 15:22:15', 4),
+(663, '00:23:35', '848x480', 70.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 400.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 15:22:39', '2023-07-20 15:22:39', 4);
 
 --
 -- Triggers `video_animes`
@@ -2496,7 +2521,47 @@ INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (555, 3, 0),
 (555, 2, 0),
 (555, 11, 0),
-(555, 5, 0);
+(555, 5, 0),
+(639, 3, 0),
+(640, 3, 0),
+(641, 3, 0),
+(642, 3, 0),
+(643, 3, 0),
+(644, 3, 0),
+(645, 3, 0),
+(646, 3, 0),
+(647, 3, 0),
+(648, 3, 0),
+(649, 3, 0),
+(650, 3, 0),
+(651, 3, 0),
+(652, 3, 0),
+(653, 3, 0),
+(654, 3, 0),
+(655, 3, 0),
+(656, 3, 0),
+(657, 3, 0),
+(658, 3, 0),
+(659, 3, 0),
+(660, 3, 0),
+(661, 3, 0),
+(662, 3, 0),
+(663, 3, 0),
+(556, 3, 0),
+(556, 2, 0),
+(556, 5, 0),
+(557, 3, 0),
+(557, 2, 0),
+(557, 5, 0),
+(558, 3, 0),
+(558, 2, 0),
+(558, 5, 0),
+(559, 3, 0),
+(559, 2, 0),
+(559, 5, 0),
+(560, 3, 0),
+(560, 2, 0),
+(560, 5, 0);
 
 --
 -- Triggers `video_anime_mistakes`
@@ -2826,7 +2891,12 @@ INSERT INTO `video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id
 (311, 'Oploverz', 'Null', 552, 0),
 (312, 'Oploverz', 'Null', 553, 0),
 (313, 'Oploverz', 'Null', 554, 0),
-(314, 'Oploverz', 'Null', 555, 0);
+(314, 'Oploverz', 'Null', 555, 0),
+(315, 'Oploverz', 'Null', 556, 0),
+(316, 'Oploverz', 'Null', 557, 0),
+(317, 'Oploverz', 'Null', 558, 0),
+(318, 'Oploverz', 'Null', 559, 0),
+(319, 'Oploverz', 'Null', 560, 0);
 
 --
 -- Triggers `video_anime_subtitles`
@@ -3113,13 +3183,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `video_animes`
 --
 ALTER TABLE `video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=639;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=664;
 
 --
 -- AUTO_INCREMENT for table `video_anime_subtitles`
 --
 ALTER TABLE `video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=315;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
 
 --
 -- Constraints for dumped tables

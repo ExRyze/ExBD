@@ -4,21 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Dashboard\Anime\AnimeAliasStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeAliasUpdateRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeGenreStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeLicensorStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeProducerStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeRelationStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeRelationUpdateRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeStudioStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeThemeStoreRequest;
+use App\Http\Requests\Dashboard\Component\GenreStoreRequest;
+use App\Http\Requests\Dashboard\Component\LicensorStoreRequest;
+use App\Http\Requests\Dashboard\Component\MistakeStoreRequest;
+use App\Http\Requests\Dashboard\Component\ProducerStoreRequest;
+use App\Http\Requests\Dashboard\Component\StudioStoreRequest;
+use App\Http\Requests\Dashboard\Component\ThemeStoreRequest;
 use App\Models\Anime;
 use App\Models\Anime_Alias;
 use App\Models\Anime_Genre;
 use App\Models\Anime_Licensor;
 use App\Models\Anime_Producer;
-use App\Models\Anime_Relation;
 use App\Models\Anime_Studio;
 use App\Models\Anime_Theme;
+use App\Models\Genre;
+use App\Models\Licensor;
+use App\Models\Mistake;
+use App\Models\Producer;
+use App\Models\Studio;
+use App\Models\Theme;
+use App\Models\Video_Anime;
+use App\Models\Video_Anime_Mistake;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardAnimeComponents extends Controller
@@ -30,8 +36,8 @@ class DashboardAnimeComponents extends Controller
     }
 
     /**
-     * Store Anime Component
-     */
+     * Store Component Anime
+     */    
     public function storeAlias(AnimeAliasStoreRequest $request) : RedirectResponse
     {
         Anime_Alias::create($request->validated());
@@ -39,100 +45,77 @@ class DashboardAnimeComponents extends Controller
         return back()->with('success', "New Data Anime Alias Added");
     }
     
-    public function storeProducer(AnimeProducerStoreRequest $request) : RedirectResponse
+    public function storeProducer(ProducerStoreRequest $request) : RedirectResponse
     {
-        Anime_Producer::where('anime_id', $request->anime_id)->delete();
+        Producer::create($request->validated());
 
-        if (isset($request->producer_id)) {
-            $producers = $request->producer_id;
-            foreach ($producers as $producer_id) {
-                Anime_Producer::create(['anime_id' => $request->anime_id, 'producer_id' => $producer_id]);
-            }
+        if (isset($request->anime_id)) {
+            Anime_Producer::create(['anime_id' => $request->anime_id, 'producer_id' => Producer::where('producer', $request->producer)->first()->id]);
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime Producer Added");
         }
 
-        return back()->with('warning', "No Any Producer Selected");
+        return back()->with('success', 'New Data Producer Added');
+    }
+
+    public function storeLicensor(LicensorStoreRequest $request) : RedirectResponse
+    {
+        Licensor::create($request->validated());
+
+        if (isset($request->anime_id)) {
+            Anime_Licensor::create(['anime_id' => $request->anime_id, 'licensor_id' => Licensor::where('licensor', $request->licensor)->first()->id]);
+            Anime::find($request->anime_id)->touch();
+        }
+
+        return back()->with('success', 'New Data Licensor Added');
+    }
+
+    
+    public function storeStudio(StudioStoreRequest $request) : RedirectResponse
+    {
+        Studio::create($request->validated());
+
+        if (isset($request->anime_id)) {
+            Anime_Studio::create(['anime_id' => $request->anime_id, 'studio_id' => Studio::where('studio', $request->studio)->first()->id]);
+            Anime::find($request->anime_id)->touch();
+        }
+
+        return back()->with('success', 'New Data Studio Added');
     }
     
-    public function storeLicensor(AnimeLicensorStoreRequest $request) : RedirectResponse
+    public function storeGenre(GenreStoreRequest $request) : RedirectResponse
     {
-        Anime_Licensor::where('anime_id', $request->anime_id)->delete();
+        Genre::create($request->validated());
 
-        if (isset($request->licensor_id)) {
-            $licensors = $request->licensor_id;
-            foreach ($licensors as $licensor_id) {
-                Anime_Licensor::create(['anime_id' => $request->anime_id, 'licensor_id' => $licensor_id]);
-            }
+        if (isset($request->anime_id)) {
+            Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => Genre::where('genre', $request->genre)->first()->id]);
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime Licensor Added");
         }
 
-        return back()->with('warning', "No Any Licensor Selected");
+        return back()->with('success', 'New Data Genre Added');
     }
     
-    public function storeStudio(AnimeStudioStoreRequest $request) : RedirectResponse
+    public function storeTheme(ThemeStoreRequest $request)
     {
-        Anime_Studio::where('anime_id', $request->anime_id)->delete();
+        Theme::create($request->validated());
 
-        if (isset($request->studio_id)) {
-            $studios = $request->studio_id;
-            foreach ($studios as $studio_id) {
-                Anime_Studio::create(['anime_id' => $request->anime_id, 'studio_id' => $studio_id]);
-            }
+        if (isset($request->anime_id)) {
+            Anime_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => Theme::where('theme', $request->theme)->first()->id]);
             Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime Studio Added");
         }
 
-        return back()->with('warning', "No Any Studio Selected");
-    }
-
-    public function storeGenre(AnimeGenreStoreRequest $request) : RedirectResponse
-    {
-        Anime_Genre::where('anime_id', $request->anime_id)->delete();
-
-        if (isset($request->genre_id)) {
-            $genres = $request->genre_id;
-            foreach ($genres as $genre_id) {
-                Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => $genre_id]);
-            }
-            Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime Genre Added");
-        }
-
-        return back()->with('warning', "No Any Genre Selected");
+        return back()->with('success', 'New Data Theme Added');
     }
     
-    public function storeTheme(AnimeThemeStoreRequest $request) : RedirectResponse
+    public function storeMistake(MistakeStoreRequest $request)
     {
-        Anime_Theme::where('anime_id', $request->anime_id)->delete();
+        Mistake::create($request->validated());
 
-        if (isset($request->theme_id)) {
-            $themes = $request->theme_id;
-            foreach ($themes as $theme_id) {
-                Anime_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => $theme_id]);
-            }
-            Anime::find($request->anime_id)->touch();
-            return back()->with('success', "New Data Anime Theme Added");
+        if (isset($request->video_anime_id)) {
+            Video_Anime_Mistake::create(['video_anime_id' => $request->video_anime_id, 'mistake_id' => Mistake::where('mistake', $request->mistake)->first('id')->id]);
+            Video_Anime::find($request->video_anime_id)->touch();
         }
 
-        return back()->with('warning', "No Any Theme Selected");
-    }
-    
-    public function storeRelation(AnimeRelationStoreRequest $request) : RedirectResponse
-    {
-        $check_sequel = Anime::where('id', $request->relation_id)->first()->prequel;
-        if($request->relation === "Sequel" && $check_sequel->isNotEmpty()) {
-            if ($check_sequel[0]->anime_id === $request->anime_id) {
-                return back()->with('warning', "Anime can't be a sequel and prequel at the same time!");
-            }
-        } else if (Anime_Relation::where([['relation', $request->relation], ['relation_id', $request->relation_id]])->first()) {
-            return back()->with('warning', "Relation can't be duplicated!");
-        }
-
-        Anime_Relation::create($request->validated());
-
-        return back()->with('success', 'New Data Relation Added');
+        return back()->with('success', 'New Data Mistake Added');
     }
 
     /**
@@ -150,19 +133,6 @@ class DashboardAnimeComponents extends Controller
 
         return back()->with('success', "Data Anime Alias Deleted Successfully");
     }
-    
-    public function updateRelation(AnimeRelationUpdateRequest $request, Anime_Relation $anime_Relation) : RedirectResponse
-    {
-        if ($request->submit === 'update') {
-            $anime_Relation->where('id', $request->id)->update($request->validated());
-            
-            return back()->with('success', "Data Anime Relation Updated Successfully");
-        }
-
-        $this->destroyRelation($anime_Relation, $request->id);
-
-        return back()->with('success', "Data Anime Relation Deleted Successfully");
-    }
 
     /**
      * Delete Anime Component
@@ -170,10 +140,5 @@ class DashboardAnimeComponents extends Controller
     public function destroyAlias(Anime_Alias $anime_Alias, String $id) : void
     {
         $anime_Alias->where('id', $id)->delete();
-    }
-    
-    public function destroyRelation(Anime_Relation $anime_Relation, String $id)
-    {
-        $anime_Relation->where('id', $id)->delete();
     }
 }

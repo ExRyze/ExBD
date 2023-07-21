@@ -51,10 +51,10 @@
                   @foreach ($table as $ihistory => $history)
                     <tr>
                       <th scope="row">
-                        <form action="/dashboard/anime/history/video/{{ $history->slug }}/retrive" method="post" class="mb-1">
+                        <form action="/dashboard/anime/history/video/{{ $history->slug }}/retrieve" method="post" class="mb-1">
                           @csrf
                           <input type="hidden" name="id" value="{{ $history->id }}">
-                          <button type="submit" class="btn btn-warning"><i class="bx bx-reset"></i> Retrive</button>
+                          <button type="submit" class="btn btn-warning"><i class="bx bx-reset"></i> Retrieve</button>
                         </form>
                         <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#DelHistory{{ $ihistory }}">
                           <i class="bi bi-trash"></i>
