@@ -61,11 +61,7 @@
                           Delete
                         </button>
                       </th>
-                      <td>
-                        <a class="btn btn-success bg-transparent border-0 text-dark" href="{{ url("dashboard/anime/history/video/".str_replace(' ', '_', strtolower($history->slug))) }}">
-                          {{ $history->slug }}
-                        </a>
-                      </td>
+                      <td>{{ $history->slug }}</td>
                       <td>{{ $history->episode }}</td>
                       <td>{{ $history->origin }}</td>
                       <td>{{ $history->type }}</td>

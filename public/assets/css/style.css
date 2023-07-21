@@ -155,7 +155,7 @@ h6 {
 
 .logo span {
   font-size: 26px;
-  font-weight: 700;
+  font-weight: bolder;
   color: var(--ex-light);
   font-family: "Nunito", sans-serif;
 }
@@ -513,6 +513,21 @@ h6 {
 .footer .copyright {
   text-align: center;
   color: var(--ex-light);
+}
+
+.footer .copyright .credits{
+  color: var(--ex-light);
+  font-weight: bold;
+}
+
+.footer .copyright .credits span {
+  color: var(--ex-blue);
+}
+
+.footer .copyright .credits:hover {
+  color: var(--ex-light);
+  font-style: italic;
+  text-decoration: underline;
 }
 
 /*--------------------------------------------------------------

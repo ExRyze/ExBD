@@ -1,5 +1,5 @@
 @extends('templates.index')
-{{-- {{ dd($table[0]->videos->count()) }} --}}
+
 @section('main')
 
   @include('components.pagetitle')
@@ -56,7 +56,6 @@
                     <th scope="col">Video Tracks</th>
                     <th scope="col">Audio Tracks</th>
                     <th scope="col">Size</th>
-                    <th scope="col">Blu-ray</th>
                     <th scope="col">Date Updated</th>
                   </tr>
                 </thead>
@@ -116,7 +115,6 @@
                       <td>{{ $video->video_tracks }}</td>
                       <td>{{ $video->audio_tracks }}</td>
                       <td>{{ $video->size }} MB</td>
-                      <td><em>{{ $video->bd === 0 ? "False" : "True" }}</em></td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($video->updated_at)) }}</td>
                     </tr>
                   @endforeach
