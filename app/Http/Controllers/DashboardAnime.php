@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Anime;
 use App\Http\Requests\Dashboard\Anime\AnimeStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeUpdateRequest;
-use App\Models\Genre;
-use App\Models\Licensor;
-use App\Models\Producer;
-use App\Models\Studio;
-use App\Models\Theme;
+use App\Models\Anime_Genre;
+use App\Models\Anime_Licensor;
+use App\Models\Anime_Producer;
+use App\Models\Anime_Studio;
+use App\Models\Anime_Theme;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -76,11 +76,11 @@ class DashboardAnime extends Controller
                 'page' => $this->getUrl(URL::current()),
                 'data' => $this->data,
                 'anime' => $anime->where('slug', $slug)->first(),
-                'genres' => Genre::orderBy('genre')->get(),
-                'themes' => Theme::orderBy('theme')->get(),
-                'producers' => Producer::orderBy('producer')->get(),
-                'licensors' => Licensor::orderBy('licensor')->get(),
-                'studios' => Studio::orderBy('studio')->get(),
+                'genres' => Anime_Genre::orderBy('genre')->get(),
+                'themes' => Anime_Theme::orderBy('theme')->get(),
+                'producers' => Anime_Producer::orderBy('producer')->get(),
+                'licensors' => Anime_Licensor::orderBy('licensor')->get(),
+                'studios' => Anime_Studio::orderBy('studio')->get(),
                 'relations' => Anime::orderBy('title')->where('slug', '!=', $slug)->select('id', 'title')->get()
             ]);
         }

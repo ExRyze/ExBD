@@ -26,6 +26,6 @@ class Anime_Relation_Genre extends Model
 
     public function genre() : BelongsTo
     {
-        return $this->belongsTo(Genre::class);
+        return $this->belongsTo(Anime_Genre::class);
     }
 }

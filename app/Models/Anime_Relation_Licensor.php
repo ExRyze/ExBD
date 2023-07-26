@@ -26,6 +26,6 @@ class Anime_Relation_Licensor extends Model
 
     public function licensor() : BelongsTo
     {
-        return $this->belongsTo(Licensor::class);
+        return $this->belongsTo(Anime_Licensor::class);
     }
 }

@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Producer extends Model
+class Anime_Studio extends Model
 {
     use HasFactory;
 
-    public $table = "producers";
+    public $table = "anime_studios";
 
     public $timestamps = false;
 
     protected $fillable = [
-        'producer'
+        'studio'
     ];
 }

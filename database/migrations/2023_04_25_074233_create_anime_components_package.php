@@ -20,37 +20,37 @@ return new class extends Migration
         });
         
         // ==================== anime_genres table ====================
-        Schema::create('genres', function (Blueprint $table) {
+        Schema::create('anime_genres', function (Blueprint $table) {
             $table->id();
             $table->string('genre');
         });
         
         // ==================== anime_themes table ====================
-        Schema::create('themes', function (Blueprint $table) {
+        Schema::create('anime_themes', function (Blueprint $table) {
             $table->id();
             $table->string('theme');
         });
         
         // ==================== anime_producers table ====================
-        Schema::create('producers', function (Blueprint $table) {
+        Schema::create('anime_producers', function (Blueprint $table) {
             $table->id();
             $table->string('producer');
         });
         
         // ==================== anime_licensors table ====================
-        Schema::create('licensors', function (Blueprint $table) {
+        Schema::create('anime_licensors', function (Blueprint $table) {
             $table->id();
             $table->string('licensor');
         });
         
         // ==================== anime_studios table ====================
-        Schema::create('studios', function (Blueprint $table) {
+        Schema::create('anime_studios', function (Blueprint $table) {
             $table->id();
             $table->string('studio');
         });
         
         // ==================== anime_mistake table ====================
-        Schema::create('mistakes', function (Blueprint $table) {
+        Schema::create('anime_mistakes', function (Blueprint $table) {
             $table->id();
             $table->string('mistake');
         });
@@ -75,22 +75,22 @@ return new class extends Migration
         Schema::dropIfExists('anime_aliases');
         
         // anime_genres table
-        Schema::dropIfExists('genres');
+        Schema::dropIfExists('anime_genres');
         
         // anime_themes table
-        Schema::dropIfExists('themes');
+        Schema::dropIfExists('anime_themes');
         
         // anime_producers table
-        Schema::dropIfExists('producers');
+        Schema::dropIfExists('anime_producers');
         
         // anime_licensors table
-        Schema::dropIfExists('licensors');
+        Schema::dropIfExists('anime_licensors');
         
         // anime_studios table
-        Schema::dropIfExists('studios');
+        Schema::dropIfExists('anime_studios');
         
         // anime_mistakes table
-        Schema::dropIfExists('mistakes');
+        Schema::dropIfExists('anime_mistakes');
         
         // folder_anime table
         Schema::dropIfExists('folder_animes');

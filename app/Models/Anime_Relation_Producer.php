@@ -26,6 +26,6 @@ class Anime_Relation_Producer extends Model
 
     public function producer() : BelongsTo
     {
-        return $this->belongsTo(Producer::class);
+        return $this->belongsTo(Anime_Producer::class);
     }
 }

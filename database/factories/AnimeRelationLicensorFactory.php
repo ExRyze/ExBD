@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Genre>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Anime_Relation_Licensor>
  */
-class GenreFactory extends Factory
+class AnimeRelationLicensorFactory extends Factory
 {
     /**
      * Define the model's default state.

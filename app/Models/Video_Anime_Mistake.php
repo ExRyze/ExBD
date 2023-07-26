@@ -26,6 +26,6 @@ class Video_Anime_Mistake extends Model
 
     public function mistake() : BelongsTo
     {
-        return $this->belongsTo(Mistake::class);
+        return $this->belongsTo(Anime_Mistake::class);
     }
 }

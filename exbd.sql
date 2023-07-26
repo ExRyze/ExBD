@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 26, 2023 at 12:07 PM
+-- Generation Time: Jul 26, 2023 at 01:21 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -118,6 +118,164 @@ INSERT INTO `anime_aliases` (`id`, `origin`, `alias`, `anime_id`) VALUES
 (39, 'Japanese', 'ONE PIECE', 11),
 (40, 'English', 'One Piece', 11),
 (42, 'Synonyms', 'Sangatsu no Lion', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_genres`
+--
+
+CREATE TABLE `anime_genres` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_genres`
+--
+
+INSERT INTO `anime_genres` (`id`, `genre`) VALUES
+(1, 'Action'),
+(2, 'Comedy'),
+(3, 'Drama'),
+(4, 'Slice of Life'),
+(5, 'Romance'),
+(6, 'Adventure'),
+(7, 'Fantasy'),
+(8, 'Sci-Fi'),
+(9, 'Mystery');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_licensors`
+--
+
+CREATE TABLE `anime_licensors` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `licensor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_licensors`
+--
+
+INSERT INTO `anime_licensors` (`id`, `licensor`) VALUES
+(1, 'Sentai Filmworks'),
+(2, 'Crunchyroll'),
+(3, 'Funimation'),
+(4, 'Aniplex of America'),
+(5, '4Kids Entertainment');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_mistakes`
+--
+
+CREATE TABLE `anime_mistakes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `mistake` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_mistakes`
+--
+
+INSERT INTO `anime_mistakes` (`id`, `mistake`) VALUES
+(2, 'Hardsub'),
+(3, '!Chapter'),
+(4, 'Cutted'),
+(5, 'Watermark (Hardsub)'),
+(6, 'Watermark (Softsub)'),
+(7, 'Edited'),
+(8, 'Broken audio'),
+(9, 'No preview subtitle'),
+(10, 'Broken subtitle'),
+(11, 'No OP subtitle'),
+(12, 'No ED subtitle'),
+(13, 'No recap subtitle'),
+(14, 'No OP tranlation subtitle'),
+(15, 'No ED tranlation subtitle'),
+(16, 'No OP origin subtitle'),
+(17, 'No ED origin subtitle'),
+(18, 'OP hardsub'),
+(19, 'ED hardsub'),
+(20, 'Broken video');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_producers`
+--
+
+CREATE TABLE `anime_producers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `producer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_producers`
+--
+
+INSERT INTO `anime_producers` (`id`, `producer`) VALUES
+(1, 'Aniplex'),
+(2, 'Dentsu'),
+(3, 'NHK'),
+(4, 'Hakusensha'),
+(5, 'Asmik Ace'),
+(6, 'Toy\'s Factory'),
+(7, 'VAP'),
+(8, 'Nippon Television Network'),
+(9, 'DeNA'),
+(10, 'Docomo Anime Store'),
+(11, 'D.N. Dream Partners'),
+(12, 'Pony Canyon'),
+(13, 'Kodansha'),
+(14, 'ZERO-A'),
+(15, 'GYAO!'),
+(16, 'DAX Production'),
+(17, 'BS11'),
+(18, 'Nichion'),
+(19, 'Good Smile Film'),
+(20, 'MAGNET'),
+(21, 'Media Factory'),
+(22, 'AT-X'),
+(23, 'Takeshobo'),
+(24, 'Sony Music Communications'),
+(25, 'Kadokawa Media House'),
+(26, 'Cygames'),
+(27, 'Kanetsu Investment'),
+(28, 'Kadokawa'),
+(29, 'Global Solutions'),
+(30, 'IRMA LA DOUCE'),
+(31, 'Sony Music Solutions'),
+(32, 'Fuji TV'),
+(33, 'TAP'),
+(34, 'Shueisha');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_relations`
+--
+
+CREATE TABLE `anime_relations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `anime_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `relation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `relation_id` bigint(20) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_relations`
+--
+
+INSERT INTO `anime_relations` (`id`, `anime_id`, `relation`, `relation_id`) VALUES
+(2, 6, 'Sequel', 7),
+(3, 5, 'Sequel', 4),
+(5, 8, 'Sequel', 10),
+(6, 10, 'Sequel', 9);
 
 -- --------------------------------------------------------
 
@@ -277,29 +435,6 @@ INSERT INTO `anime_relation_producers` (`anime_id`, `producer_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anime_relations`
---
-
-CREATE TABLE `anime_relations` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `anime_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `relation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `relation_id` bigint(20) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `anime_relations`
---
-
-INSERT INTO `anime_relations` (`id`, `anime_id`, `relation`, `relation_id`) VALUES
-(2, 6, 'Sequel', 7),
-(3, 5, 'Sequel', 4),
-(5, 8, 'Sequel', 10),
-(6, 10, 'Sequel', 9);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `anime_relation_studios`
 --
 
@@ -365,6 +500,53 @@ INSERT INTO `anime_relation_themes` (`anime_id`, `theme_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `anime_studios`
+--
+
+CREATE TABLE `anime_studios` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `studio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_studios`
+--
+
+INSERT INTO `anime_studios` (`id`, `studio`) VALUES
+(1, 'Shaft'),
+(2, 'Hoods Entertainment'),
+(3, 'Tezuka Productions'),
+(4, 'Bibury Animation Studios'),
+(5, 'Kinema Citrus'),
+(6, 'Toei Animation');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_themes`
+--
+
+CREATE TABLE `anime_themes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `theme` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_themes`
+--
+
+INSERT INTO `anime_themes` (`id`, `theme`) VALUES
+(1, 'Childcare'),
+(2, 'Iyashikei'),
+(3, 'Strategy Game'),
+(4, 'School'),
+(5, 'Harem'),
+(6, 'Gore'),
+(7, 'Survival');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `folder_animes`
 --
 
@@ -384,32 +566,6 @@ CREATE TABLE `folder_animes` (
 
 INSERT INTO `folder_animes` (`id`, `slug`, `approved`, `created_at`, `updated_at`, `anime_id`, `user_id`) VALUES
 (4, 'One Piece', 0, '2023-05-20 03:17:49', '2023-05-20 03:17:49', 11, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `genres`
---
-
-CREATE TABLE `genres` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `genres`
---
-
-INSERT INTO `genres` (`id`, `genre`) VALUES
-(1, 'Action'),
-(2, 'Comedy'),
-(3, 'Drama'),
-(4, 'Slice of Life'),
-(5, 'Romance'),
-(6, 'Adventure'),
-(7, 'Fantasy'),
-(8, 'Sci-Fi'),
-(9, 'Mystery');
 
 -- --------------------------------------------------------
 
@@ -570,28 +726,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `licensors`
---
-
-CREATE TABLE `licensors` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `licensor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `licensors`
---
-
-INSERT INTO `licensors` (`id`, `licensor`) VALUES
-(1, 'Sentai Filmworks'),
-(2, 'Crunchyroll'),
-(3, 'Funimation'),
-(4, 'Aniplex of America'),
-(5, '4Kids Entertainment');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -614,42 +748,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2023_04_28_212245_create_anime_relations_mtm_package', 1),
 (9, '2023_05_02_175841_create_video_animes_package', 1),
 (10, '2023_07_15_210135_create_anime_relations_table', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mistakes`
---
-
-CREATE TABLE `mistakes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `mistake` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mistakes`
---
-
-INSERT INTO `mistakes` (`id`, `mistake`) VALUES
-(2, 'Hardsub'),
-(3, '!Chapter'),
-(4, 'Cutted'),
-(5, 'Watermark (Hardsub)'),
-(6, 'Watermark (Softsub)'),
-(7, 'Edited'),
-(8, 'Broken audio'),
-(9, 'No preview subtitle'),
-(10, 'Broken subtitle'),
-(11, 'No OP subtitle'),
-(12, 'No ED subtitle'),
-(13, 'No recap subtitle'),
-(14, 'No OP tranlation subtitle'),
-(15, 'No ED tranlation subtitle'),
-(16, 'No OP origin subtitle'),
-(17, 'No ED origin subtitle'),
-(18, 'OP hardsub'),
-(19, 'ED hardsub'),
-(20, 'Broken video');
 
 -- --------------------------------------------------------
 
@@ -681,104 +779,6 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `producers`
---
-
-CREATE TABLE `producers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `producer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `producers`
---
-
-INSERT INTO `producers` (`id`, `producer`) VALUES
-(1, 'Aniplex'),
-(2, 'Dentsu'),
-(3, 'NHK'),
-(4, 'Hakusensha'),
-(5, 'Asmik Ace'),
-(6, 'Toy\'s Factory'),
-(7, 'VAP'),
-(8, 'Nippon Television Network'),
-(9, 'DeNA'),
-(10, 'Docomo Anime Store'),
-(11, 'D.N. Dream Partners'),
-(12, 'Pony Canyon'),
-(13, 'Kodansha'),
-(14, 'ZERO-A'),
-(15, 'GYAO!'),
-(16, 'DAX Production'),
-(17, 'BS11'),
-(18, 'Nichion'),
-(19, 'Good Smile Film'),
-(20, 'MAGNET'),
-(21, 'Media Factory'),
-(22, 'AT-X'),
-(23, 'Takeshobo'),
-(24, 'Sony Music Communications'),
-(25, 'Kadokawa Media House'),
-(26, 'Cygames'),
-(27, 'Kanetsu Investment'),
-(28, 'Kadokawa'),
-(29, 'Global Solutions'),
-(30, 'IRMA LA DOUCE'),
-(31, 'Sony Music Solutions'),
-(32, 'Fuji TV'),
-(33, 'TAP'),
-(34, 'Shueisha');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `studios`
---
-
-CREATE TABLE `studios` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `studio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `studios`
---
-
-INSERT INTO `studios` (`id`, `studio`) VALUES
-(1, 'Shaft'),
-(2, 'Hoods Entertainment'),
-(3, 'Tezuka Productions'),
-(4, 'Bibury Animation Studios'),
-(5, 'Kinema Citrus'),
-(6, 'Toei Animation');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `themes`
---
-
-CREATE TABLE `themes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `theme` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `themes`
---
-
-INSERT INTO `themes` (`id`, `theme`) VALUES
-(1, 'Childcare'),
-(2, 'Iyashikei'),
-(3, 'Strategy Game'),
-(4, 'School'),
-(5, 'Harem'),
-(6, 'Gore'),
-(7, 'Survival');
 
 -- --------------------------------------------------------
 
@@ -3380,6 +3380,38 @@ ALTER TABLE `anime_aliases`
   ADD KEY `anime_aliases_anime_id_foreign` (`anime_id`);
 
 --
+-- Indexes for table `anime_genres`
+--
+ALTER TABLE `anime_genres`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `anime_licensors`
+--
+ALTER TABLE `anime_licensors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `anime_mistakes`
+--
+ALTER TABLE `anime_mistakes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `anime_producers`
+--
+ALTER TABLE `anime_producers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `anime_relations`
+--
+ALTER TABLE `anime_relations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `anime_relations_anime_id_foreign` (`anime_id`),
+  ADD KEY `anime_relations_relation_id_foreign` (`relation_id`);
+
+--
 -- Indexes for table `anime_relation_genres`
 --
 ALTER TABLE `anime_relation_genres`
@@ -3401,14 +3433,6 @@ ALTER TABLE `anime_relation_producers`
   ADD KEY `anime_relation_producers_producer_id_foreign` (`producer_id`);
 
 --
--- Indexes for table `anime_relations`
---
-ALTER TABLE `anime_relations`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `anime_relations_anime_id_foreign` (`anime_id`),
-  ADD KEY `anime_relations_relation_id_foreign` (`relation_id`);
-
---
 -- Indexes for table `anime_relation_studios`
 --
 ALTER TABLE `anime_relation_studios`
@@ -3423,6 +3447,18 @@ ALTER TABLE `anime_relation_themes`
   ADD KEY `anime_relation_themes_theme_id_foreign` (`theme_id`);
 
 --
+-- Indexes for table `anime_studios`
+--
+ALTER TABLE `anime_studios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `anime_themes`
+--
+ALTER TABLE `anime_themes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `folder_animes`
 --
 ALTER TABLE `folder_animes`
@@ -3430,12 +3466,6 @@ ALTER TABLE `folder_animes`
   ADD UNIQUE KEY `slug` (`slug`),
   ADD KEY `folder_animes_anime_id_foreign` (`anime_id`),
   ADD KEY `folder_animes_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `genres`
---
-ALTER TABLE `genres`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `history_video_animes`
@@ -3458,21 +3488,9 @@ ALTER TABLE `history_video_anime_subtitles`
   ADD KEY `history_video_anime_subtitles_video_anime_id_foreign` (`video_anime_id`);
 
 --
--- Indexes for table `licensors`
---
-ALTER TABLE `licensors`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `mistakes`
---
-ALTER TABLE `mistakes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3488,24 +3506,6 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
-
---
--- Indexes for table `producers`
---
-ALTER TABLE `producers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `studios`
---
-ALTER TABLE `studios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `themes`
---
-ALTER TABLE `themes`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -3553,22 +3553,52 @@ ALTER TABLE `anime_aliases`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
+-- AUTO_INCREMENT for table `anime_genres`
+--
+ALTER TABLE `anime_genres`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `anime_licensors`
+--
+ALTER TABLE `anime_licensors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `anime_mistakes`
+--
+ALTER TABLE `anime_mistakes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `anime_producers`
+--
+ALTER TABLE `anime_producers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
 -- AUTO_INCREMENT for table `anime_relations`
 --
 ALTER TABLE `anime_relations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `anime_studios`
+--
+ALTER TABLE `anime_studios`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `anime_themes`
+--
+ALTER TABLE `anime_themes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `folder_animes`
 --
 ALTER TABLE `folder_animes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `genres`
---
-ALTER TABLE `genres`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `history_video_animes`
@@ -3583,46 +3613,16 @@ ALTER TABLE `history_video_anime_subtitles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `licensors`
---
-ALTER TABLE `licensors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `mistakes`
---
-ALTER TABLE `mistakes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `producers`
---
-ALTER TABLE `producers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `studios`
---
-ALTER TABLE `studios`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `themes`
---
-ALTER TABLE `themes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -3659,27 +3659,6 @@ ALTER TABLE `anime_aliases`
   ADD CONSTRAINT `anime_aliases_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `anime_relation_genres`
---
-ALTER TABLE `anime_relation_genres`
-  ADD CONSTRAINT `anime_relation_genres_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `anime_relation_genres_genre_id_foreign` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `anime_relation_licensors`
---
-ALTER TABLE `anime_relation_licensors`
-  ADD CONSTRAINT `anime_relation_licensors_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `anime_relation_licensors_licensor_id_foreign` FOREIGN KEY (`licensor_id`) REFERENCES `licensors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `anime_relation_producers`
---
-ALTER TABLE `anime_relation_producers`
-  ADD CONSTRAINT `anime_relation_producers_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `anime_relation_producers_producer_id_foreign` FOREIGN KEY (`producer_id`) REFERENCES `producers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `anime_relations`
 --
 ALTER TABLE `anime_relations`
@@ -3687,18 +3666,39 @@ ALTER TABLE `anime_relations`
   ADD CONSTRAINT `anime_relations_relation_id_foreign` FOREIGN KEY (`relation_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `anime_relation_genres`
+--
+ALTER TABLE `anime_relation_genres`
+  ADD CONSTRAINT `anime_relation_genres_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `anime_relation_genres_genre_id_foreign` FOREIGN KEY (`genre_id`) REFERENCES `anime_genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_relation_licensors`
+--
+ALTER TABLE `anime_relation_licensors`
+  ADD CONSTRAINT `anime_relation_licensors_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `anime_relation_licensors_licensor_id_foreign` FOREIGN KEY (`licensor_id`) REFERENCES `anime_licensors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_relation_producers`
+--
+ALTER TABLE `anime_relation_producers`
+  ADD CONSTRAINT `anime_relation_producers_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `anime_relation_producers_producer_id_foreign` FOREIGN KEY (`producer_id`) REFERENCES `anime_producers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `anime_relation_studios`
 --
 ALTER TABLE `anime_relation_studios`
   ADD CONSTRAINT `anime_relation_studios_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `anime_relation_studios_studio_id_foreign` FOREIGN KEY (`studio_id`) REFERENCES `studios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `anime_relation_studios_studio_id_foreign` FOREIGN KEY (`studio_id`) REFERENCES `anime_studios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `anime_relation_themes`
 --
 ALTER TABLE `anime_relation_themes`
   ADD CONSTRAINT `anime_relation_themes_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `anime_relation_themes_theme_id_foreign` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `anime_relation_themes_theme_id_foreign` FOREIGN KEY (`theme_id`) REFERENCES `anime_themes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `folder_animes`
@@ -3711,7 +3711,7 @@ ALTER TABLE `folder_animes`
 -- Constraints for table `history_video_anime_mistakes`
 --
 ALTER TABLE `history_video_anime_mistakes`
-  ADD CONSTRAINT `history_video_anime_mistakes_mistake_id_foreign` FOREIGN KEY (`mistake_id`) REFERENCES `mistakes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `history_video_anime_mistakes_mistake_id_foreign` FOREIGN KEY (`mistake_id`) REFERENCES `anime_mistakes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `history_video_anime_mistakes_video_anime_id_foreign` FOREIGN KEY (`video_anime_id`) REFERENCES `history_video_animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -3730,7 +3730,7 @@ ALTER TABLE `video_animes`
 -- Constraints for table `video_anime_mistakes`
 --
 ALTER TABLE `video_anime_mistakes`
-  ADD CONSTRAINT `video_anime_mistakes_mistake_id_foreign` FOREIGN KEY (`mistake_id`) REFERENCES `mistakes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `video_anime_mistakes_mistake_id_foreign` FOREIGN KEY (`mistake_id`) REFERENCES `anime_mistakes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `video_anime_mistakes_video_anime_id_foreign` FOREIGN KEY (`video_anime_id`) REFERENCES `video_animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

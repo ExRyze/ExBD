@@ -10,7 +10,7 @@ use App\Http\Requests\Dashboard\Video\VideoAnimeUpdateRequest;
 use App\Models\Anime;
 use App\Models\Folder_Anime;
 use App\Models\History_Video_Anime;
-use App\Models\Mistake;
+use App\Models\Anime_Mistake;
 use App\Models\Video_Anime;
 use App\Models\Video_Anime_Mistake;
 use Illuminate\Contracts\View\View;
@@ -148,7 +148,7 @@ class DashboardAnimeVideo extends Controller
             if ($request->chapters != 'True') {
                 Video_Anime_Mistake::create([
                     'video_anime_id' => Video_Anime::orderBy('id', 'DESC')->first('id')->id, 
-                    'mistake_id' => Mistake::where('mistake', '!Chapter')->first('id')->id
+                    'mistake_id' => Anime_Mistake::where('mistake', '!Chapter')->first('id')->id
                 ]);
             }
     
@@ -184,7 +184,7 @@ class DashboardAnimeVideo extends Controller
 
         return view('dashboard.video.edit', [
             'page' => $this->getUrl(URL::current()),
-            'mistakes' => Mistake::orderBy('mistake')->get(),
+            'mistakes' => Anime_Mistake::orderBy('mistake')->get(),
             'table' => Anime::where('slug', $slug)->first(),
             'anime' => $anime,
             'video' => $video,
@@ -203,18 +203,18 @@ class DashboardAnimeVideo extends Controller
 
         $mistake = Video_Anime_Mistake::where([
             ['video_anime_id', $request->id], 
-            ['mistake_id', Mistake::where('mistake', '!Chapter')->first('id')->id]
+            ['mistake_id', Anime_Mistake::where('mistake', '!Chapter')->first('id')->id]
         ])->first();
 
         if ($request->chapters != 'True' && !$mistake) {
             Video_Anime_Mistake::create([
                 'video_anime_id' => $request->id, 
-                'mistake_id' => Mistake::where('mistake', '!Chapter')->first('id')->id
+                'mistake_id' => Anime_Mistake::where('mistake', '!Chapter')->first('id')->id
             ]);
         } else if ($request->chapters === 'True') {
             Video_Anime_Mistake::where([
                 ['video_anime_id', $request->id], 
-                ['mistake_id', Mistake::where('mistake', '!Chapter')->first('id')->id]
+                ['mistake_id', Anime_Mistake::where('mistake', '!Chapter')->first('id')->id]
             ])->delete();
         }
 

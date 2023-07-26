@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Theme extends Model
+class Anime_Theme extends Model
 {
     use HasFactory;
 
-    public $table = "themes";
+    public $table = "anime_themes";
 
     public $timestamps = false;
 

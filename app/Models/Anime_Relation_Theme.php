@@ -26,6 +26,6 @@ class Anime_Relation_Theme extends Model
 
     public function theme() : BelongsTo
     {
-        return $this->belongsTo(Theme::class);
+        return $this->belongsTo(Anime_Theme::class);
     }
 }

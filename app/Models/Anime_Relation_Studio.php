@@ -26,6 +26,6 @@ class Anime_Relation_Studio extends Model
 
     public function studio() : BelongsTo
     {
-        return $this->belongsTo(Studio::class);
+        return $this->belongsTo(Anime_Studio::class);
     }
 }

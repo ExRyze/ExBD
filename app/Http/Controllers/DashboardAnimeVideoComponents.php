@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Dashboard\Video\VideoMistakeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoSubtitleStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoSubtitleUpdateRequest;
-use App\Models\Mistake;
+use App\Models\Anime_Mistake;
 use App\Models\Video_Anime;
 use App\Models\Video_Anime_Mistake;
 use App\Models\Video_Anime_Subtitle;
@@ -29,13 +29,13 @@ class DashboardAnimeVideoComponents extends Controller
 
         $mistake = Video_Anime_Mistake::where([
             ['video_anime_id', $request->video_anime_id], 
-            ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+            ['mistake_id', Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id]
         ])->first();
 
         if ($request->subtitle === 'Null' && !$mistake) {
             Video_Anime_Mistake::create([
                 'video_anime_id' => $request->video_anime_id, 
-                'mistake_id' => Mistake::where('mistake', 'Hardsub')->first('id')->id
+                'mistake_id' => Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id
             ]);
         }
 
@@ -75,19 +75,19 @@ class DashboardAnimeVideoComponents extends Controller
             // Check Mistake if 'Hardsub'
             $mistake = Video_Anime_Mistake::where([
                 ['video_anime_id', $request->video_anime_id], 
-                ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+                ['mistake_id', Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id]
             ])->first();
     
             // Toggle Mistake
             if ($request->subtitle === 'Null' && !$mistake) {
                 Video_Anime_Mistake::create([
                     'video_anime_id' => $request->video_anime_id, 
-                    'mistake_id' => Mistake::where('mistake', 'Hardsub')->first('id')->id
+                    'mistake_id' => Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id
                 ]);
             } else if ($request->subtitle != 'Null' && !$subtitle && $mistake) {
                 Video_Anime_Mistake::where([
                     ['video_anime_id', $request->video_anime_id], 
-                    ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+                    ['mistake_id', Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id]
                 ])->delete();
             }
 
@@ -111,7 +111,7 @@ class DashboardAnimeVideoComponents extends Controller
         if ($request->subtitle === 'Null') {
             Video_Anime_Mistake::where([
                 ['video_anime_id', $request->video_anime_id], 
-                ['mistake_id', Mistake::where('mistake', 'Hardsub')->first('id')->id]
+                ['mistake_id', Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id]
             ])->delete();
         }
     }
