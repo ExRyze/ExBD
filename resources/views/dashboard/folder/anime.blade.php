@@ -79,7 +79,7 @@
                       </th>
                       <td>{{ $folder->slug }}</td>
                       <td>{{ $folder->videos->sum('size') }} MB</td>
-                      <td>{{ $folder->videos->count() }} eps.</td>
+                      <td>{{ $folder->videos->count() }} videos</td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($folder->created_at)) }}</td>
                       <td>{{ $folder->user->username }}</td>
                     </tr>

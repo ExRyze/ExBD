@@ -152,7 +152,7 @@ class DashboardAnimeVideo extends Controller
                 ]);
             }
     
-            return redirect('/dashboard/anime/video/'.$slug)->with('success', 'New Video Anime Added');
+            return redirect('/dashboard/anime/video/'.$slug.'/create')->with('success', 'New Video Anime Added');
         } else if ($history && !$video) {
             return back()->with('danger', "Video data already exists in History");
         } else {
@@ -218,7 +218,11 @@ class DashboardAnimeVideo extends Controller
             ])->delete();
         }
 
+        $anime = Anime::where('slug', $slug)->first();
+
         $title = str_replace(' ', '_', strtolower($slug." Ep ".(strlen($request->episode) === 1 ? "0".$request->episode : $request->episode)." - ".$request->origin." ".(explode('x', $request->resolution)[1])."p.".$request->type));
+
+        $title = str_replace(' ', '_', strtolower($slug." Ep ".(strlen($request->episode) === 1 ? "0".$request->episode : $request->episode)." - ".$request->origin." ".($anime->type === "TV" ? ($request->bd === 0 ? "TV" : "BD") : $anime->type." ".($request->bd === 0 ? "TV" : "BD"))." ".(explode('x', $request->resolution)[1])."p.".$request->type));
 
         return redirect("/dashboard/anime/video/$slug/edit/$title")->with('success', 'Video Anime Updated Successfully');
     }

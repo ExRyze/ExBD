@@ -11,7 +11,7 @@ switch (true) {
     break;
 
   // Home/Anime
-  case url === "home/anime":
+  case url.includes("home/anime"):
     document.querySelector('.nav-link#Anime').classList.remove('collapsed');
     break;
 
