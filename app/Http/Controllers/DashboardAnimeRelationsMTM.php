@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Dashboard\Anime\AnimeGenreStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeLicensorStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeProducerStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeRelationGenreStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeRelationLicensorStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeRelationProducerStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeRelationStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeRelationUpdateRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeStudioStoreRequest;
-use App\Http\Requests\Dashboard\Anime\AnimeThemeStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeRelationStudioStoreRequest;
+use App\Http\Requests\Dashboard\Anime\AnimeRelationThemeStoreRequest;
 use App\Models\Anime;
 use App\Models\Anime_Relation;
 use App\Models\Anime_Relation_Genre;
@@ -29,7 +29,7 @@ class DashboardAnimeRelationsMTM extends Controller
     /**
      * Store Anime Component
      */
-    public function storeProducer(AnimeProducerStoreRequest $request) : RedirectResponse
+    public function storeProducer(AnimeRelationProducerStoreRequest $request) : RedirectResponse
     {
         Anime_Relation_Producer::where('anime_id', $request->anime_id)->delete();
 
@@ -45,7 +45,7 @@ class DashboardAnimeRelationsMTM extends Controller
         return back()->with('warning', "No Any Producer Selected");
     }
     
-    public function storeLicensor(AnimeLicensorStoreRequest $request) : RedirectResponse
+    public function storeLicensor(AnimeRelationLicensorStoreRequest $request) : RedirectResponse
     {
         Anime_Relation_Licensor::where('anime_id', $request->anime_id)->delete();
 
@@ -61,7 +61,7 @@ class DashboardAnimeRelationsMTM extends Controller
         return back()->with('warning', "No Any Licensor Selected");
     }
     
-    public function storeStudio(AnimeStudioStoreRequest $request) : RedirectResponse
+    public function storeStudio(AnimeRelationStudioStoreRequest $request) : RedirectResponse
     {
         Anime_Relation_Studio::where('anime_id', $request->anime_id)->delete();
 
@@ -77,7 +77,7 @@ class DashboardAnimeRelationsMTM extends Controller
         return back()->with('warning', "No Any Studio Selected");
     }
 
-    public function storeGenre(AnimeGenreStoreRequest $request) : RedirectResponse
+    public function storeGenre(AnimeRelationGenreStoreRequest $request) : RedirectResponse
     {
         Anime_Relation_Genre::where('anime_id', $request->anime_id)->delete();
 
@@ -93,7 +93,7 @@ class DashboardAnimeRelationsMTM extends Controller
         return back()->with('warning', "No Any Genre Selected");
     }
     
-    public function storeTheme(AnimeThemeStoreRequest $request) : RedirectResponse
+    public function storeTheme(AnimeRelationThemeStoreRequest $request) : RedirectResponse
     {
         Anime_Relation_Theme::where('anime_id', $request->anime_id)->delete();
 

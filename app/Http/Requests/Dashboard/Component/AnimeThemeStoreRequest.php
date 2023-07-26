@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Anime;
+namespace App\Http\Requests\Dashboard\Component;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class AnimeStudioStoreRequest extends FormRequest
+class AnimeThemeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class AnimeStudioStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'anime_id' => 'required',
+            'theme' => 'required|unique:anime_themes|max:255'
         ];
     }
 }

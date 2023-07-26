@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Anime;
+namespace App\Http\Requests\Dashboard\Component;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -26,7 +26,7 @@ class AnimeProducerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'anime_id' => 'required',
+            'producer' => 'required|unique:anime_producers|max:255'
         ];
     }
 }

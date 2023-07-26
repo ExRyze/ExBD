@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Dashboard\Anime\AnimeAliasStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeAliasUpdateRequest;
-use App\Http\Requests\Dashboard\Component\GenreStoreRequest;
-use App\Http\Requests\Dashboard\Component\LicensorStoreRequest;
-use App\Http\Requests\Dashboard\Component\MistakeStoreRequest;
-use App\Http\Requests\Dashboard\Component\ProducerStoreRequest;
-use App\Http\Requests\Dashboard\Component\StudioStoreRequest;
-use App\Http\Requests\Dashboard\Component\ThemeStoreRequest;
+use App\Http\Requests\Dashboard\Component\AnimeGenreStoreRequest;
+use App\Http\Requests\Dashboard\Component\AnimeLicensorStoreRequest;
+use App\Http\Requests\Dashboard\Component\AnimeMistakeStoreRequest;
+use App\Http\Requests\Dashboard\Component\AnimeProducerStoreRequest;
+use App\Http\Requests\Dashboard\Component\AnimeStudioStoreRequest;
+use App\Http\Requests\Dashboard\Component\AnimeThemeStoreRequest;
 use App\Models\Anime;
 use App\Models\Anime_Alias;
 use App\Models\Anime_Genre;
@@ -46,7 +46,7 @@ class DashboardAnimeComponents extends Controller
         return back()->with('success', "New Data Anime Alias Added");
     }
     
-    public function storeProducer(ProducerStoreRequest $request) : RedirectResponse
+    public function storeProducer(AnimeProducerStoreRequest $request) : RedirectResponse
     {
         Anime_Producer::create($request->validated());
 
@@ -58,7 +58,7 @@ class DashboardAnimeComponents extends Controller
         return back()->with('success', 'New Data Producer Added');
     }
 
-    public function storeLicensor(LicensorStoreRequest $request) : RedirectResponse
+    public function storeLicensor(AnimeLicensorStoreRequest $request) : RedirectResponse
     {
         Anime_Licensor::create($request->validated());
 
@@ -71,7 +71,7 @@ class DashboardAnimeComponents extends Controller
     }
 
     
-    public function storeStudio(StudioStoreRequest $request) : RedirectResponse
+    public function storeStudio(AnimeStudioStoreRequest $request) : RedirectResponse
     {
         Anime_Studio::create($request->validated());
 
@@ -83,7 +83,7 @@ class DashboardAnimeComponents extends Controller
         return back()->with('success', 'New Data Studio Added');
     }
     
-    public function storeGenre(GenreStoreRequest $request) : RedirectResponse
+    public function storeGenre(AnimeGenreStoreRequest $request) : RedirectResponse
     {
         Anime_Genre::create($request->validated());
 
@@ -95,7 +95,7 @@ class DashboardAnimeComponents extends Controller
         return back()->with('success', 'New Data Genre Added');
     }
     
-    public function storeTheme(ThemeStoreRequest $request)
+    public function storeTheme(AnimeThemeStoreRequest $request)
     {
         Anime_Theme::create($request->validated());
 
@@ -107,7 +107,7 @@ class DashboardAnimeComponents extends Controller
         return back()->with('success', 'New Data Theme Added');
     }
     
-    public function storeMistake(MistakeStoreRequest $request)
+    public function storeMistake(AnimeMistakeStoreRequest $request)
     {
         Anime_Mistake::create($request->validated());
 

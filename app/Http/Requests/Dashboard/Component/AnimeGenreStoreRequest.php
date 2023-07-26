@@ -5,7 +5,7 @@ namespace App\Http\Requests\Dashboard\Component;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class ProducerStoreRequest extends FormRequest
+class AnimeGenreStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class ProducerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'producer' => 'required|unique:producers|max:255'
+            'genre' => 'required|unique:anime_genres|max:255'
         ];
     }
 }

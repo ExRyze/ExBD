@@ -302,7 +302,7 @@
               </form>
               <hr>
 
-              <form class="row g-3 form-mistakes" method="POST" action="/dashboard/mistake/store">
+              <form class="row g-3 form-mistakes" method="POST" action="/dashboard/animemistake/store">
                 @csrf
                 <input type="hidden" name="video_anime_id" value="{{ $video->id }}">
                 <div class="col-md-12">

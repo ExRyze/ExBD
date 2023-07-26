@@ -5,15 +5,16 @@ namespace App\Http\Requests\Dashboard\Component;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class MistakeStoreRequest extends FormRequest
+class AnimeLicensorStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // Allow :: Admin
+        // Allow :: Admin && Staff
         if (Gate::allows('isAdmin')) {return true;}
+        elseif (Gate::allows('isStaff')) {return true;}
         else {return false;}
     }
 
@@ -25,7 +26,7 @@ class MistakeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mistake' => 'required|unique:mistakes|max:255'
+            'licensor' => 'required|unique:anime_licensors|max:255'
         ];
     }
 }

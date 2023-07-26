@@ -222,7 +222,7 @@
             </h4>
             <hr class="mt-0">
             <div id="genres-form" class="collapse" data-bs-parent="#edit-form">
-              <form class="row g-3 form-genres" method="POST" action="/dashboard/animegenre/store">
+              <form class="row g-3 form-genres" method="POST" action="/dashboard/animerelationgenre/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 @foreach ($genres as $genre)
@@ -248,7 +248,7 @@
               </form>
               <hr>
 
-              <form class="row g-3 form-genres" method="POST" action="/dashboard/genre/store">
+              <form class="row g-3 form-genres" method="POST" action="/dashboard/animegenre/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
@@ -273,7 +273,7 @@
             </h4>
             <hr class="mt-0">
             <div id="themes-form" class="collapse" data-bs-parent="#edit-form">
-              <form class="row g-3 form-themes" method="POST" action="/dashboard/animetheme/store">
+              <form class="row g-3 form-themes" method="POST" action="/dashboard/animerelationtheme/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 @foreach ($themes as $theme)
@@ -299,7 +299,7 @@
               </form>
               <hr>
 
-              <form class="row g-3 form-themes" method="POST" action="/dashboard/theme/store">
+              <form class="row g-3 form-themes" method="POST" action="/dashboard/animetheme/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
@@ -324,7 +324,7 @@
             </h4>
             <hr class="mt-0">
             <div id="producers-form" class="collapse" data-bs-parent="#edit-form">
-              <form class="row g-3 form-producers" method="POST" action="/dashboard/animeproducer/store">
+              <form class="row g-3 form-producers" method="POST" action="/dashboard/animerelationproducer/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 @foreach ($producers as $producer)
@@ -350,7 +350,7 @@
               </form>
               <hr>
 
-              <form class="row g-3 form-producers" method="POST" action="/dashboard/producer/store">
+              <form class="row g-3 form-producers" method="POST" action="/dashboard/animeproducer/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
@@ -375,7 +375,7 @@
             </h4>
             <hr class="mt-0">
             <div id="licensors-form" class="collapse" data-bs-parent="#edit-form">
-              <form class="row g-3 form-licensors" method="POST" action="/dashboard/animelicensor/store">
+              <form class="row g-3 form-licensors" method="POST" action="/dashboard/animerelationlicensor/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 @foreach ($licensors as $licensor)
@@ -401,7 +401,7 @@
               </form>
               <hr>
 
-              <form class="row g-3 form-licensors" method="POST" action="/dashboard/licensor/store">
+              <form class="row g-3 form-licensors" method="POST" action="/dashboard/animelicensor/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">
@@ -426,7 +426,7 @@
             </h4>
             <hr class="mt-0">
             <div id="studios-form" class="collapse" data-bs-parent="#edit-form">
-              <form class="row g-3 form-studios" method="POST" action="/dashboard/animestudio/store">
+              <form class="row g-3 form-studios" method="POST" action="/dashboard/animerelationstudio/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 @foreach ($studios as $studio)
@@ -452,7 +452,7 @@
               </form>
               <hr>
 
-              <form class="row g-3 form-studios" method="POST" action="/dashboard/studio/store">
+              <form class="row g-3 form-studios" method="POST" action="/dashboard/animestudio/store">
                 @csrf
                 <input type="hidden" name="anime_id" value="{{ $anime->id }}">
                 <div class="col-md-12">

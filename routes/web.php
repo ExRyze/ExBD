@@ -79,23 +79,23 @@ Route::get('/dashboard/anime/edit', function() {return back();});
 Route::controller(DashboardAnimeComponents::class)->group(function() {
     Route::post('/dashboard/animealias/store', 'storeAlias');
     Route::post('/dashboard/animealias/update', 'updateAlias');
-    Route::post('/dashboard/producer/store', 'storeProducer');
-    Route::post('/dashboard/licensor/store', 'storeLicensor');
-    Route::post('/dashboard/studio/store', 'storeStudio');
-    Route::post('/dashboard/genre/store', 'storeGenre');
-    Route::post('/dashboard/theme/store', 'storeTheme');
-    Route::post('/dashboard/mistake/store', 'storeMistake');
+    Route::post('/dashboard/animegenre/store', 'storeGenre');
+    Route::post('/dashboard/animelicensor/store', 'storeLicensor');
+    Route::post('/dashboard/animemistake/store', 'storeMistake');
+    Route::post('/dashboard/animeproducer/store', 'storeProducer');
+    Route::post('/dashboard/animestudio/store', 'storeStudio');
+    Route::post('/dashboard/animetheme/store', 'storeTheme');
 });
     // Dashboard/{Component}
      
 Route::controller(DashboardAnimeRelationsMTM::class)->group(function() {
-    Route::post('/dashboard/animeproducer/store', 'storeProducer');
-    Route::post('/dashboard/animelicensor/store', 'storeLicensor');
-    Route::post('/dashboard/animestudio/store', 'storeStudio');
-    Route::post('/dashboard/animegenre/store', 'storeGenre');
-    Route::post('/dashboard/animetheme/store', 'storeTheme');
     Route::post('/dashboard/animerelation/store', 'storeRelation');
     Route::post('/dashboard/animerelation/update', 'updateRelation');
+    Route::post('/dashboard/animerelationgenre/store', 'storeGenre');
+    Route::post('/dashboard/animerelationlicensor/store', 'storeLicensor');
+    Route::post('/dashboard/animerelationproducer/store', 'storeProducer');
+    Route::post('/dashboard/animerelationstudio/store', 'storeStudio');
+    Route::post('/dashboard/animerelationtheme/store', 'storeTheme');
 });
     // Dashboard/{AnimeComponent}
 
