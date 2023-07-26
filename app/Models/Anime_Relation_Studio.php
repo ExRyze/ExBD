@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Anime_Licensor extends Model
+class Anime_Relation_Studio extends Model
 {
     use HasFactory;
 
-    public $table = "anime_licensors";
+    public $table = "anime_relation_studios";
 
     public $timestamps = false;
 
     protected $fillable = [
         'anime_id',
-        'licensor_id'
+        'studio_id'
     ];
 
     public function anime() : BelongsTo
@@ -24,8 +24,8 @@ class Anime_Licensor extends Model
         return $this->belongsTo(Anime::class);
     }
 
-    public function licensor() : BelongsTo
+    public function studio() : BelongsTo
     {
-        return $this->belongsTo(Licensor::class);
+        return $this->belongsTo(Studio::class);
     }
 }

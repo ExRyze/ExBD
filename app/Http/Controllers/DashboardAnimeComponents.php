@@ -12,11 +12,11 @@ use App\Http\Requests\Dashboard\Component\StudioStoreRequest;
 use App\Http\Requests\Dashboard\Component\ThemeStoreRequest;
 use App\Models\Anime;
 use App\Models\Anime_Alias;
-use App\Models\Anime_Genre;
-use App\Models\Anime_Licensor;
-use App\Models\Anime_Producer;
-use App\Models\Anime_Studio;
-use App\Models\Anime_Theme;
+use App\Models\Anime_Relation_Genre;
+use App\Models\Anime_Relation_Licensor;
+use App\Models\Anime_Relation_Producer;
+use App\Models\Anime_Relation_Studio;
+use App\Models\Anime_Relation_Theme;
 use App\Models\Genre;
 use App\Models\Licensor;
 use App\Models\Mistake;
@@ -51,7 +51,7 @@ class DashboardAnimeComponents extends Controller
         Producer::create($request->validated());
 
         if (isset($request->anime_id)) {
-            Anime_Producer::create(['anime_id' => $request->anime_id, 'producer_id' => Producer::where('producer', $request->producer)->first()->id]);
+            Anime_Relation_Producer::create(['anime_id' => $request->anime_id, 'producer_id' => Producer::where('producer', $request->producer)->first()->id]);
             Anime::find($request->anime_id)->touch();
         }
 
@@ -63,7 +63,7 @@ class DashboardAnimeComponents extends Controller
         Licensor::create($request->validated());
 
         if (isset($request->anime_id)) {
-            Anime_Licensor::create(['anime_id' => $request->anime_id, 'licensor_id' => Licensor::where('licensor', $request->licensor)->first()->id]);
+            Anime_Relation_Licensor::create(['anime_id' => $request->anime_id, 'licensor_id' => Licensor::where('licensor', $request->licensor)->first()->id]);
             Anime::find($request->anime_id)->touch();
         }
 
@@ -76,7 +76,7 @@ class DashboardAnimeComponents extends Controller
         Studio::create($request->validated());
 
         if (isset($request->anime_id)) {
-            Anime_Studio::create(['anime_id' => $request->anime_id, 'studio_id' => Studio::where('studio', $request->studio)->first()->id]);
+            Anime_Relation_Studio::create(['anime_id' => $request->anime_id, 'studio_id' => Studio::where('studio', $request->studio)->first()->id]);
             Anime::find($request->anime_id)->touch();
         }
 
@@ -88,7 +88,7 @@ class DashboardAnimeComponents extends Controller
         Genre::create($request->validated());
 
         if (isset($request->anime_id)) {
-            Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => Genre::where('genre', $request->genre)->first()->id]);
+            Anime_Relation_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => Genre::where('genre', $request->genre)->first()->id]);
             Anime::find($request->anime_id)->touch();
         }
 
@@ -100,7 +100,7 @@ class DashboardAnimeComponents extends Controller
         Theme::create($request->validated());
 
         if (isset($request->anime_id)) {
-            Anime_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => Theme::where('theme', $request->theme)->first()->id]);
+            Anime_Relation_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => Theme::where('theme', $request->theme)->first()->id]);
             Anime::find($request->anime_id)->touch();
         }
 

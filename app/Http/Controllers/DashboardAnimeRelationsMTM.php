@@ -10,12 +10,12 @@ use App\Http\Requests\Dashboard\Anime\AnimeRelationUpdateRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeStudioStoreRequest;
 use App\Http\Requests\Dashboard\Anime\AnimeThemeStoreRequest;
 use App\Models\Anime;
-use App\Models\Anime_Genre;
-use App\Models\Anime_Licensor;
-use App\Models\Anime_Producer;
 use App\Models\Anime_Relation;
-use App\Models\Anime_Studio;
-use App\Models\Anime_Theme;
+use App\Models\Anime_Relation_Genre;
+use App\Models\Anime_Relation_Licensor;
+use App\Models\Anime_Relation_Producer;
+use App\Models\Anime_Relation_Studio;
+use App\Models\Anime_Relation_Theme;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardAnimeRelationsMTM extends Controller
@@ -31,12 +31,12 @@ class DashboardAnimeRelationsMTM extends Controller
      */
     public function storeProducer(AnimeProducerStoreRequest $request) : RedirectResponse
     {
-        Anime_Producer::where('anime_id', $request->anime_id)->delete();
+        Anime_Relation_Producer::where('anime_id', $request->anime_id)->delete();
 
         if (isset($request->producer_id)) {
             $producers = $request->producer_id;
             foreach ($producers as $producer_id) {
-                Anime_Producer::create(['anime_id' => $request->anime_id, 'producer_id' => $producer_id]);
+                Anime_Relation_Producer::create(['anime_id' => $request->anime_id, 'producer_id' => $producer_id]);
             }
             Anime::find($request->anime_id)->touch();
             return back()->with('success', "New Data Anime Producer Added");
@@ -47,12 +47,12 @@ class DashboardAnimeRelationsMTM extends Controller
     
     public function storeLicensor(AnimeLicensorStoreRequest $request) : RedirectResponse
     {
-        Anime_Licensor::where('anime_id', $request->anime_id)->delete();
+        Anime_Relation_Licensor::where('anime_id', $request->anime_id)->delete();
 
         if (isset($request->licensor_id)) {
             $licensors = $request->licensor_id;
             foreach ($licensors as $licensor_id) {
-                Anime_Licensor::create(['anime_id' => $request->anime_id, 'licensor_id' => $licensor_id]);
+                Anime_Relation_Licensor::create(['anime_id' => $request->anime_id, 'licensor_id' => $licensor_id]);
             }
             Anime::find($request->anime_id)->touch();
             return back()->with('success', "New Data Anime Licensor Added");
@@ -63,12 +63,12 @@ class DashboardAnimeRelationsMTM extends Controller
     
     public function storeStudio(AnimeStudioStoreRequest $request) : RedirectResponse
     {
-        Anime_Studio::where('anime_id', $request->anime_id)->delete();
+        Anime_Relation_Studio::where('anime_id', $request->anime_id)->delete();
 
         if (isset($request->studio_id)) {
             $studios = $request->studio_id;
             foreach ($studios as $studio_id) {
-                Anime_Studio::create(['anime_id' => $request->anime_id, 'studio_id' => $studio_id]);
+                Anime_Relation_Studio::create(['anime_id' => $request->anime_id, 'studio_id' => $studio_id]);
             }
             Anime::find($request->anime_id)->touch();
             return back()->with('success', "New Data Anime Studio Added");
@@ -79,12 +79,12 @@ class DashboardAnimeRelationsMTM extends Controller
 
     public function storeGenre(AnimeGenreStoreRequest $request) : RedirectResponse
     {
-        Anime_Genre::where('anime_id', $request->anime_id)->delete();
+        Anime_Relation_Genre::where('anime_id', $request->anime_id)->delete();
 
         if (isset($request->genre_id)) {
             $genres = $request->genre_id;
             foreach ($genres as $genre_id) {
-                Anime_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => $genre_id]);
+                Anime_Relation_Genre::create(['anime_id' => $request->anime_id, 'genre_id' => $genre_id]);
             }
             Anime::find($request->anime_id)->touch();
             return back()->with('success', "New Data Anime Genre Added");
@@ -95,12 +95,12 @@ class DashboardAnimeRelationsMTM extends Controller
     
     public function storeTheme(AnimeThemeStoreRequest $request) : RedirectResponse
     {
-        Anime_Theme::where('anime_id', $request->anime_id)->delete();
+        Anime_Relation_Theme::where('anime_id', $request->anime_id)->delete();
 
         if (isset($request->theme_id)) {
             $themes = $request->theme_id;
             foreach ($themes as $theme_id) {
-                Anime_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => $theme_id]);
+                Anime_Relation_Theme::create(['anime_id' => $request->anime_id, 'theme_id' => $theme_id]);
             }
             Anime::find($request->anime_id)->touch();
             return back()->with('success', "New Data Anime Theme Added");

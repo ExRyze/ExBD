@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Anime_Genre extends Model
+class Anime_Relation_Genre extends Model
 {
     use HasFactory;
 
-    public $table = "anime_genres";
+    public $table = "anime_relation_genres";
 
     public $timestamps = false;
 

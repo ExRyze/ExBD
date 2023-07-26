@@ -12,31 +12,31 @@ return new class extends Migration
     public function up(): void
     {
         // ==================== anime_relation_genres table ====================
-        Schema::create('anime_genres', function (Blueprint $table) {
+        Schema::create('anime_relation_genres', function (Blueprint $table) {
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('genre_id')->nullable()->constrained("genres")->cascadeOnUpdate()->cascadeOnDelete();
         });
         
         // ==================== anime_relation_themes table ====================
-        Schema::create('anime_themes', function (Blueprint $table) {
+        Schema::create('anime_relation_themes', function (Blueprint $table) {
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('theme_id')->nullable()->constrained("themes")->cascadeOnUpdate()->cascadeOnDelete();
         });
         
         // ==================== anime_relation_producers table ====================
-        Schema::create('anime_producers', function (Blueprint $table) {
+        Schema::create('anime_relation_producers', function (Blueprint $table) {
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('producer_id')->nullable()->constrained("producers")->cascadeOnUpdate()->cascadeOnDelete();
         });
         
         // ==================== anime_relation_licensors table ====================
-        Schema::create('anime_licensors', function (Blueprint $table) {
+        Schema::create('anime_relation_licensors', function (Blueprint $table) {
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('licensor_id')->nullable()->constrained("licensors")->cascadeOnUpdate()->cascadeOnDelete();
         });
         
         // ==================== anime_relation_studios table ====================
-        Schema::create('anime_studios', function (Blueprint $table) {
+        Schema::create('anime_relation_studios', function (Blueprint $table) {
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('studio_id')->nullable()->constrained("studios")->cascadeOnUpdate()->cascadeOnDelete();
         });
@@ -48,18 +48,18 @@ return new class extends Migration
     public function down(): void
     {
         // anime_relation_genres table
-        Schema::dropIfExists('anime_genres');
+        Schema::dropIfExists('anime_relation_genres');
         
         // anime_relation_themes table
-        Schema::dropIfExists('anime_themes');
+        Schema::dropIfExists('anime_relation_themes');
         
         // anime_relation_producers table
-        Schema::dropIfExists('anime_producers');
+        Schema::dropIfExists('anime_relation_producers');
         
         // anime_relation_licensors table
-        Schema::dropIfExists('anime_licensors');
+        Schema::dropIfExists('anime_relation_licensors');
         
         // anime_relation_studio table
-        Schema::dropIfExists('anime_studios');
+        Schema::dropIfExists('anime_relation_studios');
     }
 };

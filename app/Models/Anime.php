@@ -42,27 +42,27 @@ class Anime extends Model
 
     public function genres() : HasMany
     {
-        return $this->hasMany(Anime_Genre::class);
+        return $this->hasMany(Anime_Relation_Genre::class);
     }
 
     public function themes() : HasMany
     {
-        return $this->hasMany(Anime_Theme::class);
+        return $this->hasMany(Anime_Relation_Theme::class);
     }
 
     public function producers() : HasMany
     {
-        return $this->hasMany(Anime_Producer::class);
+        return $this->hasMany(Anime_Relation_Producer::class);
     }
 
     public function licensors() : HasMany
     {
-        return $this->hasMany(Anime_Licensor::class);
+        return $this->hasMany(Anime_Relation_Licensor::class);
     }
 
     public function studios() : HasMany
     {
-        return $this->hasMany(Anime_Studio::class);
+        return $this->hasMany(Anime_Relation_Studio::class);
     }
 
     // Relations
