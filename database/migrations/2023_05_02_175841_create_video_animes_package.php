@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // ==================== history_video_animes table ====================
-        Schema::create('history_video_animes', function (Blueprint $table) {
+        // ==================== anime_history_videos table ====================
+        Schema::create('anime_history_videos', function (Blueprint $table) {
             $table->id();
             $table->string('lenght_video', 10);
             $table->string('resolution', 11);
@@ -30,11 +30,11 @@ return new class extends Migration
             $table->string('slug');
         });
 
-        DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video AFTER UPDATE ON `history_video_animes` FOR EACH ROW
+        DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video AFTER UPDATE ON `anime_history_videos` FOR EACH ROW
         BEGIN
           INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES (NEW.id, NEW.lenght_video, NEW.resolution, NEW.size, NEW.video_tracks, NEW.audio_tracks, NEW.chapters, NEW.episode, NEW.origin, NEW.type, NEW.bd, NEW.approved, NEW.created_at, NEW.updated_at, (SELECT `id` FROM `anime_folders` WHERE NEW.slug = `anime_folders`.`slug`));
-          UPDATE `history_video_anime_mistakes` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
-          UPDATE `history_video_anime_subtitles` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
+          UPDATE `anime_history_video_mistakes` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
+          UPDATE `anime_history_video_subtitles` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
         END');
 
         // ==================== anime_videos table ====================
@@ -57,19 +57,19 @@ return new class extends Migration
 
         DB::unprepared('CREATE TRIGGER Create_History_Anime_Video BEFORE DELETE ON `anime_videos` FOR EACH ROW
         BEGIN
-          INSERT INTO `history_video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `slug`) VALUES (OLD.id, OLD.lenght_video, OLD.resolution, OLD.size, OLD.video_tracks, OLD.audio_tracks, OLD.chapters, OLD.episode, OLD.origin, OLD.type, OLD.bd, OLD.approved, OLD.created_at, OLD.updated_at, (SELECT `slug` FROM `anime_folders` WHERE OLD.folder_anime_id = `anime_folders`.`id`));
+          INSERT INTO `anime_history_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `slug`) VALUES (OLD.id, OLD.lenght_video, OLD.resolution, OLD.size, OLD.video_tracks, OLD.audio_tracks, OLD.chapters, OLD.episode, OLD.origin, OLD.type, OLD.bd, OLD.approved, OLD.created_at, OLD.updated_at, (SELECT `slug` FROM `anime_folders` WHERE OLD.folder_anime_id = `anime_folders`.`id`));
           UPDATE `anime_video_mistakes` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
           UPDATE `anime_video_subtitles` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
         END');
 
-        // ==================== history_video_anime_mistakes table ====================
-        Schema::create('history_video_anime_mistakes', function (Blueprint $table) {
-            $table->foreignId('video_anime_id')->nullable()->constrained("history_video_animes")->cascadeOnUpdate()->cascadeOnDelete();
+        // ==================== anime_history_video_mistakes table ====================
+        Schema::create('anime_history_video_mistakes', function (Blueprint $table) {
+            $table->foreignId('video_anime_id')->nullable()->constrained("anime_history_videos")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('mistake_id')->nullable()->constrained("mistakes")->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('retrieve')->default(0);
         });
 
-        DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video_Mistake AFTER UPDATE ON `history_video_anime_mistakes` FOR EACH ROW
+        DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video_Mistake AFTER UPDATE ON `anime_history_video_mistakes` FOR EACH ROW
         BEGIN
           INSERT INTO `anime_video_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
         END');
@@ -84,20 +84,20 @@ return new class extends Migration
         DB::unprepared('CREATE TRIGGER Create_History_Anime_Video_Mistake AFTER UPDATE ON `anime_video_mistakes` FOR EACH ROW
         BEGIN
             IF OLD.remove != NEW.remove THEN
-                INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrieve`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
+                INSERT INTO `anime_history_video_mistakes` (`video_anime_id`, `mistake_id`, `retrieve`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
             END IF;
         END');
 
-        // ==================== history_video_anime_subtitles table ====================
-        Schema::create('history_video_anime_subtitles', function (Blueprint $table) {
+        // ==================== anime_history_video_subtitles table ====================
+        Schema::create('anime_history_video_subtitles', function (Blueprint $table) {
             $table->id();
             $table->string('origin');
             $table->string('subtitle');
-            $table->foreignId('video_anime_id')->nullable()->constrained("history_video_animes")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('video_anime_id')->nullable()->constrained("anime_history_videos")->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('retrieve')->default(0);
         });
 
-        DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video_Subtitle AFTER UPDATE ON `history_video_anime_subtitles` FOR EACH ROW
+        DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video_Subtitle AFTER UPDATE ON `anime_history_video_subtitles` FOR EACH ROW
         BEGIN
           INSERT INTO `anime_video_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `remove`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
         END');
@@ -114,7 +114,7 @@ return new class extends Migration
         DB::unprepared('CREATE TRIGGER Create_History_Anime_Video_Subtitle AFTER UPDATE ON `anime_video_subtitles` FOR EACH ROW
         BEGIN
             IF OLD.remove != NEW.remove THEN
-                INSERT INTO `history_video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrieve`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
+                INSERT INTO `anime_history_video_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrieve`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
             END IF;
         END');
     }
@@ -124,25 +124,25 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // history_video_animes table
+        // anime_history_videos table
         DB::unprepared('DROP TRIGGER `Retrieve_Anime_Video`');
-        Schema::dropIfExists('history_video_animes');
+        Schema::dropIfExists('anime_history_videos');
 
         // anime_videos table
         DB::unprepared('DROP TRIGGER `Create_History_Anime_Video`');
         Schema::dropIfExists('anime_videos');
         
-        // history_video_anime_mistakes table
+        // anime_history_video_mistakes table
         DB::unprepared('DROP TRIGGER `Retrieve_Anime_Video_Mistake`');
-        Schema::dropIfExists('history_video_anime_mistakes');
+        Schema::dropIfExists('anime_history_video_mistakes');
         
         // anime_video_mistakes table
         DB::unprepared('DROP TRIGGER `Create_History_Anime_Video_Mistake`');
         Schema::dropIfExists('anime_video_mistakes');
         
-        // history_video_anime_subtitles table
+        // anime_history_video_subtitles table
         DB::unprepared('DROP TRIGGER `Retrieve_Anime_Video_Subtitle`');
-        Schema::dropIfExists('history_video_anime_subtitles');
+        Schema::dropIfExists('anime_history_video_subtitles');
         
         // anime_video_subtitles table
         DB::unprepared('DROP TRIGGER `Create_History_Anime_Video_Subtitle`');

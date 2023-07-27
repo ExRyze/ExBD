@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class History_Video_Anime extends Model
+class Anime_History_Video extends Model
 {
     use HasFactory;
 
-    public $table = "history_video_animes";
+    public $table = "anime_history_videos";
 
     public function mistakes() : HasMany
     {
-        return $this->hasMany(History_Video_Anime_Mistake::class, 'video_anime_id', 'id');
+        return $this->hasMany(Anime_History_Video_Mistake::class, 'video_anime_id', 'id');
     }
 
     public function subtitles() : HasMany
     {
-        return $this->hasMany(History_Video_Anime_Subtitle::class, 'video_anime_id', 'id');
+        return $this->hasMany(Anime_History_Video_Subtitle::class, 'video_anime_id', 'id');
     }
 }

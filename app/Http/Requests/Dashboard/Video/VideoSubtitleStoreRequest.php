@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Dashboard\Video;
 
-use App\Models\History_Video_Anime_Subtitle;
+use App\Models\Anime_History_Video_Subtitle;
 use App\Models\Anime_Video_Subtitle;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -27,7 +27,7 @@ class VideoSubtitleStoreRequest extends FormRequest
     public function rules(): array
     {
         $subtitle = Anime_Video_Subtitle::orderBy('id', 'DESC')->first('id')->id;
-        $history = History_Video_Anime_Subtitle::orderBy('id', 'DESC')->first('id')->id;
+        $history = Anime_History_Video_Subtitle::orderBy('id', 'DESC')->first('id')->id;
         $this->merge(['id' => ($subtitle > $history) ? $subtitle+1 : $history+1]);
         return [
             'id' => 'required|unique:anime_video_subtitles',

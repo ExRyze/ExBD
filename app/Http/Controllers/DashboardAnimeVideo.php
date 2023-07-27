@@ -9,7 +9,7 @@ use App\Http\Requests\Dashboard\Video\VideoAnimeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeUpdateRequest;
 use App\Models\Anime;
 use App\Models\Anime_Folder;
-use App\Models\History_Video_Anime;
+use App\Models\Anime_History_Video;
 use App\Models\Anime_Mistake;
 use App\Models\Anime_Video;
 use App\Models\Anime_Video_Mistake;
@@ -135,7 +135,7 @@ class DashboardAnimeVideo extends Controller
         ])->first();
 
         
-        $history = History_Video_Anime::where([
+        $history = Anime_History_Video::where([
             ['episode', $request->episode],
             ['origin', 'like', $request->origin],
             ['resolution', 'like', '%'.$request->height],
@@ -259,7 +259,7 @@ class DashboardAnimeVideo extends Controller
     {
         return view('dashboard.video.histories', [
             'page' => $this->getUrl(URL::current()),
-            'table' => History_Video_Anime::orderBy('slug')->get(),
+            'table' => Anime_History_Video::orderBy('slug')->get(),
         ]);
     }
 
@@ -270,7 +270,7 @@ class DashboardAnimeVideo extends Controller
     {
         return view('dashboard.video.history', [
             'page' => $this->getUrl(URL::current()),
-            'table' => History_Video_Anime::where('slug', str_replace(['_'], [' '], $slug))->orderBy('episode', 'desc')->get(),
+            'table' => Anime_History_Video::where('slug', str_replace(['_'], [' '], $slug))->orderBy('episode', 'desc')->get(),
             'slug' =>  $slug
         ]);
     }
@@ -280,8 +280,8 @@ class DashboardAnimeVideo extends Controller
      */
     public function retrieveHistory(Request $request, String $slug) : RedirectResponse
     {
-        History_Video_Anime::where('id', $request->id)->touch();
-        History_Video_Anime::where('id', $request->id)->delete();
+        Anime_History_Video::where('id', $request->id)->touch();
+        Anime_History_Video::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Has Been Retrieved');
     }
@@ -291,7 +291,7 @@ class DashboardAnimeVideo extends Controller
      */
     public function deleteHistory(Request $request, String $slug) : RedirectResponse
     {
-        History_Video_Anime::where('id', $request->id)->delete();
+        Anime_History_Video::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Has Been Permanently Delete');
     }

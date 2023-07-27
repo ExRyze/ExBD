@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // ==================== anime_relation_animes table ====================
         Schema::create('anime_relations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('anime_id')->nullable()->constrained("animes")->cascadeOnUpdate()->cascadeOnDelete();
