@@ -79,6 +79,6 @@ class Anime extends Model
     // Files
     public function folder() : HasOne
     {
-        return $this->hasOne(Folder_Anime::class);
+        return $this->hasOne(Anime_Folder::class);
     }
 }

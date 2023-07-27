@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 26, 2023 at 01:21 PM
+-- Generation Time: Jul 27, 2023 at 04:25 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -118,6 +118,29 @@ INSERT INTO `anime_aliases` (`id`, `origin`, `alias`, `anime_id`) VALUES
 (39, 'Japanese', 'ONE PIECE', 11),
 (40, 'English', 'One Piece', 11),
 (42, 'Synonyms', 'Sangatsu no Lion', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_folders`
+--
+
+CREATE TABLE `anime_folders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `approved` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `anime_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anime_folders`
+--
+
+INSERT INTO `anime_folders` (`id`, `slug`, `approved`, `created_at`, `updated_at`, `anime_id`, `user_id`) VALUES
+(4, 'One Piece', 0, '2023-05-20 03:17:49', '2023-05-20 03:17:49', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -547,273 +570,10 @@ INSERT INTO `anime_themes` (`id`, `theme`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `folder_animes`
+-- Table structure for table `anime_videos`
 --
 
-CREATE TABLE `folder_animes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `approved` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `anime_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `folder_animes`
---
-
-INSERT INTO `folder_animes` (`id`, `slug`, `approved`, `created_at`, `updated_at`, `anime_id`, `user_id`) VALUES
-(4, 'One Piece', 0, '2023-05-20 03:17:49', '2023-05-20 03:17:49', 11, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `history_video_animes`
---
-
-CREATE TABLE `history_video_animes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `lenght_video` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `resolution` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `size` double(12,1) NOT NULL,
-  `video_tracks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `audio_tracks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `chapters` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `episode` double(12,1) NOT NULL,
-  `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('mkv','mp4') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bd` tinyint(1) NOT NULL DEFAULT '0',
-  `approved` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `history_video_animes`
---
-
-INSERT INTO `history_video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `slug`) VALUES
-(212, '00:24:00', '1920x1080', 267.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 212.0, 'Koenime', 'mkv', 0, 0, '2023-05-23 13:26:32', '2023-05-23 13:43:16', 'One Piece'),
-(215, '00:23:38', '1280x720', 150.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'Null', 601.0, 'Koenime', 'mkv', 0, 1, '2023-06-10 13:02:36', '2023-06-10 13:46:13', 'One Piece'),
-(219, '00:23:30', '1280x720', 150.0, NULL, NULL, 'Null', 603.0, 'Oploverz', 'mp4', 0, 1, '2023-06-10 14:14:36', '2023-06-10 14:17:18', 'One Piece'),
-(237, '00:23:07', '1280x720', 126.0, 'H264 (High @L3.1)', 'ACC S16 2.0 [Und]', 'Null', 622.0, 'Koenime', 'mkv', 0, 1, '2023-06-13 07:41:09', '2023-06-13 07:50:21', 'One Piece'),
-(242, '00:23:25', '1920x1080', 252.0, 'H264 (High @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 626.0, 'Koenime', 'mkv', 0, 1, '2023-06-13 14:20:49', '2023-06-14 01:30:52', 'One Piece'),
-(243, '00:23:25', '1920x1080', 260.0, NULL, NULL, 'Null', 626.0, 'Oploverz', 'mp4', 0, 1, '2023-06-14 01:21:18', '2023-06-14 01:31:59', 'One Piece'),
-(263, '00:23:25', '1280x720', 78.1, 'H264 (High @L4.1)', 'ACC 2.0 [Jpn]', 'Null', 644.0, 'Adikanime', 'mkv', 0, 1, '2023-06-16 00:04:32', '2023-07-13 10:26:33', 'One Piece'),
-(270, '00:23:39', '1280x720', 132.0, NULL, NULL, 'Null', 642.0, 'Oploverz', 'mp4', 0, 1, '2023-06-16 06:43:17', '2023-06-16 06:44:02', 'One Piece'),
-(271, '00:23:25', '1920x1080', 195.0, NULL, NULL, 'Null', 644.0, 'Oploverz', 'mp4', 0, 1, '2023-06-16 06:51:14', '2023-06-16 07:14:56', 'One Piece');
-
---
--- Triggers `history_video_animes`
---
-DELIMITER $$
-CREATE TRIGGER `Retrieve_Anime_Video` AFTER UPDATE ON `history_video_animes` FOR EACH ROW BEGIN
-          INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES (NEW.id, NEW.lenght_video, NEW.resolution, NEW.size, NEW.video_tracks, NEW.audio_tracks, NEW.chapters, NEW.episode, NEW.origin, NEW.type, NEW.bd, NEW.approved, NEW.created_at, NEW.updated_at, (SELECT `id` FROM `folder_animes` WHERE NEW.slug = `folder_animes`.`slug`));
-          UPDATE `history_video_anime_mistakes` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
-          UPDATE `history_video_anime_subtitles` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
-        END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `history_video_anime_mistakes`
---
-
-CREATE TABLE `history_video_anime_mistakes` (
-  `video_anime_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `mistake_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `retrieve` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `history_video_anime_mistakes`
---
-
-INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrieve`) VALUES
-(212, 2, 0),
-(212, 4, 0),
-(215, 3, 0),
-(215, 8, 0),
-(215, 2, 0),
-(215, 9, 0),
-(215, 5, 0),
-(219, 3, 0),
-(219, 2, 0),
-(219, 9, 0),
-(219, 5, 0),
-(237, 3, 0),
-(237, 4, 0),
-(237, 2, 0),
-(237, 5, 0),
-(237, 10, 0),
-(242, 3, 0),
-(242, 4, 0),
-(242, 7, 0),
-(242, 2, 0),
-(242, 5, 0),
-(243, 3, 0),
-(243, 4, 0),
-(243, 7, 0),
-(243, 2, 0),
-(243, 5, 0),
-(270, 3, 0),
-(270, 2, 0),
-(270, 9, 0),
-(270, 5, 0),
-(271, 3, 0),
-(271, 7, 0),
-(271, 2, 0),
-(271, 5, 0),
-(263, 3, 0),
-(263, 7, 0),
-(263, 14, 0),
-(263, 6, 0);
-
---
--- Triggers `history_video_anime_mistakes`
---
-DELIMITER $$
-CREATE TRIGGER `Retrieve_Anime_Video_Mistake` AFTER UPDATE ON `history_video_anime_mistakes` FOR EACH ROW BEGIN
-          INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
-        END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `history_video_anime_subtitles`
---
-
-CREATE TABLE `history_video_anime_subtitles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `video_anime_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `retrieve` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `history_video_anime_subtitles`
---
-
-INSERT INTO `history_video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrieve`) VALUES
-(4, 'Oploverz', 'Null', 212, 0),
-(12, 'Oploverz', 'Null', 215, 0),
-(15, 'Oploverz', 'Null', 219, 0),
-(33, 'Oploverz', 'Null', 237, 0),
-(38, 'Oploverz', 'Null', 242, 0),
-(39, 'Oploverz', 'Null', 243, 0),
-(61, 'Twitter Subs', 'ASS [Ind]', 263, 0),
-(62, 'Oploverz', 'Null', 270, 0),
-(63, 'Oploverz', 'Null', 271, 0);
-
---
--- Triggers `history_video_anime_subtitles`
---
-DELIMITER $$
-CREATE TRIGGER `Retrieve_Anime_Video_Subtitle` AFTER UPDATE ON `history_video_anime_subtitles` FOR EACH ROW BEGIN
-          INSERT INTO `video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `remove`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
-        END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(4, '2023_04_08_050559_create_animes_table', 1),
-(5, '2023_04_25_074233_create_anime_components_package', 1),
-(6, '2023_04_28_212245_create_anime_relations_mtm_package', 1),
-(9, '2023_05_02_175841_create_video_animes_package', 1),
-(10, '2023_07_15_210135_create_anime_relations_table', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` enum('Admin','Staff','User') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` text COLLATE utf8mb4_unicode_ci,
-  `bio` text COLLATE utf8mb4_unicode_ci,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `image`, `bio`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '$2y$10$pAKKVf7ko.fvOvnkbbaL6OAGcST/CTmLI1fkJXkXAEc.06ur8JLLe', 'Admin', 'ExRyze.jpg', NULL, NULL, NULL, '2023-07-13 12:20:40');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `video_animes`
---
-
-CREATE TABLE `video_animes` (
+CREATE TABLE `anime_videos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `lenght_video` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `resolution` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -832,10 +592,10 @@ CREATE TABLE `video_animes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `video_animes`
+-- Dumping data for table `anime_videos`
 --
 
-INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES
+INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES
 (1, '00:24:15', '1280x720', 86.0, NULL, NULL, 'Null', 1.0, 'Koenime', 'mp4', 0, 0, '2023-05-20 03:21:18', '2023-05-20 03:43:32', 4),
 (2, '00:24:15', '1280x720', 85.4, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'Null', 2.0, 'Koenime', 'mkv', 0, 0, '2023-05-20 03:58:23', '2023-05-20 03:58:23', 4),
 (3, '00:24:25', '1280x720', 85.6, 'H264 (High @L5.0)', 'ACC 1.0 [Und]', 'Null', 3.0, 'Koenime', 'mkv', 0, 0, '2023-05-20 04:03:53', '2023-05-20 04:03:53', 4),
@@ -1145,7 +905,7 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (316, '00:23:39', '1920x1080', 262.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 694.0, 'Koenime', 'mkv', 0, 1, '2023-06-19 08:02:46', '2023-06-23 00:45:52', 4),
 (317, '00:23:55', '1920x1080', 297.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 695.0, 'Koenime', 'mkv', 0, 1, '2023-06-19 08:03:34', '2023-06-23 01:04:10', 4),
 (318, '00:23:55', '1920x1080', 279.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 696.0, 'Koenime', 'mkv', 0, 1, '2023-06-19 08:04:17', '2023-06-23 14:43:41', 4);
-INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES
+INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES
 (319, '00:23:39', '1920x1080', 274.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 697.0, 'Koenime', 'mkv', 0, 1, '2023-06-19 08:05:06', '2023-06-23 15:04:46', 4),
 (320, '00:23:39', '1920x1080', 283.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 698.0, 'Koenime', 'mkv', 0, 1, '2023-06-19 08:05:51', '2023-06-23 15:23:37', 4),
 (321, '00:23:55', '1920x1080', 287.0, 'H264 (High 10 @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 699.0, 'Koenime', 'mkv', 0, 1, '2023-06-19 08:06:36', '2023-06-24 01:59:53', 4),
@@ -1450,7 +1210,7 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (624, '00:23:40', '848x480', 70.1, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 361.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:06:45', '2023-07-20 07:06:45', 4),
 (625, '00:23:39', '848x480', 68.8, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 362.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:07:14', '2023-07-20 07:07:14', 4),
 (626, '00:23:39', '848x480', 69.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 363.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:07:35', '2023-07-20 07:07:35', 4);
-INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES
+INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES
 (627, '00:23:40', '848x480', 69.4, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 364.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:08:00', '2023-07-20 07:08:00', 4),
 (628, '00:23:39', '848x480', 69.4, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 365.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:08:36', '2023-07-20 07:08:36', 4),
 (629, '00:23:39', '848x480', 69.0, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 366.0, 'Koenime', 'mkv', 0, 0, '2023-07-20 07:09:02', '2023-07-20 07:09:02', 4),
@@ -1503,13 +1263,13 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (676, '00:23:50', '1920x1080', 303.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 913.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:47:35', '2023-07-25 06:32:50', 4),
 (677, '00:23:50', '1920x1080', 333.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 914.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:47:54', '2023-07-25 12:56:28', 4),
 (678, '00:23:50', '1920x1080', 329.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 915.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:48:17', '2023-07-25 13:57:27', 4),
-(679, '00:23:50', '1920x1080', 268.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 916.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:48:37', '2023-07-25 23:50:40', 4),
-(680, '00:23:50', '1920x1080', 244.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 917.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:48:58', '2023-07-22 07:48:58', 4),
-(681, '00:23:50', '1920x1080', 263.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 918.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:49:19', '2023-07-22 07:49:19', 4),
-(682, '00:23:50', '1920x1080', 247.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 919.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:49:38', '2023-07-22 07:49:38', 4),
-(683, '00:23:50', '1920x1080', 257.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 920.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:49:58', '2023-07-22 07:49:58', 4),
-(684, '00:23:50', '1920x1080', 228.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 921.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:50:30', '2023-07-22 07:50:30', 4),
-(685, '00:23:50', '1920x1080', 255.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 922.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:50:52', '2023-07-22 07:50:52', 4),
+(679, '00:23:50', '1920x1080', 268.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 916.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:48:37', '2023-07-27 02:22:28', 4),
+(680, '00:23:50', '1920x1080', 244.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 917.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:48:58', '2023-07-27 02:28:33', 4),
+(681, '00:23:50', '1920x1080', 263.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 918.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:49:19', '2023-07-27 02:29:00', 4),
+(682, '00:23:50', '1920x1080', 247.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 919.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:49:38', '2023-07-27 02:29:20', 4),
+(683, '00:23:50', '1920x1080', 257.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 920.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:49:58', '2023-07-27 02:29:56', 4),
+(684, '00:23:50', '1920x1080', 228.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 921.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:50:30', '2023-07-27 02:30:22', 4),
+(685, '00:23:50', '1920x1080', 255.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 922.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:50:52', '2023-07-27 04:25:22', 4),
 (686, '00:23:50', '1920x1080', 272.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 923.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:51:17', '2023-07-22 07:51:17', 4),
 (687, '00:23:50', '1920x1080', 294.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 924.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:51:37', '2023-07-22 07:51:37', 4),
 (688, '00:23:50', '1920x1080', 258.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 925.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:52:05', '2023-07-22 07:52:05', 4),
@@ -1691,13 +1451,13 @@ INSERT INTO `video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (864, '00:23:21', '848x480', 65.9, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 575.0, 'Koenime', 'mkv', 0, 0, '2023-07-23 13:07:14', '2023-07-23 13:07:14', 4);
 
 --
--- Triggers `video_animes`
+-- Triggers `anime_videos`
 --
 DELIMITER $$
-CREATE TRIGGER `Create_History_Anime_Video` BEFORE DELETE ON `video_animes` FOR EACH ROW BEGIN
-          INSERT INTO `history_video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `slug`) VALUES (OLD.id, OLD.lenght_video, OLD.resolution, OLD.size, OLD.video_tracks, OLD.audio_tracks, OLD.chapters, OLD.episode, OLD.origin, OLD.type, OLD.bd, OLD.approved, OLD.created_at, OLD.updated_at, (SELECT `slug` FROM `folder_animes` WHERE OLD.folder_anime_id = `folder_animes`.`id`));
-          UPDATE `video_anime_mistakes` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
-          UPDATE `video_anime_subtitles` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
+CREATE TRIGGER `Create_History_Anime_Video` BEFORE DELETE ON `anime_videos` FOR EACH ROW BEGIN
+          INSERT INTO `history_video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `slug`) VALUES (OLD.id, OLD.lenght_video, OLD.resolution, OLD.size, OLD.video_tracks, OLD.audio_tracks, OLD.chapters, OLD.episode, OLD.origin, OLD.type, OLD.bd, OLD.approved, OLD.created_at, OLD.updated_at, (SELECT `slug` FROM `anime_folders` WHERE OLD.folder_anime_id = `anime_folders`.`id`));
+          UPDATE `anime_video_mistakes` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
+          UPDATE `anime_video_subtitles` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
         END
 $$
 DELIMITER ;
@@ -1705,20 +1465,20 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `video_anime_mistakes`
+-- Table structure for table `anime_video_mistakes`
 --
 
-CREATE TABLE `video_anime_mistakes` (
+CREATE TABLE `anime_video_mistakes` (
   `video_anime_id` bigint(20) UNSIGNED DEFAULT NULL,
   `mistake_id` bigint(20) UNSIGNED DEFAULT NULL,
   `remove` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `video_anime_mistakes`
+-- Dumping data for table `anime_video_mistakes`
 --
 
-INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VALUES
+INSERT INTO `anime_video_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VALUES
 (214, 2, 0),
 (214, 5, 0),
 (214, 7, 0),
@@ -2993,13 +2753,32 @@ INSERT INTO `video_anime_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (678, 2, 0),
 (678, 5, 0),
 (679, 3, 0),
-(679, 2, 0);
+(679, 2, 0),
+(679, 5, 0),
+(680, 3, 0),
+(680, 2, 0),
+(680, 5, 0),
+(681, 3, 0),
+(681, 2, 0),
+(681, 5, 0),
+(682, 3, 0),
+(682, 2, 0),
+(682, 5, 0),
+(683, 3, 0),
+(683, 2, 0),
+(683, 5, 0),
+(684, 3, 0),
+(684, 2, 0),
+(684, 5, 0),
+(685, 3, 0),
+(685, 2, 0),
+(685, 5, 0);
 
 --
--- Triggers `video_anime_mistakes`
+-- Triggers `anime_video_mistakes`
 --
 DELIMITER $$
-CREATE TRIGGER `Create_History_Anime_Video_Mistake` AFTER UPDATE ON `video_anime_mistakes` FOR EACH ROW BEGIN
+CREATE TRIGGER `Create_History_Anime_Video_Mistake` AFTER UPDATE ON `anime_video_mistakes` FOR EACH ROW BEGIN
 	IF OLD.remove != NEW.remove THEN
     	INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrieve`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
 	END IF;
@@ -3010,10 +2789,10 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `video_anime_subtitles`
+-- Table structure for table `anime_video_subtitles`
 --
 
-CREATE TABLE `video_anime_subtitles` (
+CREATE TABLE `anime_video_subtitles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3022,10 +2801,10 @@ CREATE TABLE `video_anime_subtitles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `video_anime_subtitles`
+-- Dumping data for table `anime_video_subtitles`
 --
 
-INSERT INTO `video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `remove`) VALUES
+INSERT INTO `anime_video_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `remove`) VALUES
 (3, 'Oploverz', 'Null', 213, 0),
 (5, 'Oploverz', 'Null', 214, 0),
 (6, 'Oploverz', 'Null', 208, 0),
@@ -3347,19 +3126,265 @@ INSERT INTO `video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id
 (335, 'Oploverz', 'Null', 676, 0),
 (336, 'Oploverz', 'Null', 677, 0),
 (337, 'Oploverz', 'Null', 678, 0),
-(338, 'Oploverz', 'Null', 679, 0);
+(338, 'Oploverz', 'Null', 679, 0),
+(339, 'Oploverz', 'Null', 680, 0),
+(340, 'Oploverz', 'Null', 681, 0),
+(341, 'Oploverz', 'Null', 682, 0),
+(342, 'Oploverz', 'Null', 683, 0),
+(343, 'Oploverz', 'Null', 684, 0),
+(344, 'Oploverz', 'Null', 685, 0);
 
 --
--- Triggers `video_anime_subtitles`
+-- Triggers `anime_video_subtitles`
 --
 DELIMITER $$
-CREATE TRIGGER `Create_History_Anime_Video_Subtitle` AFTER UPDATE ON `video_anime_subtitles` FOR EACH ROW BEGIN
+CREATE TRIGGER `Create_History_Anime_Video_Subtitle` AFTER UPDATE ON `anime_video_subtitles` FOR EACH ROW BEGIN
 	IF OLD.remove != NEW.remove THEN
     INSERT INTO `history_video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrieve`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
 	END IF;
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history_video_animes`
+--
+
+CREATE TABLE `history_video_animes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `lenght_video` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resolution` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` double(12,1) NOT NULL,
+  `video_tracks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `audio_tracks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chapters` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `episode` double(12,1) NOT NULL,
+  `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('mkv','mp4') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bd` tinyint(1) NOT NULL DEFAULT '0',
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `history_video_animes`
+--
+
+INSERT INTO `history_video_animes` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `slug`) VALUES
+(212, '00:24:00', '1920x1080', 267.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 212.0, 'Koenime', 'mkv', 0, 0, '2023-05-23 13:26:32', '2023-05-23 13:43:16', 'One Piece'),
+(215, '00:23:38', '1280x720', 150.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'Null', 601.0, 'Koenime', 'mkv', 0, 1, '2023-06-10 13:02:36', '2023-06-10 13:46:13', 'One Piece'),
+(219, '00:23:30', '1280x720', 150.0, NULL, NULL, 'Null', 603.0, 'Oploverz', 'mp4', 0, 1, '2023-06-10 14:14:36', '2023-06-10 14:17:18', 'One Piece'),
+(237, '00:23:07', '1280x720', 126.0, 'H264 (High @L3.1)', 'ACC S16 2.0 [Und]', 'Null', 622.0, 'Koenime', 'mkv', 0, 1, '2023-06-13 07:41:09', '2023-06-13 07:50:21', 'One Piece'),
+(242, '00:23:25', '1920x1080', 252.0, 'H264 (High @L5.0)', 'ACC S16 2.0 [Und]', 'Null', 626.0, 'Koenime', 'mkv', 0, 1, '2023-06-13 14:20:49', '2023-06-14 01:30:52', 'One Piece'),
+(243, '00:23:25', '1920x1080', 260.0, NULL, NULL, 'Null', 626.0, 'Oploverz', 'mp4', 0, 1, '2023-06-14 01:21:18', '2023-06-14 01:31:59', 'One Piece'),
+(263, '00:23:25', '1280x720', 78.1, 'H264 (High @L4.1)', 'ACC 2.0 [Jpn]', 'Null', 644.0, 'Adikanime', 'mkv', 0, 1, '2023-06-16 00:04:32', '2023-07-13 10:26:33', 'One Piece'),
+(270, '00:23:39', '1280x720', 132.0, NULL, NULL, 'Null', 642.0, 'Oploverz', 'mp4', 0, 1, '2023-06-16 06:43:17', '2023-06-16 06:44:02', 'One Piece'),
+(271, '00:23:25', '1920x1080', 195.0, NULL, NULL, 'Null', 644.0, 'Oploverz', 'mp4', 0, 1, '2023-06-16 06:51:14', '2023-06-16 07:14:56', 'One Piece');
+
+--
+-- Triggers `history_video_animes`
+--
+DELIMITER $$
+CREATE TRIGGER `Retrieve_Anime_Video` AFTER UPDATE ON `history_video_animes` FOR EACH ROW BEGIN
+          INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES (NEW.id, NEW.lenght_video, NEW.resolution, NEW.size, NEW.video_tracks, NEW.audio_tracks, NEW.chapters, NEW.episode, NEW.origin, NEW.type, NEW.bd, NEW.approved, NEW.created_at, NEW.updated_at, (SELECT `id` FROM `anime_folders` WHERE NEW.slug = `anime_folders`.`slug`));
+          UPDATE `history_video_anime_mistakes` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
+          UPDATE `history_video_anime_subtitles` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
+        END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history_video_anime_mistakes`
+--
+
+CREATE TABLE `history_video_anime_mistakes` (
+  `video_anime_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `mistake_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `retrieve` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `history_video_anime_mistakes`
+--
+
+INSERT INTO `history_video_anime_mistakes` (`video_anime_id`, `mistake_id`, `retrieve`) VALUES
+(212, 2, 0),
+(212, 4, 0),
+(215, 3, 0),
+(215, 8, 0),
+(215, 2, 0),
+(215, 9, 0),
+(215, 5, 0),
+(219, 3, 0),
+(219, 2, 0),
+(219, 9, 0),
+(219, 5, 0),
+(237, 3, 0),
+(237, 4, 0),
+(237, 2, 0),
+(237, 5, 0),
+(237, 10, 0),
+(242, 3, 0),
+(242, 4, 0),
+(242, 7, 0),
+(242, 2, 0),
+(242, 5, 0),
+(243, 3, 0),
+(243, 4, 0),
+(243, 7, 0),
+(243, 2, 0),
+(243, 5, 0),
+(270, 3, 0),
+(270, 2, 0),
+(270, 9, 0),
+(270, 5, 0),
+(271, 3, 0),
+(271, 7, 0),
+(271, 2, 0),
+(271, 5, 0),
+(263, 3, 0),
+(263, 7, 0),
+(263, 14, 0),
+(263, 6, 0);
+
+--
+-- Triggers `history_video_anime_mistakes`
+--
+DELIMITER $$
+CREATE TRIGGER `Retrieve_Anime_Video_Mistake` AFTER UPDATE ON `history_video_anime_mistakes` FOR EACH ROW BEGIN
+          INSERT INTO `anime_video_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VALUES (NEW.video_anime_id, NEW.mistake_id, 0);
+        END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history_video_anime_subtitles`
+--
+
+CREATE TABLE `history_video_anime_subtitles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `video_anime_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `retrieve` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `history_video_anime_subtitles`
+--
+
+INSERT INTO `history_video_anime_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrieve`) VALUES
+(4, 'Oploverz', 'Null', 212, 0),
+(12, 'Oploverz', 'Null', 215, 0),
+(15, 'Oploverz', 'Null', 219, 0),
+(33, 'Oploverz', 'Null', 237, 0),
+(38, 'Oploverz', 'Null', 242, 0),
+(39, 'Oploverz', 'Null', 243, 0),
+(61, 'Twitter Subs', 'ASS [Ind]', 263, 0),
+(62, 'Oploverz', 'Null', 270, 0),
+(63, 'Oploverz', 'Null', 271, 0);
+
+--
+-- Triggers `history_video_anime_subtitles`
+--
+DELIMITER $$
+CREATE TRIGGER `Retrieve_Anime_Video_Subtitle` AFTER UPDATE ON `history_video_anime_subtitles` FOR EACH ROW BEGIN
+          INSERT INTO `anime_video_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `remove`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
+        END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(4, '2023_04_08_050559_create_animes_table', 1),
+(5, '2023_04_25_074233_create_anime_components_package', 1),
+(6, '2023_04_28_212245_create_anime_relations_mtm_package', 1),
+(9, '2023_05_02_175841_create_video_animes_package', 1),
+(10, '2023_07_15_210135_create_anime_relations_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` enum('Admin','Staff','User') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
+  `bio` text COLLATE utf8mb4_unicode_ci,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `image`, `bio`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'ExRyze', 'ichianime4@gmail.com', NULL, '$2y$10$pAKKVf7ko.fvOvnkbbaL6OAGcST/CTmLI1fkJXkXAEc.06ur8JLLe', 'Admin', 'ExRyze.jpg', NULL, NULL, NULL, '2023-07-13 12:20:40');
 
 --
 -- Indexes for dumped tables
@@ -3378,6 +3403,15 @@ ALTER TABLE `animes`
 ALTER TABLE `anime_aliases`
   ADD PRIMARY KEY (`id`),
   ADD KEY `anime_aliases_anime_id_foreign` (`anime_id`);
+
+--
+-- Indexes for table `anime_folders`
+--
+ALTER TABLE `anime_folders`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `folder_animes_anime_id_foreign` (`anime_id`),
+  ADD KEY `folder_animes_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `anime_genres`
@@ -3459,13 +3493,25 @@ ALTER TABLE `anime_themes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `folder_animes`
+-- Indexes for table `anime_videos`
 --
-ALTER TABLE `folder_animes`
+ALTER TABLE `anime_videos`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`),
-  ADD KEY `folder_animes_anime_id_foreign` (`anime_id`),
-  ADD KEY `folder_animes_user_id_foreign` (`user_id`);
+  ADD KEY `video_animes_folder_anime_id_foreign` (`folder_anime_id`);
+
+--
+-- Indexes for table `anime_video_mistakes`
+--
+ALTER TABLE `anime_video_mistakes`
+  ADD KEY `video_anime_mistakes_video_anime_id_foreign` (`video_anime_id`),
+  ADD KEY `video_anime_mistakes_mistake_id_foreign` (`mistake_id`);
+
+--
+-- Indexes for table `anime_video_subtitles`
+--
+ALTER TABLE `anime_video_subtitles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `video_anime_subtitles_video_anime_id_foreign` (`video_anime_id`);
 
 --
 -- Indexes for table `history_video_animes`
@@ -3516,27 +3562,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `video_animes`
---
-ALTER TABLE `video_animes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `video_animes_folder_anime_id_foreign` (`folder_anime_id`);
-
---
--- Indexes for table `video_anime_mistakes`
---
-ALTER TABLE `video_anime_mistakes`
-  ADD KEY `video_anime_mistakes_video_anime_id_foreign` (`video_anime_id`),
-  ADD KEY `video_anime_mistakes_mistake_id_foreign` (`mistake_id`);
-
---
--- Indexes for table `video_anime_subtitles`
---
-ALTER TABLE `video_anime_subtitles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `video_anime_subtitles_video_anime_id_foreign` (`video_anime_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -3551,6 +3576,12 @@ ALTER TABLE `animes`
 --
 ALTER TABLE `anime_aliases`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `anime_folders`
+--
+ALTER TABLE `anime_folders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `anime_genres`
@@ -3595,10 +3626,16 @@ ALTER TABLE `anime_themes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `folder_animes`
+-- AUTO_INCREMENT for table `anime_videos`
 --
-ALTER TABLE `folder_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `anime_videos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=865;
+
+--
+-- AUTO_INCREMENT for table `anime_video_subtitles`
+--
+ALTER TABLE `anime_video_subtitles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
 
 --
 -- AUTO_INCREMENT for table `history_video_animes`
@@ -3631,18 +3668,6 @@ ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `video_animes`
---
-ALTER TABLE `video_animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=865;
-
---
--- AUTO_INCREMENT for table `video_anime_subtitles`
---
-ALTER TABLE `video_anime_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=339;
-
---
 -- Constraints for dumped tables
 --
 
@@ -3657,6 +3682,13 @@ ALTER TABLE `animes`
 --
 ALTER TABLE `anime_aliases`
   ADD CONSTRAINT `anime_aliases_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_folders`
+--
+ALTER TABLE `anime_folders`
+  ADD CONSTRAINT `folder_animes_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `folder_animes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `anime_relations`
@@ -3701,11 +3733,23 @@ ALTER TABLE `anime_relation_themes`
   ADD CONSTRAINT `anime_relation_themes_theme_id_foreign` FOREIGN KEY (`theme_id`) REFERENCES `anime_themes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `folder_animes`
+-- Constraints for table `anime_videos`
 --
-ALTER TABLE `folder_animes`
-  ADD CONSTRAINT `folder_animes_anime_id_foreign` FOREIGN KEY (`anime_id`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `folder_animes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `anime_videos`
+  ADD CONSTRAINT `video_animes_folder_anime_id_foreign` FOREIGN KEY (`folder_anime_id`) REFERENCES `anime_folders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_video_mistakes`
+--
+ALTER TABLE `anime_video_mistakes`
+  ADD CONSTRAINT `video_anime_mistakes_mistake_id_foreign` FOREIGN KEY (`mistake_id`) REFERENCES `anime_mistakes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `video_anime_mistakes_video_anime_id_foreign` FOREIGN KEY (`video_anime_id`) REFERENCES `anime_videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_video_subtitles`
+--
+ALTER TABLE `anime_video_subtitles`
+  ADD CONSTRAINT `video_anime_subtitles_video_anime_id_foreign` FOREIGN KEY (`video_anime_id`) REFERENCES `anime_videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `history_video_anime_mistakes`
@@ -3719,25 +3763,6 @@ ALTER TABLE `history_video_anime_mistakes`
 --
 ALTER TABLE `history_video_anime_subtitles`
   ADD CONSTRAINT `history_video_anime_subtitles_video_anime_id_foreign` FOREIGN KEY (`video_anime_id`) REFERENCES `history_video_animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `video_animes`
---
-ALTER TABLE `video_animes`
-  ADD CONSTRAINT `video_animes_folder_anime_id_foreign` FOREIGN KEY (`folder_anime_id`) REFERENCES `folder_animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `video_anime_mistakes`
---
-ALTER TABLE `video_anime_mistakes`
-  ADD CONSTRAINT `video_anime_mistakes_mistake_id_foreign` FOREIGN KEY (`mistake_id`) REFERENCES `anime_mistakes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `video_anime_mistakes_video_anime_id_foreign` FOREIGN KEY (`video_anime_id`) REFERENCES `video_animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `video_anime_subtitles`
---
-ALTER TABLE `video_anime_subtitles`
-  ADD CONSTRAINT `video_anime_subtitles_video_anime_id_foreign` FOREIGN KEY (`video_anime_id`) REFERENCES `video_animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

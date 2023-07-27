@@ -23,8 +23,8 @@ use App\Models\Anime_Relation_Studio;
 use App\Models\Anime_Relation_Theme;
 use App\Models\Anime_Studio;
 use App\Models\Anime_Theme;
-use App\Models\Video_Anime;
-use App\Models\Video_Anime_Mistake;
+use App\Models\Anime_Video;
+use App\Models\Anime_Video_Mistake;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardAnimeComponents extends Controller
@@ -112,8 +112,8 @@ class DashboardAnimeComponents extends Controller
         Anime_Mistake::create($request->validated());
 
         if (isset($request->video_anime_id)) {
-            Video_Anime_Mistake::create(['video_anime_id' => $request->video_anime_id, 'mistake_id' => Anime_Mistake::where('mistake', $request->mistake)->first('id')->id]);
-            Video_Anime::find($request->video_anime_id)->touch();
+            Anime_Video_Mistake::create(['video_anime_id' => $request->video_anime_id, 'mistake_id' => Anime_Mistake::where('mistake', $request->mistake)->first('id')->id]);
+            Anime_Video::find($request->video_anime_id)->touch();
         }
 
         return back()->with('success', 'New Data Mistake Added');

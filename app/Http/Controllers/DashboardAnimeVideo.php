@@ -8,11 +8,11 @@ use App\Http\Requests\Dashboard\Video\VideoAnimeApproveRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeStoreRequest;
 use App\Http\Requests\Dashboard\Video\VideoAnimeUpdateRequest;
 use App\Models\Anime;
-use App\Models\Folder_Anime;
+use App\Models\Anime_Folder;
 use App\Models\History_Video_Anime;
 use App\Models\Anime_Mistake;
-use App\Models\Video_Anime;
-use App\Models\Video_Anime_Mistake;
+use App\Models\Anime_Video;
+use App\Models\Anime_Video_Mistake;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -49,8 +49,8 @@ class DashboardAnimeVideo extends Controller
     {
         return view('dashboard.folder.anime', [
             'page' => $this->getUrl(URL::current()),
-            'table' => Folder_Anime::orderBy('slug')->get(),
-            'animes' => Anime::join('folder_animes', 'animes.id', '=', 'folder_animes.anime_id', 'left outer')->where('folder_animes.id', NULL)->orderBy('title')->get()
+            'table' => Anime_Folder::orderBy('slug')->get(),
+            'animes' => Anime::join('anime_folders', 'animes.id', '=', 'anime_folders.anime_id', 'left outer')->where('anime_folders.id', NULL)->orderBy('title')->get()
         ]);
     }
 
@@ -59,7 +59,7 @@ class DashboardAnimeVideo extends Controller
      */
     public function storeFolder(FolderAnimeStoreRequest $request) : RedirectResponse
     {
-        Folder_Anime::create($request->validated());
+        Anime_Folder::create($request->validated());
 
         return back()->with('success', 'New Folder Anime Added');
     }
@@ -69,7 +69,7 @@ class DashboardAnimeVideo extends Controller
      */
     public function approveFolder(FolderAnimeApproveRequest $request) : RedirectResponse
     {
-        Folder_Anime::where('id', $request->id)->update($request->validated());
+        Anime_Folder::where('id', $request->id)->update($request->validated());
 
         if ($request->submit === 'approve') {
             return back()->with('success', 'Folder Approved');
@@ -83,7 +83,7 @@ class DashboardAnimeVideo extends Controller
      */
     public function deleteFolder(Request $request) : RedirectResponse
     {
-        Folder_Anime::where('id', $request->id)->delete();
+        Anime_Folder::where('id', $request->id)->delete();
 
         return back()->with('success', 'Folder Anime Deleted');
     }
@@ -105,7 +105,7 @@ class DashboardAnimeVideo extends Controller
     public function createVideo(String $slug) : View
     {
         $anime = Anime::where('slug', $slug)->first();
-        $video = Video_Anime::where('folder_anime_id', $anime->folder->id)->latest()->first();
+        $video = Anime_Video::where('folder_anime_id', $anime->folder->id)->latest()->first();
         if ($video->count()) {
             return view('dashboard.video.create-exist', [
                 'page' => $this->getUrl(URL::current()),
@@ -127,7 +127,7 @@ class DashboardAnimeVideo extends Controller
      */
     public function storeVideo(VideoAnimeStoreRequest $request, String $slug) : RedirectResponse
     {
-        $video = Video_Anime::where([
+        $video = Anime_Video::where([
             ['episode', $request->episode],
             ['origin', 'like', $request->origin],
             ['resolution', 'like', '%'.$request->height],
@@ -143,11 +143,11 @@ class DashboardAnimeVideo extends Controller
         ])->first();
 
         if (!$video && !$history) {
-            Video_Anime::create($request->validated());
+            Anime_Video::create($request->validated());
 
             if ($request->chapters != 'True') {
-                Video_Anime_Mistake::create([
-                    'video_anime_id' => Video_Anime::orderBy('id', 'DESC')->first('id')->id, 
+                Anime_Video_Mistake::create([
+                    'video_anime_id' => Anime_Video::orderBy('id', 'DESC')->first('id')->id, 
                     'mistake_id' => Anime_Mistake::where('mistake', '!Chapter')->first('id')->id
                 ]);
             }
@@ -163,7 +163,7 @@ class DashboardAnimeVideo extends Controller
     /**
      * Edit Video
      */
-    public function editVideo(Video_Anime $video_Anime, String $slug, String $title) : View
+    public function editVideo(Anime_Video $video_Anime, String $slug, String $title) : View
     {
         $anime = Anime::where('slug', $slug)->first(['id', 'slug']);
         $video = substr($title, strlen($anime->folder->slug)+1);
@@ -172,7 +172,7 @@ class DashboardAnimeVideo extends Controller
         $next = $video_Anime->where('episode', $video[1]+1)->orWhere('episode', $video[1]+0.5)->get();
         $prev = $video_Anime->where('episode', $video[1]-1)->orWhere('episode', $video[1]-0.5)->get();
         
-        $video = Video_Anime::where([
+        $video = Anime_Video::where([
             ['episode', $video[1]],
             ['origin', 'like', $video[3]],
             ['resolution', 'like', '%'.rtrim((explode('.', end($video)))[0], 'p')],
@@ -199,20 +199,20 @@ class DashboardAnimeVideo extends Controller
      */
     public function updateVideo(VideoAnimeUpdateRequest $request, String $slug) : RedirectResponse
     {
-        Video_Anime::where('id', $request->id)->update($request->validated());
+        Anime_Video::where('id', $request->id)->update($request->validated());
 
-        $mistake = Video_Anime_Mistake::where([
+        $mistake = Anime_Video_Mistake::where([
             ['video_anime_id', $request->id], 
             ['mistake_id', Anime_Mistake::where('mistake', '!Chapter')->first('id')->id]
         ])->first();
 
         if ($request->chapters != 'True' && !$mistake) {
-            Video_Anime_Mistake::create([
+            Anime_Video_Mistake::create([
                 'video_anime_id' => $request->id, 
                 'mistake_id' => Anime_Mistake::where('mistake', '!Chapter')->first('id')->id
             ]);
         } else if ($request->chapters === 'True') {
-            Video_Anime_Mistake::where([
+            Anime_Video_Mistake::where([
                 ['video_anime_id', $request->id], 
                 ['mistake_id', Anime_Mistake::where('mistake', '!Chapter')->first('id')->id]
             ])->delete();
@@ -233,7 +233,7 @@ class DashboardAnimeVideo extends Controller
     public function approveVideo(VideoAnimeApproveRequest $request, String $slug) : RedirectResponse
     {
         // dd($request);
-        Video_Anime::where('id', $request->id)->update($request->validated());
+        Anime_Video::where('id', $request->id)->update($request->validated());
 
         if ($request->submit === 'approve') {
             return back()->with('success', 'Video Approved');
@@ -247,7 +247,7 @@ class DashboardAnimeVideo extends Controller
      */
     public function deleteVideo(Request $request, String $slug) : RedirectResponse
     {
-        Video_Anime::where('id', $request->id)->delete();
+        Anime_Video::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Deleted');
     }

@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Video_Anime extends Model
+class Anime_Video extends Model
 {
     use HasFactory;
 
-    public $table = "video_animes";
+    public $table = "anime_videos";
 
     protected $fillable = [
         'lenght_video',
@@ -29,16 +29,16 @@ class Video_Anime extends Model
 
     public function folder() : BelongsTo
     {
-        return $this->belongsTo(Folder_Anime::class);
+        return $this->belongsTo(Anime_Folder::class);
     }
 
     public function mistakes() : HasMany
     {
-        return $this->hasMany(Video_Anime_Mistake::class, 'video_anime_id', 'id');
+        return $this->hasMany(Anime_Video_Mistake::class, 'video_anime_id', 'id');
     }
 
     public function subtitles() : HasMany
     {
-        return $this->hasMany(Video_Anime_Subtitle::class, 'video_anime_id', 'id');
+        return $this->hasMany(Anime_Video_Subtitle::class, 'video_anime_id', 'id');
     }
 }

@@ -33,7 +33,7 @@ class FolderAnimeStoreRequest extends FormRequest
             'user_id' => auth()->user()->id
         ]);
         return [
-            'slug' => 'required|unique:folder_animes',
+            'slug' => 'required|unique:anime_folders',
             'approved' => 'required',
             'anime_id' => 'required',
             'user_id' => 'required'

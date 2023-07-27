@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Video_Anime_Mistake extends Model
+class Anime_Video_Mistake extends Model
 {
     use HasFactory;
 
-    public $table = "video_anime_mistakes";
+    public $table = "anime_video_mistakes";
 
     public $timestamps = false;
 
@@ -21,7 +21,7 @@ class Video_Anime_Mistake extends Model
 
     public function video() : BelongsTo
     {
-        return $this->belongsTo(Video_Anime::class);
+        return $this->belongsTo(Anime_Video::class);
     }
 
     public function mistake() : BelongsTo

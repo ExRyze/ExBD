@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Folder_Anime extends Model
+class Anime_Folder extends Model
 {
     use HasFactory;
 
-    public $table = "folder_animes";
+    public $table = "anime_folders";
 
     protected $fillable = [
         'slug',
@@ -32,6 +32,6 @@ class Folder_Anime extends Model
 
     public function videos() : HasMany
     {
-        return $this->hasMany(Video_Anime::class, 'folder_anime_id', 'id')->orderBy('episode');
+        return $this->hasMany(Anime_Video::class, 'folder_anime_id', 'id')->orderBy('episode');
     }
 }

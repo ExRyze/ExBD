@@ -55,8 +55,8 @@ return new class extends Migration
             $table->string('mistake');
         });
         
-        // ==================== folder_animes table ====================
-        Schema::create('folder_animes', function (Blueprint $table) {
+        // ==================== anime_folders table ====================
+        Schema::create('anime_folders', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
             $table->boolean('approved');
@@ -93,6 +93,6 @@ return new class extends Migration
         Schema::dropIfExists('anime_mistakes');
         
         // folder_anime table
-        Schema::dropIfExists('folder_animes');
+        Schema::dropIfExists('anime_folders');
     }
 };
