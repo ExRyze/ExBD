@@ -5,7 +5,7 @@ namespace App\Http\Requests\Dashboard\Video;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class VideoAnimeUpdateRequest extends FormRequest
+class AnimeVideoMistakeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,8 @@ class VideoAnimeUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['resolution' => $this->width."x".$this->height]);
-        if ($this->cover === null) {$this->merge(['bd' => 0]);}
         return [
-            'lenght_video' => 'required|max:10',
-            'resolution' => 'required|max:11',
-            'size' => 'required',
-            'video_tracks' => '',
-            'chapters' => 'required',
-            'episode' => 'required',
-            'audio_tracks' => '',
-            'origin' => 'required|max:255',
-            'type' => 'required',
-            'bd' => ''
+            'video_anime_id' => 'required',
         ];
     }
 }

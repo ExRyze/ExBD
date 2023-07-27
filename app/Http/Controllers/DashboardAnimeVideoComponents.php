@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Dashboard\Video\VideoMistakeStoreRequest;
-use App\Http\Requests\Dashboard\Video\VideoSubtitleStoreRequest;
-use App\Http\Requests\Dashboard\Video\VideoSubtitleUpdateRequest;
+use App\Http\Requests\Dashboard\Video\AnimeVideoMistakeStoreRequest;
+use App\Http\Requests\Dashboard\Video\AnimeVideoSubtitleStoreRequest;
+use App\Http\Requests\Dashboard\Video\AnimeVideoSubtitleUpdateRequest;
 use App\Models\Anime_Mistake;
 use App\Models\Anime_Video;
 use App\Models\Anime_Video_Mistake;
@@ -23,7 +23,7 @@ class DashboardAnimeVideoComponents extends Controller
     /**
      * Store Anime Component
      */
-    public function storeAnimeSubtitle(VideoSubtitleStoreRequest $request) : RedirectResponse
+    public function storeAnimeSubtitle(AnimeVideoSubtitleStoreRequest $request) : RedirectResponse
     {
         Anime_Video_Subtitle::create($request->validated());
 
@@ -42,7 +42,7 @@ class DashboardAnimeVideoComponents extends Controller
         return back()->with('success', "New Data Video Anime's Subtitle Added");
     }
 
-    public function storeAnimeMistake(VideoMistakeStoreRequest $request) : RedirectResponse
+    public function storeAnimeMistake(AnimeVideoMistakeStoreRequest $request) : RedirectResponse
     {
         Anime_Video_Mistake::where('video_anime_id', $request->video_anime_id)->delete();
 
@@ -61,7 +61,7 @@ class DashboardAnimeVideoComponents extends Controller
     /**
      * Update Anime Component
      */
-    public function updateAnimeSubtitle(VideoSubtitleUpdateRequest $request) : RedirectResponse
+    public function updateAnimeSubtitle(AnimeVideoSubtitleUpdateRequest $request) : RedirectResponse
     {
         if ($request->submit === 'update') {
 

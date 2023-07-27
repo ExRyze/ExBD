@@ -7,7 +7,7 @@ use App\Models\Anime_Video;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class VideoAnimeStoreRequest extends FormRequest
+class AnimeVideoStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

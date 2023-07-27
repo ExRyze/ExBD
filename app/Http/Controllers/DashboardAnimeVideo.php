@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Dashboard\Folder\FolderAnimeApproveRequest;
-use App\Http\Requests\Dashboard\Folder\FolderAnimeStoreRequest;
-use App\Http\Requests\Dashboard\Video\VideoAnimeApproveRequest;
-use App\Http\Requests\Dashboard\Video\VideoAnimeStoreRequest;
-use App\Http\Requests\Dashboard\Video\VideoAnimeUpdateRequest;
+use App\Http\Requests\Dashboard\Folder\AnimeFolderApproveRequest;
+use App\Http\Requests\Dashboard\Folder\AnimeFolderStoreRequest;
+use App\Http\Requests\Dashboard\Video\AnimeVideoApproveRequest;
+use App\Http\Requests\Dashboard\Video\AnimeVideoStoreRequest;
+use App\Http\Requests\Dashboard\Video\AnimeVideoUpdateRequest;
 use App\Models\Anime;
 use App\Models\Anime_Folder;
 use App\Models\Anime_History_Video;
@@ -57,7 +57,7 @@ class DashboardAnimeVideo extends Controller
     /**
      * Store Folder
      */
-    public function storeFolder(FolderAnimeStoreRequest $request) : RedirectResponse
+    public function storeFolder(AnimeFolderStoreRequest $request) : RedirectResponse
     {
         Anime_Folder::create($request->validated());
 
@@ -67,7 +67,7 @@ class DashboardAnimeVideo extends Controller
     /**
      * Approve Folder
      */
-    public function approveFolder(FolderAnimeApproveRequest $request) : RedirectResponse
+    public function approveFolder(AnimeFolderApproveRequest $request) : RedirectResponse
     {
         Anime_Folder::where('id', $request->id)->update($request->validated());
 
@@ -125,7 +125,7 @@ class DashboardAnimeVideo extends Controller
     /**
      * Store Video
      */
-    public function storeVideo(VideoAnimeStoreRequest $request, String $slug) : RedirectResponse
+    public function storeVideo(AnimeVideoStoreRequest $request, String $slug) : RedirectResponse
     {
         $video = Anime_Video::where([
             ['episode', $request->episode],
@@ -197,7 +197,7 @@ class DashboardAnimeVideo extends Controller
     /**
      * Update Video
      */
-    public function updateVideo(VideoAnimeUpdateRequest $request, String $slug) : RedirectResponse
+    public function updateVideo(AnimeVideoUpdateRequest $request, String $slug) : RedirectResponse
     {
         Anime_Video::where('id', $request->id)->update($request->validated());
 
@@ -230,7 +230,7 @@ class DashboardAnimeVideo extends Controller
     /**
      * Approve Video
      */
-    public function approveVideo(VideoAnimeApproveRequest $request, String $slug) : RedirectResponse
+    public function approveVideo(AnimeVideoApproveRequest $request, String $slug) : RedirectResponse
     {
         // dd($request);
         Anime_Video::where('id', $request->id)->update($request->validated());

@@ -5,14 +5,14 @@ namespace App\Http\Requests\Dashboard\Video;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class VideoAnimeApproveRequest extends FormRequest
+class AnimeVideoSubtitleUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // Allow :: Admin
+        // Allow :: Admin && Staff
         if (Gate::allows('isAdmin')) {return true;}
         else {return false;}
     }
@@ -24,14 +24,9 @@ class VideoAnimeApproveRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->submit === 'approve') {
-            $this->merge(['approved' => 1]);
-        } else {
-            $this->merge(['approved' => 0]);
-        }
-        
         return [
-            'approved' => 'required',
+            'origin' => 'required',
+            'subtitle' => 'required',
         ];
     }
 }

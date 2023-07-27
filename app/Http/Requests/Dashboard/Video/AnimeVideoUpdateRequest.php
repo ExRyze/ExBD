@@ -5,14 +5,14 @@ namespace App\Http\Requests\Dashboard\Video;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class VideoSubtitleUpdateRequest extends FormRequest
+class AnimeVideoUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // Allow :: Admin && Staff
+        // Allow :: Admin
         if (Gate::allows('isAdmin')) {return true;}
         else {return false;}
     }
@@ -24,9 +24,19 @@ class VideoSubtitleUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge(['resolution' => $this->width."x".$this->height]);
+        if ($this->cover === null) {$this->merge(['bd' => 0]);}
         return [
-            'origin' => 'required',
-            'subtitle' => 'required',
+            'lenght_video' => 'required|max:10',
+            'resolution' => 'required|max:11',
+            'size' => 'required',
+            'video_tracks' => '',
+            'chapters' => 'required',
+            'episode' => 'required',
+            'audio_tracks' => '',
+            'origin' => 'required|max:255',
+            'type' => 'required',
+            'bd' => ''
         ];
     }
 }

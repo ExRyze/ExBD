@@ -7,7 +7,7 @@ use App\Models\Anime_Video_Subtitle;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class VideoSubtitleStoreRequest extends FormRequest
+class AnimeVideoSubtitleStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

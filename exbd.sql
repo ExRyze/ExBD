@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 27, 2023 at 04:45 AM
+-- Generation Time: Jul 27, 2023 at 04:54 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -1426,7 +1426,7 @@ INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (683, '00:23:50', '1920x1080', 257.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 920.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:49:58', '2023-07-27 02:29:56', 4),
 (684, '00:23:50', '1920x1080', 228.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 921.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:50:30', '2023-07-27 02:30:22', 4),
 (685, '00:23:50', '1920x1080', 255.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 922.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:50:52', '2023-07-27 04:25:22', 4),
-(686, '00:23:50', '1920x1080', 272.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 923.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:51:17', '2023-07-22 07:51:17', 4),
+(686, '00:23:50', '1920x1080', 272.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'False', 923.0, 'Koenime', 'mkv', 0, 1, '2023-07-22 07:51:17', '2023-07-27 04:53:41', 4),
 (687, '00:23:50', '1920x1080', 294.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 924.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:51:37', '2023-07-22 07:51:37', 4),
 (688, '00:23:50', '1920x1080', 258.0, 'H264 (High @L4.1)', 'ACC 2.0 [Und]', 'True', 925.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:52:05', '2023-07-22 07:52:05', 4),
 (689, '00:23:20', '848x480', 68.2, 'H264 (High @L3.0)', 'ACC S16 2.0 [Und]', 'Null', 401.0, 'Koenime', 'mkv', 0, 0, '2023-07-22 07:56:12', '2023-07-22 07:56:12', 4),
@@ -2928,7 +2928,10 @@ INSERT INTO `anime_video_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (684, 5, 0),
 (685, 3, 0),
 (685, 2, 0),
-(685, 5, 0);
+(685, 5, 0),
+(686, 3, 0),
+(686, 2, 0),
+(686, 5, 0);
 
 --
 -- Triggers `anime_video_mistakes`
@@ -3288,7 +3291,8 @@ INSERT INTO `anime_video_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id
 (341, 'Oploverz', 'Null', 682, 0),
 (342, 'Oploverz', 'Null', 683, 0),
 (343, 'Oploverz', 'Null', 684, 0),
-(344, 'Oploverz', 'Null', 685, 0);
+(344, 'Oploverz', 'Null', 685, 0),
+(345, 'Oploverz', 'Null', 686, 0);
 
 --
 -- Triggers `anime_video_subtitles`
@@ -3647,7 +3651,7 @@ ALTER TABLE `anime_videos`
 -- AUTO_INCREMENT for table `anime_video_subtitles`
 --
 ALTER TABLE `anime_video_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
 
 --
 -- AUTO_INCREMENT for table `migrations`

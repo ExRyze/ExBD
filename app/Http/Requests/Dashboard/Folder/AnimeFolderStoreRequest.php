@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests\Dashboard\Folder;
 
+use App\Models\Anime;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class FolderAnimeApproveRequest extends FormRequest
+class AnimeFolderStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +25,18 @@ class FolderAnimeApproveRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->submit === 'approve') {
-            $this->merge(['approved' => 1]);
-        } else {
-            $this->merge(['approved' => 0]);
-        }
-        
+        $this->merge(['anime' => Anime::where('title', $this->anime)->first()]);
+        $this->merge([
+            'slug' => str_replace([':', '?'], ['', ''], $this->anime->title),
+            'approved' => false,
+            'anime_id' => $this->anime->id,
+            'user_id' => auth()->user()->id
+        ]);
         return [
+            'slug' => 'required|unique:anime_folders',
             'approved' => 'required',
+            'anime_id' => 'required',
+            'user_id' => 'required'
         ];
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Video;
+namespace App\Http\Requests\Dashboard\Folder;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class VideoMistakeStoreRequest extends FormRequest
+class AnimeFolderApproveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,14 @@ class VideoMistakeStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->submit === 'approve') {
+            $this->merge(['approved' => 1]);
+        } else {
+            $this->merge(['approved' => 0]);
+        }
+        
         return [
-            'video_anime_id' => 'required',
+            'approved' => 'required',
         ];
     }
 }
