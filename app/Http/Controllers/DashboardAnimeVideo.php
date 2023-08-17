@@ -22,7 +22,7 @@ class DashboardAnimeVideo extends Controller
 {
     protected $data = [
         'chapters' => ["True", "False", "Null"],
-        'origins' => ["Adikanime", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs", "Unknown"],
+        'origins' => ["Adikanime", "Anoboy", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs", "Unknown"],
         'types' => ["mkv", "mp4"],
     ];
 
@@ -171,11 +171,28 @@ class DashboardAnimeVideo extends Controller
 
         $next = $video_Anime->where('episode', $video[1]+1)->orWhere('episode', $video[1]+0.5)->get();
         $prev = $video_Anime->where('episode', $video[1]-1)->orWhere('episode', $video[1]-0.5)->get();
+
+        $res = rtrim((explode('.', end($video)))[0], 'p');
+        switch (true) {
+            case $res === "8k" :
+              $resolution = "7680x4320";
+              break;
+            case $res === "4k" :
+              $resolution = "3840x2160";
+              break;
+            case $res === "2k" :
+              $resolution = "2560x1440";
+              break;
+            
+            default:
+              $resolution = "%x".$res;
+              break;
+        }
         
         $video = Anime_Video::where([
             ['episode', $video[1]],
             ['origin', 'like', $video[3]],
-            ['resolution', 'like', '%'.rtrim((explode('.', end($video)))[0], 'p')],
+            ['resolution', 'like', $resolution],
             ['type', (explode('.', end($video)))[1]],
             ['bd', ($video[4] != 'tv' || $video[4] != 'bd') ? (($video[4] === "tv" ? 0 : 1)) : (($video[5] === "tv" ? 0 : 1))]
         ])->first();
@@ -220,11 +237,29 @@ class DashboardAnimeVideo extends Controller
 
         $anime = Anime::where('slug', $slug)->first();
 
-        $title = str_replace(' ', '_', strtolower($slug." Ep ".(strlen($request->episode) === 1 ? "0".$request->episode : $request->episode)." - ".$request->origin." ".(explode('x', $request->resolution)[1])."p.".$request->type));
+        $episode = (strlen($request->episode) === 1 ? "0".$request->episode : $request->episode);
+        $bd = ($request->bd === 0 ? "TV" : "BD");
+        $type = ($anime->type === "TV" ? $bd : $anime->type." ".$bd);
+        $res = explode('x', $request->resolution);
+        switch (true) {
+          case $res[0] === "7680" && $res[1] === "4320" :
+            $resolution = "8K";
+            break;
+          case $res[0] === "3840" && $res[1] === "2160" :
+            $resolution = "4K";
+            break;
+          case $res[0] === "2560" && $res[1] === "1440" :
+            $resolution = "2K";
+            break;
+          
+          default:
+            $resolution = $res[1]."p";
+            break;
+        }
+        $title = $anime->folder->slug." Ep ".$episode." - ".$request->origin." ".$type." ".$resolution.".".$request->type;
+        $path = str_replace(' ', '_', strtolower($title));
 
-        $title = str_replace(' ', '_', strtolower($slug." Ep ".(strlen($request->episode) === 1 ? "0".$request->episode : $request->episode)." - ".$request->origin." ".($anime->type === "TV" ? ($request->bd === 0 ? "TV" : "BD") : $anime->type." ".($request->bd === 0 ? "TV" : "BD"))." ".(explode('x', $request->resolution)[1])."p.".$request->type));
-
-        return redirect("/dashboard/anime/video/$slug/edit/$title")->with('success', 'Video Anime Updated Successfully');
+        return redirect("/dashboard/anime/video/$slug/edit/$path")->with('success', 'Video Anime Updated Successfully');
     }
 
     /**

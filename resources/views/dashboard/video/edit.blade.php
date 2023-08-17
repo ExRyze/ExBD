@@ -34,10 +34,30 @@
               </li>
               @foreach ($prev as $pre)
               @php 
-                $title = (str_replace(' ', '_', strtolower($table->folder->slug." Ep ".(strlen($pre->episode) === 1 ? "0".$pre->episode : $pre->episode)." - ".$pre->origin." ".($table->type === "TV" ? ($pre->bd === 0 ? "TV" : "BD") : $table->type." ".($pre->bd === 0 ? "TV" : "BD"))." ".(explode('x', $pre->resolution)[1])."p.".$pre->type)));
+                $episode = (strlen($pre->episode) === 1 ? "0".$pre->episode : $pre->episode);
+                $bd = ($pre->bd === 0 ? "TV" : "BD");
+                $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
+                $res = explode('x', $pre->resolution);
+                switch (true) {
+                  case $res[0] === "7680" && $res[1] === "4320" :
+                    $resolution = "8K";
+                    break;
+                  case $res[0] === "3840" && $res[1] === "2160" :
+                    $resolution = "4K";
+                    break;
+                  case $res[0] === "2560" && $res[1] === "1440" :
+                    $resolution = "2K";
+                    break;
+                  
+                  default:
+                    $resolution = $res[1]."p";
+                    break;
+                }
+                $title = $table->folder->slug." Ep ".$episode." - ".$pre->origin." ".$type." ".$resolution.".".$pre->type;
+                $path = str_replace(' ', '_', strtolower($title));
               @endphp
               <li class="dropdown-item">
-                <a class="m-0" href="{{ url("dashboard/anime/video/$table->slug/edit/$title") }}">{{ $title }}</a>
+                <a class="m-0" href="{{ url("dashboard/anime/video/$table->slug/edit/$path") }}">{{ $title }}</a>
               </li>
               <li>
                 <hr class="dropdown-divider">
@@ -59,10 +79,30 @@
               </li>
               @foreach ($next as $nex)
               @php 
-                $title = (str_replace(' ', '_', strtolower($table->folder->slug." Ep ".(strlen($nex->episode) === 1 ? "0".$nex->episode : $nex->episode)." - ".$nex->origin." ".($table->type === "TV" ? ($nex->bd === 0 ? "TV" : "BD") : $table->type." ".($nex->bd === 0 ? "TV" : "BD"))." ".(explode('x', $nex->resolution)[1])."p.".$nex->type)));
+                $episode = (strlen($nex->episode) === 1 ? "0".$nex->episode : $nex->episode);
+                $bd = ($nex->bd === 0 ? "TV" : "BD");
+                $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
+                $res = explode('x', $nex->resolution);
+                switch (true) {
+                  case $res[0] === "7680" && $res[1] === "4320" :
+                    $resolution = "8K";
+                    break;
+                  case $res[0] === "3840" && $res[1] === "2160" :
+                    $resolution = "4K";
+                    break;
+                  case $res[0] === "2560" && $res[1] === "1440" :
+                    $resolution = "2K";
+                    break;
+                  
+                  default:
+                    $resolution = $res[1]."p";
+                    break;
+                }
+                $title = $table->folder->slug." Ep ".$episode." - ".$nex->origin." ".$type." ".$resolution.".".$nex->type;
+                $path = str_replace(' ', '_', strtolower($title));
               @endphp
               <li class="dropdown-item">
-                <a class="m-0" href="{{ url("dashboard/anime/video/$table->slug/edit/$title") }}">{{ $title }}</a>
+                <a class="m-0" href="{{ url("dashboard/anime/video/$table->slug/edit/$path") }}">{{ $title }}</a>
               </li>
               <li>
                 <hr class="dropdown-divider">

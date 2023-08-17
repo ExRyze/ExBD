@@ -62,7 +62,26 @@
                 <tbody>
                   @foreach ($table->folder->videos->reverse() as $ivideo => $video)
                     @php 
-                      $title = $table->folder->slug." Ep ".(strlen($video->episode) === 1 ? "0".$video->episode : $video->episode)." - ".$video->origin." ".($table->type === "TV" ? ($video->bd === 0 ? "TV" : "BD") : $table->type." ".($video->bd === 0 ? "TV" : "BD"))." ".(explode('x', $video->resolution)[1])."p.".$video->type;
+                      $episode = (strlen($video->episode) === 1 ? "0".$video->episode : $video->episode);
+                      $bd = ($video->bd === 0 ? "TV" : "BD");
+                      $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
+                      $res = explode('x', $video->resolution);
+                      switch (true) {
+                        case $res[0] === "7680" && $res[1] === "4320" :
+                          $resolution = "8K";
+                          break;
+                        case $res[0] === "3840" && $res[1] === "2160" :
+                          $resolution = "4K";
+                          break;
+                        case $res[0] === "2560" && $res[1] === "1440" :
+                          $resolution = "2K";
+                          break;
+                        
+                        default:
+                          $resolution = $res[1]."p";
+                          break;
+                      }
+                      $title = $table->folder->slug." Ep ".$episode." - ".$video->origin." ".$type." ".$resolution.".".$video->type;
                       $path = str_replace(' ', '_', strtolower($title));
                     @endphp
                     {{-- If too long --}}
