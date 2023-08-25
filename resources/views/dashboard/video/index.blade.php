@@ -87,11 +87,11 @@
                     {{-- If too long --}}
                     <tr>
                       <th scope="row">
-                        <a class="btn btn-warning" href="{{ url("dashboard/anime/video/$table->slug/edit/$path") }}">
+                        <a class="btn btn-warning mb-1" href="{{ url("dashboard/anime/video/$table->slug/edit/$path") }}">
                           <i class="ri ri-edit-2-line"></i>
                           Edit
-                        </a>
-                        <form class="d-inline" action="/dashboard/anime/video/{{ $table->slug }}/approve" method="post">
+                        </a><br>
+                        <form class="mb-1" action="/dashboard/anime/video/{{ $table->slug }}/approve" method="post">
                           @csrf
                           <input type="hidden" name="id" value="{{ $video->id }}">
                           @if ($video->approved === 0)

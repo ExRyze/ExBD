@@ -33,6 +33,7 @@ class AnimeVideoSubtitleStoreRequest extends FormRequest
             'id' => 'required|unique:anime_video_subtitles',
             'origin' => 'required',
             'subtitle' => 'required',
+            'language' => 'required',
             'video_anime_id' => 'required',
         ];
     }

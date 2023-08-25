@@ -27,6 +27,7 @@ class AnimeVideoSubtitleUpdateRequest extends FormRequest
         return [
             'origin' => 'required',
             'subtitle' => 'required',
+            'language' => 'required',
         ];
     }
 }

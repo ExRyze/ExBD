@@ -24,7 +24,8 @@ class DashboardAnimeVideo extends Controller
         'chapters' => ["True", "False", "Null"],
         'origins' => ["Adikanime", "Anoboy", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs", "Unknown"],
         'types' => ["mkv", "mp4"],
-        'formats' => ['BD', 'TV', 'WEB-DL']
+        'formats' => ['BD', 'TV', 'WEB-DL'],
+        'languages' => ['English', 'Japanese', 'Indonesian'],
     ];
 
     public function __construct(Request $request)

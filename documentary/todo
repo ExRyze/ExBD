@@ -31,5 +31,4 @@ add function, to edit a specific episode of the video
 Searching with forms
 Video and Folder Size
 
-!!! IMPORTANT
-Id Subtitle will conflic if you deleted the video then adding new subtitle in video
+Create new table for audio, just like subtitle

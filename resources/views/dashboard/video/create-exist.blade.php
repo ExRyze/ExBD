@@ -56,7 +56,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <label for="video_tracks" class="form-label">Video tracks</label>
                 <input name="video_tracks" type="text" class="form-control @error('video_tracks') is-invalid @enderror" id="video_tracks" placeholder="H264 (...)" value="{{ $video->video_tracks }}">
                 @error('video_tracks')
@@ -82,14 +82,14 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <label for="episode" class="form-label form-required">Episode</label>
                 <input required autocomplete="off" step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" placeholder="00" value="{{ ($video->episode)+1 }}">
                 @error('episode')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <label for="origin" class="form-label form-required">Origin</label>
                 <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                   <option selected hidden disabled>Choose Origin...</option>
@@ -101,7 +101,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <label for="type" class="form-label form-required">Type</label>
                 <select required name="type" class="form-select @error('type') is-invalid @enderror" id="type">
                   <option selected hidden disabled>Choose Type...</option>
@@ -113,7 +113,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <label for="format" class="form-label form-required">Format</label>
                 <select required name="format" class="form-select @error('format') is-invalid @enderror" id="format">
                   @foreach ($data['formats'] as $format)

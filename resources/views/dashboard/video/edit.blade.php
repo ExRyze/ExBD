@@ -149,7 +149,7 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <label for="video_tracks" class="form-label">Video tracks</label>
                   <input name="video_tracks" type="text" class="form-control @error('video_tracks') is-invalid @enderror" id="video_tracks" value="{{ $video->video_tracks }}">
                   @error('video_tracks')
@@ -174,14 +174,14 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label for="episode" class="form-label form-required">Episode</label>
                   <input required autocomplete="off" step="0.1" name="episode" type="number" min="0" class="form-control @error('episode') is-invalid @enderror" id="episode" value="{{ $video->episode }}">
                   @error('episode')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <label for="origin" class="form-label form-required">Origin</label>
                   <select required name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
                     @foreach ($data['origins'] as $origin)
@@ -192,7 +192,7 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <label for="type" class="form-label form-required">Type</label>
                   <select required name="type" class="form-select @error('type') is-invalid @enderror" id="type">
                     @foreach ($data['types'] as $type)
@@ -203,7 +203,7 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                   <label for="format" class="form-label form-required">Format</label>
                   <select required name="format" class="form-select @error('format') is-invalid @enderror" id="format">
                     @foreach ($data['formats'] as $format)
@@ -263,10 +263,25 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-6">
                   <label for="subtitle" class="form-label form-required">Subtitle</label>
                   <input required value="{{ $subtitle->subtitle }}" name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" placeholder="Subtitle">
                   @error('subtitle')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="col-md-3">
+                  <label for="language" class="form-label form-required">Language</label>
+                  <select required name="language" class="form-select @error('language') is-invalid @enderror" id="language">
+                    @foreach ($data['languages'] as $language)
+                      @if ($language === $subtitle->language)
+                        <option selected value="{{ $language }}">{{ $language }}</option>
+                      @else
+                        <option value="{{ $language }}">{{ $language }}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                  @error('language')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
@@ -293,10 +308,22 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-6">
                   <label for="subtitle" class="form-label form-required">Subtitle</label>
                   <input required name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" placeholder="Subtitle">
                   @error('subtitle')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="col-md-3">
+                  <label for="language" class="form-label form-required">Language</label>
+                  <select required name="language" class="form-select @error('language') is-invalid @enderror" id="language">
+                    <option selected hidden disabled>Choose language...</option>
+                    @foreach ($data['languages'] as $language)
+                      <option value="{{ $language }}">{{ $language }}</option>
+                    @endforeach
+                  </select>
+                  @error('language')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>

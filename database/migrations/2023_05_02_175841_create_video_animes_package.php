@@ -93,13 +93,14 @@ return new class extends Migration
             $table->id();
             $table->string('origin');
             $table->string('subtitle');
+            $table->string('language');
             $table->foreignId('video_anime_id')->nullable()->constrained("anime_history_videos")->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('retrieve')->default(0);
         });
 
         DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video_Subtitle AFTER UPDATE ON `anime_history_video_subtitles` FOR EACH ROW
         BEGIN
-          INSERT INTO `anime_video_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `remove`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
+          INSERT INTO `anime_video_subtitles` (`id`, `origin`, `subtitle`, `language`, `video_anime_id`, `remove`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
         END');
 
         // ==================== anime_video_subtitles table ====================
@@ -107,6 +108,7 @@ return new class extends Migration
             $table->id();
             $table->string('origin');
             $table->string('subtitle');
+            $table->string('language');
             $table->foreignId('video_anime_id')->nullable()->constrained("anime_videos")->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('remove')->default(0);
         });
@@ -114,7 +116,7 @@ return new class extends Migration
         DB::unprepared('CREATE TRIGGER Create_History_Anime_Video_Subtitle AFTER UPDATE ON `anime_video_subtitles` FOR EACH ROW
         BEGIN
             IF OLD.remove != NEW.remove THEN
-                INSERT INTO `anime_history_video_subtitles` (`id`, `origin`, `subtitle`, `video_anime_id`, `retrieve`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
+                INSERT INTO `anime_history_video_subtitles` (`id`, `origin`, `subtitle`, `language`, `video_anime_id`, `retrieve`) VALUES (NEW.id, NEW.origin, NEW.subtitle, NEW.video_anime_id, 0);
             END IF;
         END');
     }
