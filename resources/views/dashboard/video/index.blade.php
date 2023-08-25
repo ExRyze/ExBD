@@ -63,7 +63,7 @@
                   @foreach ($table->folder->videos->reverse() as $ivideo => $video)
                     @php 
                       $episode = (strlen($video->episode) === 1 ? "0".$video->episode : $video->episode);
-                      $bd = ($video->bd === 0 ? "TV" : "BD");
+                      $bd = $video->format;
                       $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
                       $res = explode('x', $video->resolution);
                       switch (true) {

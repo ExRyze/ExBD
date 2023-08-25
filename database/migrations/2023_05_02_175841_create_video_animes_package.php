@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('chapters');
             $table->double('episode', 12, 1);
             $table->string('origin');
-            $table->enum('type', ['mkv', 'mp4']);
-            $table->boolean('bd')->default(0);
+            $table->text('type');
+            $table->text('format');
             $table->boolean('approved')->default(0);
             $table->timestamps();
             $table->string('slug');
@@ -32,7 +32,7 @@ return new class extends Migration
 
         DB::unprepared('CREATE TRIGGER Retrieve_Anime_Video AFTER UPDATE ON `anime_history_videos` FOR EACH ROW
         BEGIN
-          INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES (NEW.id, NEW.lenght_video, NEW.resolution, NEW.size, NEW.video_tracks, NEW.audio_tracks, NEW.chapters, NEW.episode, NEW.origin, NEW.type, NEW.bd, NEW.approved, NEW.created_at, NEW.updated_at, (SELECT `id` FROM `anime_folders` WHERE NEW.slug = `anime_folders`.`slug`));
+          INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `format`, `approved`, `created_at`, `updated_at`, `folder_anime_id`) VALUES (NEW.id, NEW.lenght_video, NEW.resolution, NEW.size, NEW.video_tracks, NEW.audio_tracks, NEW.chapters, NEW.episode, NEW.origin, NEW.type, NEW.format, NEW.approved, NEW.created_at, NEW.updated_at, (SELECT `id` FROM `anime_folders` WHERE NEW.slug = `anime_folders`.`slug`));
           UPDATE `anime_history_video_mistakes` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
           UPDATE `anime_history_video_subtitles` SET `retrieve` = 1 WHERE `video_anime_id` = NEW.id;
         END');
@@ -48,8 +48,8 @@ return new class extends Migration
             $table->string('chapters');
             $table->double('episode', 12, 1);
             $table->string('origin');
-            $table->enum('type', ['mkv', 'mp4']);
-            $table->boolean('bd')->default(0);
+            $table->text('type');
+            $table->text('format');
             $table->boolean('approved')->default(0);
             $table->timestamps();
             $table->foreignId('folder_anime_id')->nullable()->constrained("anime_folders")->cascadeOnUpdate()->cascadeOnDelete();
@@ -57,7 +57,7 @@ return new class extends Migration
 
         DB::unprepared('CREATE TRIGGER Create_History_Anime_Video BEFORE DELETE ON `anime_videos` FOR EACH ROW
         BEGIN
-          INSERT INTO `anime_history_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `bd`, `approved`, `created_at`, `updated_at`, `slug`) VALUES (OLD.id, OLD.lenght_video, OLD.resolution, OLD.size, OLD.video_tracks, OLD.audio_tracks, OLD.chapters, OLD.episode, OLD.origin, OLD.type, OLD.bd, OLD.approved, OLD.created_at, OLD.updated_at, (SELECT `slug` FROM `anime_folders` WHERE OLD.folder_anime_id = `anime_folders`.`id`));
+          INSERT INTO `anime_history_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_tracks`, `audio_tracks`, `chapters`, `episode`, `origin`, `type`, `format`, `approved`, `created_at`, `updated_at`, `slug`) VALUES (OLD.id, OLD.lenght_video, OLD.resolution, OLD.size, OLD.video_tracks, OLD.audio_tracks, OLD.chapters, OLD.episode, OLD.origin, OLD.type, OLD.format, OLD.approved, OLD.created_at, OLD.updated_at, (SELECT `slug` FROM `anime_folders` WHERE OLD.folder_anime_id = `anime_folders`.`id`));
           UPDATE `anime_video_mistakes` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
           UPDATE `anime_video_subtitles` SET `remove`= 1 WHERE `video_anime_id` = OLD.id;
         END');

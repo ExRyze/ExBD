@@ -24,6 +24,7 @@ class DashboardAnimeVideo extends Controller
         'chapters' => ["True", "False", "Null"],
         'origins' => ["Adikanime", "Anoboy", "Koenime", "Kusonime", "Oploverz", "Samehadaku", "Twitter Subs", "Unknown"],
         'types' => ["mkv", "mp4"],
+        'formats' => ['BD', 'TV', 'WEB-DL']
     ];
 
     public function __construct(Request $request)
@@ -134,7 +135,6 @@ class DashboardAnimeVideo extends Controller
             ['type', $request->type],
         ])->first();
 
-        
         $history = Anime_History_Video::where([
             ['episode', $request->episode],
             ['origin', 'like', $request->origin],
@@ -194,7 +194,7 @@ class DashboardAnimeVideo extends Controller
             ['origin', 'like', $video[3]],
             ['resolution', 'like', $resolution],
             ['type', (explode('.', end($video)))[1]],
-            ['bd', ($video[4] != 'tv' || $video[4] != 'bd') ? (($video[4] === "tv" ? 0 : 1)) : (($video[5] === "tv" ? 0 : 1))]
+            ['format', $video[4]]
         ])->first();
 
         // One Piece Ep 900 - Koenime TV 1080p
@@ -238,7 +238,7 @@ class DashboardAnimeVideo extends Controller
         $anime = Anime::where('slug', $slug)->first();
 
         $episode = (strlen($request->episode) === 1 ? "0".$request->episode : $request->episode);
-        $bd = ($request->bd === 0 ? "TV" : "BD");
+        $bd = $request->format;
         $type = ($anime->type === "TV" ? $bd : $anime->type." ".$bd);
         $res = explode('x', $request->resolution);
         switch (true) {

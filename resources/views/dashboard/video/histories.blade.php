@@ -42,7 +42,7 @@
                     <th scope="col">Video Tracks</th>
                     <th scope="col">Audio Tracks</th>
                     <th scope="col">Size</th>
-                    <th scope="col">Blu-ray</th>
+                    <th scope="col">Format</th>
                     <th scope="col">Approved</th>
                     <th scope="col">Date Updated</th>
                   </tr>
@@ -85,7 +85,7 @@
                       <td>{{ $history->video_tracks }}</td>
                       <td>{{ $history->audio_tracks }}</td>
                       <td>{{ $history->size }}</td>
-                      <td><em>{{ $history->bd === 0 ? "False" : "True" }}</em></td>
+                      <td><em>{{ $history->format }}</em></td>
                       <td><em>{{ $history->approved === 0 ? "False" : "True" }}</em></td>
                       <td>{{ date("Y-m-d H:i:s", strtotime($history->updated_at)) }}</td>
                     </tr>

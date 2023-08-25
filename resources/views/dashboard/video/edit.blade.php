@@ -35,7 +35,7 @@
               @foreach ($prev as $pre)
               @php 
                 $episode = (strlen($pre->episode) === 1 ? "0".$pre->episode : $pre->episode);
-                $bd = ($pre->bd === 0 ? "TV" : "BD");
+                $bd = $pre->format;
                 $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
                 $res = explode('x', $pre->resolution);
                 switch (true) {
@@ -80,7 +80,7 @@
               @foreach ($next as $nex)
               @php 
                 $episode = (strlen($nex->episode) === 1 ? "0".$nex->episode : $nex->episode);
-                $bd = ($nex->bd === 0 ? "TV" : "BD");
+                $bd = $nex->format;
                 $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
                 $res = explode('x', $nex->resolution);
                 switch (true) {
@@ -203,15 +203,14 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
-                  <label for="bd" class="form-label"></label>
-                  <div class="form-check">
-                    <input name="bd" value="1" {{ $video->bd === 1 ? "checked" : "" }} class="form-check-input @error('bd') is-invalid @enderror" type="checkbox" id="bd">
-                    <label class="form-check-label" for="bd">
-                      Blu-ray
-                    </label>
-                  </div>
-                  @error('bd')
+                <div class="col-md-2">
+                  <label for="format" class="form-label form-required">Format</label>
+                  <select required name="format" class="form-select @error('format') is-invalid @enderror" id="format">
+                    @foreach ($data['formats'] as $format)
+                      <option value="{{ $format }}" {{ $video->format === $format ? "selected" : "" }}>{{ $format }}</option>
+                    @endforeach
+                  </select>
+                  @error('format')
                   <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
