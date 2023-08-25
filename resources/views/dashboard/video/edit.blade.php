@@ -35,8 +35,6 @@
               @foreach ($prev as $pre)
               @php 
                 $episode = (strlen($pre->episode) === 1 ? "0".$pre->episode : $pre->episode);
-                $bd = $pre->format;
-                $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
                 $res = explode('x', $pre->resolution);
                 switch (true) {
                   case $res[0] === "7680" && $res[1] === "4320" :
@@ -53,7 +51,7 @@
                     $resolution = $res[1]."p";
                     break;
                 }
-                $title = $table->folder->slug." Ep ".$episode." - ".$pre->origin." ".$type." ".$resolution.".".$pre->type;
+                $title = $table->folder->slug." Ep ".$episode." - ".$pre->origin." ".$pre->format." ".$resolution.".".$pre->type;
                 $path = str_replace(' ', '_', strtolower($title));
               @endphp
               <li class="dropdown-item">
@@ -80,8 +78,6 @@
               @foreach ($next as $nex)
               @php 
                 $episode = (strlen($nex->episode) === 1 ? "0".$nex->episode : $nex->episode);
-                $bd = $nex->format;
-                $type = ($table->type === "TV" ? $bd : $table->type." ".$bd);
                 $res = explode('x', $nex->resolution);
                 switch (true) {
                   case $res[0] === "7680" && $res[1] === "4320" :
@@ -98,7 +94,7 @@
                     $resolution = $res[1]."p";
                     break;
                 }
-                $title = $table->folder->slug." Ep ".$episode." - ".$nex->origin." ".$type." ".$resolution.".".$nex->type;
+                $title = $table->folder->slug." Ep ".$episode." - ".$nex->origin." ".$nex->format." ".$resolution.".".$nex->type;
                 $path = str_replace(' ', '_', strtolower($title));
               @endphp
               <li class="dropdown-item">

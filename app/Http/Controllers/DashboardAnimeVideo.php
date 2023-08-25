@@ -239,8 +239,6 @@ class DashboardAnimeVideo extends Controller
         $anime = Anime::where('slug', $slug)->first();
 
         $episode = (strlen($request->episode) === 1 ? "0".$request->episode : $request->episode);
-        $bd = $request->format;
-        $type = ($anime->type === "TV" ? $bd : $anime->type." ".$bd);
         $res = explode('x', $request->resolution);
         switch (true) {
           case $res[0] === "7680" && $res[1] === "4320" :
@@ -257,7 +255,7 @@ class DashboardAnimeVideo extends Controller
             $resolution = $res[1]."p";
             break;
         }
-        $title = $anime->folder->slug." Ep ".$episode." - ".$request->origin." ".$type." ".$resolution.".".$request->type;
+        $title = $anime->folder->slug." Ep ".$episode." - ".$request->origin." ".$request->format." ".$resolution.".".$request->type;
         $path = str_replace(' ', '_', strtolower($title));
 
         return redirect("/dashboard/anime/video/$slug/edit/$path")->with('success', 'Video Anime Updated Successfully');
