@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 25, 2023 at 04:49 AM
+-- Generation Time: Aug 31, 2023 at 10:33 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.10
 
@@ -60,7 +60,8 @@ INSERT INTO `animes` (`id`, `title`, `slug`, `episodes`, `duration`, `type`, `st
 (8, '5-toubun no Hanayome', '5-toubun_no_hanayome', 12, '24', 'TV', 'Finished airing', 'Manga', '2019-01-11', '2019-03-29', 'Fuutarou Uesugi is an ace high school student, but leads an otherwise tough life. His standoffish personality and reclusive nature have left him friendless, and his father is debt-ridden, forcing his family to scrape by.\r\n\r\nOne day during his lunch break, Uesugi argues with a female transfer student who has claimed \"his seat,\" leading both of them to dislike each other. That same day, he is presented with a golden opportunity to clear his family\'s debt: a private tutoring gig for a wealthy family\'s daughter, with a wage of five times the market price. He accepts the proposal, but is horrified to discover that the client, Itsuki Nakano, is the girl he confronted earlier!\r\n\r\nAfter unsuccessfully trying to get back on Itsuki\'s good side, Uesugi finds out that his problems don\'t end there: Itsuki is actually a quintuplet, so in addition to her, he must also tutor her sisters—Miku, Yotsuba, Nino, and Ichika—who, despite the very real threat of flunking, want nothing to do with a tutor. However, his family\'s livelihood is on the line so Uesugi pushes on, adamant in his resolve to rid the sisters of their detest for studying and successfully lead them to graduation.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-24 05:56:31', '2023-04-30 12:40:15', 1),
 (9, '5-toubun no Hanayome Movie', '5-toubun_no_hanayome_movie', 1, '136', 'Movie', 'Finished airing', 'Manga', '2022-05-20', NULL, 'Futaro has led five quintuplets to the point where they can graduate and pursue their own dreams. Now, finally, they had reached their final school festival. Having decided to make this occasion one to remember, Futaro searches for his feelings for the five quintuplets.\r\n\r\n(source: ANN)', 'Cover.jpg', '2023-04-24 05:58:15', '2023-04-30 12:20:38', 1),
 (10, '5-toubun no Hanayome ∬', '5-toubun_no_hanayome_∬', 12, '24', 'TV', 'Finished airing', 'Manga', '2021-01-08', '2021-03-26', 'Through their tutor Fuutarou Uesugi\'s diligent guidance, the Nakano quintuplets\' academic performance shows signs of improvement, even if their path to graduation is still rocky. However, as they continue to cause various situations that delay any actual tutoring, Fuutarou becomes increasingly involved with their personal lives, further complicating their relationship with each other.\r\n\r\nOn another note, Fuutarou slowly begins to realize the existence of a possible connection between him and the past he believes to have shared with one of the five girls. With everyone\'s feelings beginning to develop and overlap, will they be able to keep their bond strictly to that of a teacher and his students—or will it mature into something else entirely?\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-24 06:08:26', '2023-04-30 12:22:24', 1),
-(11, 'One Piece', 'one_piece', NULL, '24', 'TV', 'Currently airing', 'Manga', '1999-10-20', NULL, 'Gol D. Roger was known as the \"Pirate King,\" the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world. His last words before his death revealed the existence of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Piece—which promises an unlimited amount of riches and fame—and quite possibly the pinnacle of glory and the title of the Pirate King.\r\n\r\nEnter Monkey D. Luffy, a 17-year-old boy who defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate ransacking villages for fun, Luffy\'s reason for being a pirate is one of pure wonder: the thought of an exciting adventure that leads him to intriguing people and ultimately, the promised treasure. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach the most coveted of all fortunes—One Piece.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-30 13:08:24', '2023-07-03 13:58:26', 1);
+(11, 'One Piece', 'one_piece', NULL, '24', 'TV', 'Currently airing', 'Manga', '1999-10-20', NULL, 'Gol D. Roger was known as the \"Pirate King,\" the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world. His last words before his death revealed the existence of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Piece—which promises an unlimited amount of riches and fame—and quite possibly the pinnacle of glory and the title of the Pirate King.\r\n\r\nEnter Monkey D. Luffy, a 17-year-old boy who defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate ransacking villages for fun, Luffy\'s reason for being a pirate is one of pure wonder: the thought of an exciting adventure that leads him to intriguing people and ultimately, the promised treasure. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach the most coveted of all fortunes—One Piece.\r\n\r\n[Written by MAL Rewrite]', 'Cover.jpg', '2023-04-30 13:08:24', '2023-07-03 13:58:26', 1),
+(12, 'Test', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-31 08:21:48', '2023-08-31 08:21:48', 1);
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,8 @@ CREATE TABLE `anime_folders` (
 --
 
 INSERT INTO `anime_folders` (`id`, `slug`, `approved`, `created_at`, `updated_at`, `anime_id`, `user_id`) VALUES
-(4, 'One Piece', 0, '2023-05-20 03:17:49', '2023-05-20 03:17:49', 11, 1);
+(4, 'One Piece', 0, '2023-05-20 03:17:49', '2023-05-20 03:17:49', 11, 1),
+(5, 'Test', 0, '2023-08-31 08:23:37', '2023-08-31 08:23:37', 12, 1);
 
 -- --------------------------------------------------------
 
@@ -1843,7 +1845,9 @@ INSERT INTO `anime_videos` (`id`, `lenght_video`, `resolution`, `size`, `video_t
 (1092, '00:23:50', '1920x1080', 324.0, 'H264 (High @L4.1)', 'ACC 1.0 [Und]', 'False', 1070.0, 'Oploverz', 'mkv', 'TV', 1, '2023-08-17 07:07:34', '2023-08-24 01:26:38', 4),
 (1093, '00:23:50', '3840x2160', 2180.0, 'H264 (Main @L5.2)', 'ACC 2.0 [Jpn]', 'Null', 1071.0, 'Oploverz', 'mkv', 'TV', 1, '2023-08-24 01:28:14', '2023-08-24 01:30:43', 4),
 (1094, '00:23:50', '3840x2160', 1490.0, 'H264 (Main @L5.2)', 'ACC 2.0 [Und]', 'False', 1072.0, 'Oploverz', 'mkv', 'TV', 1, '2023-08-24 01:28:47', '2023-08-24 01:31:11', 4),
-(1095, '00:23:20', '3840x2160', 1780.0, 'H264 (Main @L5.2)', 'ACC 2.0 [Und]', 'False', 1073.0, 'Oploverz', 'mkv', 'TV', 1, '2023-08-24 01:29:29', '2023-08-24 02:02:52', 4);
+(1095, '00:23:20', '3840x2160', 1780.0, 'H264 (Main @L5.2)', 'ACC 2.0 [Und]', 'False', 1073.0, 'Oploverz', 'mkv', 'TV', 1, '2023-08-24 01:29:29', '2023-08-25 05:12:40', 4),
+(1096, '00:00:00', '0x0', 0.0, NULL, NULL, 'True', 0.0, 'Unknown', 'mkv', 'TV', 0, '2023-08-31 08:42:17', '2023-08-31 10:05:45', 5),
+(1097, '00:00:00', '0x0', 0.0, NULL, NULL, 'True', 1.0, 'Unknown', 'mkv', 'TV', 0, '2023-08-31 08:42:32', '2023-08-31 10:05:45', 5);
 
 --
 -- Triggers `anime_videos`
@@ -3733,7 +3737,10 @@ INSERT INTO `anime_video_mistakes` (`video_anime_id`, `mistake_id`, `remove`) VA
 (1095, 3, 0),
 (1095, 4, 0),
 (1095, 2, 0),
-(1095, 5, 0);
+(1095, 5, 0),
+(NULL, 2, 0),
+(1096, 2, 0),
+(1097, 2, 0);
 
 --
 -- Triggers `anime_video_mistakes`
@@ -4251,7 +4258,9 @@ INSERT INTO `anime_video_subtitles` (`id`, `origin`, `subtitle`, `language`, `vi
 (500, 'Oploverz', 'Null', 'Indonesian', 1092, 0),
 (501, 'Oploverz', 'Null', 'Indonesian', 1093, 0),
 (502, 'Oploverz', 'Null', 'Indonesian', 1094, 0),
-(503, 'Oploverz', 'Null', 'Indonesian', 1095, 0);
+(503, 'Oploverz', 'Null', 'Indonesian', 1095, 0),
+(507, 'Unknown', 'Null', 'Indonesian', 1096, 0),
+(508, 'Unknown', 'Null', 'Indonesian', 1097, 0);
 
 --
 -- Triggers `anime_video_subtitles`
@@ -4532,7 +4541,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animes`
 --
 ALTER TABLE `animes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `anime_aliases`
@@ -4544,7 +4553,7 @@ ALTER TABLE `anime_aliases`
 -- AUTO_INCREMENT for table `anime_folders`
 --
 ALTER TABLE `anime_folders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `anime_genres`
@@ -4604,13 +4613,13 @@ ALTER TABLE `anime_themes`
 -- AUTO_INCREMENT for table `anime_videos`
 --
 ALTER TABLE `anime_videos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1096;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1098;
 
 --
 -- AUTO_INCREMENT for table `anime_video_subtitles`
 --
 ALTER TABLE `anime_video_subtitles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=506;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=509;
 
 --
 -- AUTO_INCREMENT for table `migrations`

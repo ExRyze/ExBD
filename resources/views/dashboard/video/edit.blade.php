@@ -22,7 +22,7 @@
         </div>
         @endif
 
-        <div class="col-12 mb-3 d-flex justify-content-between">
+        <div class="col-12 mb-3 d-flex">
           @if ($prev->count())
           <div class="dropdown">
 
@@ -67,7 +67,7 @@
           @endif
 
           @if ($next->count())
-          <div class="dropdown">
+          <div class="dropdown ms-auto">
 
             <button class="btn btn-primary" href="#" data-bs-toggle="dropdown">Next <i class="bi bi-chevron-right"></i></button>
 

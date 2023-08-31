@@ -98,7 +98,7 @@
 
   <div class="modal fade text-dark" id="NewFolder" tabindex="-1" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
-      <form class="modal-content" action="/dashboard/folder/anime/store" method="POST">
+      <form class="modal-content" action="/dashboard/anime/folder/store" method="POST">
         @csrf
         <div class="modal-header">
           <h5 class="modal-title">New Folder</h5>

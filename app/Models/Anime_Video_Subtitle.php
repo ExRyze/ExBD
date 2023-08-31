@@ -17,6 +17,7 @@ class Anime_Video_Subtitle extends Model
     protected $fillable = [
         'origin',
         'subtitle',
+        'language',
         'video_anime_id'
     ];
 

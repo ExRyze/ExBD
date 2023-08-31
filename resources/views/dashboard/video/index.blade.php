@@ -41,6 +41,13 @@
               Create
             </a>
 
+            @if ($table->folder->videos->count())
+            <a class="btn btn-warning mb-2" type="button" data-bs-toggle="modal" data-bs-target="#edit">
+              <i class="bi bi-plus-lg"></i>
+              Edit
+            </a>
+            @endif
+
             <!-- Table with stripped rows -->
             <div class="table-responsive">
               <table class="table datatable table-bordered table-hover" style="white-space: nowrap;">
@@ -170,5 +177,78 @@
     </div>
   </div>
   @endforeach
+
+  <div class="modal fade text-dark" id="edit" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+      <form class="modal-content" method="post" action="/dashboard/anime/video/{{ $table->slug }}/updates">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title">Edit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row g-3">
+          <h5 class="fw-bold">General</h5>
+          <div class="col-md-6">
+            <label for="episodes" class="form-label form-required">Episodes</label>
+            <input required name="episodes" type="text" class="form-control @error('episodes') is-invalid @enderror" id="episodes" placeholder="0-10">
+            @error('episodes')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+          <div class="col-md-6">
+            <label for="chapters" class="form-label">Chapter</label>
+            <select name="chapters" class="form-select @error('chapters') is-invalid @enderror" id="chapters">
+              <option selected hidden disabled>Choose Chapter...</option>
+              @foreach ($data['chapters'] as $chapter)
+                <option value="{{ $chapter }}">{{ $chapter }}</option>
+              @endforeach
+            </select>
+            @error('chapters')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+          <hr>
+          <h5 class="fw-bold">Subtitle</h5>
+          <div class="col-md-3">
+            <label for="origin" class="form-label">Origin Subtitle</label>
+            <select name="origin" class="form-select @error('origin') is-invalid @enderror" id="origin">
+              <option selected hidden disabled>Choose Origin...</option>
+              @foreach ($data['origins'] as $origin)
+                <option value="{{ $origin }}">{{ $origin }}</option>
+              @endforeach
+            </select>
+            @error('origin')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+          <div class="col-md-6">
+            <label for="subtitle" class="form-label">Subtitle</label>
+            <input name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" placeholder="Subtitle">
+            @error('subtitle')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+          <div class="col-md-3">
+            <label for="language" class="form-label">Language</label>
+            <select name="language" class="form-select @error('language') is-invalid @enderror" id="language">
+              <option selected hidden disabled>Choose language...</option>
+              @foreach ($data['languages'] as $language)
+                <option value="{{ $language }}">{{ $language }}</option>
+              @endforeach
+            </select>
+            @error('language')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+          <hr>
+
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary">Reset</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
 @endsection

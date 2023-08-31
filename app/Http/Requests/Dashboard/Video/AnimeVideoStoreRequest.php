@@ -38,12 +38,12 @@ class AnimeVideoStoreRequest extends FormRequest
             'resolution' => 'required|max:11',
             'size' => 'required',
             'video_tracks' => '',
+            'audio_tracks' => '',
             'chapters' => 'required',
             'episode' => 'required',
-            'audio_tracks' => '',
             'origin' => 'required|max:255',
             'type' => 'required',
-            'format' => 'reqired',
+            'format' => 'required',
             'folder_anime_id' => 'required'
         ];
     }

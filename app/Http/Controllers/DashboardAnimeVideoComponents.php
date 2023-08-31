@@ -27,17 +27,7 @@ class DashboardAnimeVideoComponents extends Controller
     {
         Anime_Video_Subtitle::create($request->validated());
 
-        $mistake = Anime_Video_Mistake::where([
-            ['video_anime_id', $request->video_anime_id], 
-            ['mistake_id', Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id]
-        ])->first();
-
-        if ($request->subtitle === 'Null' && !$mistake) {
-            Anime_Video_Mistake::create([
-                'video_anime_id' => $request->video_anime_id, 
-                'mistake_id' => Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id
-            ]);
-        }
+        $this->subtitleNull($request);
 
         return back()->with('success', "New Data Video Anime's Subtitle Added");
     }
@@ -120,5 +110,22 @@ class DashboardAnimeVideoComponents extends Controller
     public function destroyAnimeSubtitle(Request $request) : void
     {
         Anime_Video_Subtitle::where('id', $request->id)->delete();
+    }
+
+    /**
+     * Static
+     */
+    public static function subtitleNull($request) {
+        $mistake = Anime_Video_Mistake::where([
+            ['video_anime_id', $request->video_anime_id], 
+            ['mistake_id', Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id]
+        ])->first();
+
+        if ($request->subtitle === 'Null' && !$mistake) {
+            Anime_Video_Mistake::create([
+                'video_anime_id' => $request->video_anime_id, 
+                'mistake_id' => Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id
+            ]);
+        }
     }
 }

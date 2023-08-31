@@ -115,6 +115,7 @@ Route::controller(DashboardAnimeVideo::class)->group(function() {
     Route::post('/dashboard/anime/video/{slug}/update', 'updateVideo');
     Route::post('/dashboard/anime/video/{slug}/approve', 'approveVideo');
     Route::post('/dashboard/anime/video/{slug}/delete', 'deleteVideo');
+    Route::post('/dashboard/anime/video/{slug}/updates', 'updatesVideo');
 
     // History
     Route::get('/dashboard/anime/history/video', 'histories');

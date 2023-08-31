@@ -6,6 +6,7 @@ use App\Http\Requests\Dashboard\Folder\AnimeFolderApproveRequest;
 use App\Http\Requests\Dashboard\Folder\AnimeFolderStoreRequest;
 use App\Http\Requests\Dashboard\Video\AnimeVideoApproveRequest;
 use App\Http\Requests\Dashboard\Video\AnimeVideoStoreRequest;
+use App\Http\Requests\Dashboard\Video\AnimeVideoSubtitleStoreRequest;
 use App\Http\Requests\Dashboard\Video\AnimeVideoUpdateRequest;
 use App\Models\Anime;
 use App\Models\Anime_Folder;
@@ -13,6 +14,8 @@ use App\Models\Anime_History_Video;
 use App\Models\Anime_Mistake;
 use App\Models\Anime_Video;
 use App\Models\Anime_Video_Mistake;
+use App\Models\Anime_Video_Subtitle;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -97,7 +100,8 @@ class DashboardAnimeVideo extends Controller
     {
         return view('dashboard.video.index', [
             'page' => $this->getUrl(URL::current()),
-            'table' => Anime::where('slug', $slug)->first()
+            'table' => Anime::where('slug', $slug)->first(),
+            'data' => $this->data
         ]);
     }
 
@@ -108,7 +112,7 @@ class DashboardAnimeVideo extends Controller
     {
         $anime = Anime::where('slug', $slug)->first();
         $video = Anime_Video::where('folder_anime_id', $anime->folder->id)->latest()->first();
-        if ($video->count()) {
+        if ($video) {
             return view('dashboard.video.create-exist', [
                 'page' => $this->getUrl(URL::current()),
                 'anime' => $anime,
@@ -167,11 +171,12 @@ class DashboardAnimeVideo extends Controller
     public function editVideo(Anime_Video $video_Anime, String $slug, String $title) : View
     {
         $anime = Anime::where('slug', $slug)->first(['id', 'slug']);
+        $folder = $anime->folder->id;
         $video = substr($title, strlen($anime->folder->slug)+1);
         $video = explode('_', $video);
-
-        $next = $video_Anime->where('episode', $video[1]+1)->orWhere('episode', $video[1]+0.5)->get();
-        $prev = $video_Anime->where('episode', $video[1]-1)->orWhere('episode', $video[1]-0.5)->get();
+        
+        $next = $video_Anime->where('folder_anime_id', $folder)->where(function ($query) use ($video) {$query->where('episode', $video[1]+1)->orWhere('episode', $video[1]+0.5);})->get();
+        $prev = $video_Anime->where('folder_anime_id', $folder)->where(function ($query) use ($video) {$query->where('episode', $video[1]-1)->orWhere('episode', $video[1]-0.5);})->get();
 
         $res = rtrim((explode('.', end($video)))[0], 'p');
         switch (true) {
@@ -262,6 +267,45 @@ class DashboardAnimeVideo extends Controller
     }
 
     /**
+     * Update Videos
+     */
+    public function updatesVideo(Request $request, String $slug)
+    {
+        $episodes = explode('-', $request->episodes);
+        $folder = Anime::where('slug', $slug)->first();
+        $folder = $folder->folder->id;
+
+        $videos = Anime_Video::whereBetween('episode', [$episodes[0], $episodes[1]])->where('folder_anime_id', $folder)->get();
+
+        foreach ($videos as $video) {
+            $request->merge(['video_anime_id' => $video->id]);
+
+            if (!empty($request->chapters)) {
+                $video->chapters = $request->chapters;
+                $this->chaptersNull($request);
+                $video->save();
+            }
+
+            if (!empty($request->origin) && !empty($request->subtitle) && !empty($request->language)) {
+                $subtitle = $request->only(['origin', 'subtitle', 'language']);
+                $subtitle['video_anime_id'] = $video->id;
+                Anime_Video_Subtitle::create($subtitle);
+                DashboardAnimeVideoComponents::subtitleNull($request);
+            }
+        }
+
+        return back()->with('success', 'Videos are updated');
+
+        // where(function (Builder $query, $episodes) {
+        //     foreach ($episodes as $key => $value) {
+        //         if (strpos($value, '-')) {
+        //             # code...
+        //         }
+        //     }
+        // });
+    }
+
+    /**
      * Approve Video
      */
     public function approveVideo(AnimeVideoApproveRequest $request, String $slug) : RedirectResponse
@@ -328,5 +372,28 @@ class DashboardAnimeVideo extends Controller
         Anime_History_Video::where('id', $request->id)->delete();
 
         return back()->with('success', 'Video Anime Has Been Permanently Delete');
+    }
+
+    /**
+     * Static Functions
+     */
+    public static function chaptersNull($request)
+    {
+        $mistake = Anime_Video_Mistake::where([
+            ['video_anime_id', $request->video_anime_id], 
+            ['mistake_id', Anime_Mistake::where('mistake', 'Hardsub')->first('id')->id]
+        ])->first();
+
+        if ($request->chapters != 'True' && !$mistake) {
+            Anime_Video_Mistake::create([
+                'video_anime_id' => $request->video_anime_id, 
+                'mistake_id' => Anime_Mistake::where('mistake', '!Chapter')->first('id')->id
+            ]);
+        } else if ($request->chapters === 'True') {
+            Anime_Video_Mistake::where([
+                ['video_anime_id', $request->video_anime_id], 
+                ['mistake_id', Anime_Mistake::where('mistake', '!Chapter')->first('id')->id]
+            ])->delete();
+        }
     }
 }
